@@ -5,6 +5,13 @@ module.exports = {
   important: false,
   separator: ":",
   theme: {
+    extend: {
+      colors: {
+        offwhite: "#F3F2F1",
+        charcoal: "#1E2223",
+        offpink: "#FCF0EC",
+      },
+    },
     screens: {
       sm: "640px",
       md: "768px",
