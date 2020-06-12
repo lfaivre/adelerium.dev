@@ -43,10 +43,10 @@ module.exports = {
             variants: [`400`],
             text: "kevaladesign.",
           },
-          {
-            family: `Playfair Display`,
-            variants: [`400`, `700`],
-          },
+          // {
+          //   family: `Playfair Display`,
+          //   variants: [`400`, `700`],
+          // },
         ],
       },
     },

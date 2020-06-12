@@ -11,6 +11,13 @@ module.exports = {
         charcoal: "#1E2223",
         offpink: "#FCF0EC",
       },
+      fontSize: {
+        "3.5xl": "2rem",
+        "7xl": "4.5rem",
+      },
+      inset: {
+        "about-title": "-7.5rem",
+      },
     },
     screens: {
       sm: "640px",
@@ -687,7 +694,7 @@ module.exports = {
     lineHeight: ["responsive"],
     listStylePosition: ["responsive"],
     listStyleType: ["responsive"],
-    margin: ["responsive"],
+    margin: ["responsive", "last"],
     maxHeight: ["responsive"],
     maxWidth: ["responsive"],
     minHeight: ["responsive"],
