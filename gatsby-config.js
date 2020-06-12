@@ -29,6 +29,27 @@ module.exports = {
     },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Lobster Two`,
+            variants: [`700`],
+            text: "0123456789.",
+          },
+          {
+            family: `Mrs Sheppards`,
+            variants: [`400`],
+            text: "kevaladesign.",
+          },
+          {
+            family: `Playfair Display`,
+            variants: [`400`, `700`],
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

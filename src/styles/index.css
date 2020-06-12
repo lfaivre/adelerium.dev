@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 :root {
+  /* COLORS */
   --offwhite: #f3f2f1;
   --charcoal: #1e2223;
   --offpink: #fcf0ec;
+
+  /* FONT FAMILY */
+  --lobster-two: "Lobster Two", cursive;
+  --mrs-sheppards: "Mrs Sheppards", cursive;
+  --playfair-display: "Playfair Display", serif;
 }
 
 html {
@@ -17,4 +23,24 @@ body {
   height: 100vh;
   overflow: hidden;
   background-color: var(--charcoal);
+}
+
+/* TODO: MIGRATE TO TAILWIND CSS */
+
+.lobster-two {
+  font-family: var(--lobster-two);
+}
+
+.playfair-display {
+  font-family: var(--playfair-display);
+}
+
+.mrs-sheppards {
+  font-family: var(--mrs-sheppards);
+}
+
+.test {
+  width: 100%;
+  height: 200vh;
+  background-color: blue;
 }

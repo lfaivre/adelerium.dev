@@ -1,0 +1,57 @@
+/* ARROW */
+
+.arrow {
+  width: 3rem;
+}
+
+.arrow.-right {
+  top: 0.1875rem;
+}
+
+.arrow.-right > .shaft {
+  width: 3rem;
+}
+
+.arrow.-right > .shaft:before,
+.arrow.-right > .shaft:after {
+  width: 0.5rem;
+}
+
+.arrow.-right > .shaft:before {
+  -webkit-transform: rotate(40deg);
+  transform: rotate(40deg);
+}
+
+.arrow.-right > .shaft:after {
+  -webkit-transform: rotate(-40deg);
+  transform: rotate(-40deg);
+}
+
+.arrow > .shaft {
+  height: 0.0625rem;
+  display: block;
+  position: relative;
+  background-color: var(--charcoal);
+  will-change: transform;
+}
+
+.arrow > .shaft:before,
+.arrow > .shaft:after {
+  background-color: var(--charcoal);
+  content: "";
+  display: block;
+  height: 0.0625rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.arrow > .shaft:before {
+  -webkit-transform-origin: top right;
+  transform-origin: top right;
+}
+
+.arrow > .shaft:after {
+  -webkit-transform-origin: bottom right;
+  transform-origin: bottom right;
+}

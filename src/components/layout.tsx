@@ -9,15 +9,17 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="w-screen h-screen bg-white flex flex-row">
-      <div className="w-1/5 h-full bg-white">
+    <div className="w-screen h-screen flex flex-row">
+      <div className="w-1/5 h-full">
         <SideBar />
       </div>
-      <div className="w-4/5 h-full bg-black flex flex-col">
-        <div className="w-full h-24 bg-white">
+      <div className="w-4/5 h-full flex flex-col">
+        <div className="w-full h-24">
           <Header />
         </div>
-        <div className="w-full flex-1 bg-red-100">{children}</div>
+        <div className="w-full flex-1 overflow-y-hidden">
+          <div className="w-full h-full overflow-y-scroll">{children}</div>
+        </div>
       </div>
     </div>
   )
