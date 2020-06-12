@@ -1,4 +1,5 @@
 import React from "react"
+import { Location } from "@reach/router"
 
 import SideBar from "./SideBar"
 import Header from "./Header"
@@ -7,21 +8,25 @@ interface Props {
   children?: any
 }
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ children, page }: Props) => {
   return (
-    <div className="w-screen h-screen flex flex-row">
-      <div className="w-1/5 h-full">
-        <SideBar />
-      </div>
-      <div className="w-4/5 h-full flex flex-col">
-        <div className="w-full h-24">
-          <Header />
+    <Location>
+      {locationProps => (
+        <div className="w-screen h-screen flex flex-row">
+          <div className="w-1/5 h-full">
+            <SideBar />
+          </div>
+          <div className="w-4/5 h-full flex flex-col">
+            <div className="w-full h-24">
+              <Header {...locationProps} />
+            </div>
+            <div className="w-full flex-1 overflow-y-hidden">
+              <div className="w-full h-full overflow-y-scroll">{children}</div>
+            </div>
+          </div>
         </div>
-        <div className="w-full flex-1 overflow-y-hidden">
-          <div className="w-full h-full overflow-y-scroll">{children}</div>
-        </div>
-      </div>
-    </div>
+      )}
+    </Location>
   )
 }
 

@@ -12,7 +12,7 @@ const IndexPage = (props: PageProps) => {
     <Layout>
       <SEO title="Home" />
       <div className="test w-full px-8 py-16 bg-charcoal">
-        {/* {AboutSectionData.sections.map(sectionData => {
+        {AboutSectionData.sections.map(sectionData => {
           return (
             <AboutSection
               sectionData={sectionData}
@@ -20,7 +20,7 @@ const IndexPage = (props: PageProps) => {
               key={sectionData.order}
             />
           )
-        })} */}
+        })}
       </div>
     </Layout>
   )
