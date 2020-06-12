@@ -1,6 +1,57 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
+
+// TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
+import { SideBarData } from "../data/sidebar-temp"
 
 const SideBar = () => {
+  const linkSections = () => {
+    return Object.values(SideBarData).map(data => {
+      const linkElements = () => {
+        return data.links.map(
+          (link: {
+            text: string
+            internalURL?: string
+            externalURL?: string
+          }) => {
+            return link.internalURL ? (
+              <Link
+                to={link.internalURL}
+                className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case"
+                key={link.text}
+              >
+                {link.text}
+              </Link>
+            ) : (
+              <a
+                href={link.externalURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case"
+                key={link.text}
+              >
+                {link.text}
+              </a>
+            )
+          }
+        )
+      }
+
+      return (
+        <div
+          className="w-full pb-8 flex flex-col items-center"
+          key={data.title}
+        >
+          <hr className="w-full h-0 mb-4 border border-offwhite" />
+          <p className="w-full mb-4 text-base text-left playfair-display font-bold text-offwhite lowercase">
+            {data.title}
+          </p>
+          {linkElements()}
+        </div>
+      )
+    })
+  }
+
   return (
     <div className="w-full h-full pt-8 pb-4 px-8 flex flex-col justify-between items-center bg-charcoal">
       <div className="w-full pb-8 flex flex-col">
@@ -14,39 +65,7 @@ const SideBar = () => {
           </p>
         </div>
       </div>
-      <div className="w-full pb-8 flex flex-col items-center">
-        <hr className="w-full h-0 mb-4 border border-offwhite" />
-        <p className="w-full mb-4 text-base text-left playfair-display font-bold text-offwhite lowercase">
-          Navigation
-        </p>
-        <p className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case">
-          About
-        </p>
-        <p className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case">
-          Projects
-        </p>
-        <p className="w-full text-base text-left playfair-display font-normal text-offwhite normal-case">
-          Blog
-        </p>
-      </div>
-      <div className="w-full pb-8 flex flex-col items-center">
-        <hr className="w-full h-0 mb-4 border border-offwhite" />
-        <p className="w-full mb-4 text-base text-left playfair-display font-bold text-offwhite lowercase">
-          Externals
-        </p>
-        <p className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case">
-          GitHub
-        </p>
-        <p className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case">
-          LinkedIn
-        </p>
-        <p className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case">
-          Resume
-        </p>
-        <p className="w-full text-base text-left playfair-display font-normal text-offwhite normal-case">
-          Email
-        </p>
-      </div>
+      {linkSections()}
       <div className="w-full flex flex-row justify-center items-center">
         <p className="w-full text-2xl text-center mrs-sheppards font-normal text-offwhite lowercase">
           KD.

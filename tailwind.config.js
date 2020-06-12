@@ -15,8 +15,9 @@ module.exports = {
         "3.5xl": "2rem",
         "7xl": "4.5rem",
       },
-      inset: {
-        "about-title": "-7.5rem",
+      margin: {
+        "about-title-left": "-7.5rem",
+        "about-title-right": "-7.5rem",
       },
     },
     screens: {

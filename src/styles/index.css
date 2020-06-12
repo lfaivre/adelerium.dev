@@ -43,14 +43,10 @@ body {
 }
 
 .test {
-  height: 200vh;
+  /* height: 200vh; */
 }
 
 .test-2 {
-  height: 30rem;
-  border: 1px solid var(--offwhite);
-}
-
-.test-3 {
-  /* font-style: normal !important; */
+  height: 40rem;
+  /* border: 1px solid var(--offwhite); */
 }

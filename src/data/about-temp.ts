@@ -23,7 +23,7 @@ interface AboutSectionLink {
 //   internalURL: string
 // }
 
-export const AboutSectionData: Array<AboutSectionAttributes> = [
+const AboutSectionDataArray: Array<AboutSectionAttributes> = [
   {
     order: 1,
     title: "Overview",
@@ -64,3 +64,15 @@ export const AboutSectionData: Array<AboutSectionAttributes> = [
     },
   },
 ]
+
+// REFACTOR: NEED A BETTER IMPLEMENTATION
+
+interface AboutSectionDataAttributes {
+  sections: Array<AboutSectionAttributes>
+  count(): number
+}
+
+export const AboutSectionData: AboutSectionDataAttributes = {
+  sections: AboutSectionDataArray,
+  count: () => AboutSectionDataArray.length,
+}

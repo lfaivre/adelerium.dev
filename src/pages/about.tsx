@@ -7,12 +7,12 @@ import AboutSection from "../components/AboutSection"
 
 import { AboutSectionData } from "../data/about-temp"
 
-const IndexPage = (props: PageProps) => {
+const AboutPage = (props: PageProps) => {
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="About" />
       <div className="test w-full px-8 py-16 bg-charcoal">
-        {/* {AboutSectionData.sections.map(sectionData => {
+        {AboutSectionData.sections.map(sectionData => {
           return (
             <AboutSection
               sectionData={sectionData}
@@ -20,10 +20,10 @@ const IndexPage = (props: PageProps) => {
               key={sectionData.order}
             />
           )
-        })} */}
+        })}
       </div>
     </Layout>
   )
 }
 
-export default IndexPage
+export default AboutPage
