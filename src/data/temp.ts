@@ -2,21 +2,26 @@ export interface AboutSectionAttributes {
   order: number
   title: string
   body: string
-  link: AboutSectionExternalLink | AboutSectionInternalLink
+  link: AboutSectionLink
 }
+
+// REFACTOR: EITHER INTERNAL OR EXTERNAL
 
 interface AboutSectionLink {
   firstTextFragment: string
   secondTextFragment: string
-}
-
-interface AboutSectionExternalLink extends AboutSectionLink {
+  isInternal: boolean
+  internalURL: string
   externalURL: string
 }
 
-interface AboutSectionInternalLink extends AboutSectionLink {
-  internalURL: string
-}
+// interface AboutSectionExternalLink extends AboutSectionLink {
+//   externalURL: string
+// }
+
+// interface AboutSectionInternalLink extends AboutSectionLink {
+//   internalURL: string
+// }
 
 export const AboutSectionData: Array<AboutSectionAttributes> = [
   {
@@ -27,7 +32,9 @@ export const AboutSectionData: Array<AboutSectionAttributes> = [
     link: {
       firstTextFragment: "View",
       secondTextFragment: "Projects",
+      isInternal: true,
       internalURL: "/projects",
+      externalURL: "",
     },
   },
   {
@@ -38,6 +45,8 @@ export const AboutSectionData: Array<AboutSectionAttributes> = [
     link: {
       firstTextFragment: "Visit",
       secondTextFragment: "Kevala Design",
+      isInternal: false,
+      internalURL: "",
       externalURL: "http://kevaladesign.com/",
     },
   },
@@ -49,9 +58,9 @@ export const AboutSectionData: Array<AboutSectionAttributes> = [
     link: {
       firstTextFragment: "View",
       secondTextFragment: "LinkedIn Profile",
+      isInternal: false,
+      internalURL: "",
       externalURL: "https://www.linkedin.com/in/lorenzofaivre/",
     },
   },
 ]
-
-// export const AboutSection

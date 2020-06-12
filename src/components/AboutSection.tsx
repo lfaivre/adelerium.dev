@@ -1,12 +1,35 @@
 import React from "react"
 
 import { AboutSectionAttributes } from "../data/temp"
+import { Link } from "gatsby"
 
 interface Props {
   sectionData: AboutSectionAttributes
 }
 
 const AboutSection = ({ sectionData }: Props) => {
+  const linkElement = () => {
+    return sectionData.link.isInternal ? (
+      <Link
+        to={sectionData.link.internalURL}
+        className="mb-8 text-base text-left playfair-display font-normal text-offwhite normal-case underline"
+      >
+        {sectionData.link.firstTextFragment}&nbsp;
+        <span className="font-bold">{sectionData.link.secondTextFragment}</span>
+      </Link>
+    ) : (
+      <a
+        href={sectionData.link.externalURL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mb-8 text-base text-left playfair-display font-normal text-offwhite normal-case underline"
+      >
+        {sectionData.link.firstTextFragment}&nbsp;
+        <span className="font-bold">{sectionData.link.secondTextFragment}</span>
+      </a>
+    )
+  }
+
   return (
     <div className="test-2 w-full mb-8 last:mb-0 flex flex-row">
       <div className="w-1/3 h-full bg-offwhite opacity-75"></div>
@@ -20,12 +43,7 @@ const AboutSection = ({ sectionData }: Props) => {
           <p className="mb-8 w-3/5 text-2xl text-left playfair-display font-normal text-offwhite normal-case">
             {sectionData.body}
           </p>
-          <p className="mb-8 text-base text-left playfair-display font-normal text-offwhite normal-case underline">
-            {sectionData.link.firstTextFragment}&nbsp;
-            <span className="font-bold">
-              {sectionData.link.secondTextFragment}
-            </span>
-          </p>
+          {linkElement()}
           <p className="test-3 text-3.5xl text-left playfair-display font-bold text-offwhite normal-case">
             {`${sectionData.order}`}&nbsp;/&nbsp;{`${3}`}
           </p>
