@@ -6,7 +6,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 
 interface Props {
-  children?: any
+  children: React.ReactNode
 }
 
 const Layout = ({ children }: Props) => {
