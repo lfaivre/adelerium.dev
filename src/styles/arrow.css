@@ -4,29 +4,6 @@
   width: 3rem;
 }
 
-.arrow.-right {
-  top: 0.1875rem;
-}
-
-.arrow.-right > .shaft {
-  width: 3rem;
-}
-
-.arrow.-right > .shaft:before,
-.arrow.-right > .shaft:after {
-  width: 0.5rem;
-}
-
-.arrow.-right > .shaft:before {
-  -webkit-transform: rotate(40deg);
-  transform: rotate(40deg);
-}
-
-.arrow.-right > .shaft:after {
-  -webkit-transform: rotate(-40deg);
-  transform: rotate(-40deg);
-}
-
 .arrow > .shaft {
   height: 0.0625rem;
   display: block;
@@ -46,12 +23,56 @@
   right: 0;
 }
 
-.arrow > .shaft:before {
-  -webkit-transform-origin: top right;
-  transform-origin: top right;
+.arrow.-right,
+.arrow.-left {
+  top: 0.1875rem;
 }
 
-.arrow > .shaft:after {
+.arrow.-right > .shaft,
+.arrow.-left > .shaft {
+  width: 3rem;
+}
+
+.arrow.-right > .shaft:before,
+.arrow.-right > .shaft:after,
+.arrow.-left > .shaft:before,
+.arrow.-left > .shaft:after {
+  width: 0.5rem;
+}
+
+/* RIGHT */
+
+.arrow.-right > .shaft:before {
+  -webkit-transform-origin: top right;
+  transform-origin: top right;
+  -webkit-transform: rotate(40deg);
+  transform: rotate(40deg);
+}
+
+.arrow.-right > .shaft:after {
   -webkit-transform-origin: bottom right;
   transform-origin: bottom right;
+  -webkit-transform: rotate(-40deg);
+  transform: rotate(-40deg);
+}
+
+/* LEFT */
+
+.arrow.-left > .shaft:before,
+.arrow.-left > .shaft:after {
+  margin-right: 2.5rem;
+}
+
+.arrow.-left > .shaft:before {
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  -webkit-transform: rotate(-40deg);
+  transform: rotate(-40deg);
+}
+
+.arrow.-left > .shaft:after {
+  -webkit-transform-origin: bottom left;
+  transform-origin: bottom left;
+  -webkit-transform: rotate(40deg);
+  transform: rotate(40deg);
 }

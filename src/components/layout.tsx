@@ -3,12 +3,13 @@ import { Location } from "@reach/router"
 
 import SideBar from "./SideBar"
 import Header from "./Header"
+import Footer from "./Footer"
 
 interface Props {
   children?: any
 }
 
-const Layout = ({ children, page }: Props) => {
+const Layout = ({ children }: Props) => {
   return (
     <Location>
       {locationProps => (
@@ -21,7 +22,10 @@ const Layout = ({ children, page }: Props) => {
               <Header {...locationProps} />
             </div>
             <div className="w-full flex-1 overflow-y-hidden">
-              <div className="w-full h-full overflow-y-scroll">{children}</div>
+              <div className="w-full h-full overflow-y-scroll">
+                <main>{children}</main>
+                <Footer {...locationProps} />
+              </div>
             </div>
           </div>
         </div>

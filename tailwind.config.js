@@ -6,6 +6,15 @@ module.exports = {
   separator: ":",
   theme: {
     extend: {
+      maxWidth: {
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+      },
+      margin: {
+        "about-title-left": "-7.5rem",
+        "about-title-right": "-7.5rem",
+      },
       colors: {
         offwhite: "#F3F2F1",
         charcoal: "#1E2223",
@@ -14,10 +23,6 @@ module.exports = {
       fontSize: {
         "3.5xl": "2rem",
         "7xl": "4.5rem",
-      },
-      margin: {
-        "about-title-left": "-7.5rem",
-        "about-title-right": "-7.5rem",
       },
     },
     screens: {

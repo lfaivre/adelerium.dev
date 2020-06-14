@@ -17,7 +17,7 @@ const SideBar = () => {
             return link.internalURL ? (
               <Link
                 to={link.internalURL}
-                className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case"
+                className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite"
                 key={link.text}
               >
                 {link.text}
@@ -27,7 +27,7 @@ const SideBar = () => {
                 href={link.externalURL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite normal-case"
+                className="w-full mb-4 text-base text-left playfair-display font-normal text-offwhite"
                 key={link.text}
               >
                 {link.text}

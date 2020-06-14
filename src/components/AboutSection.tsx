@@ -13,7 +13,7 @@ const AboutSection = ({ sectionData, count }: Props) => {
     return sectionData.link.isInternal ? (
       <Link
         to={sectionData.link.internalURL}
-        className="mb-8 text-base text-left playfair-display font-normal text-offwhite normal-case underline"
+        className="mb-8 text-base text-left playfair-display font-normal text-offwhite underline"
       >
         {sectionData.link.firstTextFragment}&nbsp;
         <span className="font-bold">{sectionData.link.secondTextFragment}</span>
@@ -23,7 +23,7 @@ const AboutSection = ({ sectionData, count }: Props) => {
         href={sectionData.link.externalURL}
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-8 text-base text-left playfair-display font-normal text-offwhite normal-case underline"
+        className="mb-8 text-base text-left playfair-display font-normal text-offwhite underline"
       >
         {sectionData.link.firstTextFragment}&nbsp;
         <span className="font-bold">{sectionData.link.secondTextFragment}</span>
@@ -36,16 +36,16 @@ const AboutSection = ({ sectionData, count }: Props) => {
       <div className="w-1/3 h-full bg-offwhite opacity-75"></div>
       <div className="w-2/3 h-full p-8 flex flex-col justify-start items-start">
         <div className="mb-8">
-          <h1 className="ml-about-title-left text-7xl text-left playfair-display font-bold text-offpink normal-case">
+          <h1 className="ml-about-title-left text-7xl text-left playfair-display font-bold text-offpink">
             {sectionData.title}
           </h1>
         </div>
         <div className="flex flex-col justify-start items-start">
-          <p className="mb-8 w-3/5 text-2xl text-left playfair-display font-normal text-offwhite normal-case">
+          <p className="mb-8 w-3/5 text-2xl text-left playfair-display font-normal text-offwhite">
             {sectionData.body}
           </p>
           {linkElement()}
-          <p className="text-3.5xl text-left playfair-display font-bold text-offwhite normal-case">
+          <p className="text-3.5xl text-left playfair-display font-bold text-offwhite">
             {`${sectionData.order}`}&nbsp;/&nbsp;{`${count}`}
           </p>
         </div>

@@ -4,6 +4,7 @@
 
 /* BUG: GATSBY PLUGIN ISN'T PULLING IN THIS FONT CORRECTLY, TEMPORARY FIX */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap");
 
 :root {
   /* COLORS */
@@ -12,9 +13,10 @@
   --offpink: #fcf0ec;
 
   /* FONT FAMILY */
+  --playfair-display: "Playfair Display", serif;
+  --playfair-display-sc: "Playfair Display SC", serif;
   --lobster-two: "Lobster Two", cursive;
   --mrs-sheppards: "Mrs Sheppards", cursive;
-  --playfair-display: "Playfair Display", serif;
 }
 
 html {
@@ -30,12 +32,16 @@ body {
 
 /* TODO: MIGRATE TO TAILWIND CSS */
 
-.lobster-two {
-  font-family: var(--lobster-two);
-}
-
 .playfair-display {
   font-family: var(--playfair-display);
+}
+
+.playfair-display-sc {
+  font-family: var(--playfair-display-sc);
+}
+
+.lobster-two {
+  font-family: var(--lobster-two);
 }
 
 .mrs-sheppards {

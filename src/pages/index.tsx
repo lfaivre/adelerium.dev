@@ -11,7 +11,7 @@ const IndexPage = (props: PageProps) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <div className="test w-full px-8 py-16 bg-charcoal">
+      <div className="w-full px-8 py-16 bg-charcoal">
         {AboutSectionData.sections.map(sectionData => {
           return (
             <AboutSection

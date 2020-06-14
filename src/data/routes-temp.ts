@@ -1,7 +1,17 @@
 export const pathData: any = {
+  default: {
+    text: "Home",
+    previous: "/",
+    next: "/about",
+  },
+  "/": {
+    text: "Home",
+    previous: "/",
+    next: "/about",
+  },
   "/about": {
     text: "About",
-    previous: "/about",
+    previous: "/",
     next: "/projects",
   },
   "/projects": {
@@ -12,6 +22,11 @@ export const pathData: any = {
   "/blog": {
     text: "Blog",
     previous: "/projects",
-    next: "/about",
+    next: "/",
   },
+}
+
+export enum InternalLinkDirection {
+  Previous,
+  Next,
 }
