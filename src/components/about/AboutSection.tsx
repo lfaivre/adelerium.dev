@@ -1,6 +1,6 @@
 import React from "react"
 
-import { AboutSectionAttributes } from "../data/about-temp"
+import { AboutSectionAttributes } from "../../data/about-temp"
 import { Link } from "gatsby"
 
 interface Props {
