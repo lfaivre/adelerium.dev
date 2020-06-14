@@ -67,9 +67,14 @@ const SideBar = () => {
       </div>
       {linkSections()}
       <div className="w-full flex flex-row justify-center items-center">
-        <p className="w-full text-2xl text-center mrs-sheppards font-normal text-offwhite lowercase">
+        <a
+          href="http://kevaladesign.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full text-2xl text-center mrs-sheppards font-normal text-offwhite lowercase"
+        >
           KD.
-        </p>
+        </a>
       </div>
     </div>
   )
