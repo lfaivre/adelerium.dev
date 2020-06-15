@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 
 import {
   AboutSectionAttributes,
@@ -13,6 +15,14 @@ interface Props {
 
 const AboutSection = ({ sectionData, count }: Props) => {
   const [direction, setDirection] = useState(AboutSectionDirection.Left)
+
+  const pageQuery = useStaticQuery(graphql`
+    query {
+      floatingImage: file(relativePath: { eq: "waves-placeholder.jpg" }) {
+        ...fluidImageTwo
+      }
+    }
+  `)
 
   useEffect(() => {
     const direction =
@@ -30,9 +40,14 @@ const AboutSection = ({ sectionData, count }: Props) => {
           : "flex-row-reverse"
       }`}
     >
-      <div className="placeholder-image w-1/3 h-full bg-offwhite opacity-75"></div>
+      <div className="z-0 placeholder-image w-1/3 h-full bg-offpink">
+        <Img
+          fluid={pageQuery.floatingImage.childImageSharp.fluid}
+          style={{ opacity: "80%" }}
+        />
+      </div>
       <div
-        className={`w-2/3 h-full p-8 flex flex-col justify-start ${
+        className={`z-10 w-2/3 h-full p-8 flex flex-col justify-start ${
           direction === AboutSectionDirection.Left ? "items-start" : "items-end"
         }`}
       >
@@ -110,3 +125,13 @@ const AboutSection = ({ sectionData, count }: Props) => {
 }
 
 export default AboutSection
+
+export const fluidImageTwo = graphql`
+  fragment fluidImageTwo on File {
+    childImageSharp {
+      fluid(maxWidth: 500, grayscale: true, quality: 75) {
+        ...GatsbyImageSharpFluid_tracedSVG
+      }
+    }
+  }
+`

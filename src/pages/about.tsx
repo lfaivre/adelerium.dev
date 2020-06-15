@@ -9,7 +9,7 @@ import { AboutSectionData } from "../data/about-temp"
 
 const AboutPage = (props: PageProps) => {
   return (
-    <Layout>
+    <>
       <SEO title="About" />
       <div className="w-full px-8 py-16 bg-charcoal">
         {AboutSectionData.sections.map(sectionData => {
@@ -22,7 +22,7 @@ const AboutPage = (props: PageProps) => {
           )
         })}
       </div>
-    </Layout>
+    </>
   )
 }
 

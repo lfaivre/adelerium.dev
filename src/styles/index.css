@@ -48,10 +48,6 @@ body {
   font-family: var(--mrs-sheppards);
 }
 
-.placeholder-image {
-  height: 40rem;
-}
-
 .text-outline {
   color: var(--charcoal);
   -webkit-text-fill-color: transparent;

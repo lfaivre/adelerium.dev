@@ -12,6 +12,7 @@ interface ProjectPreviewAttributes {
   date: string
   description: string
   pictureURL: string
+  tempQuery: any
 }
 
 type ProjectType = "Website" | "Mobile Application" | "Design Prototype"
@@ -56,7 +57,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       type: "Website",
       date: "Oct. 2019 - May 2020",
       description: "Website built with a team for a research project.",
-      pictureURL: "",
+      pictureURL: "imageOne",
+      tempQuery: undefined,
     },
     technologyTags: [
       "Vue",
@@ -83,7 +85,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       date: "Jan. 2020 - May 2020",
       description:
         "Mobile game built for university capstone project, sponsored by NASA.",
-      pictureURL: "",
+      pictureURL: "imageTwo",
+      tempQuery: undefined,
     },
     technologyTags: ["React", "React Native", "Expo"],
     externalLinks: {
@@ -100,7 +103,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       type: "Design Prototype",
       date: "May 2020",
       description: "Design prototype developed for business client.",
-      pictureURL: "",
+      pictureURL: "imageThree",
+      tempQuery: undefined,
     },
     technologyTags: ["Figma"],
     externalLinks: {
@@ -118,7 +122,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       type: "Website",
       date: "May 2020",
       description: "Website built for business client.",
-      pictureURL: "",
+      pictureURL: "imageFour",
+      tempQuery: undefined,
     },
     technologyTags: ["Pug", "Sass", "Tailwind CSS", "Node.js", "Express"],
     externalLinks: {
@@ -136,7 +141,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       type: "Website",
       date: "Aug. 2019",
       description: "Website built for and used as a personal portfolio.",
-      pictureURL: "",
+      pictureURL: "imageFive",
+      tempQuery: undefined,
     },
     technologyTags: ["React", "Create React App", "CSS"],
     externalLinks: {
@@ -155,7 +161,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       date: "Aug. 2019",
       description:
         "Archived design prototype developed for personal portfolio.",
-      pictureURL: "",
+      pictureURL: "imageSix",
+      tempQuery: undefined,
     },
     technologyTags: ["Figma"],
     externalLinks: {
@@ -173,7 +180,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       type: "Website",
       date: "Jun. 2019",
       description: "Website built for web development & design studio.",
-      pictureURL: "",
+      pictureURL: "imageSeven",
+      tempQuery: undefined,
     },
     technologyTags: ["Pug", "Sass", "Node.js", "Express"],
     externalLinks: {
@@ -191,7 +199,8 @@ const ProjectDataArray: Array<ProjectAttributes> = [
       type: "Website",
       date: "Jul. 2019",
       description: "Website built for a client's senior project.",
-      pictureURL: "",
+      pictureURL: "imageEight",
+      tempQuery: undefined,
     },
     technologyTags: ["Pug", "Sass", "Node.js", "Express"],
     externalLinks: {

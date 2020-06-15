@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Img from "gatsby-image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons"
 
@@ -31,7 +32,7 @@ const ProjectPreview = ({ projectData }: Props) => {
       }`}
     > */}
       <div
-        className={`flex flex-col justify-start ${
+        className={`w-1/2 flex flex-col justify-start ${
           direction === ProjectDirection.Left
             ? "mr-8 items-start"
             : "ml-8 items-end"
@@ -81,9 +82,17 @@ const ProjectPreview = ({ projectData }: Props) => {
           </div>
         </div>
         <div
-          className="bg-offwhite"
-          style={{ width: "24rem", height: "16rem" }}
-        ></div>
+          className="w-full p-4 bg-offwhite"
+          style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)" }}
+        >
+          <Img
+            fluid={projectData.preview.tempQuery.childImageSharp.fluid}
+            style={{
+              opacity: "80%",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+            }}
+          />
+        </div>
       </div>
       <div
         className={`flex-1 px-8 flex flex-col justify-center ${
