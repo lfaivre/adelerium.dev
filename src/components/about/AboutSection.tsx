@@ -32,8 +32,8 @@ const AboutSection = ({ sectionData, count }: Props) => {
   }
 
   return (
-    <div className="test-2 w-full mb-8 last:mb-0 flex flex-row">
-      <div className="w-1/3 h-full bg-offwhite opacity-75"></div>
+    <div className="w-full mb-8 last:mb-0 flex flex-row">
+      <div className="placeholder-image w-1/3 h-full bg-offwhite opacity-75"></div>
       <div className="w-2/3 h-full p-8 flex flex-col justify-start items-start">
         <div className="mb-8">
           <h1 className="ml-about-title-left text-7xl text-left playfair-display font-bold text-offpink">

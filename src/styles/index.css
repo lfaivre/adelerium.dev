@@ -48,11 +48,7 @@ body {
   font-family: var(--mrs-sheppards);
 }
 
-.test {
-  /* height: 200vh; */
-}
-
-.test-2 {
+.placeholder-image {
   height: 40rem;
   /* border: 1px solid var(--offwhite); */
 }

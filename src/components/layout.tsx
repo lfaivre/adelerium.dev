@@ -23,7 +23,7 @@ const Layout = ({ children }: Props) => {
             </div>
             <div className="w-full flex-1 overflow-y-hidden">
               <div className="w-full h-full overflow-y-scroll">
-                <main>{children}</main>
+                <main className="w-full min-h-full">{children}</main>
                 <Footer {...locationProps} />
               </div>
             </div>
