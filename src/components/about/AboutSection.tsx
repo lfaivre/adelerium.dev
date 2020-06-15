@@ -20,7 +20,6 @@ const AboutSection = ({ sectionData, count }: Props) => {
         ? AboutSectionDirection.Right
         : AboutSectionDirection.Left
     setDirection(direction)
-    console.log("DIRECTION", direction)
   }, [sectionData.order])
 
   return (
