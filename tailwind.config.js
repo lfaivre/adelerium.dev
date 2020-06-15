@@ -15,6 +15,9 @@ module.exports = {
         "about-title-left": "-7.5rem",
         "about-title-right": "-7.5rem",
       },
+      inset: {
+        "project-arrow": "2rem",
+      },
       colors: {
         offwhite: "#F3F2F1",
         charcoal: "#1E2223",
@@ -23,6 +26,7 @@ module.exports = {
       fontSize: {
         "3.5xl": "2rem",
         "7xl": "4.5rem",
+        "project-arrow": "6rem",
       },
     },
     screens: {

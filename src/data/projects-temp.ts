@@ -213,3 +213,8 @@ export const ProjectData: ProjectDataAttributes = {
   projects: ProjectDataArray,
   count: () => ProjectDataArray.length,
 }
+
+export enum ProjectDirection {
+  Left,
+  Right,
+}
