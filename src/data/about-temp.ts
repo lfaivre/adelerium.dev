@@ -76,3 +76,8 @@ export const AboutSectionData: AboutSectionDataAttributes = {
   sections: AboutSectionDataArray,
   count: () => AboutSectionDataArray.length,
 }
+
+export enum AboutSectionDirection {
+  Left,
+  Right,
+}
