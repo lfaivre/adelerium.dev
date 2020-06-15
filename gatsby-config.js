@@ -51,11 +51,18 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-layout`,
+      resolve: "gatsby-plugin-transition-link",
       options: {
-        component: require.resolve(`${__dirname}/src/components/Layout.tsx`),
+        layout: require.resolve(`${__dirname}/src/components/Layout.tsx`),
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-layout`,
+    //   options: {
+    //     component: require.resolve(`${__dirname}/src/components/Layout.tsx`),
+    //   },
+    // },
+    // `gatsby-plugin-transition-link`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { LocationContext } from "reach__router"
 
 import { pathData, InternalLinkDirection } from "../data/routes-temp"
@@ -39,7 +40,12 @@ const StyledInternalLink = ({ location, direction }: Props) => {
   }
 
   return linkData(direction).pathname !== currentLocationDetails.pathname ? (
-    <Link className="h-full w-32" to={linkData(direction).pathname}>
+    <AniLink
+      className="h-full w-32"
+      swipe
+      direction="left"
+      to={linkData(direction).pathname}
+    >
       <div
         className={`w-full h-full flex flex-col justify-center ${
           direction === InternalLinkDirection.Previous
@@ -82,7 +88,7 @@ const StyledInternalLink = ({ location, direction }: Props) => {
           ) : null}
         </div>
       </div>
-    </Link>
+    </AniLink>
   ) : (
     <div className="h-full w-32"></div>
   )
