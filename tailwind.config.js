@@ -23,10 +23,19 @@ module.exports = {
         charcoal: "#1E2223",
         offpink: "#FCF0EC",
       },
+      fontFamily: {
+        "playfair-display": ['"Playfair Display"', "serif"],
+        "playfair-display-sc": ['"Playfair Display SC"', "serif"],
+        "lobster-two": ['"Lobster Two"', "cursive"],
+        "mrs-sheppards": ['"Mrs Sheppards"', "cursive"],
+      },
       fontSize: {
         "3.5xl": "2rem",
         "7xl": "4.5rem",
         "project-arrow": "6rem",
+      },
+      opacity: {
+        "80": ".8",
       },
     },
     screens: {
