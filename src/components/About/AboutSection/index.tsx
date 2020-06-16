@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { Link } from "gatsby"
-import Img from "gatsby-image"
 
 import { AboutSectionAttributes } from "../../../types/about"
-import { AboutSectionDirection } from "../../../types/presentation"
+import { AboutSectionDirection as ASD } from "../../../types/presentation"
+
+import {
+  AboutSectionWrapper,
+  ImageWrapper,
+  FloatingImage,
+  ContentWrapper,
+  TitleWrapper,
+  FloatingTitle,
+  BodyWrapper,
+  BodyText,
+  InternalLink,
+  Bold,
+  ExternalLink,
+  CounterText,
+} from "./styles"
 
 interface Props {
   sectionData: AboutSectionAttributes
@@ -12,124 +25,64 @@ interface Props {
 }
 
 const AboutSection = ({ sectionData, count }: Props) => {
-  const [direction, setDirection] = useState(AboutSectionDirection.Left)
+  const [direction, setDirection] = useState(ASD.Left)
 
-  const pageQuery = useStaticQuery(graphql`
+  const aboutSectionQuery = useStaticQuery(graphql`
     query {
       floatingImage: file(relativePath: { eq: "waves-placeholder.jpg" }) {
-        ...fluidImageTwo
+        childImageSharp {
+          fluid(maxWidth: 500, grayscale: true, quality: 75) {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
+        }
       }
     }
   `)
 
   useEffect(() => {
-    const direction =
-      sectionData.order % 2 === 0
-        ? AboutSectionDirection.Right
-        : AboutSectionDirection.Left
+    const direction = sectionData.order % 2 === 0 ? ASD.Right : ASD.Left
     setDirection(direction)
   }, [sectionData.order])
 
   return (
-    <div
-      className={`w-full mb-8 last:mb-0 flex ${
-        direction === AboutSectionDirection.Left
-          ? "flex-row"
-          : "flex-row-reverse"
-      }`}
-    >
-      <div className="z-0 placeholder-image w-1/3 h-full bg-offpink">
-        <Img
-          fluid={pageQuery.floatingImage.childImageSharp.fluid}
-          style={{ opacity: "80%" }}
+    <AboutSectionWrapper _direction={direction}>
+      <ImageWrapper>
+        <FloatingImage
+          fluid={aboutSectionQuery.floatingImage.childImageSharp.fluid}
         />
-      </div>
-      <div
-        className={`z-10 w-2/3 h-full p-8 flex flex-col justify-start ${
-          direction === AboutSectionDirection.Left ? "items-start" : "items-end"
-        }`}
-      >
-        <div className="mb-8 flex flex-row justify-center items-center">
-          <h1
-            className={`text-7xl text-left playfair-display font-bold text-offpink ${
-              direction === AboutSectionDirection.Left
-                ? "ml-about-title-left"
-                : "mr-about-title-right"
-            }`}
-          >
+      </ImageWrapper>
+      <ContentWrapper _direction={direction}>
+        <TitleWrapper>
+          <FloatingTitle _direction={direction}>
             {sectionData.title}
-          </h1>
-        </div>
-        <div
-          className={`flex flex-col justify-start ${
-            direction === AboutSectionDirection.Left
-              ? "items-start"
-              : "items-end"
-          }`}
-        >
-          <p
-            className={`mb-8 w-3/5 text-2xl playfair-display font-normal text-offwhite ${
-              direction === AboutSectionDirection.Left
-                ? "text-left"
-                : "text-right"
-            }`}
-          >
-            {sectionData.body}
-          </p>
+          </FloatingTitle>
+        </TitleWrapper>
+        <BodyWrapper _direction={direction}>
+          <BodyText _direction={direction}>{sectionData.body}</BodyText>
           {sectionData.link.isInternal ? (
-            <Link
+            <InternalLink
               to={sectionData.link.internalURL}
-              className={`mb-8 text-base playfair-display font-normal text-offwhite underline ${
-                direction === AboutSectionDirection.Left
-                  ? "text-left"
-                  : "text-right"
-              }`}
+              _direction={direction}
             >
               {sectionData.link.firstTextFragment}&nbsp;
-              <span className="font-bold">
-                {sectionData.link.secondTextFragment}
-              </span>
-            </Link>
+              <Bold>{sectionData.link.secondTextFragment}</Bold>
+            </InternalLink>
           ) : (
-            <a
+            <ExternalLink
               href={sectionData.link.externalURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`mb-8 text-base playfair-display font-normal text-offwhite underline ${
-                direction === AboutSectionDirection.Left
-                  ? "text-left"
-                  : "text-right"
-              }`}
+              _direction={direction}
             >
               {sectionData.link.firstTextFragment}&nbsp;
-              <span className="font-bold">
-                {sectionData.link.secondTextFragment}
-              </span>
-            </a>
+              <Bold>{sectionData.link.secondTextFragment}</Bold>
+            </ExternalLink>
           )}
-          <p
-            className={`text-3.5xl playfair-display font-bold text-offwhite ${
-              direction === AboutSectionDirection.Left
-                ? "text-left"
-                : "text-right"
-            }`}
-          >
+          <CounterText _direction={direction}>
             {`${sectionData.order}`}&nbsp;/&nbsp;{`${count}`}
-          </p>
-        </div>
-      </div>
-    </div>
+          </CounterText>
+        </BodyWrapper>
+      </ContentWrapper>
+    </AboutSectionWrapper>
   )
 }
 
 export default AboutSection
-
-export const fluidImageTwo = graphql`
-  fragment fluidImageTwo on File {
-    childImageSharp {
-      fluid(maxWidth: 500, grayscale: true, quality: 75) {
-        ...GatsbyImageSharpFluid_tracedSVG
-      }
-    }
-  }
-`
