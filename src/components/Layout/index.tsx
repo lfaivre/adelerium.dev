@@ -1,8 +1,8 @@
 import React, { useRef } from "react"
 import { Location } from "@reach/router"
-import SideBar from "./SideBar"
-import Header from "./Header"
-import Footer from "./Footer"
+import SideBar from "../SideBar"
+import Header from "../Header"
+import Footer from "../Footer"
 
 import {
   LayoutWrapper,
@@ -15,7 +15,7 @@ import {
   ReturnButtonWrapper,
   ReturnButton,
   ReturnButtonIndicator,
-} from "./Layout/styles"
+} from "./styles"
 
 interface Props {
   children: React.ReactNode
