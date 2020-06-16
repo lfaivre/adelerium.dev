@@ -1,24 +1,17 @@
-export interface TSideBarInternalNavigation {
+// REFACTOR: NEED A BETTER IMPLEMENTATION
+
+export interface TSideBarSection {
   title: string
-  links: Array<TSideBarInternalLink>
+  links: Array<TSideBarLink>
 }
 
-export interface TSideBarExternalNavigation {
-  title: string
-  links: Array<TSideBarExternalLink>
-}
-
-export interface TSideBarInternalLink {
+export interface TSideBarLink {
+  isInternal: boolean
   text: string
-  internalURL: string
-}
-
-export interface TSideBarExternalLink {
-  text: string
-  externalURL: string
+  url: string
 }
 
 export interface TSideBarData {
-  internal: TSideBarInternalNavigation
-  external: TSideBarExternalNavigation
+  internal: TSideBarSection
+  external: TSideBarSection
 }

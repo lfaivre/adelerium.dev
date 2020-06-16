@@ -5,16 +5,19 @@ export const SideBarData: TSideBarData = {
     title: "Navigation",
     links: [
       {
+        isInternal: true,
         text: "About",
-        internalURL: "/about",
+        url: "/about",
       },
       {
+        isInternal: true,
         text: "Projects",
-        internalURL: "/projects",
+        url: "/projects",
       },
       {
+        isInternal: true,
         text: "Blog",
-        internalURL: "/blog",
+        url: "/blog",
       },
     ],
   },
@@ -22,21 +25,25 @@ export const SideBarData: TSideBarData = {
     title: "Externals",
     links: [
       {
+        isInternal: false,
         text: "GitHub",
-        externalURL: "https://github.com/lfaivre",
+        url: "https://github.com/lfaivre",
       },
       {
+        isInternal: false,
         text: "LinkedIn",
-        externalURL: "https://www.linkedin.com/in/lorenzofaivre/",
+        url: "https://www.linkedin.com/in/lorenzofaivre/",
       },
       {
+        isInternal: false,
         text: "Resume",
-        externalURL:
+        url:
           "https://drive.google.com/file/d/19Gdz-dwWnlBov73sDIBnr68bf04NvnIL/view?usp=sharing",
       },
       {
+        isInternal: false,
         text: "Email",
-        externalURL: "mailto:lorenzo.faivre@gmail.com",
+        url: "mailto:lorenzo.faivre@gmail.com",
       },
     ],
   },

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 import Img from "gatsby-image"
 
-import {
-  AboutSectionAttributes,
-  AboutSectionDirection,
-} from "../../data/about-temp"
-import { Link } from "gatsby"
+import { AboutSectionAttributes } from "../../../types/about"
+import { AboutSectionDirection } from "../../../types/presentation"
 
 interface Props {
   sectionData: AboutSectionAttributes

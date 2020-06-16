@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from "gatsby"
 // TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
 import { SideBarData } from "./data"
 import { SiteData } from "../../data/site"
+import { TSideBarSection } from "../../types/sidebar"
 
 import {
   SideBarWrapper,
@@ -21,12 +22,6 @@ import {
   ExternalLink,
   InternaLink,
 } from "./styles"
-
-interface TempLinkAttrs {
-  text: string
-  internalURL?: string
-  externalURL?: string
-}
 
 const SideBar = () => {
   const sideBarQuery = useStaticQuery(graphql`
@@ -52,18 +47,18 @@ const SideBar = () => {
           <ProfileTag>{SiteData.profile.tag}</ProfileTag>
         </ProfileTextWrapper>
       </ProfileWrapper>
-      {Object.values(SideBarData).map(data => {
+      {Object.values(SideBarData).map((data: TSideBarSection) => {
         return (
           <LinkSectionWrapper key={data.title}>
             <LinkSectionSeparator />
             <LinkSectionTitle>{data.title}</LinkSectionTitle>
-            {data.links.map((link: TempLinkAttrs) => {
-              return link.internalURL ? (
-                <InternaLink to={link.internalURL} key={link.text}>
+            {data.links.map(link => {
+              return link.isInternal ? (
+                <InternaLink to={link.url} key={link.text}>
                   {link.text}
                 </InternaLink>
               ) : (
-                <ExternalLink href={link.externalURL} key={link.text}>
+                <ExternalLink href={link.url} key={link.text}>
                   {link.text}
                 </ExternalLink>
               )

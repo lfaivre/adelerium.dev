@@ -2,10 +2,9 @@ import React from "react"
 import { PageProps } from "gatsby"
 
 import SEO from "../components/seo"
-import Layout from "../components/Layout"
-import AboutSection from "../components/about/AboutSection"
+import AboutSection from "../components/About/AboutSection"
 
-import { AboutSectionData } from "../data/about-temp"
+import { AboutSectionData } from "../data/about"
 
 const IndexPage = (props: PageProps) => {
   return (

@@ -1,29 +1,9 @@
-export interface AboutSectionAttributes {
-  order: number
-  title: string
-  body: string
-  link: AboutSectionLink
-}
+import {
+  AboutSectionAttributes,
+  AboutSectionDataAttributes,
+} from "../types/about"
 
-// REFACTOR: EITHER INTERNAL OR EXTERNAL
-
-interface AboutSectionLink {
-  firstTextFragment: string
-  secondTextFragment: string
-  isInternal: boolean
-  internalURL: string
-  externalURL: string
-}
-
-// interface AboutSectionExternalLink extends AboutSectionLink {
-//   externalURL: string
-// }
-
-// interface AboutSectionInternalLink extends AboutSectionLink {
-//   internalURL: string
-// }
-
-const AboutSectionDataArray: Array<AboutSectionAttributes> = [
+export const AboutSectionDataArray: Array<AboutSectionAttributes> = [
   {
     order: 1,
     title: "Overview",
@@ -65,19 +45,7 @@ const AboutSectionDataArray: Array<AboutSectionAttributes> = [
   },
 ]
 
-// REFACTOR: NEED A BETTER IMPLEMENTATION
-
-interface AboutSectionDataAttributes {
-  sections: Array<AboutSectionAttributes>
-  count(): number
-}
-
 export const AboutSectionData: AboutSectionDataAttributes = {
   sections: AboutSectionDataArray,
   count: () => AboutSectionDataArray.length,
-}
-
-export enum AboutSectionDirection {
-  Left,
-  Right,
 }

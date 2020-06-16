@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { PageProps, graphql } from "gatsby"
 
 import SEO from "../components/seo"
@@ -8,9 +8,6 @@ import ProjectPreview from "../components/projects/ProjectPreview"
 import { ProjectData } from "../data/projects-temp"
 
 const ProjectsPage = ({ data }: PageProps) => {
-  useEffect(() => {
-    console.log("pageQuery", data["imageOne"])
-  })
   return (
     <>
       <SEO title="Projects" />
