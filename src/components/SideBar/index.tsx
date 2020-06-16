@@ -29,7 +29,7 @@ const SideBar = () => {
       profile: file(relativePath: { eq: "profile-placeholder-1.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500, quality: 75) {
-            ...GatsbyImageSharpFluid_tracedSVG
+            ...GatsbyImageSharpFluid
           }
         }
       }

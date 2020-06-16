@@ -32,7 +32,7 @@ const AboutSection = ({ sectionData, count }: Props) => {
       floatingImage: file(relativePath: { eq: "waves-placeholder.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 500, grayscale: true, quality: 75) {
-            ...GatsbyImageSharpFluid_tracedSVG
+            ...GatsbyImageSharpFluid
           }
         }
       }

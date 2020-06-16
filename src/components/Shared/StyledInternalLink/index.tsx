@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { LocationContext } from "reach__router"
 
 import { SitePaths, DefaultPath } from "../../../data/paths"
 import { TPathname, INDEX } from "../../../types/paths"
@@ -16,35 +15,35 @@ import {
   Arrow,
 } from "./styles"
 
-interface Props extends LocationContext {
+interface Props {
+  pathname: string
   direction: ILD
 }
 
-const StyledInternalLink = ({ location, direction }: Props) => {
+const StyledInternalLink = ({ pathname, direction }: Props) => {
   const [currentPath, setCurrentPath] = useState({
     ...DefaultPath,
   })
 
   useEffect(() => {
-    const pathname =
-      (location.pathname as TPathname) || SitePaths[INDEX].pathname
+    const updatedPathname = (pathname as TPathname) || SitePaths[INDEX].pathname
     setCurrentPath({
-      pathname,
-      text: SitePaths[pathname].text,
-      previous: SitePaths[pathname].previous,
-      next: SitePaths[pathname].next,
+      pathname: updatedPathname,
+      text: SitePaths[updatedPathname].text,
+      previous: SitePaths[updatedPathname].previous,
+      next: SitePaths[updatedPathname].next,
     })
-  }, [location.pathname])
+  }, [pathname])
 
   const linkData = (direction: ILD) => {
-    const pathname =
+    const pathnameFromProps =
       direction === ILD.Previous ? currentPath.previous : currentPath.next
-    const text = SitePaths[pathname].text
-    return { pathname, text }
+    const text = SitePaths[pathnameFromProps].text
+    return { pathnameFromProps, text }
   }
 
-  return linkData(direction).pathname !== currentPath.pathname ? (
-    <InternalLink to={linkData(direction).pathname}>
+  return linkData(direction).pathnameFromProps !== currentPath.pathname ? (
+    <InternalLink to={linkData(direction).pathnameFromProps}>
       <InternalLinkWrapper _direction={direction}>
         <TitleTextWrapper _direction={direction}>
           <TitleText _direction={direction}>

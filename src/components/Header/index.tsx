@@ -1,8 +1,7 @@
-import React from "react"
-import { LocationContext } from "reach__router"
+import React, { useState, useEffect } from "react"
 
 // TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
-import { SitePaths } from "../../data/paths"
+import { SitePaths, DefaultPath } from "../../data/paths"
 import { TPathname } from "../../types/paths"
 import { InternalLinkDirection as ILD } from "../../types/presentation"
 
@@ -10,17 +9,25 @@ import StyledInternalLink from "../Shared/StyledInternalLink"
 
 import { HeaderWrapper, TitleWrapper, Title } from "./styles"
 
-interface Props extends LocationContext {}
+interface Props {
+  pathname: string
+}
 
-const Header = (props: Props) => {
+const Header = ({ pathname }: Props) => {
+  const [title, setTitle] = useState(DefaultPath.text)
+
+  useEffect(() => {
+    const updatedTitle =
+      SitePaths[pathname as TPathname].text || DefaultPath.text
+    setTitle(updatedTitle)
+  })
+
   return (
     <HeaderWrapper>
       <TitleWrapper>
-        <Title>{`${
-          SitePaths[props.location.pathname as TPathname].text
-        }.`}</Title>
+        <Title>{`${title}.`}</Title>
       </TitleWrapper>
-      <StyledInternalLink {...props} direction={ILD.Next} />
+      <StyledInternalLink pathname={pathname} direction={ILD.Next} />
     </HeaderWrapper>
   )
 }

@@ -1,5 +1,4 @@
 import React from "react"
-import { LocationContext } from "reach__router"
 
 import StyledInternalLink from "../Shared/StyledInternalLink"
 import { InternalLinkDirection as ILD } from "../../types/presentation"
@@ -23,9 +22,11 @@ import {
   CopyrightText,
 } from "./styles"
 
-interface Props extends LocationContext {}
+interface Props {
+  pathname: string
+}
 
-const Footer = (props: Props) => {
+const Footer = ({ pathname }: Props) => {
   return (
     <FooterWrapper>
       <FirstFooterRow>
@@ -47,11 +48,11 @@ const Footer = (props: Props) => {
         </LinkWrapper>
       </FirstFooterRow>
       <SecondFooterRow>
-        <StyledInternalLink {...props} direction={ILD.Previous} />
+        <StyledInternalLink pathname={pathname} direction={ILD.Previous} />
         <BrandingWrapper>
           <Branding>kevala design.</Branding>
         </BrandingWrapper>
-        <StyledInternalLink {...props} direction={ILD.Next} />
+        <StyledInternalLink pathname={pathname} direction={ILD.Next} />
       </SecondFooterRow>
       <ThirdFooterRow>
         <CopyrightText>

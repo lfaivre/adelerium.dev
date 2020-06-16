@@ -1,5 +1,7 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { Location } from "@reach/router"
+import { PageProps } from "gatsby"
+
 import SideBar from "../SideBar"
 import Header from "../Header"
 import Footer from "../Footer"
@@ -17,12 +19,12 @@ import {
   ReturnButtonIndicator,
 } from "./styles"
 
-interface Props {
-  children: React.ReactNode
-}
-
-const Layout = ({ children }: Props) => {
+const Layout = ({ location, children }: PageProps) => {
   const scrollSectionRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    handleScroll()
+  }, [location.pathname])
 
   const handleScroll = () => {
     if (scrollSectionRef.current) {
@@ -39,7 +41,7 @@ const Layout = ({ children }: Props) => {
           </SideBarWrapper>
           <ContentWrapper>
             <HeaderWrapper>
-              <Header {...locationProps} />
+              <Header pathname={locationProps.location.pathname} />
             </HeaderWrapper>
             <PageWrapperStatic>
               <PageWrapperVerticalScroll ref={scrollSectionRef}>
@@ -50,7 +52,7 @@ const Layout = ({ children }: Props) => {
                     <ReturnButtonIndicator></ReturnButtonIndicator>
                   </ReturnButton>
                 </ReturnButtonWrapper>
-                <Footer {...locationProps} />
+                <Footer pathname={locationProps.location.pathname} />
               </PageWrapperVerticalScroll>
             </PageWrapperStatic>
           </ContentWrapper>
