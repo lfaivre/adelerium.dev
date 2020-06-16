@@ -1,29 +1,6 @@
-interface SideBarInternalNavigationAttributes {
-  title: string
-  links: Array<SideBarInternalLinkAttributes>
-}
+import { TSideBarData } from "../../types/sidebar"
 
-interface SideBarExternalNavigationAttributes {
-  title: string
-  links: Array<SideBarExternalLinkAttributes>
-}
-
-interface SideBarInternalLinkAttributes {
-  text: string
-  internalURL: string
-}
-
-interface SideBarExternalLinkAttributes {
-  text: string
-  externalURL: string
-}
-
-export interface SideBarDataAttributes {
-  internal: SideBarInternalNavigationAttributes
-  external: SideBarExternalNavigationAttributes
-}
-
-export const SideBarData: SideBarDataAttributes = {
+export const SideBarData: TSideBarData = {
   internal: {
     title: "Navigation",
     links: [
@@ -62,64 +39,5 @@ export const SideBarData: SideBarDataAttributes = {
         externalURL: "mailto:lorenzo.faivre@gmail.com",
       },
     ],
-  },
-}
-
-// NEW :: NEED TO COMBINE WITH ABOVE
-
-interface SiteDataAttrs {
-  profile: ProfileAttrs
-  links: SiteLinksAttrs
-}
-
-interface ProfileAttrs {
-  name: string
-  tag: string
-}
-
-interface SiteLinksAttrs {
-  kd: LinkAttrs
-  github: LinkAttrs
-  linkedin: LinkAttrs
-  resume: LinkAttrs
-  email: LinkAttrs
-}
-
-interface LinkAttrs {
-  text: string
-  altText?: string
-  url: string
-}
-
-export const SiteData: SiteDataAttrs = {
-  profile: {
-    name: "Lorenzo Faivre",
-    tag: "A software engineer, among other things",
-  },
-  links: {
-    kd: {
-      text: "Kevala Design",
-      altText: "kevaladesign.com",
-      url: "http://kevaladesign.com/",
-    },
-    github: {
-      text: "GitHub",
-      altText: "gh",
-      url: "https://github.com/lfaivre",
-    },
-    linkedin: {
-      text: "LinkedIn",
-      altText: "li",
-      url: "https://www.linkedin.com/in/lorenzofaivre/",
-    },
-    resume: {
-      text: "Resume",
-      url:
-        "https://drive.google.com/file/d/19Gdz-dwWnlBov73sDIBnr68bf04NvnIL/view?usp=sharing",
-    },
-    email: {
-      text: "Email",
-      url: "mailto:lorenzo.faivre@gmail.com",
-    },
   },
 }

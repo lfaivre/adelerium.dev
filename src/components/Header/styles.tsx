@@ -1,4 +1,4 @@
-import tw, { styled } from "twin.macro"
+import tw from "twin.macro"
 
 export const HeaderWrapper = tw.header`w-full h-full px-8 py-4 flex flex-row justify-between items-center bg-offwhite`
 export const TitleWrapper = tw.div`flex justify-start items-center`

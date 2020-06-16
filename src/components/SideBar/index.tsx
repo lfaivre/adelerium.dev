@@ -2,7 +2,8 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 // TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
-import { SideBarData, SiteData } from "./data"
+import { SideBarData } from "./data"
+import { SiteData } from "../../data/site"
 
 import {
   SideBarWrapper,
