@@ -1,8 +1,7 @@
 import React from "react"
 import { PageProps } from "gatsby"
 
-import SEO from "../components/seo"
-import Layout from "../components/Layout"
+import SEO from "../components/Shared/SEO"
 import BlogPost from "../components/blog/BlogPost"
 
 import { BlogPostsData } from "../data/blog-temp"

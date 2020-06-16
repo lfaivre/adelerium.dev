@@ -1,7 +1,7 @@
 import React from "react"
 import { PageProps } from "gatsby"
 
-import SEO from "../components/seo"
+import SEO from "../components/Shared/SEO"
 import AboutSection from "../components/About/AboutSection"
 
 import { AboutSectionData } from "../data/about"
