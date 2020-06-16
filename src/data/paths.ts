@@ -8,6 +8,7 @@ import {
   BLOG,
   BLOG_TEXT,
   TSitePaths,
+  TPathData,
 } from "../types/paths"
 
 export const SitePaths: TSitePaths = {
@@ -35,4 +36,11 @@ export const SitePaths: TSitePaths = {
     previous: PROJECTS,
     next: INDEX,
   },
+}
+
+export const DefaultPath: TPathData = {
+  pathname: INDEX,
+  text: INDEX_TEXT,
+  previous: INDEX,
+  next: ABOUT,
 }

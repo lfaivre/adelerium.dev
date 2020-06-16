@@ -3,7 +3,6 @@ import { LocationContext } from "reach__router"
 
 import StyledInternalLink from "./Shared/StyledInternalLink"
 import { InternalLinkDirection } from "../types/presentation"
-import "../styles/arrow.css"
 
 interface Props extends LocationContext {}
 

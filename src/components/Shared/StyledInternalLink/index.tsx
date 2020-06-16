@@ -1,28 +1,34 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
 import { LocationContext } from "reach__router"
 
-import { SitePaths } from "../../../data/paths"
+import { SitePaths, DefaultPath } from "../../../data/paths"
 import { TPathname, INDEX } from "../../../types/paths"
-import { InternalLinkDirection } from "../../../types/presentation"
-import "../../../styles/arrow.css"
+import { InternalLinkDirection as ILD } from "../../../types/presentation"
+
+import {
+  InternalLink,
+  Placeholder,
+  InternalLinkWrapper,
+  TitleTextWrapper,
+  TitleText,
+  PathInfoWrapper,
+  PathText,
+  Arrow,
+} from "./styles"
 
 interface Props extends LocationContext {
-  direction: InternalLinkDirection
+  direction: ILD
 }
 
 const StyledInternalLink = ({ location, direction }: Props) => {
-  const [currentLocationDetails, setCurrentLocationDetails] = useState({
-    pathname: SitePaths[INDEX].pathname,
-    text: SitePaths[INDEX].text,
-    previous: SitePaths[INDEX].previous,
-    next: SitePaths[INDEX].next,
+  const [currentPath, setCurrentPath] = useState({
+    ...DefaultPath,
   })
 
   useEffect(() => {
     const pathname =
       (location.pathname as TPathname) || SitePaths[INDEX].pathname
-    setCurrentLocationDetails({
+    setCurrentPath({
       pathname,
       text: SitePaths[pathname].text,
       previous: SitePaths[pathname].previous,
@@ -30,62 +36,30 @@ const StyledInternalLink = ({ location, direction }: Props) => {
     })
   }, [location.pathname])
 
-  const linkData = (direction: InternalLinkDirection) => {
+  const linkData = (direction: ILD) => {
     const pathname =
-      direction === InternalLinkDirection.Previous
-        ? currentLocationDetails.previous
-        : currentLocationDetails.next
+      direction === ILD.Previous ? currentPath.previous : currentPath.next
     const text = SitePaths[pathname].text
     return { pathname, text }
   }
 
-  return linkData(direction).pathname !== currentLocationDetails.pathname ? (
-    <Link className="h-full w-32" to={linkData(direction).pathname}>
-      <div
-        className={`w-full h-full flex flex-col justify-center ${
-          direction === InternalLinkDirection.Previous
-            ? "items-end"
-            : "items-start"
-        }`}
-      >
-        <div className="flex flex-row items-center">
-          <p
-            className={`text-charcoal text-base playfair-display font-bold ${
-              direction === InternalLinkDirection.Previous
-                ? "text-right"
-                : "text-left"
-            }`}
-          >
-            {direction === InternalLinkDirection.Previous
-              ? "Previous."
-              : "Next."}
-          </p>
-        </div>
-        <div className="w-full flex flex-row justify-between items-center">
-          {direction === InternalLinkDirection.Previous ? (
-            <span className="mr-4 arrow -left">
-              <span className="shaft"></span>
-            </span>
-          ) : null}
-          <p
-            className={`text-base playfair-display font-normal text-left ${
-              direction === InternalLinkDirection.Previous
-                ? "text-right"
-                : "text-left"
-            }`}
-          >
-            {linkData(direction).text}
-          </p>
-          {direction === InternalLinkDirection.Next ? (
-            <span className="ml-4 arrow -right">
-              <span className="shaft"></span>
-            </span>
-          ) : null}
-        </div>
-      </div>
-    </Link>
+  return linkData(direction).pathname !== currentPath.pathname ? (
+    <InternalLink to={linkData(direction).pathname}>
+      <InternalLinkWrapper _direction={direction}>
+        <TitleTextWrapper _direction={direction}>
+          <TitleText _direction={direction}>
+            {direction === ILD.Previous ? "Previous." : "Next."}
+          </TitleText>
+        </TitleTextWrapper>
+        <PathInfoWrapper>
+          {direction === ILD.Previous ? <Arrow _direction={direction} /> : null}
+          <PathText _direction={direction}>{linkData(direction).text}</PathText>
+          {direction === ILD.Next ? <Arrow _direction={direction} /> : null}
+        </PathInfoWrapper>
+      </InternalLinkWrapper>
+    </InternalLink>
   ) : (
-    <div className="h-full w-32"></div>
+    <Placeholder></Placeholder>
   )
 }
 
