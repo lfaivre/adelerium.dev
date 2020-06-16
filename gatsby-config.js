@@ -27,7 +27,7 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-postcss`,
+    // `gatsby-plugin-postcss`,
     `gatsby-plugin-typescript`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
@@ -55,6 +55,14 @@ module.exports = {
       options: {
         layout: require.resolve(`${__dirname}/src/components/Layout.tsx`),
       },
+    },
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {},
+    },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {},
     },
     // {
     //   resolve: `gatsby-plugin-layout`,
