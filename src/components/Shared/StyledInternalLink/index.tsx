@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
-// import { Link } from "gatsby"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { Link } from "gatsby"
 import { LocationContext } from "reach__router"
 
-import { pathData, InternalLinkDirection } from "../data/routes-temp"
-import "../styles/arrow.css"
+import { SitePaths } from "../../../data/paths"
+import { TPathname, INDEX } from "../../../types/paths"
+import { InternalLinkDirection } from "../../../types/presentation"
+import "../../../styles/arrow.css"
 
 interface Props extends LocationContext {
   direction: InternalLinkDirection
@@ -12,40 +13,34 @@ interface Props extends LocationContext {
 
 const StyledInternalLink = ({ location, direction }: Props) => {
   const [currentLocationDetails, setCurrentLocationDetails] = useState({
-    pathname: "default",
-    text: pathData["default"].text,
-    previous: pathData["default"].previous,
-    next: pathData["default"].next,
+    pathname: SitePaths[INDEX].pathname,
+    text: SitePaths[INDEX].text,
+    previous: SitePaths[INDEX].previous,
+    next: SitePaths[INDEX].next,
   })
 
   useEffect(() => {
-    const pathname = location.pathname || "default"
+    const pathname =
+      (location.pathname as TPathname) || SitePaths[INDEX].pathname
     setCurrentLocationDetails({
       pathname,
-      text: pathData[pathname].text,
-      previous: pathData[pathname].previous,
-      next: pathData[pathname].next,
+      text: SitePaths[pathname].text,
+      previous: SitePaths[pathname].previous,
+      next: SitePaths[pathname].next,
     })
-  }, [location])
+  }, [location.pathname])
 
   const linkData = (direction: InternalLinkDirection) => {
-    let pathname
-    if (direction === InternalLinkDirection.Previous) {
-      pathname = currentLocationDetails.previous
-    } else {
-      pathname = currentLocationDetails.next
-    }
-    const text = pathData[pathname].text
+    const pathname =
+      direction === InternalLinkDirection.Previous
+        ? currentLocationDetails.previous
+        : currentLocationDetails.next
+    const text = SitePaths[pathname].text
     return { pathname, text }
   }
 
   return linkData(direction).pathname !== currentLocationDetails.pathname ? (
-    <AniLink
-      className="h-full w-32"
-      swipe
-      direction="left"
-      to={linkData(direction).pathname}
-    >
+    <Link className="h-full w-32" to={linkData(direction).pathname}>
       <div
         className={`w-full h-full flex flex-col justify-center ${
           direction === InternalLinkDirection.Previous
@@ -88,7 +83,7 @@ const StyledInternalLink = ({ location, direction }: Props) => {
           ) : null}
         </div>
       </div>
-    </AniLink>
+    </Link>
   ) : (
     <div className="h-full w-32"></div>
   )

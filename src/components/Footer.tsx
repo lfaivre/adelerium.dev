@@ -1,8 +1,8 @@
 import React from "react"
 import { LocationContext } from "reach__router"
 
-import StyledInternalLink from "./StyledInternalLink"
-import { InternalLinkDirection } from "../data/routes-temp"
+import StyledInternalLink from "./Shared/StyledInternalLink"
+import { InternalLinkDirection } from "../types/presentation"
 import "../styles/arrow.css"
 
 interface Props extends LocationContext {}
