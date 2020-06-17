@@ -2,7 +2,7 @@ import React from "react"
 import { PageProps, graphql } from "gatsby"
 
 import SEO from "../components/Shared/SEO"
-import ProjectPreview from "../components/projects/ProjectPreview"
+import ProjectPreview from "../components/ProjectsPage/ProjectPreview"
 
 import { ProjectData } from "../data/projects-temp"
 
