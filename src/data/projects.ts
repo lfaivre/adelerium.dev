@@ -1,55 +1,6 @@
-export interface ProjectAttributes {
-  order: number
-  preview: ProjectPreviewAttributes
-  technologyTags: Array<ProjectTechnologyTags>
-  externalLinks: ProjectLinkAttributes
-  gallery: Array<string>
-}
+import { ProjectAttrs, ProjectDataAttrs } from "../types/projects"
 
-interface ProjectPreviewAttributes {
-  title: string
-  type: ProjectType
-  date: string
-  description: string
-  pictureURL: string
-  tempQuery: any
-}
-
-type ProjectType = "Website" | "Mobile Application" | "Design Prototype"
-
-interface ProjectLinkAttributes {
-  hostedURL?: string
-  githubURL?: string
-  figmaURL?: string
-}
-
-type ProjectTechnologyTags =
-  | ScriptingTechnology
-  | FrontEndTechnology
-  | BackEndTechnology
-  | MobileTechnology
-  | DatabaseTechnology
-  | OtherTechnology
-
-type ScriptingTechnology = "JavaScript" | "TypeScript" | "Python" | "Bash"
-type FrontEndTechnology =
-  | "React"
-  | "Redux"
-  | "Create React App"
-  | "Vue"
-  | "Vuex"
-  | "HTML"
-  | "Pug"
-  | "CSS"
-  | "Sass"
-  | "Bootstrap"
-  | "Tailwind CSS"
-type BackEndTechnology = "Node.js" | "Express"
-type MobileTechnology = "React Native" | "Expo"
-type DatabaseTechnology = "MongoDB" | "Postgres" | "TypeORM"
-type OtherTechnology = "Other" | "Figma" | "Docker" | "Git" | "GitHub"
-
-const ProjectDataArray: Array<ProjectAttributes> = [
+const projects: Array<ProjectAttrs> = [
   {
     order: 1,
     preview: {
@@ -213,17 +164,7 @@ const ProjectDataArray: Array<ProjectAttributes> = [
   },
 ]
 
-interface ProjectDataAttributes {
-  projects: Array<ProjectAttributes>
-  count(): number
-}
-
-export const ProjectData: ProjectDataAttributes = {
-  projects: ProjectDataArray,
-  count: () => ProjectDataArray.length,
-}
-
-export enum ProjectDirection {
-  Left,
-  Right,
+export const projectData: ProjectDataAttrs = {
+  projects,
+  count: () => projects.length,
 }

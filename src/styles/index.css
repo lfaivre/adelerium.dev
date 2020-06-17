@@ -49,19 +49,3 @@ body {
 .mrs-sheppards {
   font-family: var(--mrs-sheppards);
 }
-
-.text-outline {
-  color: var(--charcoal);
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--charcoal);
-}
-
-.project-arrow-outline {
-  color: transparent;
-}
-
-.project-arrow-outline > g g path {
-  stroke: var(--charcoal);
-  stroke-width: 4;
-}

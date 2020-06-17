@@ -2,21 +2,19 @@ import React from "react"
 import { PageProps, graphql } from "gatsby"
 
 import SEO from "../components/Shared/SEO"
-import ProjectPreview from "../components/ProjectsPage/ProjectPreview"
+import Preview from "../components/ProjectsPage/Preview"
 
-import { ProjectData } from "../data/projects-temp"
+import { projectData } from "../data/projects"
 
 const ProjectsPage = ({ data }: PageProps) => {
   return (
     <>
       <SEO title="Projects" />
       <div className="w-full px-8 py-16 bg-charcoal">
-        {ProjectData.projects.map(projectData => {
+        {projectData.projects.map(project => {
           // TODO: TEMPORARY IMPLEMENTATION, REPLACING WITH CONTENTFUL GRAPHQL QUERIES
-          projectData.preview.tempQuery = data[projectData.preview.pictureURL]
-          return (
-            <ProjectPreview projectData={projectData} key={projectData.order} />
-          )
+          project.preview.tempQuery = data[project.preview.pictureURL]
+          return <Preview project={project} key={project.order} />
         })}
       </div>
     </>
