@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 
 // TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
 import { SitePaths, DefaultPath } from "../../data/paths"
-import { TPathname } from "../../types/paths"
+import { TPathname, ERROR_TEXT } from "../../types/paths"
 import { InternalLinkDirection as ILD } from "../../types/presentation"
 
 import StyledInternalLink from "../Shared/StyledInternalLink"
@@ -17,9 +17,11 @@ const Header = ({ pathname }: Props) => {
   const [title, setTitle] = useState(DefaultPath.text)
 
   useEffect(() => {
-    const updatedTitle =
-      SitePaths[pathname as TPathname].text || DefaultPath.text
-    setTitle(updatedTitle)
+    if (!(pathname in SitePaths)) {
+      setTitle(ERROR_TEXT)
+      return
+    }
+    setTitle(SitePaths[pathname as TPathname].text)
   })
 
   return (

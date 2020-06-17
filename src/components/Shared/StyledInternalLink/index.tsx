@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 
-import { SitePaths, DefaultPath } from "../../../data/paths"
-import { TPathname, INDEX } from "../../../types/paths"
+import { SitePaths, DefaultPath, errorPath } from "../../../data/paths"
+import { TPathname } from "../../../types/paths"
 import { InternalLinkDirection as ILD } from "../../../types/presentation"
 
 import {
@@ -21,12 +21,15 @@ interface Props {
 }
 
 const StyledInternalLink = ({ pathname, direction }: Props) => {
-  const [currentPath, setCurrentPath] = useState({
-    ...DefaultPath,
-  })
+  const [isUsingValidPathname, setIsUsingValidPathname] = useState(true)
+  const [currentPath, setCurrentPath] = useState({ ...DefaultPath })
 
   useEffect(() => {
-    const updatedPathname = (pathname as TPathname) || SitePaths[INDEX].pathname
+    if (!(pathname in SitePaths)) {
+      setIsUsingValidPathname(false)
+      return
+    }
+    const updatedPathname = pathname as TPathname
     setCurrentPath({
       pathname: updatedPathname,
       text: SitePaths[updatedPathname].text,
@@ -42,7 +45,8 @@ const StyledInternalLink = ({ pathname, direction }: Props) => {
     return { pathnameFromProps, text }
   }
 
-  return linkData(direction).pathnameFromProps !== currentPath.pathname ? (
+  return isUsingValidPathname &&
+    linkData(direction).pathnameFromProps !== currentPath.pathname ? (
     <InternalLink to={linkData(direction).pathnameFromProps}>
       <InternalLinkWrapper _direction={direction}>
         <TitleTextWrapper _direction={direction}>

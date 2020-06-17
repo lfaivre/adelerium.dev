@@ -6,6 +6,7 @@ import SideBar from "../SideBar"
 import Header from "../Header"
 import Footer from "../Footer"
 
+import "../../styles/font-awesome"
 import {
   LayoutWrapper,
   SideBarWrapper,

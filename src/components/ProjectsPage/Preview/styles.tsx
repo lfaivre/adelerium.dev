@@ -133,9 +133,7 @@ export const LinksWrapper = styled.div<DirectionProps>`
 `
 export const ExternalLink = styled(StyledExternalLink)`
   ${({ _direction }) =>
-    _direction === PD.Left
-      ? tw`mr-8 last:mr-0 text-left`
-      : tw`ml-8 last:ml-0 text-right`}
+    _direction === PD.Left ? tw`mr-8 text-left` : tw`ml-8 text-right`}
   ${tw`text-charcoal text-base font-playfair-display font-normal`}
 `
 export const Icon = styled(FontAwesomeIcon)<DirectionProps>`
