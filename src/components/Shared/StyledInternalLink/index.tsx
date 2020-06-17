@@ -47,7 +47,7 @@ const StyledInternalLink = ({ pathname, direction }: Props) => {
       <InternalLinkWrapper _direction={direction}>
         <TitleTextWrapper _direction={direction}>
           <TitleText _direction={direction}>
-            {direction === ILD.Previous ? "Previous." : "Next."}
+            {direction === ILD.Previous ? "Previous" : "Next"}
           </TitleText>
         </TitleTextWrapper>
         <PathInfoWrapper>

@@ -5,12 +5,13 @@ import SEO from "../components/Shared/SEO"
 import AboutSection from "../components/AboutPage/AboutSection"
 
 import { AboutSectionData } from "../data/about"
+import { PageContentWrapper } from "../styles/pages"
 
 const IndexPage = (props: PageProps) => {
   return (
     <>
       <SEO title="Home" />
-      <div className="w-full px-8 py-16 bg-charcoal">
+      <PageContentWrapper>
         {AboutSectionData.sections.map(sectionData => {
           return (
             <AboutSection
@@ -20,7 +21,7 @@ const IndexPage = (props: PageProps) => {
             />
           )
         })}
-      </div>
+      </PageContentWrapper>
     </>
   )
 }

@@ -5,16 +5,17 @@ import SEO from "../components/Shared/SEO"
 import Post from "../components/BlogPage/Post"
 
 import { ContentfulBlogData } from "../data/blog"
+import { PageContentWrapper } from "../styles/pages"
 
 const BlogPage = (props: PageProps) => {
   return (
     <>
       <SEO title="Blogs" />
-      <div className="w-full px-8 py-16 bg-charcoal">
+      <PageContentWrapper>
         {ContentfulBlogData.posts.map(blogPost => {
           return <Post blogPost={blogPost} key={blogPost.id} />
         })}
-      </div>
+      </PageContentWrapper>
     </>
   )
 }
