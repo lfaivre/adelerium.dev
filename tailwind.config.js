@@ -7,7 +7,12 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        xsmobile: "360px",
         mobile: "375px",
+        "mobile-only": { min: "375px", max: "639px" },
+        "sm-only": { min: "640px", max: "767px" },
+        "md-only": { min: "768px", max: "1023px" },
+        "lg-only": { min: "1024px", max: "1279px" },
       },
       maxWidth: {
         "1/4": "25%",

@@ -8,7 +8,7 @@ import { SideBarData } from "./data"
 import { SiteData } from "../../data/site"
 import { SideBarView as SBV } from "../../types/presentation"
 
-import { ResponsiveUpToXL } from "../../styles/responsive"
+// import { ResponsiveUpToXL } from "../../styles/responsive"
 import {
   SideBarWrapper,
   ProfileWrapper,
@@ -17,6 +17,7 @@ import {
   ProfileTextWrapper,
   ProfileName,
   ProfileTag,
+  ResponsiveWelcomeNavigationWrapper,
   BrandingWrapper,
   Branding,
   LinkSectionWrapper,
@@ -55,9 +56,9 @@ const SideBar = () => {
           <ProfileTag>{SiteData.profile.tag}</ProfileTag>
         </ProfileTextWrapper>
       </ProfileWrapper>
-      <ResponsiveUpToXL>
+      <ResponsiveWelcomeNavigationWrapper>
         <WelcomeNavigation />
-      </ResponsiveUpToXL>
+      </ResponsiveWelcomeNavigationWrapper>
       {sideBarView === SBV.InternalLinks ? (
         <LinkSectionWrapper>
           {SideBarData.internal.links.map(link => (

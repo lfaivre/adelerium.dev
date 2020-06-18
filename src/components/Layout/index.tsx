@@ -9,7 +9,7 @@ import Footer from "../Footer"
 import { INDEX } from "../../types/paths"
 
 import "../../styles/font-awesome"
-import { ResponsiveXLAbove } from "../../styles/responsive"
+
 import {
   LayoutWrapper,
   SideBarWrapper,
@@ -44,11 +44,9 @@ const Layout = ({ location, children }: PageProps) => {
     <Location>
       {locationProps => (
         <LayoutWrapper>
-          <ResponsiveXLAbove>
-            <SideBarWrapper>
-              <SideBar />
-            </SideBarWrapper>
-          </ResponsiveXLAbove>
+          <SideBarWrapper>
+            <SideBar />
+          </SideBarWrapper>
           <ContentWrapper>
             {pathnameIsIndex ? (
               <HeaderWrapper>
