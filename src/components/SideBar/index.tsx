@@ -1,11 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
+
+import WelcomeNavigation from "../Shared/WelcomeNavigation"
 
 // TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
 import { SideBarData } from "./data"
 import { SiteData } from "../../data/site"
-import { TSideBarSection } from "../../types/sidebar"
+import { SideBarView as SBV } from "../../types/presentation"
 
+import { ResponsiveUpToXL } from "../../styles/responsive"
 import {
   SideBarWrapper,
   ProfileWrapper,
@@ -17,13 +20,18 @@ import {
   BrandingWrapper,
   Branding,
   LinkSectionWrapper,
-  LinkSectionSeparator,
-  LinkSectionTitle,
   ExternalLink,
   InternaLink,
+  ViewButtonsWrapper,
+  LineWrapper,
+  Line,
+  ButtonsWrapper,
+  ViewButton,
 } from "./styles"
 
 const SideBar = () => {
+  const [sideBarView, setSideBarView] = useState(SBV.InternalLinks)
+
   const sideBarQuery = useStaticQuery(graphql`
     query {
       profile: file(relativePath: { eq: "profile-placeholder-1.jpg" }) {
@@ -47,25 +55,46 @@ const SideBar = () => {
           <ProfileTag>{SiteData.profile.tag}</ProfileTag>
         </ProfileTextWrapper>
       </ProfileWrapper>
-      {Object.values(SideBarData).map((data: TSideBarSection) => {
-        return (
-          <LinkSectionWrapper key={data.title}>
-            <LinkSectionSeparator />
-            <LinkSectionTitle>{data.title}</LinkSectionTitle>
-            {data.links.map(link => {
-              return link.isInternal ? (
-                <InternaLink to={link.url} key={link.text}>
-                  {link.text}
-                </InternaLink>
-              ) : (
-                <ExternalLink href={link.url} key={link.text}>
-                  {link.text}
-                </ExternalLink>
-              )
-            })}
-          </LinkSectionWrapper>
-        )
-      })}
+      <ResponsiveUpToXL>
+        <WelcomeNavigation />
+      </ResponsiveUpToXL>
+      {sideBarView === SBV.InternalLinks ? (
+        <LinkSectionWrapper>
+          {SideBarData.internal.links.map(link => (
+            <InternaLink to={link.url} key={link.text}>
+              {link.text}
+            </InternaLink>
+          ))}
+        </LinkSectionWrapper>
+      ) : (
+        <LinkSectionWrapper>
+          {SideBarData.external.links.map(link => (
+            <ExternalLink href={link.url} key={link.text}>
+              {link.text}
+            </ExternalLink>
+          ))}
+        </LinkSectionWrapper>
+      )}
+      <ViewButtonsWrapper>
+        <LineWrapper>
+          <Line />
+          <Line />
+        </LineWrapper>
+        <ButtonsWrapper>
+          <ViewButton
+            onClick={() => setSideBarView(SBV.InternalLinks)}
+            selected={sideBarView === SBV.InternalLinks}
+          >
+            01.
+          </ViewButton>
+          <ViewButton
+            onClick={() => setSideBarView(SBV.ExternalLinks)}
+            selected={sideBarView === SBV.ExternalLinks}
+          >
+            02.
+          </ViewButton>
+        </ButtonsWrapper>
+      </ViewButtonsWrapper>
       <BrandingWrapper>
         <Branding href={SiteData.links.kd.url}>KD.</Branding>
       </BrandingWrapper>

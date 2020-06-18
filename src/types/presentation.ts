@@ -12,3 +12,8 @@ export enum ProjectDirection {
   Left,
   Right,
 }
+
+export enum SideBarView {
+  InternalLinks,
+  ExternalLinks,
+}

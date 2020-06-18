@@ -6,6 +6,9 @@ module.exports = {
   separator: ":",
   theme: {
     extend: {
+      screens: {
+        mobile: "375px",
+      },
       maxWidth: {
         "1/4": "25%",
         "1/2": "50%",
