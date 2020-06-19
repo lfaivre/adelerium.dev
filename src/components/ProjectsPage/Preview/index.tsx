@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react"
+
+// TODO: MOVE ICON DEFS TO SEPARATE FILE (USE LIB)
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons"
+import {
+  faFirefox,
+  faGithub,
+  faFigma,
+} from "@fortawesome/free-brands-svg-icons"
 
 import { ProjectAttrs } from "../../../types/projects"
 import { ProjectDirection } from "../../../types/presentation"
 import {
-  PreviewWrapper,
   PreviewWrapperWithFX,
   ThumbnailWrapper,
   ThumbnailInfoWrapper,
@@ -28,7 +34,9 @@ import {
   Divider,
   LinksWrapper,
   ExternalLink,
-  Icon,
+  LinkIcon,
+  LinkText,
+  ArrowIcon,
 } from "./styles"
 
 interface Props {
@@ -90,7 +98,10 @@ const Preview = ({ project }: Props) => {
               href={project.externalLinks.hostedURL}
               _direction={direction}
             >
-              see&nbsp;it&nbsp;<Bold>hosted.</Bold>
+              <LinkIcon icon={faFirefox} />
+              <LinkText _direction={direction}>
+                see&nbsp;it&nbsp;<Bold>hosted.</Bold>
+              </LinkText>
             </ExternalLink>
           ) : null}
           {project.externalLinks.githubURL !== "" ? (
@@ -98,7 +109,10 @@ const Preview = ({ project }: Props) => {
               href={project.externalLinks.githubURL}
               _direction={direction}
             >
-              view&nbsp;on&nbsp;<Bold>github.</Bold>
+              <LinkIcon icon={faGithub} />
+              <LinkText _direction={direction}>
+                view&nbsp;on&nbsp;<Bold>github.</Bold>
+              </LinkText>
             </ExternalLink>
           ) : null}
           {project.externalLinks.figmaURL !== "" ? (
@@ -106,12 +120,15 @@ const Preview = ({ project }: Props) => {
               href={project.externalLinks.figmaURL}
               _direction={direction}
             >
-              view&nbsp;on&nbsp;<Bold>figma.</Bold>
+              <LinkIcon icon={faFigma} />
+              <LinkText _direction={direction}>
+                view&nbsp;on&nbsp;<Bold>figma.</Bold>
+              </LinkText>
             </ExternalLink>
           ) : null}
         </LinksWrapper>
       </ContentWrapper>
-      <Icon
+      <ArrowIcon
         icon={faArrowUp}
         transform={{ rotate: direction === ProjectDirection.Left ? -45 : 45 }}
         _direction={direction}
