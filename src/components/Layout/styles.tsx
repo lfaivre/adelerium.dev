@@ -1,4 +1,5 @@
 import tw, { styled } from "twin.macro"
+import BackgroundImage from "../Shared/BackgroundImage"
 
 interface ReturnButtonIndicatorProps {
   readonly isIndicator?: boolean
@@ -11,10 +12,13 @@ export const HeaderWrapper = tw.div`w-full h-24`
 export const PageWrapperStatic = tw.div`w-full flex-1 overflow-y-hidden`
 export const PageWrapperVerticalScroll = tw.div`w-full h-full overflow-y-scroll`
 export const MainWrapper = tw.main`w-full min-h-full`
-
 export const ReturnButtonWrapper = tw.div`w-full p-8 flex flex-row justify-end items-center`
 export const ReturnButton = tw.button`w-16 h-16 border-2 border-solid border-offwhite rounded-full flex flex-col justify-center items-center bg-transparent hover:bg-offwhite overflow-hidden transition-colors duration-300 ease-in-out focus:outline-none`
 export const ReturnButtonIndicator = styled.span<ReturnButtonIndicatorProps>`
   ${({ isIndicator }) => (isIndicator ? tw`bg-transparent` : tw`bg-charcoal`)}
   ${tw`w-full h-8`}
+`
+export const StyledBackgroundImage = styled(BackgroundImage)`
+  height: 100%;
+  width: 100%;
 `

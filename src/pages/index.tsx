@@ -4,9 +4,12 @@ import { BackgroundImage as BI } from "../types/presentation"
 
 import SEO from "../components/Shared/SEO"
 import SideBar from "../components/SideBar"
-import BackgroundImage from "../components/Shared/BackgroundImage"
 
-import { IndexPageContentWrapper, NavigatorWrapper } from "../styles/pages"
+import {
+  NavigatorWrapper,
+  IndexPageContentWrapper,
+  IndexPageBackgroundImage,
+} from "../styles/pages"
 
 const IndexPage = (props: PageProps) => {
   return (
@@ -16,10 +19,10 @@ const IndexPage = (props: PageProps) => {
         <SideBar />
       </NavigatorWrapper>
       <IndexPageContentWrapper>
-        <BackgroundImage
+        {/* <IndexPageBackgroundImage
           screenSize={BI.Desktop}
           opacity={true}
-        ></BackgroundImage>
+        ></IndexPageBackgroundImage> */}
       </IndexPageContentWrapper>
     </>
   )

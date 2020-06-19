@@ -6,6 +6,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
   ],
   settings: {
     react: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, Fragment } from "react"
 import { Location } from "@reach/router"
 import { PageProps } from "gatsby"
 
@@ -21,7 +21,15 @@ import {
   ReturnButtonWrapper,
   ReturnButton,
   ReturnButtonIndicator,
+  StyledBackgroundImage,
 } from "./styles"
+
+const ConditionalWrapper = ({ condition, children }) =>
+  condition ? (
+    <>{children}</>
+  ) : (
+    <StyledBackgroundImage>{children}</StyledBackgroundImage>
+  )
 
 const Layout = ({ location, children }: PageProps) => {
   const [pathnameIsIndex, setPathnameIsIndex] = useState(true)
@@ -54,22 +62,26 @@ const Layout = ({ location, children }: PageProps) => {
               </HeaderWrapper>
             ) : null}
             <PageWrapperStatic>
-              <PageWrapperVerticalScroll ref={scrollSectionRef}>
-                <MainWrapper>{children}</MainWrapper>
-                {pathnameIsIndex ? (
-                  <ReturnButtonWrapper>
-                    <ReturnButton onClick={handleScroll}>
-                      <ReturnButtonIndicator
-                        isIndicator
-                      ></ReturnButtonIndicator>
-                      <ReturnButtonIndicator></ReturnButtonIndicator>
-                    </ReturnButton>
-                  </ReturnButtonWrapper>
-                ) : null}
-                {pathnameIsIndex ? (
-                  <Footer pathname={locationProps.location.pathname} />
-                ) : null}
-              </PageWrapperVerticalScroll>
+              <ConditionalWrapper condition={false}>
+                <>
+                  <PageWrapperVerticalScroll ref={scrollSectionRef}>
+                    <MainWrapper>{children}</MainWrapper>
+                    {pathnameIsIndex ? (
+                      <ReturnButtonWrapper>
+                        <ReturnButton onClick={handleScroll}>
+                          <ReturnButtonIndicator
+                            isIndicator
+                          ></ReturnButtonIndicator>
+                          <ReturnButtonIndicator></ReturnButtonIndicator>
+                        </ReturnButton>
+                      </ReturnButtonWrapper>
+                    ) : null}
+                    {pathnameIsIndex ? (
+                      <Footer pathname={locationProps.location.pathname} />
+                    ) : null}
+                  </PageWrapperVerticalScroll>
+                </>
+              </ConditionalWrapper>
             </PageWrapperStatic>
           </ContentWrapper>
         </LayoutWrapper>

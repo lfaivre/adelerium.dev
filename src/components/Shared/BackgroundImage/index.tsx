@@ -1,19 +1,12 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import tw, { styled } from "twin.macro"
 import BImage from "gatsby-background-image"
-import { BackgroundImage as BI } from "../../../types/presentation"
 
-interface StyledProps {
-  screenSize: BI
-  opacity: boolean
-}
-
-interface Props extends StyledProps {
+interface Props {
   className?: string
 }
 
-const BackgroundImage = ({ className, screenSize }: Props) => {
+const BackgroundImage = ({ className, children }: Props) => {
   const imageQuery = useStaticQuery(graphql`
     query {
       background: file(relativePath: { eq: "waves-placeholder.jpg" }) {
@@ -28,19 +21,13 @@ const BackgroundImage = ({ className, screenSize }: Props) => {
 
   return (
     <BImage
-      className={className}
       fluid={imageQuery.background.childImageSharp.fluid}
-    />
+      className={className}
+      preserveStackingContext={true}
+    >
+      {children}
+    </BImage>
   )
 }
 
-const StyledBackgroundImage = styled(BackgroundImage)<StyledProps>`
-  ${({ screenSize }) =>
-    screenSize === BI.Mobile ? tw`block xl:hidden` : tw`hidden xl:flex`}
-  ${({ opacity }) => opacity && tw`opacity-80!`}
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-`
-
-export default StyledBackgroundImage
+export default BackgroundImage

@@ -22,3 +22,12 @@ export enum BackgroundImage {
   Mobile,
   Desktop,
 }
+
+export enum ScreenSize {
+  XSMOBILE,
+  MOBILE,
+  SM,
+  MD,
+  LG,
+  XL,
+}
