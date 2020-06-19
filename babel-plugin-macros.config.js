@@ -3,6 +3,6 @@ module.exports = {
     preset: "emotion",
     config: "./tailwind.config.js",
     hasSuggestions: true,
-    debug: true,
+    debug: false,
   },
 }
