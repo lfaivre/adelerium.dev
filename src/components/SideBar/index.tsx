@@ -8,7 +8,6 @@ import { SideBarData } from "./data"
 import { SiteData } from "../../data/site"
 import { SideBarView as SBV } from "../../types/presentation"
 
-// import { ResponsiveUpToXL } from "../../styles/responsive"
 import {
   SideBarWrapper,
   ProfileWrapper,

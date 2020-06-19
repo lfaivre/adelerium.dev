@@ -17,3 +17,8 @@ export enum SideBarView {
   InternalLinks,
   ExternalLinks,
 }
+
+export enum BackgroundImage {
+  Mobile,
+  Desktop,
+}
