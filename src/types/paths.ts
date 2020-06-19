@@ -1,3 +1,5 @@
+// TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
+
 export type TPathname =
   | "/"
   | "/about"
@@ -39,4 +41,11 @@ export interface TPathData {
   text: TText
   previous: TPathname
   next: TPathname
+}
+
+export interface PathDataHook {
+  pathname: TPathname
+  isIndex: boolean
+  pathData: TPathData
+  isValidPath: boolean
 }

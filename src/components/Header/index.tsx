@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from "react"
-
-// TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
-import { SitePaths, DefaultPath } from "../../data/paths"
-import { TPathname, ERROR_TEXT } from "../../types/paths"
-import { InternalLinkDirection as ILD } from "../../types/presentation"
-
+import React from "react"
 import StyledInternalLink from "../Shared/StyledInternalLink"
+
+import { PathDataHook } from "../../types/paths"
+import { InternalLinkDirection as ILD } from "../../types/presentation"
 
 import { HeaderWrapper, TitleWrapper, Title } from "./styles"
 
-interface Props {
-  pathname: string
-}
+interface Props extends PathDataHook {}
 
-const Header = ({ pathname }: Props) => {
-  const [title, setTitle] = useState(DefaultPath.text)
-
-  useEffect(() => {
-    if (!(pathname in SitePaths)) {
-      setTitle(ERROR_TEXT)
-      return
-    }
-    setTitle(SitePaths[pathname as TPathname].text)
-  })
-
+const Header = (props: Props) => {
   return (
     <HeaderWrapper>
       <TitleWrapper>
-        <Title>{`${title}.`}</Title>
+        <Title>{`${props.pathData.text}.`}</Title>
       </TitleWrapper>
-      <StyledInternalLink pathname={pathname} direction={ILD.Next} />
+      <StyledInternalLink {...props} direction={ILD.Next} />
     </HeaderWrapper>
   )
 }

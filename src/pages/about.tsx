@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react"
-import { PageProps } from "gatsby"
+import React from "react"
 
 import SEO from "../components/Shared/SEO"
 import AboutSection from "../components/AboutPage/AboutSection"
-import BackgroundImage from "../components/Shared/BackgroundImage"
 
-import { ScreenSize } from "../types/presentation"
+import { useAppState } from "../state/app-context"
+
 import { SCREEN_SIZE } from "../data/presentation"
 import { AboutSectionData } from "../data/about"
+
 import {
   AboutPageContentWrapperDesktop,
   AboutPageContentWrapperMobile,
 } from "../styles/pages"
-import { useWindowWidth } from "../hooks/screen-size"
-import { BackgroundImage as BI } from "../types/presentation"
 
-const AboutPage = (props: PageProps) => {
-  const windowWidth = useWindowWidth()
-  console.log("WINDOW WIDTH FROM HOOK:", windowWidth)
+const AboutPage = () => {
+  const { windowWidth } = useAppState()
 
   return (
     <>

@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef, Fragment } from "react"
-import { Location } from "@reach/router"
+import React, { useEffect, useRef } from "react"
 import { PageProps } from "gatsby"
+
+import { useAppState } from "../../state/app-context"
+import { usePathData } from "../../hooks/location"
 
 import SideBar from "../SideBar"
 import Header from "../Header"
 import Footer from "../Footer"
 
-import { INDEX } from "../../types/paths"
+import { SCREEN_SIZE } from "../../data/presentation"
 
 import "../../styles/font-awesome"
-
 import {
   LayoutWrapper,
   SideBarWrapper,
@@ -24,23 +25,30 @@ import {
   StyledBackgroundImage,
 } from "./styles"
 
-const ConditionalWrapper = ({ condition, children }) =>
-  condition ? (
+interface ConditionalWrapperProps {
+  condition: boolean
+  children: React.ReactNode
+}
+
+const ConditionalWrapper = ({
+  condition,
+  children,
+}: ConditionalWrapperProps) => {
+  return condition ? (
     <>{children}</>
   ) : (
     <StyledBackgroundImage>{children}</StyledBackgroundImage>
   )
+}
 
-const Layout = ({ location, children }: PageProps) => {
-  const [pathnameIsIndex, setPathnameIsIndex] = useState(true)
+const Layout = ({ children }: PageProps) => {
+  const pathData = usePathData()
+  const { windowWidth } = useAppState()
   const scrollSectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    location.pathname === INDEX
-      ? setPathnameIsIndex(false)
-      : setPathnameIsIndex(true)
     handleScroll()
-  }, [location.pathname])
+  }, [pathData.pathname])
 
   const handleScroll = () => {
     if (scrollSectionRef.current) {
@@ -49,44 +57,42 @@ const Layout = ({ location, children }: PageProps) => {
   }
 
   return (
-    <Location>
-      {locationProps => (
-        <LayoutWrapper>
-          <SideBarWrapper>
-            <SideBar />
-          </SideBarWrapper>
-          <ContentWrapper>
-            {pathnameIsIndex ? (
-              <HeaderWrapper>
-                <Header pathname={locationProps.location.pathname} />
-              </HeaderWrapper>
-            ) : null}
-            <PageWrapperStatic>
-              <ConditionalWrapper condition={false}>
-                <>
-                  <PageWrapperVerticalScroll ref={scrollSectionRef}>
-                    <MainWrapper>{children}</MainWrapper>
-                    {pathnameIsIndex ? (
-                      <ReturnButtonWrapper>
-                        <ReturnButton onClick={handleScroll}>
-                          <ReturnButtonIndicator
-                            isIndicator
-                          ></ReturnButtonIndicator>
-                          <ReturnButtonIndicator></ReturnButtonIndicator>
-                        </ReturnButton>
-                      </ReturnButtonWrapper>
-                    ) : null}
-                    {pathnameIsIndex ? (
-                      <Footer pathname={locationProps.location.pathname} />
-                    ) : null}
-                  </PageWrapperVerticalScroll>
-                </>
-              </ConditionalWrapper>
-            </PageWrapperStatic>
-          </ContentWrapper>
-        </LayoutWrapper>
-      )}
-    </Location>
+    <LayoutWrapper>
+      <SideBarWrapper>
+        <SideBar />
+      </SideBarWrapper>
+      <ContentWrapper>
+        {!pathData.isIndex ? (
+          <HeaderWrapper>
+            <Header {...pathData} />
+          </HeaderWrapper>
+        ) : (
+          <></>
+        )}
+        <PageWrapperStatic>
+          <ConditionalWrapper condition={false}>
+            <>
+              <PageWrapperVerticalScroll ref={scrollSectionRef}>
+                <MainWrapper>{children}</MainWrapper>
+                {!pathData.isIndex ? (
+                  <ReturnButtonWrapper>
+                    <ReturnButton onClick={handleScroll}>
+                      <ReturnButtonIndicator
+                        isIndicator
+                      ></ReturnButtonIndicator>
+                      <ReturnButtonIndicator></ReturnButtonIndicator>
+                    </ReturnButton>
+                  </ReturnButtonWrapper>
+                ) : (
+                  <></>
+                )}
+                {!pathData.isIndex ? <Footer {...pathData} /> : <></>}
+              </PageWrapperVerticalScroll>
+            </>
+          </ConditionalWrapper>
+        </PageWrapperStatic>
+      </ContentWrapper>
+    </LayoutWrapper>
   )
 }
 

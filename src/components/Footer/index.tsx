@@ -1,6 +1,7 @@
 import React from "react"
-
 import StyledInternalLink from "../Shared/StyledInternalLink"
+
+import { PathDataHook } from "../../types/paths"
 import { InternalLinkDirection as ILD } from "../../types/presentation"
 import { SiteData } from "../../data/site"
 
@@ -22,11 +23,9 @@ import {
   CopyrightText,
 } from "./styles"
 
-interface Props {
-  pathname: string
-}
+interface Props extends PathDataHook {}
 
-const Footer = ({ pathname }: Props) => {
+const Footer = (props: Props) => {
   return (
     <FooterWrapper>
       <FirstFooterRow>
@@ -48,11 +47,11 @@ const Footer = ({ pathname }: Props) => {
         </LinkWrapper>
       </FirstFooterRow>
       <SecondFooterRow>
-        <StyledInternalLink pathname={pathname} direction={ILD.Previous} />
+        <StyledInternalLink {...props} direction={ILD.Previous} />
         <BrandingWrapper>
           <Branding>kevala design.</Branding>
         </BrandingWrapper>
-        <StyledInternalLink pathname={pathname} direction={ILD.Next} />
+        <StyledInternalLink {...props} direction={ILD.Next} />
       </SecondFooterRow>
       <ThirdFooterRow>
         <CopyrightText>

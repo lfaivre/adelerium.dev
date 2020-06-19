@@ -10,7 +10,6 @@ import {
   BLOG,
   BLOG_ALT,
   BLOG_TEXT,
-  ERROR_TEXT,
   TSitePaths,
   TPathData,
 } from "../types/paths"
