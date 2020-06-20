@@ -5,19 +5,19 @@ import SEO from "../components/Shared/SEO"
 import Preview from "../components/ProjectsPage/Preview"
 
 import { projectData } from "../data/projects"
-import { PageContentWrapper } from "../styles/pages"
+import { IndexPageContentWrapper } from "../styles/pages"
 
 const ProjectsPage = ({ data }: PageProps) => {
   return (
     <>
       <SEO title="Projects" />
-      <PageContentWrapper>
+      <IndexPageContentWrapper>
         {projectData.projects.map(project => {
           // TODO: TEMPORARY IMPLEMENTATION, REPLACING WITH CONTENTFUL GRAPHQL QUERIES
           project.preview.tempQuery = data[project.preview.pictureURL]
           return <Preview project={project} key={project.order} />
         })}
-      </PageContentWrapper>
+      </IndexPageContentWrapper>
     </>
   )
 }

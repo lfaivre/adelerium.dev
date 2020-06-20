@@ -20,11 +20,13 @@ const Post = ({ blogPost }: Props) => {
       <TitleWrapper>
         <Title>{blogPost.title}</Title>
       </TitleWrapper>
-      {blogPost.subtitle ? (
+      {blogPost.subtitle.length !== 0 ? (
         <SubtitleWrapper>
           <Subtitle>{blogPost.subtitle}</Subtitle>
         </SubtitleWrapper>
-      ) : null}
+      ) : (
+        <></>
+      )}
     </BlogPostWrapper>
   )
 }

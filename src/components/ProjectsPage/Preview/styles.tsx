@@ -26,7 +26,7 @@ export const PreviewWrapper = styled.div<DirectionProps>`
     _direction === PD.Left
       ? tw`flex-col lg:flex-row`
       : tw`flex-col lg:flex-row-reverse`}
-  ${tw`relative w-full p-4 mobile:p-8 mb-4 mobile:mb-8 last:mb-0 flex bg-offpink`}
+  ${tw`relative w-full p-4 mobile:p-8 mb-2 lg:mb-8 last:mb-0 flex bg-offpink`}
 `
 export const PreviewWrapperWithFX = styled(PreviewWrapper)`
   ${tw`transition-transform duration-700 ease-in-out cursor-pointer transform hover:scale-105`}

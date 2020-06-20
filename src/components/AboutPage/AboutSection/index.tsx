@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
+import { useAppState } from "../../../state/app-context"
+
+import { SCREEN_SIZE } from "../../../data/presentation"
 import { AboutSectionAttributes } from "../../../types/about"
 import { AboutSectionDirection as ASD } from "../../../types/presentation"
 
@@ -25,6 +28,7 @@ interface Props {
 }
 
 const AboutSection = ({ sectionData, count }: Props) => {
+  const { windowWidth } = useAppState()
   const [direction, setDirection] = useState(ASD.Left)
 
   const aboutSectionQuery = useStaticQuery(graphql`
@@ -46,11 +50,13 @@ const AboutSection = ({ sectionData, count }: Props) => {
 
   return (
     <AboutSectionWrapper _direction={direction}>
-      <ImageWrapper>
-        <FloatingImage
-          fluid={aboutSectionQuery.floatingImage.childImageSharp.fluid}
-        />
-      </ImageWrapper>
+      {!(windowWidth < SCREEN_SIZE.MD) && (
+        <ImageWrapper>
+          <FloatingImage
+            fluid={aboutSectionQuery.floatingImage.childImageSharp.fluid}
+          />
+        </ImageWrapper>
+      )}
       <ContentWrapper _direction={direction}>
         <TitleWrapper>
           <FloatingTitle _direction={direction}>

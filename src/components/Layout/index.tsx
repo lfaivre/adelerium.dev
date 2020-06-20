@@ -77,9 +77,7 @@ const Layout = ({ children }: PageProps) => {
                 {!pathData.isIndex ? (
                   <ReturnButtonWrapper>
                     <ReturnButton onClick={handleScroll}>
-                      <ReturnButtonIndicator
-                        isIndicator
-                      ></ReturnButtonIndicator>
+                      <ReturnButtonIndicator></ReturnButtonIndicator>
                       <ReturnButtonIndicator></ReturnButtonIndicator>
                     </ReturnButton>
                   </ReturnButtonWrapper>

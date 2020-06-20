@@ -4,4 +4,4 @@ export const BlogPostWrapper = tw.div`w-full flex flex-col justify-center items-
 export const TitleWrapper = tw.div`w-full flex flex-row justify-center items-center`
 export const Title = tw.p`text-offwhite text-4xl md:text-5xl font-playfair-display font-bold text-center`
 export const SubtitleWrapper = tw.div`w-full mt-4 flex flex-row justify-center items-center`
-export const Subtitle = tw.p`text-offpink text-lg md:text-2xl font-playfair-display font-bold text-center`
+export const Subtitle = tw.p`text-charcoal text-lg md:text-2xl font-playfair-display font-bold text-center`

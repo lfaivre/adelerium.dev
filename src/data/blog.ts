@@ -5,7 +5,7 @@ const BlogPosts: Array<BlogPost> = [
   {
     id: uuidv4(),
     title: "Currently under construction.",
-    subtitle: "Expected July 2020",
+    subtitle: "",
     body: "",
   },
 ]

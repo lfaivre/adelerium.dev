@@ -18,9 +18,15 @@ const StyledExternalLink = ({
   </a>
 )
 
-export const SideBarWrapper = tw.div`w-full min-h-screen xl:h-full p-8 flex flex-col justify-start items-center bg-charcoal`
-export const ProfileWrapper = tw.div`w-full mb-8 mobile:mb-16 flex flex-row justify-center items-center md:flex-col md:justify-start md:items-center`
-export const ProfileImageWrapper = tw.div`hidden mobile:block mobile-only:w-2/5 sm:w-2/5 xl:w-9/12 p-8 md:mb-4 bg-offwhite`
+export const SideBarWrapper = styled.div`
+  ${tw`w-full h-full p-8 md:pt-16 flex flex-col justify-start items-center bg-charcoal`}
+  @media (min-width: 768px) {
+    min-height: calc(100vh - 2rem);
+  }
+  min-height: calc(100vh - 1rem);
+`
+export const ProfileWrapper = tw.div`w-full mb-8 md:mb-8 flex flex-row justify-center items-center md:flex-col md:justify-start md:items-center`
+export const ProfileImageWrapper = tw.div`hidden mobile:block mobile-only:w-2/5 sm:w-2/5 xl:w-9/12 p-4 md:p-8 md:mb-4 bg-offwhite`
 export const ProfileImage = styled(Img)`
   ${tw`w-full opacity-80`}
 `

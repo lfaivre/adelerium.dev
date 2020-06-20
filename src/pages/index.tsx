@@ -1,29 +1,31 @@
 import React from "react"
 import { PageProps } from "gatsby"
-import { BackgroundImage as BI } from "../types/presentation"
 
 import SEO from "../components/Shared/SEO"
 import SideBar from "../components/SideBar"
 
+import { useAppState } from "../state/app-context"
+
+import { SCREEN_SIZE } from "../data/presentation"
+
 import {
-  NavigatorWrapper,
+  IndexPageNavigatorWrapper,
   IndexPageContentWrapper,
-  IndexPageBackgroundImage,
 } from "../styles/pages"
 
 const IndexPage = (props: PageProps) => {
+  const { windowWidth } = useAppState()
+
   return (
     <>
       <SEO title="Home" />
-      <NavigatorWrapper>
-        <SideBar />
-      </NavigatorWrapper>
-      <IndexPageContentWrapper>
-        {/* <IndexPageBackgroundImage
-          screenSize={BI.Desktop}
-          opacity={true}
-        ></IndexPageBackgroundImage> */}
-      </IndexPageContentWrapper>
+      {!(windowWidth < SCREEN_SIZE.XL) ? (
+        <IndexPageContentWrapper></IndexPageContentWrapper>
+      ) : (
+        <IndexPageNavigatorWrapper>
+          <SideBar />
+        </IndexPageNavigatorWrapper>
+      )}
     </>
   )
 }
