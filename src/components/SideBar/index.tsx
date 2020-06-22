@@ -34,9 +34,9 @@ const SideBar = () => {
 
   const sideBarQuery = useStaticQuery(graphql`
     query {
-      profile: file(relativePath: { eq: "profile-placeholder-1.jpg" }) {
+      profile: file(relativePath: { eq: "profile-375.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 500, quality: 75) {
+          fluid(maxWidth: 375, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }

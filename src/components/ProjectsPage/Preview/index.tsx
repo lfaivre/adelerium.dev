@@ -11,7 +11,7 @@ import {
 import { ProjectAttrs } from "../../../types/projects"
 import { ProjectDirection } from "../../../types/presentation"
 import {
-  PreviewWrapperWithFX,
+  PreviewWrapper,
   ThumbnailWrapper,
   ThumbnailInfoWrapper,
   OrderNumberWrapper,
@@ -53,7 +53,7 @@ const Preview = ({ project }: Props) => {
   }, [project.order])
 
   return (
-    <PreviewWrapperWithFX _direction={direction}>
+    <PreviewWrapper _direction={direction}>
       <ThumbnailWrapper _direction={direction}>
         <ThumbnailInfoWrapper _direction={direction}>
           <OrderNumberWrapper _direction={direction}>
@@ -133,7 +133,7 @@ const Preview = ({ project }: Props) => {
         transform={{ rotate: direction === ProjectDirection.Left ? -45 : 45 }}
         _direction={direction}
       />
-    </PreviewWrapperWithFX>
+    </PreviewWrapper>
   )
 }
 

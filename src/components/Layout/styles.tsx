@@ -22,7 +22,11 @@ export const ReturnButton = styled.button`
 export const ReturnButtonIndicator = styled.span<ReturnButtonIndicatorProps>`
   ${tw`w-full h-8 bg-transparent transition-colors duration-300 ease-in-out`}
 `
+
+// TODO: MOVE
 export const StyledBackgroundImage = styled(BackgroundImage)`
-  height: 100%;
-  width: 100%;
+  ${tw`h-full w-full`}
+  &:before {
+    opacity: 80% !important;
+  }
 `

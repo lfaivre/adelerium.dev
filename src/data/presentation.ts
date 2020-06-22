@@ -1,3 +1,12 @@
+import {
+  INDEX,
+  ABOUT,
+  ABOUT_ALT,
+  BLOG,
+  BLOG_ALT,
+  TPathname,
+} from "../types/paths"
+
 export const XSMOBILE = 360
 export const MOBILE = 375
 export const SM = 640
@@ -13,3 +22,14 @@ export const SCREEN_SIZE = Object.freeze({
   LG,
   XL,
 })
+
+export const pathsWithImgBgsDesktop = {
+  [INDEX]: INDEX,
+}
+
+export const pathsWithImgBgsMobile = {
+  [ABOUT]: ABOUT,
+  [ABOUT_ALT]: ABOUT_ALT,
+  [BLOG]: BLOG,
+  [BLOG_ALT]: BLOG_ALT,
+}

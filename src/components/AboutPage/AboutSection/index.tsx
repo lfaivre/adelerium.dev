@@ -33,9 +33,9 @@ const AboutSection = ({ sectionData, count }: Props) => {
 
   const aboutSectionQuery = useStaticQuery(graphql`
     query {
-      floatingImage: file(relativePath: { eq: "waves-placeholder.jpg" }) {
+      floatingImage: file(relativePath: { eq: "about/tram-480.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 500, grayscale: true, quality: 75) {
+          fluid(maxWidth: 480, grayscale: true, quality: 75) {
             ...GatsbyImageSharpFluid
           }
         }
