@@ -19,8 +19,11 @@ import {
   SecondFooterRow,
   BrandingWrapper,
   Branding,
+  Divider,
   ThirdFooterRow,
   CopyrightText,
+  ResponsiveSpan,
+  BrandingTwo,
 } from "./styles"
 
 interface Props extends PathDataHook {}
@@ -53,11 +56,14 @@ const Footer = (props: Props) => {
         </BrandingWrapper>
         <StyledInternalLink {...props} direction={ILD.Next} />
       </SecondFooterRow>
+      <Divider />
       <ThirdFooterRow>
         <CopyrightText>
-          Copyright&nbsp;&copy;&nbsp;{new Date().getFullYear()}
+          <ResponsiveSpan>Copyright&nbsp;</ResponsiveSpan>&copy;&nbsp;
+          {new Date().getFullYear()}
           &nbsp;Lorenzo&nbsp;Faivre
         </CopyrightText>
+        <BrandingTwo>kevala design.</BrandingTwo>
       </ThirdFooterRow>
     </FooterWrapper>
   )

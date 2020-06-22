@@ -58,9 +58,13 @@ const Layout = ({ children }: PageProps) => {
 
   return (
     <LayoutWrapper>
-      <SideBarWrapper>
-        <SideBar />
-      </SideBarWrapper>
+      {!(windowWidth < SCREEN_SIZE.XL) ? (
+        <SideBarWrapper>
+          <SideBar />
+        </SideBarWrapper>
+      ) : (
+        <></>
+      )}
       <ContentWrapper>
         {!pathData.isIndex ? (
           <HeaderWrapper>
