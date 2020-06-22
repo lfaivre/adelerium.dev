@@ -18,13 +18,7 @@ const StyledExternalLink = ({
   </a>
 )
 
-export const SideBarWrapper = styled.div`
-  ${tw`w-full h-full p-8 md:pt-16 flex flex-col justify-start items-center bg-charcoal`}
-  @media (min-width: 768px) {
-    min-height: calc(100vh - 2rem);
-  }
-  min-height: calc(100vh - 1rem);
-`
+export const SideBarWrapper = tw.div`w-full h-full min-h-screen xl:min-h-full p-8 md:pt-16 flex flex-col justify-start items-center bg-charcoal`
 export const ProfileWrapper = tw.div`w-full mb-8 md:mb-8 flex flex-row justify-center items-center md:flex-col md:justify-start md:items-center`
 export const ProfileImageWrapper = tw.div`hidden mobile:block mobile-only:w-2/5 sm:w-2/5 xl:w-9/12 p-4 md:p-8 md:mb-4 bg-offwhite`
 export const ProfileImage = styled(Img)`
@@ -33,7 +27,7 @@ export const ProfileImage = styled(Img)`
 export const ProfileTextWrapper = tw.div`w-full mobile-only:w-3/5 mobile-only:pl-4 flex flex-col justify-center items-center`
 export const ProfileName = tw.p`w-full mb-2 text-2xl text-center mobile-only:text-left font-playfair-display font-bold text-offwhite`
 export const ProfileTag = tw.p`w-full text-base text-center mobile-only:text-left font-playfair-display font-normal text-offwhite lowercase`
-export const ResponsiveWelcomeNavigationWrapper = tw.div`w-full block xl:hidden xl:w-auto`
+export const ResponsiveWelcomeNavigationWrapper = tw.div`w-screen block xl:hidden xl:w-auto`
 export const LinkSectionWrapper = tw.div`w-full px-4 mb-8 flex-1 flex flex-col justify-center items-center`
 export const ExternalLink = styled(StyledExternalLink)`
   ${tw`w-full mb-4 last:mb-0 text-2xl text-left font-playfair-display font-normal text-offwhite`}

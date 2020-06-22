@@ -2,18 +2,21 @@ import React from "react"
 
 import StyledInternalLink from "../StyledInternalLink"
 
-import { ABOUT } from "../../../types/paths"
+import { usePathData } from "../../../hooks/location"
+
 import { InternalLinkDirection as ILD } from "../../../types/presentation"
 
 import { WelcomeNavigationWrapper, TitleWrapper, Title } from "./styles"
 
 const WelcomeNavigation = () => {
+  const pathData = usePathData()
+
   return (
     <WelcomeNavigationWrapper>
       <TitleWrapper>
         <Title>{`Welcome.`}</Title>
       </TitleWrapper>
-      <StyledInternalLink pathname={ABOUT} direction={ILD.Next} />
+      <StyledInternalLink {...pathData} direction={ILD.Next} />
     </WelcomeNavigationWrapper>
   )
 }
