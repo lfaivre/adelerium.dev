@@ -6,12 +6,11 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-emotion`,
     `gatsby-plugin-postcss`,
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -31,10 +30,11 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`,
       },
     },
+    // `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-transition-link`,
       options: {
-        layout: require.resolve(`${__dirname}/src/components/Layout/index.tsx`),
+        layout: require.resolve(`./src/components/Layout/index.tsx`),
       },
     },
     // {
