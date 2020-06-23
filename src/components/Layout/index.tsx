@@ -21,7 +21,7 @@ import {
   SideBarWrapper,
   ContentWrapper,
   HeaderWrapper,
-  PageWrapperStatic,
+  PageWrapper,
   MainWrapper,
   ReturnButtonWrapper,
   ReturnButton,
@@ -56,16 +56,12 @@ const ConditionalWrapper = ({
 const Layout = ({ children }: PageProps) => {
   const pathData = usePathData()
   const { windowWidth } = useAppState()
-  const scrollSectionRef = useRef<HTMLDivElement | null>(null)
   const headerRef = useRef<HTMLDivElement | null>(null)
   const [headerHeight, setHeaderHeight] = useState(0)
 
   useEffect(() => {
     if (headerRef.current) {
       setHeaderHeight(headerRef.current.clientHeight)
-      console.log("HEADER HEIGHT:", headerHeight)
-    } else {
-      console.log("ERROR SETTING HEADER HEIGHT")
     }
   })
 
@@ -74,8 +70,8 @@ const Layout = ({ children }: PageProps) => {
   }, [pathData.pathname])
 
   const handleScroll = () => {
-    if (scrollSectionRef.current) {
-      scrollSectionRef.current.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+    if (window) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
     }
   }
 
@@ -92,11 +88,7 @@ const Layout = ({ children }: PageProps) => {
             <Header {...pathData} />
           </HeaderWrapper>
         )}
-        <PageWrapperStatic
-          ref={scrollSectionRef}
-          headerHeight={headerHeight}
-          isIndex={pathData.isIndex}
-        >
+        <PageWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
           <ConditionalWrapper
             windowWidth={windowWidth}
             pathname={pathData.pathname}
@@ -114,7 +106,7 @@ const Layout = ({ children }: PageProps) => {
               {!pathData.isIndex && <Footer {...pathData} />}
             </>
           </ConditionalWrapper>
-        </PageWrapperStatic>
+        </PageWrapper>
       </ContentWrapper>
     </LayoutWrapper>
   )

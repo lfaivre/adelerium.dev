@@ -19,7 +19,7 @@ export const ContentWrapper = styled.div`
   }
 `
 export const HeaderWrapper = tw.div`fixed z-10 w-full`
-export const PageWrapperStatic = styled.div<PageWrapperStaticProps>`
+export const PageWrapper = styled.div<PageWrapperStaticProps>`
   ${tw`w-full`}
   margin-top: ${({ headerHeight, isIndex }) =>
     !isIndex ? `${headerHeight}px` : 0}
