@@ -1,7 +1,7 @@
-import tw, { styled } from "twin.macro"
+import tw from "twin.macro"
 
 // GENERAL
-export const PageContentWrapper = tw.div`w-full p-2 md:p-8 bg-charcoal`
+export const PageContentWrapper = tw.div`w-full bg-transparent p-2 md:p-4`
 
 // INDEX PAGE
 export const IndexPageNavigatorWrapper = tw.div`w-full h-full min-h-screen`

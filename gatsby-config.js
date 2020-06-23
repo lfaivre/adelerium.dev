@@ -42,11 +42,5 @@ module.exports = {
         layout: require.resolve(`${__dirname}/src/components/Layout/index.tsx`),
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-layout`,
-    //   options: {
-    //     component: require.resolve(`${__dirname}/src/components/Layout.tsx`),
-    //   },
-    // },
   ],
 }

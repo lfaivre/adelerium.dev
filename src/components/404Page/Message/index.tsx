@@ -19,7 +19,7 @@ const Post = (props: Props) => {
         <Title>Page not found.</Title>
       </TitleWrapper>
       <LinkWrapper>
-        <InternalLink to={DefaultPath.pathname}>Return Home</InternalLink>
+        {/* <InternalLink to={DefaultPath.pathname}>Return Home</InternalLink> */}
       </LinkWrapper>
     </MessageWrapper>
   )
