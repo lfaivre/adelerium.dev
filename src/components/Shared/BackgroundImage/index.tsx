@@ -1,13 +1,14 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import BImage from "gatsby-background-image"
+
+import { StyledBackgroundImage } from "./styles"
 
 interface Props {
-  children: React.ReactNode
-  className?: string
+  headerHeight: number
+  isIndex: boolean
 }
 
-const BackgroundImage = ({ className, children }: Props) => {
+const BackgroundImage = ({ headerHeight, isIndex }: Props) => {
   const imageQuery = useStaticQuery(graphql`
     query {
       background: file(relativePath: { eq: "waves-1680.jpg" }) {
@@ -21,13 +22,12 @@ const BackgroundImage = ({ className, children }: Props) => {
   `)
 
   return (
-    <BImage
+    <StyledBackgroundImage
       fluid={imageQuery.background.childImageSharp.fluid}
-      className={className}
       preserveStackingContext={true}
-    >
-      {children}
-    </BImage>
+      headerHeight={headerHeight}
+      isIndex={isIndex}
+    />
   )
 }
 

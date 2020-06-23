@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { PageProps } from "gatsby"
 
-import { useAppState } from "../../state/app-context"
+import { useAppState, useAppDispatch } from "../../state/app-context"
 import { usePathData } from "../../hooks/location"
 
 import SideBar from "../SideBar"
 import Header from "../Header"
 import Footer from "../Footer"
+import BackgroundImage from "../../components/Shared/BackgroundImage"
 
 import {
   SCREEN_SIZE,
   pathsWithImgBgsDesktop,
   pathsWithImgBgsMobile,
 } from "../../data/presentation"
-import { TPathname } from "../../types/paths"
 
 import "../../styles/font-awesome"
 import {
@@ -21,63 +21,50 @@ import {
   SideBarWrapper,
   ContentWrapper,
   HeaderWrapper,
-  PageWrapper,
   MainWrapper,
   ReturnButtonWrapper,
   ReturnButton,
   ReturnButtonIndicator,
-  StyledBackgroundImage,
+  FooterWrapper,
 } from "./styles"
-
-interface ConditionalWrapperProps {
-  windowWidth: number
-  pathname: TPathname
-  children: React.ReactNode
-}
-
-const ConditionalWrapper = ({
-  windowWidth,
-  pathname,
-  children,
-}: ConditionalWrapperProps) => {
-  return windowWidth < SCREEN_SIZE.MD ? (
-    pathname in pathsWithImgBgsMobile ? (
-      <StyledBackgroundImage>{children}</StyledBackgroundImage>
-    ) : (
-      <>{children}</>
-    )
-  ) : pathname in pathsWithImgBgsDesktop ? (
-    <StyledBackgroundImage>{children}</StyledBackgroundImage>
-  ) : (
-    <>{children}</>
-  )
-}
 
 const Layout = ({ children }: PageProps) => {
   const pathData = usePathData()
-  const { windowWidth } = useAppState()
+  const { windowWidth, headerHeight } = useAppState()
+  const dispatch = useAppDispatch()
   const headerRef = useRef<HTMLDivElement | null>(null)
-  const [headerHeight, setHeaderHeight] = useState(0)
+  const footerRef = useRef<HTMLDivElement | null>(null)
+  const returnRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.clientHeight)
-    }
-  })
+    headerRef.current &&
+      dispatch({
+        type: "SET_HEADER_HEIGHT",
+        headerHeight: headerRef.current.clientHeight,
+      })
+    footerRef.current &&
+      dispatch({
+        type: "SET_FOOTER_HEIGHT",
+        footerHeight: footerRef.current.clientHeight,
+      })
+    returnRef.current &&
+      dispatch({
+        type: "SET_RETURN_HEIGHT",
+        returnHeight: returnRef.current.clientHeight,
+      })
+  }, [pathData.pathname, windowWidth])
 
   useEffect(() => {
     handleScroll()
   }, [pathData.pathname])
 
   const handleScroll = () => {
-    if (window) {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-    }
+    window && window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
   }
 
   return (
     <LayoutWrapper>
-      {!(windowWidth < SCREEN_SIZE.XL) && (
+      {windowWidth >= SCREEN_SIZE.XL && (
         <SideBarWrapper>
           <SideBar />
         </SideBarWrapper>
@@ -88,25 +75,31 @@ const Layout = ({ children }: PageProps) => {
             <Header {...pathData} />
           </HeaderWrapper>
         )}
-        <PageWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
-          <ConditionalWrapper
-            windowWidth={windowWidth}
-            pathname={pathData.pathname}
-          >
-            <>
-              <MainWrapper>{children}</MainWrapper>
-              {!pathData.isIndex && (
-                <ReturnButtonWrapper>
-                  <ReturnButton onClick={handleScroll}>
-                    <ReturnButtonIndicator></ReturnButtonIndicator>
-                    <ReturnButtonIndicator></ReturnButtonIndicator>
-                  </ReturnButton>
-                </ReturnButtonWrapper>
-              )}
-              {!pathData.isIndex && <Footer {...pathData} />}
-            </>
-          </ConditionalWrapper>
-        </PageWrapper>
+        {((windowWidth < SCREEN_SIZE.MD &&
+          pathData.pathname in pathsWithImgBgsMobile) ||
+          (windowWidth >= SCREEN_SIZE.MD &&
+            pathData.pathname in pathsWithImgBgsDesktop)) && (
+          <BackgroundImage
+            headerHeight={headerHeight}
+            isIndex={pathData.isIndex}
+          />
+        )}
+        <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
+          {children}
+        </MainWrapper>
+        {!pathData.isIndex && (
+          <ReturnButtonWrapper ref={returnRef}>
+            <ReturnButton onClick={handleScroll}>
+              <ReturnButtonIndicator></ReturnButtonIndicator>
+              <ReturnButtonIndicator></ReturnButtonIndicator>
+            </ReturnButton>
+          </ReturnButtonWrapper>
+        )}
+        {!pathData.isIndex && (
+          <FooterWrapper ref={footerRef}>
+            <Footer {...pathData} />
+          </FooterWrapper>
+        )}
       </ContentWrapper>
     </LayoutWrapper>
   )

@@ -2,9 +2,10 @@ import {
   INDEX,
   ABOUT,
   ABOUT_ALT,
+  PROJECTS,
+  PROJECTS_ALT,
   BLOG,
   BLOG_ALT,
-  TPathname,
 } from "../types/paths"
 
 export const XSMOBILE = 360
@@ -30,6 +31,8 @@ export const pathsWithImgBgsDesktop = {
 export const pathsWithImgBgsMobile = {
   [ABOUT]: ABOUT,
   [ABOUT_ALT]: ABOUT_ALT,
+  [PROJECTS]: PROJECTS,
+  [PROJECTS_ALT]: PROJECTS_ALT,
   [BLOG]: BLOG,
   [BLOG_ALT]: BLOG_ALT,
 }

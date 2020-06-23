@@ -3,22 +3,57 @@ import { useWindowWidth } from "../hooks/screen-size"
 
 import { SCREEN_SIZE } from "../data/presentation"
 
-type Action = { type: "SET_WINDOW_WIDTH"; windowWidth: number }
+type Action =
+  | { type: "SET_WINDOW_WIDTH"; windowWidth: number }
+  | { type: "SET_HEADER_HEIGHT"; headerHeight: number }
+  | { type: "SET_FOOTER_HEIGHT"; footerHeight: number }
+  | { type: "SET_RETURN_HEIGHT"; returnHeight: number }
 type Dispatch = (action: Action) => void
-type State = { windowWidth: number }
+type State = {
+  windowWidth: number
+  headerHeight: number
+  footerHeight: number
+  returnHeight: number
+}
 type AppProviderProps = { children: React.ReactNode }
 
-const initialState = { windowWidth: SCREEN_SIZE.MOBILE }
+const initialState: State = {
+  windowWidth: SCREEN_SIZE.MOBILE,
+  headerHeight: 0,
+  footerHeight: 0,
+  returnHeight: 0,
+}
 const AppStateContext = createContext<State | undefined>(undefined)
 const AppDispatchContext = createContext<Dispatch | undefined>(undefined)
 
-const appStateReducer = (state: State, action: Action) => {
+const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "SET_WINDOW_WIDTH": {
-      return { windowWidth: action.windowWidth }
+      return {
+        ...state,
+        windowWidth: action.windowWidth,
+      }
+    }
+    case "SET_HEADER_HEIGHT": {
+      return {
+        ...state,
+        headerHeight: action.headerHeight,
+      }
+    }
+    case "SET_FOOTER_HEIGHT": {
+      return {
+        ...state,
+        footerHeight: action.footerHeight,
+      }
+    }
+    case "SET_RETURN_HEIGHT": {
+      return {
+        ...state,
+        returnHeight: action.returnHeight,
+      }
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
+      throw new Error(`UNHANDLED ACTION: ${action}`)
     }
   }
 }

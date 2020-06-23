@@ -1,5 +1,4 @@
 import React from "react"
-import { PageProps } from "gatsby"
 
 import SEO from "../components/Shared/SEO"
 import SideBar from "../components/SideBar"
@@ -13,7 +12,7 @@ import {
   IndexPageContentWrapper,
 } from "../styles/pages"
 
-const IndexPage = (props: PageProps) => {
+const IndexPage = () => {
   const { windowWidth } = useAppState()
 
   return (
