@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { PageProps } from "gatsby"
 
 import { useAppState } from "../../state/app-context"
@@ -22,7 +22,6 @@ import {
   ContentWrapper,
   HeaderWrapper,
   PageWrapperStatic,
-  PageWrapperVerticalScroll,
   MainWrapper,
   ReturnButtonWrapper,
   ReturnButton,
@@ -58,6 +57,17 @@ const Layout = ({ children }: PageProps) => {
   const pathData = usePathData()
   const { windowWidth } = useAppState()
   const scrollSectionRef = useRef<HTMLDivElement | null>(null)
+  const headerRef = useRef<HTMLDivElement | null>(null)
+  const [headerHeight, setHeaderHeight] = useState(0)
+
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.clientHeight)
+      console.log("HEADER HEIGHT:", headerHeight)
+    } else {
+      console.log("ERROR SETTING HEADER HEIGHT")
+    }
+  })
 
   useEffect(() => {
     handleScroll()
@@ -78,28 +88,30 @@ const Layout = ({ children }: PageProps) => {
       )}
       <ContentWrapper>
         {!pathData.isIndex && (
-          <HeaderWrapper>
+          <HeaderWrapper ref={headerRef}>
             <Header {...pathData} />
           </HeaderWrapper>
         )}
-        <PageWrapperStatic>
+        <PageWrapperStatic
+          ref={scrollSectionRef}
+          headerHeight={headerHeight}
+          isIndex={pathData.isIndex}
+        >
           <ConditionalWrapper
             windowWidth={windowWidth}
             pathname={pathData.pathname}
           >
             <>
-              <PageWrapperVerticalScroll ref={scrollSectionRef}>
-                <MainWrapper>{children}</MainWrapper>
-                {!pathData.isIndex && (
-                  <ReturnButtonWrapper>
-                    <ReturnButton onClick={handleScroll}>
-                      <ReturnButtonIndicator></ReturnButtonIndicator>
-                      <ReturnButtonIndicator></ReturnButtonIndicator>
-                    </ReturnButton>
-                  </ReturnButtonWrapper>
-                )}
-                {!pathData.isIndex && <Footer {...pathData} />}
-              </PageWrapperVerticalScroll>
+              <MainWrapper>{children}</MainWrapper>
+              {!pathData.isIndex && (
+                <ReturnButtonWrapper>
+                  <ReturnButton onClick={handleScroll}>
+                    <ReturnButtonIndicator></ReturnButtonIndicator>
+                    <ReturnButtonIndicator></ReturnButtonIndicator>
+                  </ReturnButton>
+                </ReturnButtonWrapper>
+              )}
+              {!pathData.isIndex && <Footer {...pathData} />}
             </>
           </ConditionalWrapper>
         </PageWrapperStatic>

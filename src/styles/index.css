@@ -20,6 +20,8 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior-y: none;
   background-color: var(--charcoal);
 }
