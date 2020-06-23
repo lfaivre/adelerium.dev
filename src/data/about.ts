@@ -16,6 +16,8 @@ export const AboutSectionDataArray: Array<AboutSectionAttributes> = [
       internalURL: "/projects",
       externalURL: "",
     },
+    pictureURL: "imageOne",
+    tempQuery: undefined,
   },
   {
     order: 2,
@@ -29,6 +31,8 @@ export const AboutSectionDataArray: Array<AboutSectionAttributes> = [
       internalURL: "",
       externalURL: "http://kevaladesign.com/",
     },
+    pictureURL: "imageTwo",
+    tempQuery: undefined,
   },
   {
     order: 3,
@@ -42,6 +46,8 @@ export const AboutSectionDataArray: Array<AboutSectionAttributes> = [
       internalURL: "",
       externalURL: "https://www.linkedin.com/in/lorenzofaivre/",
     },
+    pictureURL: "imageThree",
+    tempQuery: undefined,
   },
 ]
 

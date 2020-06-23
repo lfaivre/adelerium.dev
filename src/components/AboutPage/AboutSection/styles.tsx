@@ -51,25 +51,21 @@ export const BodyWrapper = styled.div<DirectionProps>`
 export const BodyText = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === ASD.Left ? tw`text-left` : tw`text-left md:text-right`}
-  ${tw`xl:w-3/5 md:p-4 mb-8 md:mb-4 xl:mb-8 text-offwhite text-base md:text-2xl font-playfair-display font-normal md:bg-charcoal`}
+  ${tw`xl:w-3/5 mb-8 md:mb-4 xl:mb-8 text-offwhite text-base md:text-2xl font-playfair-display font-normal`}
 `
-
-// CURRENT
 export const InternalLink = styled(Link)<DirectionProps>`
   ${({ _direction }) =>
     _direction === ASD.Left ? tw`text-left` : tw`text-left md:text-right`}
-  ${tw`md:p-4 mb-8 md:mb-4 xl:mb-8 text-offwhite text-base font-playfair-display font-normal underline md:bg-charcoal`}
+  ${tw`mb-8 md:mb-4 xl:mb-8 text-offwhite text-base font-playfair-display font-normal underline`}
 `
 export const Bold = tw.span`font-bold`
 export const ExternalLink = styled(StyledExternalLink)`
   ${({ _direction }) =>
     _direction === ASD.Left ? tw`text-left` : tw`text-left md:text-right`}
-  ${tw`md:p-4 mb-8 md:mb-4 xl:mb-8 text-offwhite text-base font-playfair-display font-normal underline md:bg-charcoal`}
+  ${tw`mb-8 md:mb-4 xl:mb-8 text-offwhite text-base font-playfair-display font-normal underline`}
 `
-// END CURRENT
-
 export const CounterText = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === ASD.Left ? tw`text-left` : tw`text-left md:text-right`}
-  ${tw`md:px-4 md:py-1 text-offwhite text-2xl md:text-3.5xl font-playfair-display font-bold md:bg-charcoal`}
+  ${tw`text-offwhite text-2xl md:text-3.5xl font-playfair-display font-bold`}
 `

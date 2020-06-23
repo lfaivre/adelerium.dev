@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { graphql, useStaticQuery } from "gatsby"
 
 import { useAppState } from "../../../state/app-context"
 
@@ -31,18 +30,6 @@ const AboutSection = ({ sectionData, count }: Props) => {
   const { windowWidth } = useAppState()
   const [direction, setDirection] = useState(ASD.Left)
 
-  const aboutSectionQuery = useStaticQuery(graphql`
-    query {
-      floatingImage: file(relativePath: { eq: "about/tram-480.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 480, grayscale: true, quality: 75) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `)
-
   useEffect(() => {
     const direction = sectionData.order % 2 === 0 ? ASD.Right : ASD.Left
     setDirection(direction)
@@ -52,9 +39,7 @@ const AboutSection = ({ sectionData, count }: Props) => {
     <AboutSectionWrapper _direction={direction}>
       {!(windowWidth < SCREEN_SIZE.MD) && (
         <ImageWrapper>
-          <FloatingImage
-            fluid={aboutSectionQuery.floatingImage.childImageSharp.fluid}
-          />
+          <FloatingImage fluid={sectionData.tempQuery.childImageSharp.fluid} />
         </ImageWrapper>
       )}
       <ContentWrapper _direction={direction}>

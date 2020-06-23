@@ -5,6 +5,8 @@ export interface AboutSectionAttributes {
   title: string
   body: string
   link: AboutSectionLink
+  pictureURL: string
+  tempQuery: any
 }
 
 export interface AboutSectionLink {
