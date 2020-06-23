@@ -1,9 +1,12 @@
 import React from "react"
 import StyledInternalLink from "../Shared/StyledInternalLink"
 
+import { facts } from "../../data/facts"
+
 import { PathDataHook } from "../../types/paths"
 import { InternalLinkDirection as ILD } from "../../types/presentation"
 import { SiteData } from "../../data/site"
+import { getRandomInt } from "../../utils/math"
 
 import {
   FooterWrapper,
@@ -40,9 +43,7 @@ const Footer = (props: Props) => {
         </BusinessWrapper>
         <FactWrapper>
           <FactTitle>Did you know?</FactTitle>
-          <FactText>
-            You know those facts written under Snapple caps? Use them here.
-          </FactText>
+          <FactText>{facts[getRandomInt(0, facts.length - 1)]}</FactText>
         </FactWrapper>
         <LinkWrapper>
           <ExternalLink href={SiteData.links.linkedin.url}>li.</ExternalLink>
