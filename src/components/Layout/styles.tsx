@@ -17,7 +17,7 @@ export const ContentWrapper = styled.div`
     margin-left: 20%;
   }
 `
-export const HeaderWrapper = tw.div`fixed z-20 w-full`
+export const HeaderWrapper = tw.div`fixed z-20 w-full xl:w-4/5 right-0 top-0`
 export const MainWrapper = styled.div<PageWrapperStaticProps>`
   ${tw`z-10 w-full`}
   margin-top: ${({ headerHeight, isIndex }) =>
