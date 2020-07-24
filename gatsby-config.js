@@ -1,3 +1,12 @@
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+
+console.log(`Using environment config: '${activeEnv}'`)
+
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Lorenzo Faivre - Portfolio`,
@@ -5,6 +14,15 @@ module.exports = {
     author: `@lfaivre`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GA_TRACKING_ID,
+        head: false,
+        anonymize: true,
+        respectDNT: false,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-sharp`,
