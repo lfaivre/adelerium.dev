@@ -96,7 +96,9 @@ const SideBar = () => {
         </ButtonsWrapper>
       </ViewButtonsWrapper>
       <BrandingWrapper>
-        <Branding href={SiteData.links.kd.url}>KD.</Branding>
+        <Branding href={SiteData.links.kd.url} label={SiteData.links.kd.url}>
+          KD.
+        </Branding>
       </BrandingWrapper>
     </SideBarWrapper>
   )

@@ -37,7 +37,10 @@ const Footer = (props: Props) => {
       <FirstFooterRow>
         <BusinessWrapper>
           <BusinessTitle>Need a website?</BusinessTitle>
-          <BusinessLink href={SiteData.links.kd.url}>
+          <BusinessLink
+            href={SiteData.links.kd.url}
+            label={SiteData.links.kd.url}
+          >
             kevaladesign.com
           </BusinessLink>
         </BusinessWrapper>
