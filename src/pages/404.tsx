@@ -1,12 +1,11 @@
 import React from "react"
-import { PageProps, Link } from "gatsby"
 
 import SEO from "../components/Shared/SEO"
 import Message from "../components/404Page/Message"
 
 import { PageContentWrapper } from "../styles/pages"
 
-const NotFoundPage = (props: PageProps) => {
+const NotFoundPage = () => {
   return (
     <>
       <SEO title="404: Not found" />

@@ -14,7 +14,7 @@ const ProjectsPage = ({ data }: PageProps) => {
       <ProjectsPageContentWrapper>
         {projectData.projects.map(project => {
           // TODO: TEMPORARY IMPLEMENTATION, REPLACING WITH CONTENTFUL GRAPHQL QUERIES
-          project.preview.tempQuery = data[project.preview.pictureURL]
+          project.preview.tempQuery = (data as any)[project.preview.pictureURL]
           return <Preview project={project} key={project.order} />
         })}
       </ProjectsPageContentWrapper>

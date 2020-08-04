@@ -12,7 +12,7 @@ import {
 
 interface Props {}
 
-const Post = (props: Props) => {
+const Post = () => {
   return (
     <MessageWrapper>
       <TitleWrapper>

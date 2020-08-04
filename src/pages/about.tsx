@@ -15,7 +15,7 @@ const AboutPage = ({ data }: PageProps) => {
       <AboutPageContentWrapper>
         {AboutSectionData.sections.map(sectionData => {
           // TODO: TEMPORARY IMPLEMENTATION, REPLACING WITH CONTENTFUL GRAPHQL QUERIES
-          sectionData.tempQuery = data[sectionData.pictureURL]
+          sectionData.tempQuery = (data as any)[sectionData.pictureURL]
           return (
             <AboutSection
               sectionData={sectionData}
