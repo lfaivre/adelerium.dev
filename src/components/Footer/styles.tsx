@@ -1,15 +1,18 @@
 import tw, { styled } from "twin.macro"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
-interface StyledExternalLinkProps extends React.HTMLProps<HTMLAnchorElement> {}
+// TODO: Fix broken OutboundLink type
+// interface StyledExternalLinkProps extends React.HTMLProps<HTMLAnchorElement> {}
 
-const StyledExternalLink = ({
-  className,
-  children,
-  ...rest
-}: StyledExternalLinkProps) => (
-  <a {...rest} target="_blank" rel="noopener noreferrer" className={className}>
+const StyledExternalLink = ({ className, children, ...rest }: any) => (
+  <OutboundLink
+    {...rest}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={className}
+  >
     {children}
-  </a>
+  </OutboundLink>
 )
 
 export const FooterWrapper = tw.footer`w-full px-4 py-8 mobile:p-8 bg-offwhite`

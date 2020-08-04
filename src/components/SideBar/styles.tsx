@@ -1,21 +1,24 @@
 import tw, { styled } from "twin.macro"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 
 interface SelectedProps {
   selected: boolean
 }
 
-interface StyledExternalLinkProps extends React.HTMLProps<HTMLAnchorElement> {}
+// TODO: Fix broken OutboundLink type
+// interface StyledExternalLinkProps extends React.HTMLProps<HTMLAnchorElement> {}
 
-const StyledExternalLink = ({
-  className,
-  children,
-  ...rest
-}: StyledExternalLinkProps) => (
-  <a {...rest} target="_blank" rel="noopener noreferrer" className={className}>
+const StyledExternalLink = ({ className, children, ...rest }: any) => (
+  <OutboundLink
+    {...rest}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={className}
+  >
     {children}
-  </a>
+  </OutboundLink>
 )
 
 export const SideBarWrapper = tw.div`w-full h-full min-h-screen xl:min-h-full p-8 md:pt-16 flex flex-col justify-start items-center bg-charcoal`

@@ -1,24 +1,27 @@
 import tw, { styled } from "twin.macro"
 import Img from "gatsby-image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { ProjectDirection as PD } from "../../../types/presentation"
 
 interface DirectionProps {
   readonly _direction: PD
 }
 
-interface StyledExternalLinkProps
-  extends React.HTMLProps<HTMLAnchorElement>,
-    DirectionProps {}
+// TODO: Fix broken OutboundLink type
+// interface StyledExternalLinkProps
+//   extends React.HTMLProps<HTMLAnchorElement>,
+//     DirectionProps {}
 
-const StyledExternalLink = ({
-  className,
-  children,
-  ...rest
-}: StyledExternalLinkProps) => (
-  <a {...rest} target="_blank" rel="noopener noreferrer" className={className}>
+const StyledExternalLink = ({ className, children, ...rest }: any) => (
+  <OutboundLink
+    {...rest}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={className}
+  >
     {children}
-  </a>
+  </OutboundLink>
 )
 
 export const PreviewWrapper = styled.div<DirectionProps>`
