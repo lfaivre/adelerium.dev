@@ -96,6 +96,7 @@ const Preview = ({ project }: Props) => {
           {project.externalLinks.hostedURL !== "" ? (
             <ExternalLink
               href={project.externalLinks.hostedURL}
+              label={project.externalLinks.hostedURL}
               _direction={direction}
             >
               <LinkIcon icon={faFirefox} />
@@ -107,6 +108,7 @@ const Preview = ({ project }: Props) => {
           {project.externalLinks.githubURL !== "" ? (
             <ExternalLink
               href={project.externalLinks.githubURL}
+              label={project.externalLinks.githubURL}
               _direction={direction}
             >
               <LinkIcon icon={faGithub} />
@@ -118,6 +120,7 @@ const Preview = ({ project }: Props) => {
           {project.externalLinks.figmaURL !== "" ? (
             <ExternalLink
               href={project.externalLinks.figmaURL}
+              label={project.externalLinks.figmaURL}
               _direction={direction}
             >
               <LinkIcon icon={faFigma} />

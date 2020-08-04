@@ -69,7 +69,7 @@ const SideBar = () => {
       ) : (
         <LinkSectionWrapper>
           {SideBarData.external.links.map(link => (
-            <ExternalLink href={link.url} key={link.text}>
+            <ExternalLink href={link.url} label={link.url} key={link.text}>
               {link.text}
             </ExternalLink>
           ))}

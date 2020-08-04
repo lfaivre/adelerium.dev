@@ -61,6 +61,7 @@ const AboutSection = ({ sectionData, count }: Props) => {
           ) : (
             <ExternalLink
               href={sectionData.link.externalURL}
+              label={sectionData.link.externalURL}
               _direction={direction}
             >
               {sectionData.link.firstTextFragment}&nbsp;

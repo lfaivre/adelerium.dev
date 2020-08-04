@@ -46,8 +46,18 @@ const Footer = (props: Props) => {
           <FactText>{facts[getRandomInt(0, facts.length - 1)]}</FactText>
         </FactWrapper>
         <LinkWrapper>
-          <ExternalLink href={SiteData.links.linkedin.url}>li.</ExternalLink>
-          <ExternalLink href={SiteData.links.github.url}>gh.</ExternalLink>
+          <ExternalLink
+            href={SiteData.links.linkedin.url}
+            label={SiteData.links.linkedin.url}
+          >
+            li.
+          </ExternalLink>
+          <ExternalLink
+            href={SiteData.links.github.url}
+            label={SiteData.links.github.url}
+          >
+            gh.
+          </ExternalLink>
         </LinkWrapper>
       </FirstFooterRow>
       <SecondFooterRow>
