@@ -78,7 +78,8 @@ const projects: Array<ProjectAttrs> = [
     },
     technologyTags: ["Pug", "Sass", "Tailwind CSS", "Node.js", "Express"],
     externalLinks: {
-      hostedURL: "",
+      hostedURL:
+        "http://www.mountainairmusic.com.s3-website-us-west-1.amazonaws.com/",
       githubURL: "https://github.com/KevalaDesign/mountainairmusicseries",
       figmaURL:
         "https://www.figma.com/file/MnQFctNvknBRNHAbYThk5hXW/Mountain-Air-Music-Series-Prototypes?node-id=0%3A1",
@@ -97,7 +98,7 @@ const projects: Array<ProjectAttrs> = [
     },
     technologyTags: ["React", "Create React App", "CSS"],
     externalLinks: {
-      hostedURL: "",
+      hostedURL: "https://adelerium-archived.netlify.app/",
       githubURL: "https://github.com/lfaivre/adelerium",
       figmaURL:
         "https://www.figma.com/file/MOD24INi0rMAOuiHsXkEgDOk/Redesign?node-id=113%3A2",
@@ -155,8 +156,8 @@ const projects: Array<ProjectAttrs> = [
     },
     technologyTags: ["Pug", "Sass", "Node.js", "Express"],
     externalLinks: {
-      hostedURL: "http://funnyforagirllive.com/",
-      githubURL: "https://github.com/lfaivre/funnyforagirl-public",
+      hostedURL: "https://funnyforagirl.netlify.app/",
+      githubURL: "",
       figmaURL:
         "https://www.figma.com/file/XGEc6z33uK69YBgY0DKWQxPQ/Page-One?node-id=0%3A1",
     },
