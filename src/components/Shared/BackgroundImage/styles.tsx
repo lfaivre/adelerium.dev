@@ -16,7 +16,4 @@ export const StyledBackgroundImage = styled(BackgroundImage)<
   }
   height: ${({ headerHeight, isIndex }) =>
     isIndex ? `100vh;` : `calc(100vh - ${headerHeight}px);`}
-  &:before {
-    opacity: 80% !important;
-  }
 `
