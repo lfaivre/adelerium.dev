@@ -138,7 +138,7 @@ const projects: Array<ProjectAttrs> = [
     technologyTags: ["Pug", "Sass", "Node.js", "Express"],
     externalLinks: {
       hostedURL: "http://kevaladesign.com/",
-      githubURL: "https://github.com/lfaivre/kevaladesign-site-public",
+      githubURL: "",
       figmaURL:
         "https://www.figma.com/file/XntgMboyMuYbMQcz0zsB0BQA/Page-One?node-id=0%3A1",
     },
