@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react"
 
 // TODO: MOVE ICON DEFS TO SEPARATE FILE (USE LIB)
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons"
-import {
-  faFirefox,
-  faGithub,
-  faFigma,
-} from "@fortawesome/free-brands-svg-icons"
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp"
+import { faFirefox } from "@fortawesome/free-brands-svg-icons/faFirefox"
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub"
+import { faFigma } from "@fortawesome/free-brands-svg-icons/faFigma"
 
 import { ProjectAttrs } from "../../../types/projects"
 import { ProjectDirection } from "../../../types/presentation"
