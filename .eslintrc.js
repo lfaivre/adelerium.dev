@@ -57,7 +57,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
     'react/destructuring-assignment': 'off',
-    // "react/jsx-filename-extension": "off",
+    'react/jsx-filename-extension': 'off',
     'no-use-before-define': [
       'error',
       { functions: false, classes: true, variables: true },

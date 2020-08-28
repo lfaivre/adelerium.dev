@@ -1,11 +1,4 @@
-const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
-
-console.log(`Using environment config: '${activeEnv}'`);
-
-require('dotenv').config({
-  path: `.env.${activeEnv}`,
-});
+// @docs https://www.gatsbyjs.com/docs/api-files-gatsby-config/
 
 module.exports = {
   siteMetadata: {
@@ -14,9 +7,9 @@ module.exports = {
     author: `@lfaivre`,
   },
   plugins: [
-    // @note (first) gatsby-plugin-react-helmet
+    // @note (top) gatsby-plugin-react-helmet
     `gatsby-plugin-react-helmet`,
-    // @note (first) gatsby-plugin-google-analytics
+    // @note (top) gatsby-plugin-google-analytics
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -57,11 +50,5 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-netlify`,
-    // {
-    //   resolve: `gatsby-plugin-transition-link`,
-    //   options: {
-    //     layout: require.resolve(`${__dirname}/src/components/Layout/index.tsx`),
-    //   },
-    // },
   ],
 };

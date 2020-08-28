@@ -6,7 +6,7 @@
   // "editor.formatOnSave": true,
   "eslint.format.enable": false,
   // "eslint.lintTask.enable": false,
-  "eslint.onIgnoredFiles": "warn",
+  // "eslint.onIgnoredFiles": "warn",
   "eslint.packageManager": "npm",
   "eslint.validate": [
     "javascript",

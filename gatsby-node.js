@@ -1,7 +1,9 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+// @docs https://www.gatsbyjs.com/docs/api-files-gatsby-node/
 
-// You can delete this file if you're not using it
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+
+// @todo Use chalk to print a more visual message
+console.log(`USING ENVIRONMENT: ${activeEnv.toUpperCase()}`);
+
+require('dotenv').config({ path: `.env.${activeEnv}` });
