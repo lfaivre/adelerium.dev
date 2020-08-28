@@ -40,6 +40,7 @@ function SEO({ description = ``, lang = `en`, meta = [], title }: Props) {
 
   return (
     <Helmet
+      defer={false}
       htmlAttributes={{
         lang,
       }}

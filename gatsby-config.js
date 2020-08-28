@@ -14,6 +14,9 @@ module.exports = {
     author: `@lfaivre`,
   },
   plugins: [
+    // @note (first) gatsby-plugin-react-helmet
+    `gatsby-plugin-react-helmet`,
+    // @note (first) gatsby-plugin-google-analytics
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -24,12 +27,6 @@ module.exports = {
         defer: true,
       },
     },
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-postcss`,
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-netlify`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -37,6 +34,8 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -53,12 +52,16 @@ module.exports = {
         crossOrigin: `use-credentials`,
       },
     },
+    // @note (after gatsby-plugin-manifest) gatsby-plugin-offline
     `gatsby-plugin-offline`,
-    {
-      resolve: `gatsby-plugin-transition-link`,
-      options: {
-        layout: require.resolve(`${__dirname}/src/components/Layout/index.tsx`),
-      },
-    },
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-netlify`,
+    // {
+    //   resolve: `gatsby-plugin-transition-link`,
+    //   options: {
+    //     layout: require.resolve(`${__dirname}/src/components/Layout/index.tsx`),
+    //   },
+    // },
   ],
 }
