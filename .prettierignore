@@ -1,4 +1,9 @@
+# Files
+
 package-lock.json
+
+# Directories
+
 .cache/
 node_modules/
 public/

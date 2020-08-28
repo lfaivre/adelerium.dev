@@ -1,4 +1,20 @@
+# Files
+
+.eslintrc.js
+babel-plugin-macros.config.js
+gatsby-browser.js
+gatsby-config.js
+gatsby-node.js
+gatsby-ssr.js
+package.json
+package-lock.json
+tailwind.config.js
+postcss.config.js
+
+# Directories
+
 .cache/
 .github/
+.vscode/
 node_modules/
 public/
