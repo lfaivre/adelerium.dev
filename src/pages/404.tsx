@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react';
 
-import SEO from "../components/Shared/SEO"
-import Message from "../components/404Page/Message"
+import SEO from '../components/Shared/SEO';
+import Message from '../components/404Page/Message';
 
-import { PageContentWrapper } from "../styles/pages"
+import { PageContentWrapper } from '../styles/pages';
 
 const NotFoundPage = () => {
   return (
@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         <Message />
       </PageContentWrapper>
     </>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

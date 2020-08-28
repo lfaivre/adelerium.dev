@@ -1,15 +1,15 @@
-import React from "react"
+import React from 'react';
 
-import StyledInternalLink from "../StyledInternalLink"
+import StyledInternalLink from '../StyledInternalLink';
 
-import { usePathData } from "../../../hooks/location"
+import { usePathData } from '../../../hooks/location';
 
-import { InternalLinkDirection as ILD } from "../../../types/presentation"
+import { InternalLinkDirection as ILD } from '../../../types/presentation';
 
-import { WelcomeNavigationWrapper, TitleWrapper, Title } from "./styles"
+import { WelcomeNavigationWrapper, TitleWrapper, Title } from './styles';
 
 const WelcomeNavigation = () => {
-  const pathData = usePathData()
+  const pathData = usePathData();
 
   return (
     <WelcomeNavigationWrapper>
@@ -18,7 +18,7 @@ const WelcomeNavigation = () => {
       </TitleWrapper>
       <StyledInternalLink {...pathData} direction={ILD.Next} />
     </WelcomeNavigationWrapper>
-  )
-}
+  );
+};
 
-export default WelcomeNavigation
+export default WelcomeNavigation;

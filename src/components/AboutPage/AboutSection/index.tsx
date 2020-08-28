@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
 
-import { useAppState } from "../../../state/app-context"
+import { useAppState } from '../../../state/app-context';
 
-import { SCREEN_SIZE } from "../../../data/presentation"
-import { AboutSectionAttributes } from "../../../types/about"
-import { AboutSectionDirection as ASD } from "../../../types/presentation"
+import { SCREEN_SIZE } from '../../../data/presentation';
+import { AboutSectionAttributes } from '../../../types/about';
+import { AboutSectionDirection as ASD } from '../../../types/presentation';
 
 import {
   AboutSectionWrapper,
@@ -19,21 +19,21 @@ import {
   Bold,
   ExternalLink,
   CounterText,
-} from "./styles"
+} from './styles';
 
 interface Props {
-  sectionData: AboutSectionAttributes
-  count: number
+  sectionData: AboutSectionAttributes;
+  count: number;
 }
 
 const AboutSection = ({ sectionData, count }: Props) => {
-  const { windowWidth } = useAppState()
-  const [direction, setDirection] = useState(ASD.Left)
+  const { windowWidth } = useAppState();
+  const [direction, setDirection] = useState(ASD.Left);
 
   useEffect(() => {
-    const direction = sectionData.order % 2 === 0 ? ASD.Right : ASD.Left
-    setDirection(direction)
-  }, [sectionData.order])
+    const direction = sectionData.order % 2 === 0 ? ASD.Right : ASD.Left;
+    setDirection(direction);
+  }, [sectionData.order]);
 
   return (
     <AboutSectionWrapper _direction={direction}>
@@ -74,7 +74,7 @@ const AboutSection = ({ sectionData, count }: Props) => {
         </BodyWrapper>
       </ContentWrapper>
     </AboutSectionWrapper>
-  )
-}
+  );
+};
 
-export default AboutSection
+export default AboutSection;

@@ -1,19 +1,19 @@
-import React from "react"
+import React from 'react';
 
-import SEO from "../components/Shared/SEO"
-import SideBar from "../components/SideBar"
+import SEO from '../components/Shared/SEO';
+import SideBar from '../components/SideBar';
 
-import { useAppState } from "../state/app-context"
+import { useAppState } from '../state/app-context';
 
-import { SCREEN_SIZE } from "../data/presentation"
+import { SCREEN_SIZE } from '../data/presentation';
 
 import {
   IndexPageNavigatorWrapper,
   IndexPageContentWrapper,
-} from "../styles/pages"
+} from '../styles/pages';
 
 const IndexPage = () => {
-  const { windowWidth } = useAppState()
+  const { windowWidth } = useAppState();
 
   return (
     <>
@@ -26,7 +26,7 @@ const IndexPage = () => {
         </IndexPageNavigatorWrapper>
       )}
     </>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;

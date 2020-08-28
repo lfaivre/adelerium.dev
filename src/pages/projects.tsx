@@ -1,28 +1,28 @@
-import React from "react"
-import { PageProps, graphql } from "gatsby"
+import React from 'react';
+import { PageProps, graphql } from 'gatsby';
 
-import SEO from "../components/Shared/SEO"
-import Preview from "../components/ProjectsPage/Preview"
+import SEO from '../components/Shared/SEO';
+import Preview from '../components/ProjectsPage/Preview';
 
-import { projectData } from "../data/projects"
-import { ProjectsPageContentWrapper } from "../styles/pages"
+import { projectData } from '../data/projects';
+import { ProjectsPageContentWrapper } from '../styles/pages';
 
 const ProjectsPage = ({ data }: PageProps) => {
   return (
     <>
       <SEO title="Projects" />
       <ProjectsPageContentWrapper>
-        {projectData.projects.map(project => {
+        {projectData.projects.map((project) => {
           // TODO: TEMPORARY IMPLEMENTATION, REPLACING WITH CONTENTFUL GRAPHQL QUERIES
-          project.preview.tempQuery = (data as any)[project.preview.pictureURL]
-          return <Preview project={project} key={project.order} />
+          project.preview.tempQuery = (data as any)[project.preview.pictureURL];
+          return <Preview project={project} key={project.order} />;
         })}
       </ProjectsPageContentWrapper>
     </>
-  )
-}
+  );
+};
 
-export default ProjectsPage
+export default ProjectsPage;
 
 export const fluidImage = graphql`
   fragment fluidImage on File {
@@ -32,7 +32,7 @@ export const fluidImage = graphql`
       }
     }
   }
-`
+`;
 
 export const pageQuery = graphql`
   query {
@@ -63,4 +63,4 @@ export const pageQuery = graphql`
       ...fluidImage
     }
   }
-`
+`;

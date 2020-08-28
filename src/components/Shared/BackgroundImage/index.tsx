@@ -1,11 +1,11 @@
-import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 
-import { StyledBackgroundImage } from "./styles"
+import { StyledBackgroundImage } from './styles';
 
 interface Props {
-  headerHeight: number
-  isIndex: boolean
+  headerHeight: number;
+  isIndex: boolean;
 }
 
 const BackgroundImage = ({ headerHeight, isIndex }: Props) => {
@@ -19,7 +19,7 @@ const BackgroundImage = ({ headerHeight, isIndex }: Props) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <StyledBackgroundImage
@@ -28,7 +28,7 @@ const BackgroundImage = ({ headerHeight, isIndex }: Props) => {
       headerHeight={headerHeight}
       isIndex={isIndex}
     />
-  )
-}
+  );
+};
 
-export default BackgroundImage
+export default BackgroundImage;

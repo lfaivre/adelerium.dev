@@ -1,35 +1,35 @@
-import React from "react"
-import { PageProps, graphql } from "gatsby"
+import React from 'react';
+import { PageProps, graphql } from 'gatsby';
 
-import SEO from "../components/Shared/SEO"
-import AboutSection from "../components/AboutPage/AboutSection"
+import SEO from '../components/Shared/SEO';
+import AboutSection from '../components/AboutPage/AboutSection';
 
-import { AboutSectionData } from "../data/about"
+import { AboutSectionData } from '../data/about';
 
-import { AboutPageContentWrapper } from "../styles/pages"
+import { AboutPageContentWrapper } from '../styles/pages';
 
 const AboutPage = ({ data }: PageProps) => {
   return (
     <>
       <SEO title="About" />
       <AboutPageContentWrapper>
-        {AboutSectionData.sections.map(sectionData => {
+        {AboutSectionData.sections.map((sectionData) => {
           // TODO: TEMPORARY IMPLEMENTATION, REPLACING WITH CONTENTFUL GRAPHQL QUERIES
-          sectionData.tempQuery = (data as any)[sectionData.pictureURL]
+          sectionData.tempQuery = (data as any)[sectionData.pictureURL];
           return (
             <AboutSection
               sectionData={sectionData}
               count={AboutSectionData.count()}
               key={sectionData.order}
             />
-          )
+          );
         })}
       </AboutPageContentWrapper>
     </>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;
 
 export const fluidImageAbout = graphql`
   fragment fluidImageAbout on File {
@@ -39,7 +39,7 @@ export const fluidImageAbout = graphql`
       }
     }
   }
-`
+`;
 
 export const pageQuery = graphql`
   query {
@@ -53,4 +53,4 @@ export const pageQuery = graphql`
       ...fluidImageAbout
     }
   }
-`
+`;

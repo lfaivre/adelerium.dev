@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import React, { useState } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 
-import WelcomeNavigation from "../Shared/WelcomeNavigation"
+import WelcomeNavigation from '../Shared/WelcomeNavigation';
 
 // TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
-import { SideBarData } from "./data"
-import { SiteData } from "../../data/site"
-import { SideBarView as SBV } from "../../types/presentation"
+import { SideBarData } from './data';
+import { SiteData } from '../../data/site';
+import { SideBarView as SBV } from '../../types/presentation';
 
 import {
   SideBarWrapper,
@@ -27,10 +27,10 @@ import {
   Line,
   ButtonsWrapper,
   ViewButton,
-} from "./styles"
+} from './styles';
 
 const SideBar = () => {
-  const [sideBarView, setSideBarView] = useState(SBV.InternalLinks)
+  const [sideBarView, setSideBarView] = useState(SBV.InternalLinks);
 
   const sideBarQuery = useStaticQuery(graphql`
     query {
@@ -42,7 +42,7 @@ const SideBar = () => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <SideBarWrapper>
@@ -60,7 +60,7 @@ const SideBar = () => {
       </ResponsiveWelcomeNavigationWrapper>
       {sideBarView === SBV.InternalLinks ? (
         <LinkSectionWrapper>
-          {SideBarData.internal.links.map(link => (
+          {SideBarData.internal.links.map((link) => (
             <InternaLink to={link.url} key={link.text}>
               {link.text}
             </InternaLink>
@@ -68,7 +68,7 @@ const SideBar = () => {
         </LinkSectionWrapper>
       ) : (
         <LinkSectionWrapper>
-          {SideBarData.external.links.map(link => (
+          {SideBarData.external.links.map((link) => (
             <ExternalLink href={link.url} label={link.url} key={link.text}>
               {link.text}
             </ExternalLink>
@@ -101,7 +101,7 @@ const SideBar = () => {
         </Branding>
       </BrandingWrapper>
     </SideBarWrapper>
-  )
-}
+  );
+};
 
-export default SideBar
+export default SideBar;

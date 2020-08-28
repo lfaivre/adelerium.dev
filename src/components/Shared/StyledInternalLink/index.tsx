@@ -1,8 +1,8 @@
-import React from "react"
+import React from 'react';
 
-import { SitePaths } from "../../../data/paths"
-import { PathDataHook } from "../../../types/paths"
-import { InternalLinkDirection as ILD } from "../../../types/presentation"
+import { SitePaths } from '../../../data/paths';
+import { PathDataHook } from '../../../types/paths';
+import { InternalLinkDirection as ILD } from '../../../types/presentation';
 
 import {
   InternalLink,
@@ -13,19 +13,19 @@ import {
   PathInfoWrapper,
   PathText,
   Arrow,
-} from "./styles"
+} from './styles';
 
 interface Props extends PathDataHook {
-  direction: ILD
+  direction: ILD;
 }
 
 const StyledInternalLink = ({ pathData, isValidPath, direction }: Props) => {
   const linkDataFromProps = (direction: ILD) => {
     const pathname =
-      direction === ILD.Previous ? pathData.previous : pathData.next
-    const text = SitePaths[pathname].text
-    return { pathname, text }
-  }
+      direction === ILD.Previous ? pathData.previous : pathData.next;
+    const text = SitePaths[pathname].text;
+    return { pathname, text };
+  };
 
   return isValidPath &&
     linkDataFromProps(direction).pathname !== pathData.pathname ? (
@@ -33,7 +33,7 @@ const StyledInternalLink = ({ pathData, isValidPath, direction }: Props) => {
       <InternalLinkWrapper _direction={direction}>
         <TitleTextWrapper _direction={direction}>
           <TitleText _direction={direction}>
-            {direction === ILD.Previous ? "Previous" : "Next"}
+            {direction === ILD.Previous ? 'Previous' : 'Next'}
           </TitleText>
         </TitleTextWrapper>
         <PathInfoWrapper>
@@ -47,7 +47,7 @@ const StyledInternalLink = ({ pathData, isValidPath, direction }: Props) => {
     </InternalLink>
   ) : (
     <Placeholder></Placeholder>
-  )
-}
+  );
+};
 
-export default StyledInternalLink
+export default StyledInternalLink;

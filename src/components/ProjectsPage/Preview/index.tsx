@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react';
 
 // TODO: MOVE ICON DEFS TO SEPARATE FILE (USE LIB)
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons/faArrowUp"
-import { faFirefox } from "@fortawesome/free-brands-svg-icons/faFirefox"
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub"
-import { faFigma } from "@fortawesome/free-brands-svg-icons/faFigma"
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
+import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
+import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
+import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 
-import { ProjectAttrs } from "../../../types/projects"
-import { ProjectDirection } from "../../../types/presentation"
+import { ProjectAttrs } from '../../../types/projects';
+import { ProjectDirection } from '../../../types/presentation';
 import {
   PreviewWrapper,
   ThumbnailWrapper,
@@ -35,20 +35,20 @@ import {
   LinkIcon,
   LinkText,
   ArrowIcon,
-} from "./styles"
+} from './styles';
 
 interface Props {
-  project: ProjectAttrs
+  project: ProjectAttrs;
 }
 
 const Preview = ({ project }: Props) => {
-  const [direction, setDirection] = useState(ProjectDirection.Left)
+  const [direction, setDirection] = useState(ProjectDirection.Left);
 
   useEffect(() => {
     const direction =
-      project.order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left
-    setDirection(direction)
-  }, [project.order])
+      project.order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
+    setDirection(direction);
+  }, [project.order]);
 
   return (
     <PreviewWrapper _direction={direction}>
@@ -82,7 +82,7 @@ const Preview = ({ project }: Props) => {
           <TechnologyWrapper _direction={direction}>
             <TechnologyTitle _direction={direction}>tech.</TechnologyTitle>
             <Technology _direction={direction}>
-              {project.technologyTags.join(", ")}
+              {project.technologyTags.join(', ')}
             </Technology>
           </TechnologyWrapper>
         </DescAndTechWrapper>
@@ -91,7 +91,7 @@ const Preview = ({ project }: Props) => {
           <Divider />
         </DividerWrapper>
         <LinksWrapper _direction={direction}>
-          {project.externalLinks.hostedURL !== "" ? (
+          {project.externalLinks.hostedURL !== '' ? (
             <ExternalLink
               href={project.externalLinks.hostedURL}
               label={project.externalLinks.hostedURL}
@@ -103,7 +103,7 @@ const Preview = ({ project }: Props) => {
               </LinkText>
             </ExternalLink>
           ) : null}
-          {project.externalLinks.githubURL !== "" ? (
+          {project.externalLinks.githubURL !== '' ? (
             <ExternalLink
               href={project.externalLinks.githubURL}
               label={project.externalLinks.githubURL}
@@ -115,7 +115,7 @@ const Preview = ({ project }: Props) => {
               </LinkText>
             </ExternalLink>
           ) : null}
-          {project.externalLinks.figmaURL !== "" ? (
+          {project.externalLinks.figmaURL !== '' ? (
             <ExternalLink
               href={project.externalLinks.figmaURL}
               label={project.externalLinks.figmaURL}
@@ -135,7 +135,7 @@ const Preview = ({ project }: Props) => {
         _direction={direction}
       />
     </PreviewWrapper>
-  )
-}
+  );
+};
 
-export default Preview
+export default Preview;

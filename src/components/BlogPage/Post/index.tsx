@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react';
 
-import { BlogPost } from "../../../types/blog"
+import { BlogPost } from '../../../types/blog';
 
 import {
   BlogPostWrapper,
@@ -8,10 +8,10 @@ import {
   Title,
   SubtitleWrapper,
   Subtitle,
-} from "./styles"
+} from './styles';
 
 interface Props {
-  blogPost: BlogPost
+  blogPost: BlogPost;
 }
 
 const Post = ({ blogPost }: Props) => {
@@ -28,7 +28,7 @@ const Post = ({ blogPost }: Props) => {
         <></>
       )}
     </BlogPostWrapper>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;

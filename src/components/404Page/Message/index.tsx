@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react';
 
-import { DefaultPath } from "../../../data/paths"
+import { DefaultPath } from '../../../data/paths';
 
 import {
   MessageWrapper,
@@ -8,7 +8,7 @@ import {
   Title,
   LinkWrapper,
   InternalLink,
-} from "./styles"
+} from './styles';
 
 interface Props {}
 
@@ -22,7 +22,7 @@ const Post = () => {
         {/* <InternalLink to={DefaultPath.pathname}>Return Home</InternalLink> */}
       </LinkWrapper>
     </MessageWrapper>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;

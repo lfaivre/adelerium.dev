@@ -1,12 +1,12 @@
-import React from "react"
-import StyledInternalLink from "../Shared/StyledInternalLink"
+import React from 'react';
+import StyledInternalLink from '../Shared/StyledInternalLink';
 
-import { facts } from "../../data/facts"
+import { facts } from '../../data/facts';
 
-import { PathDataHook } from "../../types/paths"
-import { InternalLinkDirection as ILD } from "../../types/presentation"
-import { SiteData } from "../../data/site"
-import { getRandomInt } from "../../utils/math"
+import { PathDataHook } from '../../types/paths';
+import { InternalLinkDirection as ILD } from '../../types/presentation';
+import { SiteData } from '../../data/site';
+import { getRandomInt } from '../../utils/math';
 
 import {
   FooterWrapper,
@@ -27,7 +27,7 @@ import {
   CopyrightText,
   ResponsiveSpan,
   BrandingTwo,
-} from "./styles"
+} from './styles';
 
 interface Props extends PathDataHook {}
 
@@ -80,7 +80,7 @@ const Footer = (props: Props) => {
         <BrandingTwo>kevala design.</BrandingTwo>
       </ThirdFooterRow>
     </FooterWrapper>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
