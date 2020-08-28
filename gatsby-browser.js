@@ -1,15 +1,17 @@
-import "./src/styles/index.css"
-import rootWrapper from "./src/state/root-wrapper"
+import './src/styles/index.css';
+import rootWrapper from './src/state/root-wrapper';
+import { LayoutPageWrapper } from './src/components/Layout';
 
-export const wrapRootElement = rootWrapper
+export const wrapRootElement = rootWrapper;
+export const wrapPageElement = LayoutPageWrapper;
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(
     `This application has been updated. ` +
       `Reload to display the latest version?`
-  )
+  );
 
   if (answer === true) {
-    window.location.reload()
+    window.location.reload();
   }
-}
+};

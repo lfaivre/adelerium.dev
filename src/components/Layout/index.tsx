@@ -1,21 +1,21 @@
-import React, { useEffect, useRef } from "react"
-import { PageProps } from "gatsby"
+import React, { useEffect, useRef } from 'react';
+import { PageProps } from 'gatsby';
 
-import { useAppState, useAppDispatch } from "../../state/app-context"
-import { usePathData } from "../../hooks/location"
+import { useAppState, useAppDispatch } from '../../state/app-context';
+import { usePathData } from '../../hooks/location';
 
-import SideBar from "../SideBar"
-import Header from "../Header"
-import Footer from "../Footer"
-import BackgroundImage from "../../components/Shared/BackgroundImage"
+import SideBar from '../SideBar';
+import Header from '../Header';
+import Footer from '../Footer';
+import BackgroundImage from '../../components/Shared/BackgroundImage';
 
 import {
   SCREEN_SIZE,
   pathsWithImgBgsDesktop,
   pathsWithImgBgsMobile,
-} from "../../data/presentation"
+} from '../../data/presentation';
 
-import "../../styles/font-awesome"
+import '../../styles/font-awesome';
 import {
   LayoutWrapper,
   SideBarWrapper,
@@ -26,41 +26,41 @@ import {
   ReturnButton,
   ReturnButtonIndicator,
   FooterWrapper,
-} from "./styles"
+} from './styles';
 
-const Layout = ({ children }: PageProps) => {
-  const pathData = usePathData()
-  const { windowWidth, headerHeight } = useAppState()
-  const dispatch = useAppDispatch()
-  const headerRef = useRef<HTMLDivElement | null>(null)
-  const footerRef = useRef<HTMLDivElement | null>(null)
-  const returnRef = useRef<HTMLDivElement | null>(null)
+export const Layout = ({ children }) => {
+  const pathData = usePathData();
+  const { windowWidth, headerHeight } = useAppState();
+  const dispatch = useAppDispatch();
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
+  const returnRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     headerRef.current &&
       dispatch({
-        type: "SET_HEADER_HEIGHT",
+        type: 'SET_HEADER_HEIGHT',
         headerHeight: headerRef.current.clientHeight,
-      })
+      });
     footerRef.current &&
       dispatch({
-        type: "SET_FOOTER_HEIGHT",
+        type: 'SET_FOOTER_HEIGHT',
         footerHeight: footerRef.current.clientHeight,
-      })
+      });
     returnRef.current &&
       dispatch({
-        type: "SET_RETURN_HEIGHT",
+        type: 'SET_RETURN_HEIGHT',
         returnHeight: returnRef.current.clientHeight,
-      })
-  }, [pathData.pathname, windowWidth])
+      });
+  }, [pathData.pathname, windowWidth]);
 
   useEffect(() => {
-    handleScroll()
-  }, [pathData.pathname])
+    handleScroll();
+  }, [pathData.pathname]);
 
   const handleScroll = () => {
-    window && window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
-  }
+    window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
 
   return (
     <LayoutWrapper>
@@ -102,7 +102,9 @@ const Layout = ({ children }: PageProps) => {
         )}
       </ContentWrapper>
     </LayoutWrapper>
-  )
-}
+  );
+};
 
-export default Layout
+export const LayoutPageWrapper = ({ element, props }) => {
+  return <Layout {...props}>{element}</Layout>;
+};
