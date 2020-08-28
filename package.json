@@ -34,6 +34,10 @@
     "stylelint": "^13.6.1",
     "tailwindcss": "^1.7.5",
     "twin.macro": "^1.7.0",
+    "typeface-lobster-two": "0.0.72",
+    "typeface-mrs-sheppards": "0.0.71",
+    "typeface-playfair-display": "^1.1.4",
+    "typeface-playfair-display-sc": "0.0.72",
     "uuid": "^8.3.0"
   },
   "devDependencies": {

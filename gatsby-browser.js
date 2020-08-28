@@ -1,7 +1,17 @@
 // @docs https://www.gatsbyjs.com/docs/api-files-gatsby-browser/
 // @todo Refactor root, page, and layout implementation
 
+// @note Import Stylesheet(s): Global Styles
+
 import './src/styles/index.css';
+
+// @note Import Stylesheet(s): Google fonts
+
+import 'typeface-lobster-two';
+import 'typeface-mrs-sheppards';
+import 'typeface-playfair-display';
+import 'typeface-playfair-display-sc';
+
 import rootWrapper from './src/state/root-wrapper';
 import { LayoutPageWrapper } from './src/components/Layout';
 

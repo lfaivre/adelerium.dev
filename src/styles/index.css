@@ -1,20 +1,17 @@
 @tailwind base;
 
 :root {
+  /* @todo Completely remove variables from root and add to tailwind config (if possible) */
+
   /* COLORS */
   --offwhite: #f3f2f1;
   --charcoal: #1e2223;
   --offpink: #fcf0ec;
-
-  /* FONT FAMILY */
-  --playfair-display: "Playfair Display", serif;
-  --playfair-display-sc: "Playfair Display SC", serif;
-  --lobster-two: "Lobster Two", cursive;
-  --mrs-sheppards: "Mrs Sheppards", cursive;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--charcoal);
 }
 
 body {
@@ -23,5 +20,4 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   overscroll-behavior-y: none;
-  background-color: var(--charcoal);
 }
