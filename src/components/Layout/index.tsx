@@ -41,9 +41,13 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   /* eslint-enable unicorn/no-null */
 
   useEffect(() => {
+    console.log(pathData);
     if (headerRef.current && headerRef.current.clientHeight) {
       const { clientHeight } = headerRef.current;
+      console.log('SET HEADER HEIGHT:', clientHeight);
       dispatch({ type: 'SET_HEADER_HEIGHT', headerHeight: clientHeight });
+    } else {
+      console.log('NO HEADER REF');
     }
     if (footerRef.current && footerRef.current.clientHeight) {
       const { clientHeight } = footerRef.current;
@@ -53,7 +57,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
       const { clientHeight } = returnRef.current;
       dispatch({ type: 'SET_RETURN_HEIGHT', returnHeight: clientHeight });
     }
-  }, [pathData.pathname, windowWidth, dispatch]);
+  }, [pathData.pathname, pathData.isIndex, windowWidth, dispatch]);
 
   useEffect(() => {
     handleScroll();
@@ -67,8 +71,13 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
         </SideBarWrapper>
       )}
       <ContentWrapper>
-        {!pathData.isIndex && (
-          <HeaderWrapper ref={headerRef}>
+        {pathData.isValidPath && !pathData.isIndex && (
+          <HeaderWrapper
+            ref={headerRef}
+            onLoad={() => {
+              console.log('LOADED HEADER WRAPPER');
+            }}
+          >
             <Header
               pathname={pathData.pathname}
               isIndex={pathData.isIndex}
@@ -77,19 +86,20 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
             />
           </HeaderWrapper>
         )}
-        {((windowWidth < SCREEN_SIZE.MD &&
-          pathData.pathname in pathsWithImgBgsMobile) ||
-          (windowWidth >= SCREEN_SIZE.MD &&
-            pathData.pathname in pathsWithImgBgsDesktop)) && (
-          <BackgroundImage
-            headerHeight={headerHeight}
-            isIndex={pathData.isIndex}
-          />
-        )}
+        {pathData.isValidPath &&
+          ((windowWidth < SCREEN_SIZE.MD &&
+            pathData.pathname in pathsWithImgBgsMobile) ||
+            (windowWidth >= SCREEN_SIZE.MD &&
+              pathData.pathname in pathsWithImgBgsDesktop)) && (
+            <BackgroundImage
+              headerHeight={headerHeight}
+              isIndex={pathData.isIndex}
+            />
+          )}
         <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
           {children}
         </MainWrapper>
-        {!pathData.isIndex && (
+        {pathData.isValidPath && !pathData.isIndex && (
           <ReturnButtonWrapper ref={returnRef}>
             <ReturnButton onClick={handleScroll}>
               <ReturnButtonIndicator />
@@ -97,7 +107,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
             </ReturnButton>
           </ReturnButtonWrapper>
         )}
-        {!pathData.isIndex && (
+        {pathData.isValidPath && !pathData.isIndex && (
           <FooterWrapper ref={footerRef}>
             <Footer
               pathname={pathData.pathname}

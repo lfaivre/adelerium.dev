@@ -43,9 +43,10 @@ export interface TPathData {
   next: TPathname;
 }
 
+// @todo Get rid of this duplicate type
 export interface PathDataHook {
-  pathname: TPathname;
-  isIndex: boolean;
-  pathData: TPathData;
+  pathname: TPathname | undefined;
+  pathData: TPathData | undefined;
   isValidPath: boolean;
+  isIndex: boolean;
 }

@@ -1,27 +1,57 @@
-import { useState, useEffect } from 'react';
+import { useReducer, useEffect } from 'react';
 import { useLocation } from '@reach/router';
 import { SitePaths } from '../data/paths';
 import { TPathname, TPathData, INDEX, PathDataHook } from '../types/paths';
 
+// @todo Modify TPathData to include 404 path(s)
+
+type State = {
+  pathname: TPathname | undefined;
+  pathData: TPathData | undefined;
+  isValidPath: boolean;
+  isIndex: boolean;
+};
+
+type Action = { type: 'SET_PATHDATA'; payload: TPathname | undefined };
+
+const initialState: State = {
+  pathname: INDEX,
+  pathData: SitePaths[INDEX],
+  isValidPath: true,
+  isIndex: true,
+};
+
+const locationReducer = (_state: State, action: Action): State => {
+  switch (action.type) {
+    case 'SET_PATHDATA': {
+      const pathname = action.payload;
+      const isValidPath = pathname !== undefined && pathname in SitePaths;
+      const pathData = isValidPath
+        ? SitePaths[pathname as TPathname]
+        : undefined;
+      const isIndex = isValidPath && pathname === INDEX;
+      return { pathname, pathData, isValidPath, isIndex };
+    }
+    default: {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      throw new Error(`UNHANDLED ACTION: ${action}`);
+    }
+  }
+};
+
 export const usePathData = (): PathDataHook => {
   const location = useLocation();
-  const [pathname, setPathname] = useState<TPathname>(INDEX);
-  const [isIndex, setIsIndex] = useState<boolean>(true);
-  const [pathData, setPathData] = useState<TPathData>(SitePaths[INDEX]);
-  const [isValidPath, setIsValidPath] = useState<boolean>(true);
+  const [state, dispatch] = useReducer(locationReducer, initialState);
 
   useEffect(() => {
-    if (location === undefined || !(location.pathname in SitePaths)) {
-      setIsValidPath(false);
-      setIsIndex(false);
-      return;
+    const newPathname =
+      location.pathname in SitePaths
+        ? (location.pathname as TPathname)
+        : undefined;
+    if (newPathname !== state.pathname) {
+      dispatch({ type: 'SET_PATHDATA', payload: newPathname });
     }
-    const newPathname = location.pathname as TPathname;
-    setIsValidPath(true);
-    setPathname(newPathname);
-    setPathData(SitePaths[newPathname]);
-    newPathname === INDEX ? setIsIndex(true) : setIsIndex(false);
-  }, [location.pathname]);
+  }, [location.pathname, state.pathname]);
 
-  return { pathname, isIndex, pathData, isValidPath };
+  return state;
 };

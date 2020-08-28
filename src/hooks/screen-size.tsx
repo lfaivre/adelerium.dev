@@ -1,24 +1,33 @@
 import { useState, useEffect } from 'react';
 
-export const useWindowWidth = () => {
-  const getWindowWidth = () => {
-    return typeof window !== 'undefined' ? window.innerWidth : undefined;
-  };
+type WindowWidth = number | undefined;
 
-  const [windowWidth, setWindowWidth] = useState(getWindowWidth());
+const getWindowWidth = (): WindowWidth => {
+  const newWindowWidth =
+    window && window.innerWidth ? window.innerWidth : undefined;
+  console.log(`NEW WINDOW WIDTH: ${newWindowWidth || 'UNDEFINED'}`);
+  return newWindowWidth;
+};
+
+export const useWindowWidth = (): WindowWidth => {
+  const [windowWidth, setWindowWidth] = useState<WindowWidth>(getWindowWidth());
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    const handleResize = () => {
+    const handleResize = (): void => {
+      // const newWindowWidth = getWindowWidth();
       setWindowWidth(getWindowWidth());
     };
-    window.addEventListener('resize', handleResize);
+
+    if (window) window.addEventListener('resize', handleResize);
+
     return () => {
-      window.removeEventListener('resize', handleResize);
+      if (window) window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(`WINDOW WIDTH MODIFIED: ${windowWidth || 'UNDEFINED'}`);
+  }, [windowWidth]);
 
   return windowWidth;
 };

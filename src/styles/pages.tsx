@@ -6,6 +6,7 @@ interface PageContentWrapperProps {
 
 // GENERAL
 export const PageContentWrapper = tw.div`w-full bg-transparent p-2 md:p-4`;
+export const PageContentWrapperError = tw.div`w-full h-screen bg-transparent p-2 md:p-4 flex justify-center items-center`;
 
 // INDEX PAGE
 export const IndexPageNavigatorWrapper = tw.div`w-full h-full min-h-screen`;
