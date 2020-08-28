@@ -5,6 +5,10 @@
 
 import './src/styles/index.css';
 
+// @note Import Stylesheet(s): Font Awesome
+
+import './src/styles/font-awesome';
+
 // @note Import Stylesheet(s): Google fonts
 
 import 'typeface-lobster-two';
@@ -13,10 +17,10 @@ import 'typeface-playfair-display';
 import 'typeface-playfair-display-sc';
 
 import rootWrapper from './src/state/root-wrapper';
-import { LayoutPageWrapper } from './src/components/Layout';
+import { PageWrapperElement } from './src/components/Layout';
 
 export const wrapRootElement = rootWrapper;
-export const wrapPageElement = LayoutPageWrapper;
+export const wrapPageElement = PageWrapperElement;
 
 export const onServiceWorkerUpdateReady = () => {
   const answer = window.confirm(

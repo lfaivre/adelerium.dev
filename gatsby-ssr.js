@@ -2,7 +2,7 @@
 // @todo Refactor root, page, and layout implementation
 
 import rootWrapper from './src/state/root-wrapper';
-import { LayoutPageWrapper } from './src/components/Layout';
+import { PageWrapperElement } from './src/components/Layout';
 
 export const wrapRootElement = rootWrapper;
-export const wrapPageElement = LayoutPageWrapper;
+export const wrapPageElement = PageWrapperElement;

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { PageProps } from 'gatsby';
 
 import { useAppState, useAppDispatch } from '../../state/app-context';
 import { usePathData } from '../../hooks/location';
+import { handleScroll } from '../../utils/window-interaction';
 
 import SideBar from '../SideBar';
 import Header from '../Header';
 import Footer from '../Footer';
-import BackgroundImage from '../../components/Shared/BackgroundImage';
+import BackgroundImage from '../Shared/BackgroundImage';
 
 import {
   SCREEN_SIZE,
@@ -15,7 +15,6 @@ import {
   pathsWithImgBgsMobile,
 } from '../../data/presentation';
 
-import '../../styles/font-awesome';
 import {
   LayoutWrapper,
   SideBarWrapper,
@@ -28,39 +27,37 @@ import {
   FooterWrapper,
 } from './styles';
 
-export const Layout = ({ children }) => {
+import { LayoutProps, PageWrapperElementProps } from './types';
+
+export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const pathData = usePathData();
   const { windowWidth, headerHeight } = useAppState();
   const dispatch = useAppDispatch();
+
+  /* eslint-disable unicorn/no-null */
   const headerRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
   const returnRef = useRef<HTMLDivElement | null>(null);
+  /* eslint-enable unicorn/no-null */
 
   useEffect(() => {
-    headerRef.current &&
-      dispatch({
-        type: 'SET_HEADER_HEIGHT',
-        headerHeight: headerRef.current.clientHeight,
-      });
-    footerRef.current &&
-      dispatch({
-        type: 'SET_FOOTER_HEIGHT',
-        footerHeight: footerRef.current.clientHeight,
-      });
-    returnRef.current &&
-      dispatch({
-        type: 'SET_RETURN_HEIGHT',
-        returnHeight: returnRef.current.clientHeight,
-      });
-  }, [pathData.pathname, windowWidth]);
+    if (headerRef.current && headerRef.current.clientHeight) {
+      const { clientHeight } = headerRef.current;
+      dispatch({ type: 'SET_HEADER_HEIGHT', headerHeight: clientHeight });
+    }
+    if (footerRef.current && footerRef.current.clientHeight) {
+      const { clientHeight } = footerRef.current;
+      dispatch({ type: 'SET_FOOTER_HEIGHT', footerHeight: clientHeight });
+    }
+    if (returnRef.current && returnRef.current.clientHeight) {
+      const { clientHeight } = returnRef.current;
+      dispatch({ type: 'SET_RETURN_HEIGHT', returnHeight: clientHeight });
+    }
+  }, [pathData.pathname, windowWidth, dispatch]);
 
   useEffect(() => {
     handleScroll();
   }, [pathData.pathname]);
-
-  const handleScroll = () => {
-    window && window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  };
 
   return (
     <LayoutWrapper>
@@ -72,7 +69,12 @@ export const Layout = ({ children }) => {
       <ContentWrapper>
         {!pathData.isIndex && (
           <HeaderWrapper ref={headerRef}>
-            <Header {...pathData} />
+            <Header
+              pathname={pathData.pathname}
+              isIndex={pathData.isIndex}
+              pathData={pathData.pathData}
+              isValidPath={pathData.isValidPath}
+            />
           </HeaderWrapper>
         )}
         {((windowWidth < SCREEN_SIZE.MD &&
@@ -90,14 +92,19 @@ export const Layout = ({ children }) => {
         {!pathData.isIndex && (
           <ReturnButtonWrapper ref={returnRef}>
             <ReturnButton onClick={handleScroll}>
-              <ReturnButtonIndicator></ReturnButtonIndicator>
-              <ReturnButtonIndicator></ReturnButtonIndicator>
+              <ReturnButtonIndicator />
+              <ReturnButtonIndicator />
             </ReturnButton>
           </ReturnButtonWrapper>
         )}
         {!pathData.isIndex && (
           <FooterWrapper ref={footerRef}>
-            <Footer {...pathData} />
+            <Footer
+              pathname={pathData.pathname}
+              isIndex={pathData.isIndex}
+              pathData={pathData.pathData}
+              isValidPath={pathData.isValidPath}
+            />
           </FooterWrapper>
         )}
       </ContentWrapper>
@@ -105,6 +112,10 @@ export const Layout = ({ children }) => {
   );
 };
 
-export const LayoutPageWrapper = ({ element, props }) => {
+export const PageWrapperElement = ({
+  element,
+  props,
+}: PageWrapperElementProps): React.ReactNode => {
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Layout {...props}>{element}</Layout>;
 };
