@@ -1,8 +1,11 @@
+// @docs https://github.com/ben-rogerson/twin.macro/blob/master/docs/emotion/gatsby.md
+
 module.exports = {
   twin: {
-    preset: "emotion",
     config: "./tailwind.config.js",
-    hasSuggestions: true,
+    preset: "emotion",
+    debugProp: true,
+    debugPlugins: false,
     debug: false,
   },
 }

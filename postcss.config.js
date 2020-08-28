@@ -1,3 +1,5 @@
+// @docs https://nystudio107.com/blog/using-tailwind-css-with-gatsby-react-emotion-styled-components
+
 module.exports = {
   plugins: [
     require("postcss-import")({
@@ -5,7 +7,7 @@ module.exports = {
     }),
     require("tailwindcss")("./tailwind.config.js"),
     require("postcss-preset-env")({
-      stage: 1,
+      autoprefixer: { grid: true },
       features: {
         "nesting-rules": true,
       },
