@@ -16,10 +16,10 @@ import 'typeface-mrs-sheppards';
 import 'typeface-playfair-display';
 import 'typeface-playfair-display-sc';
 
-import rootWrapper from './src/state/root-wrapper';
+import { RootWrapperElement } from './src/components/RootWrapperElement';
 import { PageWrapperElement } from './src/components/Layout';
 
-export const wrapRootElement = rootWrapper;
+export const wrapRootElement = RootWrapperElement;
 export const wrapPageElement = PageWrapperElement;
 
 export const onServiceWorkerUpdateReady = () => {
