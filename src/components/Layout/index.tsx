@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { useAppState, useAppDispatch } from '../../state/app-context';
 import { usePathData } from '../../hooks/location';
 import { handleScroll } from '../../utils/window-interaction';
+
+import { DefaultView } from '../../views/DefaultView';
+import { ErrorView } from '../../views/ErrorView';
+// import { LoadingView } from '../../views/LoadingView';
 
 import SideBar from '../SideBar';
 import Header from '../Header';
@@ -32,6 +36,7 @@ import { LayoutProps, PageWrapperElementProps } from './types';
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const pathData = usePathData();
   const { windowWidth, headerHeight } = useAppState();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
 
   /* eslint-disable unicorn/no-null */
@@ -39,6 +44,12 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const footerRef = useRef<HTMLDivElement | null>(null);
   const returnRef = useRef<HTMLDivElement | null>(null);
   /* eslint-enable unicorn/no-null */
+
+  // @todo Extract this to an external hook
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   useEffect(() => {
     console.log(pathData);
@@ -65,59 +76,11 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <LayoutWrapper>
-      {windowWidth >= SCREEN_SIZE.XL && (
-        <SideBarWrapper>
-          <SideBar />
-        </SideBarWrapper>
+      {/* {isLoading && <LoadingView />} */}
+      {!isLoading && pathData.isValidPath && (
+        <DefaultView>{children}</DefaultView>
       )}
-      <ContentWrapper>
-        {pathData.isValidPath && !pathData.isIndex && (
-          <HeaderWrapper
-            ref={headerRef}
-            onLoad={() => {
-              console.log('LOADED HEADER WRAPPER');
-            }}
-          >
-            <Header
-              pathname={pathData.pathname}
-              isIndex={pathData.isIndex}
-              pathData={pathData.pathData}
-              isValidPath={pathData.isValidPath}
-            />
-          </HeaderWrapper>
-        )}
-        {pathData.isValidPath &&
-          ((windowWidth < SCREEN_SIZE.MD &&
-            pathData.pathname in pathsWithImgBgsMobile) ||
-            (windowWidth >= SCREEN_SIZE.MD &&
-              pathData.pathname in pathsWithImgBgsDesktop)) && (
-            <BackgroundImage
-              headerHeight={headerHeight}
-              isIndex={pathData.isIndex}
-            />
-          )}
-        <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
-          {children}
-        </MainWrapper>
-        {pathData.isValidPath && !pathData.isIndex && (
-          <ReturnButtonWrapper ref={returnRef}>
-            <ReturnButton onClick={handleScroll}>
-              <ReturnButtonIndicator />
-              <ReturnButtonIndicator />
-            </ReturnButton>
-          </ReturnButtonWrapper>
-        )}
-        {pathData.isValidPath && !pathData.isIndex && (
-          <FooterWrapper ref={footerRef}>
-            <Footer
-              pathname={pathData.pathname}
-              isIndex={pathData.isIndex}
-              pathData={pathData.pathData}
-              isValidPath={pathData.isValidPath}
-            />
-          </FooterWrapper>
-        )}
-      </ContentWrapper>
+      {!isLoading && !pathData.isValidPath && <ErrorView>{children}</ErrorView>}
     </LayoutWrapper>
   );
 };

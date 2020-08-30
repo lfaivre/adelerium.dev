@@ -21,6 +21,7 @@ module.exports = {
         '1/4': '25%',
         '1/2': '50%',
         '3/4': '75%',
+        global: '1680px',
       },
       margin: {
         'about-title-left': '-7.5rem',

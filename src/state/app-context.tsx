@@ -5,7 +5,7 @@ import { SCREEN_SIZE } from '../data/presentation';
 import { Action, Dispatch, State, AppProviderProps } from '../types/state';
 
 const initialState: State = {
-  windowWidth: SCREEN_SIZE.MOBILE,
+  windowWidth: 0,
   headerHeight: 0,
   footerHeight: 0,
   returnHeight: 0,

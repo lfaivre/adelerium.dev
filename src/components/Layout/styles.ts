@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro';
 import { MainWrapperProps, ReturnButtonIndicatorProps } from './types';
 
-export const LayoutWrapper = tw.div`w-screen h-screen flex flex-row`;
+export const LayoutWrapper = tw.div`w-full max-w-global h-full flex flex-col justify-start items-center`;
 
 export const SideBarWrapper = tw.div`fixed hidden xl:block xl:w-1/5 h-full`;
 
