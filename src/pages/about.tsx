@@ -37,7 +37,7 @@ export default AboutPage;
 export const fluidImageAbout = graphql`
   fragment fluidImageAbout on File {
     childImageSharp {
-      fluid(maxWidth: 480, grayscale: true, quality: 75) {
+      fluid(maxWidth: 480, quality: 75) {
         ...GatsbyImageSharpFluid
       }
     }

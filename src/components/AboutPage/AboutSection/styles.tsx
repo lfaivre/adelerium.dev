@@ -32,6 +32,10 @@ export const AboutSectionWrapper = styled.div<DirectionProps>`
 export const ImageWrapper = tw.div`z-0 p-4 md:w-2/5 xl:w-1/3 h-full bg-charcoal`;
 export const FloatingImage = styled(Img)`
   ${tw`opacity-80`}
+  transition: opacity 0.6s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
 `;
 export const ContentWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>

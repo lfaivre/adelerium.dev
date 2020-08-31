@@ -79,7 +79,7 @@ export const Image = styled(Img)`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   opacity: 1;
   opacity: 80%;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.6s ease-in-out;
 
   &:hover {
     opacity: 1;
