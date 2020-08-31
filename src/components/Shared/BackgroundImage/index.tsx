@@ -1,17 +1,18 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
+import { BackgroundImageProps, GraphQLStaticQuery } from './types';
 import { StyledBackgroundImage } from './styles';
 
-interface Props {
-  headerHeight: number;
-  isIndex: boolean;
-}
+// @todo Use regular Gatsby Image component
 
-const BackgroundImage = ({ headerHeight, isIndex }: Props) => {
-  const imageQuery = useStaticQuery(graphql`
+export const BackgroundImage = ({
+  headerHeight,
+  isIndex,
+}: BackgroundImageProps): JSX.Element => {
+  const backgroundImageQuery: GraphQLStaticQuery = useStaticQuery(graphql`
     query {
-      background: file(relativePath: { eq: "waves-1680.jpg" }) {
+      backgroundImage: file(relativePath: { eq: "waves-1680.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1680, grayscale: true, quality: 75) {
             ...GatsbyImageSharpFluid_tracedSVG
@@ -23,12 +24,10 @@ const BackgroundImage = ({ headerHeight, isIndex }: Props) => {
 
   return (
     <StyledBackgroundImage
-      fluid={imageQuery.background.childImageSharp.fluid}
-      preserveStackingContext={true}
+      fluid={backgroundImageQuery.backgroundImage.childImageSharp.fluid}
+      preserveStackingContext
       headerHeight={headerHeight}
       isIndex={isIndex}
     />
   );
 };
-
-export default BackgroundImage;

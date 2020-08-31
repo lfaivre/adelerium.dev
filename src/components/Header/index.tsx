@@ -1,25 +1,36 @@
-import React from 'react';
-import StyledInternalLink from '../Shared/StyledInternalLink';
+import React, { useState, useEffect } from 'react';
+import { StyledInternalLink } from '../Shared/StyledInternalLink';
 
-import { INDEX } from '../../types/paths';
-import { PathDataHook } from '../../types/paths';
+import { INDEX, PathDataHook } from '../../types/paths';
 import { InternalLinkDirection as ILD } from '../../types/presentation';
 
 import { HeaderWrapper, InternalLink, TitleWrapper, Title } from './styles';
 
-interface Props extends PathDataHook {}
+export const Header = (props: PathDataHook): JSX.Element => {
+  const [headerTitle, setHeaderTitle] = useState('Home');
 
-const Header = (props: Props) => {
+  useEffect(() => {
+    const newHeaderTitle =
+      props.pathData && props.pathData.text ? props.pathData.text : 'Error';
+    setHeaderTitle(newHeaderTitle);
+  }, [props.pathData]);
+
   return (
     <HeaderWrapper>
       <InternalLink to={INDEX}>
         <TitleWrapper>
-          <Title>{`${props.pathData.text}.`}</Title>
+          <Title>{`${headerTitle}.`}</Title>
         </TitleWrapper>
       </InternalLink>
-      <StyledInternalLink {...props} direction={ILD.Next} />
+      {props.pathData !== undefined && (
+        <StyledInternalLink
+          pathname={props.pathData.pathname}
+          isIndex={props.isIndex}
+          pathData={props.pathData}
+          isValidPath={props.isValidPath}
+          direction={ILD.Next}
+        />
+      )}
     </HeaderWrapper>
   );
 };
-
-export default Header;

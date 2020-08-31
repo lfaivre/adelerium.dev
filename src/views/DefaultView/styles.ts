@@ -6,14 +6,14 @@ export const DefaultViewContainer = tw.div`relative w-full h-full min-h-screen b
 export const SideBarWrapper = tw.div`absolute top-0 left-0 hidden xl:block xl:w-1/5 h-full min-h-screen bg-blue-900`;
 
 export const ContentWrapper = styled.div`
-  ${tw`relative w-full xl:w-4/5 min-h-screen flex flex-col`}
+  ${tw`relative z-0 w-full xl:w-4/5 min-h-screen flex flex-col`}
   @media (min-width: 1280px) {
     margin-left: 20%;
   }
   background-color: purple;
 `;
 
-export const HeaderWrapper = tw.div`fixed z-20 w-full xl:w-4/5 right-0 top-0`;
+export const HeaderWrapper = tw.div`absolute top-0 left-0 z-20 w-full`;
 
 export const MainWrapper = styled.div<MainWrapperProps>`
   ${tw`z-10 w-full`}

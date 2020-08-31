@@ -5,9 +5,9 @@ import { usePathData } from '../../hooks/location';
 import { handleScroll } from '../../utils/window-interaction';
 
 import { SideBar } from '../../components/SideBar';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import BackgroundImage from '../../components/Shared/BackgroundImage';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
+import { BackgroundImage } from '../../components/Shared/BackgroundImage';
 
 import {
   SCREEN_SIZE,
@@ -64,6 +64,15 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
     handleScroll();
   }, [pathData.pathname]);
 
+  const shouldShowBackgroundImage = (): boolean => {
+    return (
+      (windowWidth < SCREEN_SIZE.MD &&
+        (pathData.pathname as TPathname) in pathsWithImgBgsMobile) ||
+      (windowWidth >= SCREEN_SIZE.MD &&
+        (pathData.pathname as TPathname) in pathsWithImgBgsDesktop)
+    );
+  };
+
   return (
     <DefaultViewContainer>
       {windowWidth >= SCREEN_SIZE.XL && (
@@ -72,7 +81,7 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
         </SideBarWrapper>
       )}
       <ContentWrapper>
-        {/* {!pathData.isIndex && (
+        {!pathData.isIndex && (
           <HeaderWrapper ref={headerRef}>
             <Header
               pathname={pathData.pathname}
@@ -82,18 +91,15 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
             />
           </HeaderWrapper>
         )}
-        {((windowWidth < SCREEN_SIZE.MD &&
-          (pathData.pathname as TPathname) in pathsWithImgBgsMobile) ||
-          (windowWidth >= SCREEN_SIZE.MD &&
-            (pathData.pathname as TPathname) in pathsWithImgBgsDesktop)) && (
+        {shouldShowBackgroundImage() && (
           <BackgroundImage
             headerHeight={headerHeight}
             isIndex={pathData.isIndex}
           />
         )}
-        <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
+        {/* <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
           <></>
-        </MainWrapper>
+        </MainWrapper> */}
         {!pathData.isIndex && (
           <ReturnButtonWrapper ref={returnRef}>
             <ReturnButton onClick={handleScroll}>
@@ -111,7 +117,7 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
               isValidPath={pathData.isValidPath}
             />
           </FooterWrapper>
-        )} */}
+        )}
       </ContentWrapper>
     </DefaultViewContainer>
   );

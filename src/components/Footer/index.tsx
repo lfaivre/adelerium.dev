@@ -1,5 +1,5 @@
 import React from 'react';
-import StyledInternalLink from '../Shared/StyledInternalLink';
+import { StyledInternalLink } from '../Shared/StyledInternalLink';
 
 import { facts } from '../../data/facts';
 
@@ -29,9 +29,7 @@ import {
   BrandingTwo,
 } from './styles';
 
-interface Props extends PathDataHook {}
-
-const Footer = (props: Props) => {
+export const Footer = (props: PathDataHook): JSX.Element => {
   return (
     <FooterWrapper>
       <FirstFooterRow>
@@ -64,11 +62,27 @@ const Footer = (props: Props) => {
         </LinkWrapper>
       </FirstFooterRow>
       <SecondFooterRow>
-        <StyledInternalLink {...props} direction={ILD.Previous} />
+        {props.pathData !== undefined && (
+          <StyledInternalLink
+            pathname={props.pathData.pathname}
+            isIndex={props.isIndex}
+            pathData={props.pathData}
+            isValidPath={props.isValidPath}
+            direction={ILD.Previous}
+          />
+        )}
         <BrandingWrapper>
           <Branding>kevala design.</Branding>
         </BrandingWrapper>
-        <StyledInternalLink {...props} direction={ILD.Next} />
+        {props.pathData !== undefined && (
+          <StyledInternalLink
+            pathname={props.pathData.pathname}
+            isIndex={props.isIndex}
+            pathData={props.pathData}
+            isValidPath={props.isValidPath}
+            direction={ILD.Next}
+          />
+        )}
       </SecondFooterRow>
       <Divider />
       <ThirdFooterRow>
@@ -82,5 +96,3 @@ const Footer = (props: Props) => {
     </FooterWrapper>
   );
 };
-
-export default Footer;

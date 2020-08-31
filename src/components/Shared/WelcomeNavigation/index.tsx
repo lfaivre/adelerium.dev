@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StyledInternalLink from '../StyledInternalLink';
+import { StyledInternalLink } from '../StyledInternalLink';
 
 import { usePathData } from '../../../hooks/location';
 

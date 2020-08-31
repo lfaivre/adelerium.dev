@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { SitePaths } from '../../../data/paths';
-import { PathDataHook } from '../../../types/paths';
+import { INDEX, TPathname } from '../../../types/paths';
 import { InternalLinkDirection as ILD } from '../../../types/presentation';
 
+import { StyledInternalLinkProps } from './types';
 import {
   InternalLink,
   Placeholder,
@@ -15,21 +16,29 @@ import {
   Arrow,
 } from './styles';
 
-interface Props extends PathDataHook {
-  direction: ILD;
-}
+export const StyledInternalLink = ({
+  pathData,
+  isValidPath,
+  direction,
+}: StyledInternalLinkProps): JSX.Element => {
+  const linkDataFromProps = (): { pathname: TPathname; text: string } => {
+    let pathname;
 
-const StyledInternalLink = ({ pathData, isValidPath, direction }: Props) => {
-  const linkDataFromProps = (direction: ILD) => {
-    const pathname =
-      direction === ILD.Previous ? pathData.previous : pathData.next;
-    const text = SitePaths[pathname].text;
+    if (pathData !== undefined) {
+      pathname = direction === ILD.Previous ? pathData.previous : pathData.next;
+    } else {
+      pathname = INDEX;
+    }
+
+    const { text } = SitePaths[pathname];
+
     return { pathname, text };
   };
 
   return isValidPath &&
-    linkDataFromProps(direction).pathname !== pathData.pathname ? (
-    <InternalLink to={linkDataFromProps(direction).pathname}>
+    pathData !== undefined &&
+    linkDataFromProps().pathname !== pathData.pathname ? (
+    <InternalLink to={linkDataFromProps().pathname}>
       <InternalLinkWrapper _direction={direction}>
         <TitleTextWrapper _direction={direction}>
           <TitleText _direction={direction}>
@@ -37,17 +46,17 @@ const StyledInternalLink = ({ pathData, isValidPath, direction }: Props) => {
           </TitleText>
         </TitleTextWrapper>
         <PathInfoWrapper>
-          {direction === ILD.Previous ? <Arrow _direction={direction} /> : null}
-          <PathText _direction={direction}>
-            {linkDataFromProps(direction).text}
-          </PathText>
-          {direction === ILD.Next ? <Arrow _direction={direction} /> : null}
+          {direction === ILD.Previous ? (
+            <Arrow _direction={direction} />
+          ) : (
+            <></>
+          )}
+          <PathText _direction={direction}>{linkDataFromProps().text}</PathText>
+          {direction === ILD.Next ? <Arrow _direction={direction} /> : <></>}
         </PathInfoWrapper>
       </InternalLinkWrapper>
     </InternalLink>
   ) : (
-    <Placeholder></Placeholder>
+    <Placeholder />
   );
 };
-
-export default StyledInternalLink;

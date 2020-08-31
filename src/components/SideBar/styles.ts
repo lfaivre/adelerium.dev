@@ -1,26 +1,9 @@
-// import React from 'react';
 import tw, { styled } from 'twin.macro';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 import { SelectedProps } from './types';
-
-// const StyledExternalLink = ({
-//   className,
-//   children,
-//   ...rest
-// }: StyledExternalLinkProps): JSX.Element => (
-//   <OutboundLink
-//     // eslint-disable-next-line react/jsx-props-no-spreading
-//     {...rest}
-//     target="_blank"
-//     rel="noopener noreferrer"
-//     className={className}
-//   >
-//     {children}
-//   </OutboundLink>
-// );
 
 export const SideBarWrapper = tw.div`w-full h-full p-8 md:pt-16 flex flex-col justify-start items-center bg-charcoal`;
 

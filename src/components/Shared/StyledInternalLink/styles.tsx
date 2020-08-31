@@ -1,46 +1,48 @@
+import React from 'react';
 import tw, { styled } from 'twin.macro';
 import { Link } from 'gatsby';
 import { InternalLinkDirection as ILD } from '../../../types/presentation';
+import { DirectionProps, StyledArrowProps } from './types';
 
-interface DirectionProps {
-  readonly _direction: ILD;
-}
-
-interface StyledArrow
-  extends React.HTMLProps<HTMLSpanElement>,
-    DirectionProps {}
-
-const StyledArrow = ({ className, ...rest }: StyledArrow) => (
+const StyledArrow = ({ className, ...rest }: StyledArrowProps): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <span {...rest} className={className}>
-    <span></span>
+    <span />
   </span>
 );
 
 export const InternalLink = styled(Link)`
   ${tw`h-full w-32`}
 `;
+
 export const Placeholder = tw.div`h-full w-32`;
+
 export const InternalLinkWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === ILD.Previous ? tw`items-end` : tw`items-start`}
   ${tw`w-full h-full flex flex-col justify-center`}
 `;
+
 export const TitleTextWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === ILD.Previous ? tw`justify-end` : tw`justify-start`}
   ${tw`flex flex-row items-center`}
 `;
+
 export const TitleText = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === ILD.Previous ? tw`text-right` : tw`text-left`}
   ${tw`text-base font-playfair-display font-bold text-charcoal`}
 `;
+
 export const PathInfoWrapper = tw.div`w-full flex flex-row justify-between items-center`;
+
 export const PathText = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === ILD.Previous ? tw`text-right` : tw`text-left`}
   ${tw`text-base font-playfair-display font-normal text-charcoal`}
 `;
+
 export const Arrow = styled(StyledArrow)`
   ${({ _direction }) => (_direction === ILD.Previous ? tw`mr-4` : tw`ml-4`)}
   width: 3rem;
