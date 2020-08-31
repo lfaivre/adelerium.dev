@@ -44,7 +44,6 @@ export const HeaderWrapper = styled.div<HeaderWrapperProps>`
   @media (min-width: 1280px) {
     width: ${({ layoutWidth }) => `${Math.floor(0.8 * layoutWidth)}px`};
   }
-  border-bottom: 0.125rem solid var(--offpink-translucent);
 `;
 
 export const MainWrapper = styled.div<MainWrapperProps>`
