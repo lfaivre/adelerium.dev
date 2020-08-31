@@ -76,7 +76,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Image = styled(Img)`
-  ${tw`opacity-80`}
+  ${tw`opacity-100`}
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
 `;
 
