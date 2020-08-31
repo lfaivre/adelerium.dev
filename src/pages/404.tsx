@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppState } from '../state/app-context';
 
-import SEO from '../components/Shared/SEO';
+import { SEO } from '../components/Shared/SEO';
 import { Message } from '../components/404Page/Message';
 
 import { ErrorPageContentWrapper } from '../styles/pages';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SEO from '../components/Shared/SEO';
+import { SEO } from '../components/Shared/SEO';
 import { SideBar } from '../components/SideBar';
 
 import { useAppState } from '../state/app-context';
@@ -12,14 +12,14 @@ import {
   IndexPageContentWrapper,
 } from '../styles/pages';
 
-const IndexPage = () => {
+const IndexPage = (): JSX.Element => {
   const { windowWidth } = useAppState();
 
   return (
     <>
       <SEO title="Home" />
       {!(windowWidth < SCREEN_SIZE.XL) ? (
-        <IndexPageContentWrapper></IndexPageContentWrapper>
+        <IndexPageContentWrapper />
       ) : (
         <IndexPageNavigatorWrapper>
           <SideBar />
@@ -29,4 +29,5 @@ const IndexPage = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default IndexPage;

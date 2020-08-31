@@ -3,26 +3,7 @@ import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import { ProjectDirection as PD } from '../../../types/presentation';
-
-interface DirectionProps {
-  readonly _direction: PD;
-}
-
-// TODO: Fix broken OutboundLink type
-// interface StyledExternalLinkProps
-//   extends React.HTMLProps<HTMLAnchorElement>,
-//     DirectionProps {}
-
-const StyledExternalLink = ({ className, children, ...rest }: any) => (
-  <OutboundLink
-    {...rest}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={className}
-  >
-    {children}
-  </OutboundLink>
-);
+import { DirectionProps } from './types';
 
 export const PreviewWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
@@ -31,9 +12,11 @@ export const PreviewWrapper = styled.div<DirectionProps>`
       : tw`flex-col lg:flex-row-reverse`}
   ${tw`relative w-full p-4 mobile:p-8 mb-2 md:mb-4 last:mb-0 flex bg-offpink`}
 `;
+
 export const PreviewWrapperWithFX = styled(PreviewWrapper)`
   ${tw`transition-transform duration-700 ease-in-out cursor-pointer transform hover:scale-105`}
 `;
+
 export const ThumbnailWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left
@@ -41,6 +24,7 @@ export const ThumbnailWrapper = styled.div<DirectionProps>`
       : tw`items-center lg:ml-8 lg:items-end`}
   ${tw`w-full lg:w-1/2 mb-4 mobile-only:mb-8 sm:mb-8 lg:mb-0 flex flex-col items-center lg:justify-start`}
 `;
+
 export const ThumbnailInfoWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left
@@ -48,6 +32,7 @@ export const ThumbnailInfoWrapper = styled.div<DirectionProps>`
       : tw`flex-row-reverse justify-end`}
   ${tw`w-full mb-2 flex items-center`}
 `;
+
 export const OrderNumberWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left
@@ -55,6 +40,7 @@ export const OrderNumberWrapper = styled.div<DirectionProps>`
       : tw`ml-4 md:ml-8 flex-row-reverse justify-end`}
   ${tw`flex items-center`}
 `;
+
 export const OrderNumber = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
@@ -63,76 +49,93 @@ export const OrderNumber = styled.p<DirectionProps>`
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--charcoal);
 `;
+
 export const TitleAndTypeWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`flex-1 flex flex-col justify-center`}
 `;
+
 export const Title = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`mb-2 text-charcoal text-2xl md:text-3.5xl font-playfair-display font-bold`}
 `;
+
 export const Type = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`text-charcoal text-xs md:text-base font-playfair-display font-normal`}
 `;
+
 export const Bold = tw.span`font-bold`;
+
 export const ImageWrapper = styled.div`
   ${tw`w-full p-4 bg-offwhite`}
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
 `;
+
 export const Image = styled(Img)`
   ${tw`opacity-80`}
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
 `;
+
 export const ContentWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`flex-1 lg:px-8 flex flex-col justify-center`}
 `;
+
 export const DescAndTechWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`w-full mb-4 mobile:mb-8 flex flex-col justify-center`}
 `;
+
 export const DescriptionWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`w-full mb-2 lg:mb-8 flex flex-col justify-center`}
 `;
+
 export const DescriptionTitle = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`mb-1 lg:mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold`}
 `;
+
 export const Description = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`text-charcoal text-xs mobile:text-base font-playfair-display font-normal`}
 `;
+
 export const TechnologyWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`w-full flex flex-col justify-center`}
 `;
+
 export const TechnologyTitle = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold`}
 `;
+
 export const Technology = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`text-charcoal text-xs mobile:text-base font-playfair-display font-normal`}
 `;
+
 export const DividerWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`lg:pr-24 items-start` : tw`lg:pl-24 items-end`}
   ${tw`w-full mb-4 mobile:mb-8 flex flex-col justify-center`}
 `;
+
 export const Divider = tw.hr`w-full h-0 mb-2 last:mb-0 border border-charcoal`;
+
 export const LinksWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left
@@ -140,20 +143,24 @@ export const LinksWrapper = styled.div<DirectionProps>`
       : tw`justify-center lg:justify-end`}
   ${tw`w-full flex flex-row items-center`}
 `;
-export const ExternalLink = styled(StyledExternalLink)`
+
+export const ExternalLink = styled(OutboundLink)<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`mr-8 last:mr-0` : tw`ml-8`}
   ${({ _direction }) =>
     _direction !== PD.Left && `&:first-of-type {margin-left: 0}`}
 `;
+
 export const LinkText = styled.span<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
   ${tw`hidden lg:block text-charcoal text-base font-playfair-display font-normal`}
 `;
+
 export const LinkIcon = styled(FontAwesomeIcon)`
   ${tw`block lg:hidden text-charcoal text-3.5xl`}
 `;
+
 export const ArrowIcon = styled(FontAwesomeIcon)<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left

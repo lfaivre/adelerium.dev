@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import WelcomeNavigation from '../Shared/WelcomeNavigation';
+import { WelcomeNavigation } from '../Shared/WelcomeNavigation';
 
 // @todo: Refactor TypeScript, patched in for now
 

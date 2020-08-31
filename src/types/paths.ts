@@ -1,4 +1,4 @@
-// TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
+// @todo Refactor TypeScript
 
 export type TPathname =
   | '/'
@@ -8,13 +8,13 @@ export type TPathname =
   | '/projects/'
   | '/blog'
   | '/blog/';
-export const INDEX: '/' = '/';
-export const ABOUT: '/about' = '/about';
-export const ABOUT_ALT: '/about/' = '/about/';
-export const PROJECTS: '/projects' = '/projects';
-export const PROJECTS_ALT: '/projects/' = '/projects/';
-export const BLOG: '/blog' = '/blog';
-export const BLOG_ALT: '/blog/' = '/blog/';
+export const INDEX = '/' as const;
+export const ABOUT = '/about' as const;
+export const ABOUT_ALT = '/about/' as const;
+export const PROJECTS = '/projects' as const;
+export const PROJECTS_ALT = '/projects/' as const;
+export const BLOG = '/blog' as const;
+export const BLOG_ALT = '/blog/' as const;
 export const Pathnames: Array<TPathname> = [
   INDEX,
   ABOUT,

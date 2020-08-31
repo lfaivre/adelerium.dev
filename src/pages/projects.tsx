@@ -1,13 +1,15 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 
-import SEO from '../components/Shared/SEO';
-import Preview from '../components/ProjectsPage/Preview';
+import { SEO } from '../components/Shared/SEO';
+import { Preview } from '../components/ProjectsPage/Preview';
 
 import { projectData } from '../data/projects';
 import { ProjectsPageContentWrapper } from '../styles/pages';
 
-const ProjectsPage = ({ data }: PageProps) => {
+// @todo Will fix after Contentful integration
+
+const ProjectsPage = ({ data }: PageProps): JSX.Element => {
   return (
     <>
       <SEO title="Projects" />
@@ -22,6 +24,7 @@ const ProjectsPage = ({ data }: PageProps) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default ProjectsPage;
 
 export const fluidImage = graphql`

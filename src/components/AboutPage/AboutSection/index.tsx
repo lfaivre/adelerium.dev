@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useAppState } from '../../../state/app-context';
 
 import { SCREEN_SIZE } from '../../../data/presentation';
-import { AboutSectionAttributes } from '../../../types/about';
 import { AboutSectionDirection as ASD } from '../../../types/presentation';
 
+import { AboutSectionProps } from './types';
 import {
   AboutSectionWrapper,
   ImageWrapper,
@@ -21,12 +21,12 @@ import {
   CounterText,
 } from './styles';
 
-interface Props {
-  sectionData: AboutSectionAttributes;
-  count: number;
-}
+// @todo Will fix about section when contentful integration is complete
 
-const AboutSection = ({ sectionData, count }: Props) => {
+export const AboutSection = ({
+  sectionData,
+  count,
+}: AboutSectionProps): JSX.Element => {
   const { windowWidth } = useAppState();
   const [direction, setDirection] = useState(ASD.Left);
 
@@ -76,5 +76,3 @@ const AboutSection = ({ sectionData, count }: Props) => {
     </AboutSectionWrapper>
   );
 };
-
-export default AboutSection;

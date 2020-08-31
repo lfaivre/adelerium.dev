@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { BlogPost } from '../../../types/blog';
-
+import { PostProps } from './types';
 import {
   BlogPostWrapper,
   TitleWrapper,
@@ -10,11 +9,7 @@ import {
   Subtitle,
 } from './styles';
 
-interface Props {
-  blogPost: BlogPost;
-}
-
-const Post = ({ blogPost }: Props) => {
+export const Post = ({ blogPost }: PostProps): JSX.Element => {
   return (
     <BlogPostWrapper>
       <TitleWrapper>
@@ -30,5 +25,3 @@ const Post = ({ blogPost }: Props) => {
     </BlogPostWrapper>
   );
 };
-
-export default Post;

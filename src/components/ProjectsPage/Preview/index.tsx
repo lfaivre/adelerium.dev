@@ -6,8 +6,9 @@ import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 
-import { ProjectAttrs } from '../../../types/projects';
 import { ProjectDirection } from '../../../types/presentation';
+
+import { PreviewProps } from './types';
 import {
   PreviewWrapper,
   ThumbnailWrapper,
@@ -37,17 +38,15 @@ import {
   ArrowIcon,
 } from './styles';
 
-interface Props {
-  project: ProjectAttrs;
-}
+// @todo Will fix preview component once Contentful is integrated
 
-const Preview = ({ project }: Props) => {
+export const Preview = ({ project }: PreviewProps): JSX.Element => {
   const [direction, setDirection] = useState(ProjectDirection.Left);
 
   useEffect(() => {
-    const direction =
+    const newDirection =
       project.order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
-    setDirection(direction);
+    setDirection(newDirection);
   }, [project.order]);
 
   return (
@@ -62,7 +61,7 @@ const Preview = ({ project }: Props) => {
           <TitleAndTypeWrapper _direction={direction}>
             <Title _direction={direction}>{project.preview.title}</Title>
             <Type _direction={direction}>
-              {project.preview.type}&nbsp;<Bold>//</Bold>&nbsp;
+              {project.preview.type}&nbsp;<Bold>&#47;&#47;</Bold>&nbsp;
               {project.preview.date}
             </Type>
           </TitleAndTypeWrapper>
@@ -102,7 +101,9 @@ const Preview = ({ project }: Props) => {
                 see&nbsp;it&nbsp;<Bold>hosted.</Bold>
               </LinkText>
             </ExternalLink>
-          ) : null}
+          ) : (
+            <></>
+          )}
           {project.externalLinks.githubURL !== '' ? (
             <ExternalLink
               href={project.externalLinks.githubURL}
@@ -114,7 +115,9 @@ const Preview = ({ project }: Props) => {
                 view&nbsp;on&nbsp;<Bold>github.</Bold>
               </LinkText>
             </ExternalLink>
-          ) : null}
+          ) : (
+            <></>
+          )}
           {project.externalLinks.figmaURL !== '' ? (
             <ExternalLink
               href={project.externalLinks.figmaURL}
@@ -126,7 +129,9 @@ const Preview = ({ project }: Props) => {
                 view&nbsp;on&nbsp;<Bold>figma.</Bold>
               </LinkText>
             </ExternalLink>
-          ) : null}
+          ) : (
+            <></>
+          )}
         </LinksWrapper>
       </ContentWrapper>
       <ArrowIcon
@@ -137,5 +142,3 @@ const Preview = ({ project }: Props) => {
     </PreviewWrapper>
   );
 };
-
-export default Preview;

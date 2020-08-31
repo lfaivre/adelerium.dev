@@ -1,4 +1,4 @@
-// REFACTOR: NEED A BETTER IMPLEMENTATION
+// @todo Refactor this TypeScript implementation
 
 export interface AboutSectionAttributes {
   order: number;

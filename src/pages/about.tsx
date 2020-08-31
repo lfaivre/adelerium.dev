@@ -1,14 +1,16 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 
-import SEO from '../components/Shared/SEO';
-import AboutSection from '../components/AboutPage/AboutSection';
+import { SEO } from '../components/Shared/SEO';
+import { AboutSection } from '../components/AboutPage/AboutSection';
 
 import { AboutSectionData } from '../data/about';
 
 import { AboutPageContentWrapper } from '../styles/pages';
 
-const AboutPage = ({ data }: PageProps) => {
+// @todo Will fix about section when contentful integration is complete
+
+const AboutPage = ({ data }: PageProps): JSX.Element => {
   return (
     <>
       <SEO title="About" />
@@ -29,6 +31,7 @@ const AboutPage = ({ data }: PageProps) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default AboutPage;
 
 export const fluidImageAbout = graphql`

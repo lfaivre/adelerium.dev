@@ -2,13 +2,13 @@ import React from 'react';
 
 import { useAppState } from '../state/app-context';
 
-import SEO from '../components/Shared/SEO';
-import Post from '../components/BlogPage/Post';
+import { SEO } from '../components/Shared/SEO';
+import { Post } from '../components/BlogPage/Post';
 
 import { ContentfulBlogData } from '../data/blog';
 import { BlogPageContentWrapper } from '../styles/pages';
 
-const BlogPage = () => {
+const BlogPage = (): JSX.Element => {
   const { headerHeight, footerHeight, returnHeight } = useAppState();
   const staticsHeight = headerHeight + footerHeight + returnHeight;
 
@@ -24,4 +24,5 @@ const BlogPage = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default BlogPage;
