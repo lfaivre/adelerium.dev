@@ -7,7 +7,6 @@ import { handleScroll } from '../../utils/window-interaction';
 import { SideBar } from '../../components/SideBar';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { BackgroundImage } from '../../components/Shared/BackgroundImage';
 
 import {
   SCREEN_SIZE,
@@ -20,6 +19,7 @@ import {
   DefaultViewContainer,
   SideBarWrapper,
   ContentWrapper,
+  BackgroundImage,
   HeaderWrapper,
   MainWrapper,
   ReturnButtonWrapper,
@@ -42,13 +42,9 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
 
   // @todo Extract this to an external hook
   useEffect(() => {
-    console.log(pathData);
     if (headerRef.current && headerRef.current.clientHeight) {
       const { clientHeight } = headerRef.current;
-      console.log('SET HEADER HEIGHT:', clientHeight);
       dispatch({ type: 'SET_HEADER_HEIGHT', headerHeight: clientHeight });
-    } else {
-      console.log('NO HEADER REF');
     }
     if (footerRef.current && footerRef.current.clientHeight) {
       const { clientHeight } = footerRef.current;
@@ -91,12 +87,9 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
             />
           </HeaderWrapper>
         )}
-        {/* {shouldShowBackgroundImage() && (
-          <BackgroundImage
-            headerHeight={headerHeight}
-            isIndex={pathData.isIndex}
-          />
-        )} */}
+        {shouldShowBackgroundImage() && (
+          <BackgroundImage layoutWidth={layoutWidth} />
+        )}
         <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
           {children}
         </MainWrapper>

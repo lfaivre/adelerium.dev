@@ -10,6 +10,10 @@ export interface ContentWrapperProps {
   layoutWidth: number;
 }
 
+export interface BackgroundImageProps {
+  layoutWidth: number;
+}
+
 export interface HeaderWrapperProps {
   layoutWidth: number;
 }

@@ -2,10 +2,13 @@ import tw, { styled } from 'twin.macro';
 import {
   SideBarWrapperProps,
   ContentWrapperProps,
+  BackgroundImageProps,
   HeaderWrapperProps,
   MainWrapperProps,
   ReturnButtonIndicatorProps,
 } from './types';
+
+import backgroundImage from './waves-1344.jpg';
 
 export const DefaultViewContainer = tw.div`w-full h-full min-h-screen flex flex-row justify-start`;
 
@@ -23,6 +26,17 @@ export const ContentWrapper = styled.div<ContentWrapperProps>`
     margin-left: ${({ layoutWidth }) => `${Math.floor(0.2 * layoutWidth)}px`};
     width: ${({ layoutWidth }) => `${Math.floor(0.8 * layoutWidth)}px`};
   }
+`;
+
+export const BackgroundImage = styled.div<BackgroundImageProps>`
+  ${tw`fixed top-0 w-full h-screen`}
+  @media (min-width: 1280px) {
+    width: ${({ layoutWidth }) => `${Math.floor(0.8 * layoutWidth)}px`};
+  }
+  background-image: url(${backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export const HeaderWrapper = styled.div<HeaderWrapperProps>`
