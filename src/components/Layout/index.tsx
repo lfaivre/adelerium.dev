@@ -6,7 +6,7 @@ import { handleScroll } from '../../utils/window-interaction';
 
 import { DefaultView } from '../../views/DefaultView';
 import { ErrorView } from '../../views/ErrorView';
-// import { LoadingView } from '../../views/LoadingView';
+import { LoadingView } from '../../views/LoadingView';
 
 import SideBar from '../SideBar';
 import Header from '../Header';
@@ -35,8 +35,7 @@ import { LayoutProps, PageWrapperElementProps } from './types';
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const pathData = usePathData();
-  const { windowWidth, headerHeight } = useAppState();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { windowWidth, headerHeight, isLoading } = useAppState();
   const dispatch = useAppDispatch();
 
   /* eslint-disable unicorn/no-null */
@@ -45,12 +44,12 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const returnRef = useRef<HTMLDivElement | null>(null);
   /* eslint-enable unicorn/no-null */
 
-  // @todo Extract this to an external hook
-
   useEffect(() => {
-    setIsLoading(false);
-  }, []);
+    // setIsLoading(false);
+    dispatch({ type: 'SET_LOADING', isLoading: false });
+  }, [dispatch]);
 
+  // @todo Extract this to an external hook
   useEffect(() => {
     console.log(pathData);
     if (headerRef.current && headerRef.current.clientHeight) {
@@ -76,11 +75,12 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <LayoutWrapper>
-      {/* {isLoading && <LoadingView />} */}
-      {!isLoading && pathData.isValidPath && (
+      {isLoading && <LoadingView />}
+      {/* {!isLoading && pathData.isValidPath && (
         <DefaultView>{children}</DefaultView>
-      )}
-      {!isLoading && !pathData.isValidPath && <ErrorView>{children}</ErrorView>}
+      )} */}
+      {/* {!isLoading && !pathData.isValidPath && <ErrorView>{children}</ErrorView>} */}
+      {!isLoading && <ErrorView>{children}</ErrorView>}
     </LayoutWrapper>
   );
 };

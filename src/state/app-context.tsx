@@ -5,6 +5,7 @@ import { SCREEN_SIZE } from '../data/presentation';
 import { Action, Dispatch, State, AppProviderProps } from '../types/state';
 
 const initialState: State = {
+  isLoading: true,
   windowWidth: 0,
   headerHeight: 0,
   footerHeight: 0,
@@ -18,6 +19,9 @@ const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
+    case 'SET_LOADING': {
+      return { ...state, isLoading: action.isLoading };
+    }
     case 'SET_WINDOW_WIDTH': {
       return { ...state, windowWidth: action.windowWidth };
     }
