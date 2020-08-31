@@ -3,11 +3,13 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import WelcomeNavigation from '../Shared/WelcomeNavigation';
 
-// TODO: REFACTOR TYPESCRIPT, PATCHED IN FOR NOW
+// @todo: Refactor TypeScript, patched in for now
+
 import { SideBarData } from './data';
 import { SiteData } from '../../data/site';
 import { SideBarView as SBV } from '../../types/presentation';
 
+import { GraphQLStaticQuery } from './types';
 import {
   SideBarWrapper,
   ProfileWrapper,
@@ -29,10 +31,10 @@ import {
   ViewButton,
 } from './styles';
 
-const SideBar = () => {
+export const SideBar = (): JSX.Element => {
   const [sideBarView, setSideBarView] = useState(SBV.InternalLinks);
 
-  const sideBarQuery = useStaticQuery(graphql`
+  const sideBarQuery: GraphQLStaticQuery = useStaticQuery(graphql`
     query {
       profile: file(relativePath: { eq: "profile-375.jpg" }) {
         childImageSharp {
@@ -103,5 +105,3 @@ const SideBar = () => {
     </SideBarWrapper>
   );
 };
-
-export default SideBar;

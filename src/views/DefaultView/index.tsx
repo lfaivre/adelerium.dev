@@ -4,7 +4,7 @@ import { useAppState, useAppDispatch } from '../../state/app-context';
 import { usePathData } from '../../hooks/location';
 import { handleScroll } from '../../utils/window-interaction';
 
-import SideBar from '../../components/SideBar';
+import { SideBar } from '../../components/SideBar';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import BackgroundImage from '../../components/Shared/BackgroundImage';
@@ -72,7 +72,7 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
         </SideBarWrapper>
       )}
       <ContentWrapper>
-        {!pathData.isIndex && (
+        {/* {!pathData.isIndex && (
           <HeaderWrapper ref={headerRef}>
             <Header
               pathname={pathData.pathname}
@@ -92,7 +92,7 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
           />
         )}
         <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
-          {children}
+          <></>
         </MainWrapper>
         {!pathData.isIndex && (
           <ReturnButtonWrapper ref={returnRef}>
@@ -111,7 +111,7 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
               isValidPath={pathData.isValidPath}
             />
           </FooterWrapper>
-        )}
+        )} */}
       </ContentWrapper>
     </DefaultViewContainer>
   );

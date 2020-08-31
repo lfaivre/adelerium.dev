@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SEO from '../components/Shared/SEO';
-import SideBar from '../components/SideBar';
+import { SideBar } from '../components/SideBar';
 
 import { useAppState } from '../state/app-context';
 
