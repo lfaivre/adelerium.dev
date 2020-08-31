@@ -20,6 +20,7 @@ import {
   LinkWrapper,
   ExternalLink,
   SecondFooterRow,
+  StyledInternalLinkPlaceholder,
   BrandingWrapper,
   Branding,
   Divider,
@@ -62,27 +63,27 @@ export const Footer = (props: PathDataHook): JSX.Element => {
         </LinkWrapper>
       </FirstFooterRow>
       <SecondFooterRow>
-        {props.pathData !== undefined && (
+        {props.pathData !== undefined ? (
           <StyledInternalLink
-            pathname={props.pathData.pathname}
+            pathname={props.pathname}
             isIndex={props.isIndex}
             pathData={props.pathData}
             isValidPath={props.isValidPath}
             direction={ILD.Previous}
           />
+        ) : (
+          <StyledInternalLinkPlaceholder />
         )}
         <BrandingWrapper>
           <Branding>kevala design.</Branding>
         </BrandingWrapper>
-        {props.pathData !== undefined && (
-          <StyledInternalLink
-            pathname={props.pathData.pathname}
-            isIndex={props.isIndex}
-            pathData={props.pathData}
-            isValidPath={props.isValidPath}
-            direction={ILD.Next}
-          />
-        )}
+        <StyledInternalLink
+          pathname={props.pathname}
+          isIndex={props.isIndex}
+          pathData={props.pathData}
+          isValidPath={props.isValidPath}
+          direction={ILD.Next}
+        />
       </SecondFooterRow>
       <Divider />
       <ThirdFooterRow>

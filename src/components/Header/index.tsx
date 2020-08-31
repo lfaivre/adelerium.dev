@@ -22,15 +22,13 @@ export const Header = (props: PathDataHook): JSX.Element => {
           <Title>{`${headerTitle}.`}</Title>
         </TitleWrapper>
       </InternalLink>
-      {props.pathData !== undefined && (
-        <StyledInternalLink
-          pathname={props.pathData.pathname}
-          isIndex={props.isIndex}
-          pathData={props.pathData}
-          isValidPath={props.isValidPath}
-          direction={ILD.Next}
-        />
-      )}
+      <StyledInternalLink
+        pathname={props.pathname}
+        isIndex={props.isIndex}
+        pathData={props.pathData}
+        isValidPath={props.isValidPath}
+        direction={ILD.Next}
+      />
     </HeaderWrapper>
   );
 };

@@ -1,20 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 
 import { useAppState, useAppDispatch } from '../../state/app-context';
-import { usePathData } from '../../hooks/location';
 
 import { DefaultView } from '../../views/DefaultView';
-// import { ErrorView } from '../../views/ErrorView';
 import { LoadingView } from '../../views/LoadingView';
 
 import { LayoutProps, PageWrapperElementProps } from './types';
 import { LayoutWrapper } from './styles';
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const pathData = usePathData();
   const { isLoading, windowWidth } = useAppState();
   const dispatch = useAppDispatch();
 
+  /* eslint-disable-next-line unicorn/no-null */
   const layoutRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -31,11 +29,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
     <LayoutWrapper ref={layoutRef}>
       {isLoading && <LoadingView />}
-      {!isLoading && pathData.isValidPath && (
-        <DefaultView>{children}</DefaultView>
-      )}
-      {/* {!isLoading && !pathData.isValidPath && <ErrorView>{children}</ErrorView>} */}
-      {/* {!isLoading && <ErrorView>{children}</ErrorView>} */}
+      {!isLoading && <DefaultView>{children}</DefaultView>}
     </LayoutWrapper>
   );
 };

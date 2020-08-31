@@ -17,27 +17,26 @@ import {
 } from './styles';
 
 export const StyledInternalLink = ({
+  pathname,
   pathData,
-  isValidPath,
   direction,
 }: StyledInternalLinkProps): JSX.Element => {
   const linkDataFromProps = (): { pathname: TPathname; text: string } => {
-    let pathname;
+    let newPathname;
 
     if (pathData !== undefined) {
-      pathname = direction === ILD.Previous ? pathData.previous : pathData.next;
+      newPathname =
+        direction === ILD.Previous ? pathData.previous : pathData.next;
     } else {
-      pathname = INDEX;
+      newPathname = INDEX;
     }
 
-    const { text } = SitePaths[pathname];
+    const { text } = SitePaths[newPathname];
 
-    return { pathname, text };
+    return { pathname: newPathname, text };
   };
 
-  return isValidPath &&
-    pathData !== undefined &&
-    linkDataFromProps().pathname !== pathData.pathname ? (
+  return linkDataFromProps().pathname !== pathname ? (
     <InternalLink to={linkDataFromProps().pathname}>
       <InternalLinkWrapper _direction={direction}>
         <TitleTextWrapper _direction={direction}>

@@ -27,7 +27,9 @@ export const ExternalLink = styled(OutboundLink)`
 
 export const SecondFooterRow = tw.div`w-full mb-8 flex flex-row justify-between items-start`;
 
-export const BrandingWrapper = tw.div`hidden md:flex w-2/6 flex-row justify-center items-center`;
+export const StyledInternalLinkPlaceholder = tw.div`h-full w-32 invisible`;
+
+export const BrandingWrapper = tw.div`hidden md:flex w-2/6 self-center flex-row justify-center items-center`;
 
 export const Branding = tw.p`text-charcoal text-4xl font-mrs-sheppards font-normal text-center`;
 
