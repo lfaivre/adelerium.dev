@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useAppState, useAppDispatch } from '../../state/app-context';
 import { usePathData } from '../../hooks/location';
@@ -12,15 +12,24 @@ import { LayoutWrapper } from './styles';
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const pathData = usePathData();
-  const { isLoading } = useAppState();
+  const { isLoading, windowWidth } = useAppState();
   const dispatch = useAppDispatch();
+
+  const layoutRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     dispatch({ type: 'SET_LOADING', isLoading: false });
   }, [dispatch]);
 
+  useEffect(() => {
+    if (layoutRef.current && layoutRef.current.clientWidth) {
+      const { clientWidth } = layoutRef.current;
+      dispatch({ type: 'SET_LAYOUT_WIDTH', layoutWidth: clientWidth });
+    }
+  }, [windowWidth, dispatch]);
+
   return (
-    <LayoutWrapper>
+    <LayoutWrapper ref={layoutRef}>
       {isLoading && <LoadingView />}
       {!isLoading && pathData.isValidPath && (
         <DefaultView>{children}</DefaultView>

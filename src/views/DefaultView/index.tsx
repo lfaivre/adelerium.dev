@@ -31,7 +31,7 @@ import { TPathname } from '../../types/paths';
 
 export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
   const pathData = usePathData();
-  const { windowWidth, headerHeight } = useAppState();
+  const { windowWidth, layoutWidth, headerHeight } = useAppState();
   const dispatch = useAppDispatch();
 
   /* eslint-disable unicorn/no-null */
@@ -76,13 +76,13 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
   return (
     <DefaultViewContainer>
       {windowWidth >= SCREEN_SIZE.XL && (
-        <SideBarWrapper>
+        <SideBarWrapper layoutWidth={layoutWidth}>
           <SideBar />
         </SideBarWrapper>
       )}
-      <ContentWrapper>
+      <ContentWrapper layoutWidth={layoutWidth}>
         {!pathData.isIndex && (
-          <HeaderWrapper ref={headerRef}>
+          <HeaderWrapper ref={headerRef} layoutWidth={layoutWidth}>
             <Header
               pathname={pathData.pathname}
               isIndex={pathData.isIndex}
@@ -91,15 +91,15 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
             />
           </HeaderWrapper>
         )}
-        {shouldShowBackgroundImage() && (
+        {/* {shouldShowBackgroundImage() && (
           <BackgroundImage
             headerHeight={headerHeight}
             isIndex={pathData.isIndex}
           />
-        )}
-        {/* <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
-          <></>
-        </MainWrapper> */}
+        )} */}
+        <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
+          {children}
+        </MainWrapper>
         {!pathData.isIndex && (
           <ReturnButtonWrapper ref={returnRef}>
             <ReturnButton onClick={handleScroll}>

@@ -25,7 +25,6 @@ body {
 body #___gatsby {
   height: 100%;
   width: 100%;
-  background-color: pink;
 }
 
 body #___gatsby #gatsby-focus-wrapper {
@@ -38,6 +37,4 @@ body #___gatsby #gatsby-focus-wrapper {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-
-  background-color: orange;
 }

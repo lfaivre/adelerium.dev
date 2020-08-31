@@ -1,19 +1,36 @@
 import tw, { styled } from 'twin.macro';
-import { MainWrapperProps, ReturnButtonIndicatorProps } from './types';
+import {
+  SideBarWrapperProps,
+  ContentWrapperProps,
+  HeaderWrapperProps,
+  MainWrapperProps,
+  ReturnButtonIndicatorProps,
+} from './types';
 
-export const DefaultViewContainer = tw.div`relative w-full h-full min-h-screen bg-green-900 flex flex-row justify-center items-start`;
+export const DefaultViewContainer = tw.div`w-full h-full min-h-screen flex flex-row justify-start`;
 
-export const SideBarWrapper = tw.div`absolute top-0 left-0 hidden xl:block xl:w-1/5 h-full min-h-screen bg-blue-900`;
-
-export const ContentWrapper = styled.div`
-  ${tw`relative z-0 w-full xl:w-4/5 min-h-screen flex flex-col`}
+// @todo Add max-height to SideBar component, and center content
+export const SideBarWrapper = styled.div<SideBarWrapperProps>`
+  ${tw`fixed top-0 z-20 hidden xl:block h-full min-h-screen`}
   @media (min-width: 1280px) {
-    margin-left: 20%;
+    width: ${({ layoutWidth }) => `${Math.floor(0.2 * layoutWidth)}px`};
   }
-  background-color: purple;
 `;
 
-export const HeaderWrapper = tw.div`absolute top-0 left-0 z-20 w-full`;
+export const ContentWrapper = styled.div<ContentWrapperProps>`
+  ${tw`relative z-0 w-full min-h-screen flex flex-col`}
+  @media (min-width: 1280px) {
+    margin-left: ${({ layoutWidth }) => `${Math.floor(0.2 * layoutWidth)}px`};
+    width: ${({ layoutWidth }) => `${Math.floor(0.8 * layoutWidth)}px`};
+  }
+`;
+
+export const HeaderWrapper = styled.div<HeaderWrapperProps>`
+  ${tw`fixed top-0 z-20 w-full`}
+  @media (min-width: 1280px) {
+    width: ${({ layoutWidth }) => `${Math.floor(0.8 * layoutWidth)}px`};
+  }
+`;
 
 export const MainWrapper = styled.div<MainWrapperProps>`
   ${tw`z-10 w-full`}

@@ -7,6 +7,7 @@ import { Action, Dispatch, State, AppProviderProps } from '../types/state';
 const initialState: State = {
   isLoading: true,
   windowWidth: 0,
+  layoutWidth: 0,
   headerHeight: 0,
   footerHeight: 0,
   returnHeight: 0,
@@ -24,6 +25,9 @@ const appStateReducer = (state: State, action: Action): State => {
     }
     case 'SET_WINDOW_WIDTH': {
       return { ...state, windowWidth: action.windowWidth };
+    }
+    case 'SET_LAYOUT_WIDTH': {
+      return { ...state, layoutWidth: action.layoutWidth };
     }
     case 'SET_HEADER_HEIGHT': {
       return { ...state, headerHeight: action.headerHeight };
