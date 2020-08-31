@@ -38,6 +38,10 @@ import {
   ArrowIcon,
 } from './styles';
 
+// @temp Need to figure out how to enable a default value for external links
+
+const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
+
 // @todo Will fix preview component once Contentful is integrated
 
 export const Preview = ({ project }: PreviewProps): JSX.Element => {
@@ -49,6 +53,13 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
     setDirection(newDirection);
   }, [project.order]);
 
+  const getDateString = (): string => {
+    if (project.dateRangeBeginning !== project.dateRangeEnd) {
+      return `${project.dateRangeBeginning} - ${project.dateRangeEnd}`;
+    }
+    return `${project.dateRangeBeginning}`;
+  };
+
   return (
     <PreviewWrapper _direction={direction}>
       <ThumbnailWrapper _direction={direction}>
@@ -59,15 +70,15 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
             >{`0${project.order}.`}</OrderNumber>
           </OrderNumberWrapper>
           <TitleAndTypeWrapper _direction={direction}>
-            <Title _direction={direction}>{project.preview.title}</Title>
+            <Title _direction={direction}>{project.title}</Title>
             <Type _direction={direction}>
-              {project.preview.type}&nbsp;<Bold>&#47;&#47;</Bold>&nbsp;
-              {project.preview.date}
+              {project.type}&nbsp;<Bold>&#47;&#47;</Bold>&nbsp;
+              {getDateString()}
             </Type>
           </TitleAndTypeWrapper>
         </ThumbnailInfoWrapper>
         <ImageWrapper>
-          <Image fluid={project.preview.tempQuery.childImageSharp.fluid} />
+          <Image fluid={project.previewPicture.fluid} />
         </ImageWrapper>
       </ThumbnailWrapper>
       <ContentWrapper _direction={direction}>
@@ -75,7 +86,7 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
           <DescriptionWrapper _direction={direction}>
             <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>
             <Description _direction={direction}>
-              {project.preview.description}
+              {project.childContentfulProjectDescriptionTextNode.description}
             </Description>
           </DescriptionWrapper>
           <TechnologyWrapper _direction={direction}>
@@ -90,10 +101,10 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
           <Divider />
         </DividerWrapper>
         <LinksWrapper _direction={direction}>
-          {project.externalLinks.hostedURL !== '' ? (
+          {project.hostedUrl !== TEMP_URL_PLACEHOLDER ? (
             <ExternalLink
-              href={project.externalLinks.hostedURL}
-              label={project.externalLinks.hostedURL}
+              href={project.hostedUrl}
+              label={project.hostedUrl}
               _direction={direction}
             >
               <LinkIcon icon={faFirefox} />
@@ -104,10 +115,10 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
           ) : (
             <></>
           )}
-          {project.externalLinks.githubURL !== '' ? (
+          {project.gitHubUrl !== TEMP_URL_PLACEHOLDER ? (
             <ExternalLink
-              href={project.externalLinks.githubURL}
-              label={project.externalLinks.githubURL}
+              href={project.gitHubUrl}
+              label={project.gitHubUrl}
               _direction={direction}
             >
               <LinkIcon icon={faGithub} />
@@ -118,10 +129,10 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
           ) : (
             <></>
           )}
-          {project.externalLinks.figmaURL !== '' ? (
+          {project.figmaUrl !== TEMP_URL_PLACEHOLDER ? (
             <ExternalLink
-              href={project.externalLinks.figmaURL}
-              label={project.externalLinks.figmaURL}
+              href={project.figmaUrl}
+              label={project.figmaUrl}
               _direction={direction}
             >
               <LinkIcon icon={faFigma} />

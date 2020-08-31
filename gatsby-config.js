@@ -1,5 +1,30 @@
 // @docs https://www.gatsbyjs.com/docs/api-files-gatsby-config/
 
+const activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+
+// @todo Use chalk to print a more visual message
+console.log(`USING ENVIRONMENT: ${activeEnv.toUpperCase()}`);
+
+require('dotenv').config({ path: `.env.${activeEnv}` });
+
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+};
+
+if (process.env.CONTENTFUL_HOST) {
+  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+}
+
+const { spaceId, accessToken } = contentfulConfig;
+
+if (!spaceId || !accessToken) {
+  throw new Error(
+    'Contentful spaceId and the access token need to be provided.'
+  );
+}
+
 module.exports = {
   siteMetadata: {
     title: `Lorenzo Faivre - Portfolio`,
@@ -50,5 +75,9 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: contentfulConfig,
+    },
   ],
 };
