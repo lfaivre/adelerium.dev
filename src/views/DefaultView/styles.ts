@@ -40,7 +40,7 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
 `;
 
 export const HeaderWrapper = styled.div<HeaderWrapperProps>`
-  ${tw`fixed top-0 z-20 w-full border-solid border-l-2 border-r-2 border-offwhite`}
+  ${tw`fixed top-0 z-20 w-full`}
   @media (min-width: 1280px) {
     width: ${({ layoutWidth }) => `${Math.floor(0.8 * layoutWidth)}px`};
   }
@@ -53,7 +53,7 @@ export const MainWrapper = styled.div<MainWrapperProps>`
     !isIndex ? `${headerHeight}px` : 0}
 `;
 
-export const ReturnButtonWrapper = tw.div`z-10 w-full p-8 border-solid border-l-2 border-r-2 border-offpink-translucent flex flex-shrink-0 flex-row justify-center md:justify-end items-center`;
+export const ReturnButtonWrapper = tw.div`z-10 w-full p-8 flex flex-shrink-0 flex-row justify-center md:justify-end items-center`;
 
 export const ReturnButton = styled.button`
   ${tw`w-16 h-16 border-2 border-solid border-offwhite rounded-full flex flex-col justify-center items-center bg-transparent overflow-hidden focus:outline-none`}
@@ -66,4 +66,4 @@ export const ReturnButtonIndicator = styled.span<ReturnButtonIndicatorProps>`
   ${tw`w-full h-8 bg-transparent transition-colors duration-300 ease-in-out`}
 `;
 
-export const FooterWrapper = tw.div`z-20 w-full border-solid border-l-2 border-r-2 border-offwhite`;
+export const FooterWrapper = tw.div`z-20 w-full`;
