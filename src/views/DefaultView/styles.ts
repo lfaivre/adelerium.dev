@@ -48,7 +48,7 @@ export const HeaderWrapper = styled.div<HeaderWrapperProps>`
 `;
 
 export const MainWrapper = styled.div<MainWrapperProps>`
-  ${tw`z-10 w-full border-solid border-l-2 border-r-2 border-offpink-translucent`}
+  ${tw`z-10 w-full`}
   margin-top: ${({ headerHeight, isIndex }) =>
     !isIndex ? `${headerHeight}px` : 0}
 `;
