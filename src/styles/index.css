@@ -7,6 +7,7 @@
   --offwhite: #f3f2f1;
   --charcoal: #1e2223;
   --offpink: #fcf0ec;
+  --offpink-translucent: rgba(252, 240, 236, 0.5);
 }
 
 html {

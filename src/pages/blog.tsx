@@ -14,7 +14,7 @@ const BlogPage = () => {
 
   return (
     <>
-      <SEO title="Blogs" />
+      <SEO title="Blog" />
       <BlogPageContentWrapper staticsHeight={staticsHeight}>
         {ContentfulBlogData.posts.map((blogPost) => (
           <Post blogPost={blogPost} key={blogPost.id} />

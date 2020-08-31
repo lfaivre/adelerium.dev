@@ -4,22 +4,33 @@ interface PageContentWrapperProps {
   staticsHeight: number;
 }
 
-// GENERAL
-export const PageContentWrapper = tw.div`w-full bg-transparent p-2 md:p-4`;
-export const PageContentWrapperError = tw.div`w-full h-screen bg-transparent p-2 md:p-4 flex justify-center items-center`;
+// @note General
 
-// INDEX PAGE
+export const PageContentWrapper = tw.div`w-full p-2 md:p-4 bg-transparent`;
+
+// @note Index Page
+
 export const IndexPageNavigatorWrapper = tw.div`w-full h-full min-h-screen`;
-export const IndexPageContentWrapper = tw.div`w-full h-screen bg-transparent p-2 md:p-4`;
+export const IndexPageContentWrapper = tw.div`w-full h-screen p-2 md:p-4 bg-transparent`;
 
-// ABOUT PAGE
-export const AboutPageContentWrapper = tw.div`w-full bg-transparent p-2 md:p-4`;
+// @note About Page
 
-// PROJECTS PAGE
-export const ProjectsPageContentWrapper = tw.div`w-full bg-transparent p-2 md:p-4`;
+export const AboutPageContentWrapper = tw.div`w-full p-2 md:p-4 bg-transparent`;
 
-// ABOUT PAGE
+// @note Projects Page
+
+export const ProjectsPageContentWrapper = tw.div`w-full p-2 md:p-4 bg-transparent`;
+
+// @note About Page
+
 export const BlogPageContentWrapper = styled.div<PageContentWrapperProps>`
-  ${tw`w-full bg-transparent p-2 md:p-4`}
+  ${tw`w-full p-2 md:p-4 bg-transparent`}
+  min-height: ${({ staticsHeight }) => `calc(100vh - ${staticsHeight}px);`}
+`;
+
+// @note Error Page
+
+export const ErrorPageContentWrapper = styled.div<PageContentWrapperProps>`
+  ${tw`w-full p-2 md:p-4 bg-transparent`}
   min-height: ${({ staticsHeight }) => `calc(100vh - ${staticsHeight}px);`}
 `;

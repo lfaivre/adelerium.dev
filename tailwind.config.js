@@ -34,6 +34,7 @@ module.exports = {
         offwhite: '#F3F2F1',
         charcoal: '#1E2223',
         offpink: '#FCF0EC',
+        'offpink-translucent': 'rgba(252,240,236, 0.5)',
       },
       fontFamily: {
         'playfair-display': ['"Playfair Display"', 'serif'],
