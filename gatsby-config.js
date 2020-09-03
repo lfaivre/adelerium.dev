@@ -13,16 +13,16 @@ const contentfulConfig = {
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 };
 
-if (process.env.CONTENTFUL_HOST) {
-  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+if (activeEnv === 'development') {
+  console.log(
+    `\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`
+  );
 }
 
 const { spaceId, accessToken } = contentfulConfig;
 
 if (!spaceId || !accessToken) {
-  throw new Error(
-    'Contentful spaceId and the access token need to be provided.'
-  );
+  throw new Error('Contentful Space ID and Access Token need to be provided.');
 }
 
 module.exports = {

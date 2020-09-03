@@ -2,10 +2,12 @@
 
 .eslintrc.js
 babel-plugin-macros.config.js
+@types/generated/contentful.d.ts
 gatsby-browser.js
 gatsby-config.js
 gatsby-node.js
 gatsby-ssr.js
+getContentfulEnvironment.js
 package.json
 package-lock.json
 tailwind.config.js

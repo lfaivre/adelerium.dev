@@ -1,7 +1,7 @@
 // @docs https://aka.ms/tsconfig.json
 
 {
-  "include": ["./src/**/*", "./twin.d.ts", "./declaration.d.ts"],
+  "include": ["./src/**/*", "@types/**/*.d.ts"],
   "compilerOptions": {
     /* Basic Options */
     "target": "es5",
