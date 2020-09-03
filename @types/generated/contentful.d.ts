@@ -3,6 +3,78 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
+export interface IAboutSectionFields {
+  /** Title */
+  title: string;
+
+  /** Order */
+  order: number;
+
+  /** Body */
+  body: string;
+
+  /** Link */
+  link?: ILink | undefined;
+
+  /** First Link Text Fragment */
+  firstLinkTextFragment?: string | undefined;
+
+  /** Second Link Text Fragment */
+  secondLinkTextFragment?: string | undefined;
+
+  /** Accent Image */
+  accentImage?: Asset | undefined;
+}
+
+/** About section entity used in portfolio website (https://www.adelerium.dev/). */
+
+export interface IAboutSection extends Entry<IAboutSectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'aboutSection';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface ILinkFields {
+  /** Title */
+  title: string;
+
+  /** Type */
+  type: 'internal' | 'external';
+
+  /** Destination */
+  destination: string;
+}
+
+/** Link entity used in portfolio website (https://www.adelerium.dev/). */
+
+export interface ILink extends Entry<ILinkFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'link';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface IProjectFields {
   /** Title */
   title: string;
@@ -91,7 +163,7 @@ export interface IProject extends Entry<IProjectFields> {
   };
 }
 
-export type CONTENT_TYPE = 'project';
+export type CONTENT_TYPE = 'aboutSection' | 'link' | 'project';
 
 export type LOCALE_CODE = 'en-US';
 

@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useAppState } from '../../../state/app-context';
 
 import { SCREEN_SIZE } from '../../../data/presentation';
-import { AboutSectionDirection as ASD } from '../../../types/presentation';
+import { AboutSectionDirection } from '../../../types/presentation';
+import { getStrippedInternalLink } from '../../../utils/strings';
 
 import { AboutSectionProps } from './types';
 import {
@@ -21,25 +22,36 @@ import {
   CounterText,
 } from './styles';
 
-// @todo Will fix about section when contentful integration is complete
-
 export const AboutSection = ({
   sectionData,
   count,
+  order,
 }: AboutSectionProps): JSX.Element => {
   const { windowWidth } = useAppState();
-  const [direction, setDirection] = useState(ASD.Left);
+  // @todo Add loading graphic while image is being fetched from Contentful
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [direction, setDirection] = useState(AboutSectionDirection.Left);
 
   useEffect(() => {
-    const direction = sectionData.order % 2 === 0 ? ASD.Right : ASD.Left;
-    setDirection(direction);
-  }, [sectionData.order]);
+    const newDirection =
+      order % 2 === 0
+        ? AboutSectionDirection.Right
+        : AboutSectionDirection.Left;
+    setDirection(newDirection);
+  }, [order]);
 
-  return (
+  return sectionData !== undefined ? (
     <AboutSectionWrapper _direction={direction}>
-      {!(windowWidth < SCREEN_SIZE.MD) && (
+      {sectionData.accentImage && windowWidth >= SCREEN_SIZE.MD && (
         <ImageWrapper>
-          <FloatingImage fluid={sectionData.tempQuery.childImageSharp.fluid} />
+          <FloatingImage
+            fluid={sectionData.accentImage.fluid}
+            onLoad={() => setImageLoaded(true)}
+            alt={`Accent image for ${sectionData.title} section.`}
+            backgroundColor="var(--charcoal)"
+            draggable={false}
+          />
         </ImageWrapper>
       )}
       <ContentWrapper _direction={direction}>
@@ -49,30 +61,33 @@ export const AboutSection = ({
           </FloatingTitle>
         </TitleWrapper>
         <BodyWrapper _direction={direction}>
-          <BodyText _direction={direction}>{sectionData.body}</BodyText>
-          {sectionData.link.isInternal ? (
-            <InternalLink
-              to={sectionData.link.internalURL}
-              _direction={direction}
-            >
-              {sectionData.link.firstTextFragment}&nbsp;
-              <Bold>{sectionData.link.secondTextFragment}</Bold>
-            </InternalLink>
-          ) : (
-            <ExternalLink
-              href={sectionData.link.externalURL}
-              label={sectionData.link.externalURL}
-              _direction={direction}
-            >
-              {sectionData.link.firstTextFragment}&nbsp;
-              <Bold>{sectionData.link.secondTextFragment}</Bold>
-            </ExternalLink>
-          )}
+          <BodyText _direction={direction}>{sectionData.body.body}</BodyText>
+          {sectionData.link &&
+            (sectionData.link.type === 'internal' ? (
+              <InternalLink
+                to={getStrippedInternalLink(sectionData.link.destination)}
+                _direction={direction}
+              >
+                {sectionData.firstLinkTextFragment}&nbsp;
+                <Bold>{sectionData.secondLinkTextFragment}</Bold>
+              </InternalLink>
+            ) : (
+              <ExternalLink
+                href={sectionData.link.destination}
+                label={sectionData.link.destination}
+                _direction={direction}
+              >
+                {sectionData.firstLinkTextFragment}&nbsp;
+                <Bold>{sectionData.secondLinkTextFragment}</Bold>
+              </ExternalLink>
+            ))}
           <CounterText _direction={direction}>
             {`${sectionData.order}`}&nbsp;/&nbsp;{`${count}`}
           </CounterText>
         </BodyWrapper>
       </ContentWrapper>
     </AboutSectionWrapper>
+  ) : (
+    <></>
   );
 };

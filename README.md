@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.adelerium.dev/">
-    <img alt="Portfolio Icon" src="./src/images/icon.png" width="60" />
+    <img alt="Portfolio Icon" src="./icon.png" width="60" />
   </a>
 </p>
 <h1 align="center">adelerium.dev | Portfolio Website</h1>

@@ -39,7 +39,6 @@ import {
 } from './styles';
 
 // @temp Need to figure out how to enable a default value for external links
-
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
 
 export const Preview = ({ project, order }: PreviewProps): JSX.Element => {

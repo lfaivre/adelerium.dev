@@ -1,4 +1,3 @@
-import { Entry } from 'contentful';
 import { FluidObject } from 'gatsby-image';
 
 type PreviewDescription = { previewDescription: string };
@@ -75,7 +74,7 @@ export interface IProjectFields {
 
 /** Project entity that represents projects to display on portfolio site (http://adelerium.dev/). */
 
-export interface IProject extends Entry<IProjectFields> {
+export interface IProject extends IProjectFields {
   sys: {
     id: string;
     type: string;
@@ -91,12 +90,6 @@ export interface IProject extends Entry<IProjectFields> {
     };
   };
 }
-
-export type CONTENT_TYPE = 'project';
-
-export type LOCALE_CODE = 'en-US';
-
-export type CONTENTFUL_DEFAULT_LOCALE_CODE = 'en-US';
 
 type ProjectNode = { node: IProjectFields };
 type AllContentfulProject = { edges: ProjectNode[] };
