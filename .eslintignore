@@ -3,6 +3,7 @@
 .eslintrc.js
 babel-plugin-macros.config.js
 @types/generated/contentful.d.ts
+src/types/projects.ts
 gatsby-browser.js
 gatsby-config.js
 gatsby-node.js

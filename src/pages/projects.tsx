@@ -4,17 +4,18 @@ import { PageProps, graphql } from 'gatsby';
 import { SEO } from '../components/Shared/SEO';
 import { Preview } from '../components/ProjectsPage/Preview';
 
+import { PageQueryData } from '../types/projects';
 import { ProjectsPageContentWrapper } from '../styles/pages';
 
-// @todo Will fix after Contentful integration
-
 const ProjectsPage = ({ data }: PageProps): JSX.Element => {
+  const projects = (data as PageQueryData).allContentfulProject.edges;
+
   return (
     <>
       <SEO title="Projects" />
       <ProjectsPageContentWrapper>
-        {data.allContentfulProject.edges.map(({ node }) => {
-          return <Preview project={node} key={node.id} />;
+        {projects.map(({ node }) => {
+          return <Preview project={node} key={node.title} />;
         })}
       </ProjectsPageContentWrapper>
     </>
@@ -35,8 +36,8 @@ export const pageQuery = graphql`
           type
           dateRangeBeginning(formatString: "MMM YYYY")
           dateRangeEnd(formatString: "MMM YYYY")
-          childContentfulProjectDescriptionTextNode {
-            description
+          previewDescription {
+            previewDescription
           }
           previewPicture {
             fluid(maxWidth: 1024, resizingBehavior: SCALE) {

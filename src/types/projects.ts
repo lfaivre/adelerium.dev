@@ -1,59 +1,103 @@
-export interface ProjectAttrs {
-  order: number;
-  preview: ProjectPreviewAttrs;
-  technologyTags: Array<ProjectTechnologyTags>;
-  externalLinks: ProjectLinkAttrs;
-  gallery: Array<string>;
-}
+import { Entry } from 'contentful';
+import { FluidObject } from 'gatsby-image';
 
-export interface ProjectPreviewAttrs {
+type PreviewDescription = { previewDescription: string };
+type PreviewPicture = { fluid: FluidObject | FluidObject[] };
+
+export interface IProjectFields {
+  /** Title */
   title: string;
-  type: ProjectType;
-  date: string;
-  description: string;
-  pictureURL: string;
-  tempQuery: any;
+
+  /** Order */
+  order: number;
+
+  /** Type */
+  type: 'Website' | 'Mobile Application' | 'Design Prototype';
+
+  /** Preview Description */
+  previewDescription: PreviewDescription;
+
+  /** Date Range Beginning */
+  dateRangeBeginning: string;
+
+  /** Date Range End */
+  dateRangeEnd: string;
+
+  /** Preview Picture */
+  previewPicture: PreviewPicture;
+
+  /** Gallery */
+  gallery?: PreviewPicture | undefined;
+
+  /** Hosted URL */
+  hostedUrl: string;
+
+  /** GitHub URL */
+  gitHubUrl: string;
+
+  /** Figma URL */
+  figmaUrl: string;
+
+  /** Technology Tags */
+  technologyTags: (
+    | 'JavaScript'
+    | 'TypeScript'
+    | 'Python'
+    | 'Bash'
+    | 'React'
+    | 'Redux'
+    | 'Create React App'
+    | 'Vue'
+    | 'Vuex'
+    | 'HTML'
+    | 'Pug'
+    | 'CSS'
+    | 'Sass'
+    | 'Bootstrap'
+    | 'Tailwind CSS'
+    | 'Node.js'
+    | 'Express'
+    | 'React Native'
+    | 'Expo'
+    | 'MongoDB'
+    | 'Postgres'
+    | 'TypeORM'
+    | 'Figma'
+    | 'Docker'
+    | 'Git'
+    | 'GitHub'
+    | 'Gatsby'
+    | 'Next.js'
+    | 'Jest'
+    | 'Other'
+  )[];
 }
 
-export type ProjectType = 'Website' | 'Mobile Application' | 'Design Prototype';
+/** Project entity that represents projects to display on portfolio site (http://adelerium.dev/). */
 
-export interface ProjectLinkAttrs {
-  hostedURL?: string;
-  githubURL?: string;
-  figmaURL?: string;
+export interface IProject extends Entry<IProjectFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'project';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
 }
 
-export type ProjectTechnologyTags =
-  | ScriptingTechnology
-  | FrontEndTechnology
-  | BackEndTechnology
-  | MobileTechnology
-  | DatabaseTechnology
-  | OtherTechnology;
+export type CONTENT_TYPE = 'project';
 
-export type ScriptingTechnology =
-  | 'JavaScript'
-  | 'TypeScript'
-  | 'Python'
-  | 'Bash';
-export type FrontEndTechnology =
-  | 'React'
-  | 'Redux'
-  | 'Create React App'
-  | 'Vue'
-  | 'Vuex'
-  | 'HTML'
-  | 'Pug'
-  | 'CSS'
-  | 'Sass'
-  | 'Bootstrap'
-  | 'Tailwind CSS';
-export type BackEndTechnology = 'Node.js' | 'Express';
-export type MobileTechnology = 'React Native' | 'Expo';
-export type DatabaseTechnology = 'MongoDB' | 'Postgres' | 'TypeORM';
-export type OtherTechnology = 'Other' | 'Figma' | 'Docker' | 'Git' | 'GitHub';
+export type LOCALE_CODE = 'en-US';
 
-export interface ProjectDataAttrs {
-  projects: Array<ProjectAttrs>;
-  count(): number;
-}
+export type CONTENTFUL_DEFAULT_LOCALE_CODE = 'en-US';
+
+type ProjectNode = { node: IProjectFields };
+type AllContentfulProject = { edges: ProjectNode[] };
+export type PageQueryData = { allContentfulProject: AllContentfulProject };

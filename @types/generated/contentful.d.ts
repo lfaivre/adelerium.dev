@@ -13,8 +13,8 @@ export interface IProjectFields {
   /** Type */
   type: 'Website' | 'Mobile Application' | 'Design Prototype';
 
-  /** Description */
-  description: string;
+  /** Preview Description */
+  previewDescription: string;
 
   /** Date Range Beginning */
   dateRangeBeginning: string;

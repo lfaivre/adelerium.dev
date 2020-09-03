@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// TODO: MOVE ICON DEFS TO SEPARATE FILE (USE LIB)
+// @todo: Move icons to separate file
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
 import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
@@ -41,8 +41,6 @@ import {
 // @temp Need to figure out how to enable a default value for external links
 
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
-
-// @todo Will fix preview component once Contentful is integrated
 
 export const Preview = ({ project }: PreviewProps): JSX.Element => {
   const [direction, setDirection] = useState(ProjectDirection.Left);
@@ -86,7 +84,7 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
           <DescriptionWrapper _direction={direction}>
             <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>
             <Description _direction={direction}>
-              {project.childContentfulProjectDescriptionTextNode.description}
+              {project.previewDescription.previewDescription}
             </Description>
           </DescriptionWrapper>
           <TechnologyWrapper _direction={direction}>
