@@ -42,7 +42,7 @@ export const pageQuery = graphql`
             previewDescription
           }
           previewPicture {
-            fluid(maxWidth: 1024, resizingBehavior: SCALE) {
+            fluid(maxWidth: 720, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_tracedSVG
             }
           }

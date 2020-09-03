@@ -11,6 +11,8 @@ require('dotenv').config({ path: `.env.${activeEnv}` });
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  host: process.env.CONTENTFUL_HOST,
+  environment: process.env.CONTENTFUL_ENVIRONMENT,
 };
 
 if (activeEnv === 'development') {
@@ -19,10 +21,12 @@ if (activeEnv === 'development') {
   );
 }
 
-const { spaceId, accessToken } = contentfulConfig;
+const { spaceId, accessToken, host, environment } = contentfulConfig;
 
-if (!spaceId || !accessToken) {
-  throw new Error('Contentful Space ID and Access Token need to be provided.');
+if (!spaceId || !accessToken || !host || !environment) {
+  throw new Error(
+    'Contentful Space ID, Access Token, Host, and Environment need to be provided.'
+  );
 }
 
 module.exports = {

@@ -43,6 +43,9 @@ import {
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
 
 export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
+  // @todo Add loading graphic while image is being fetched from Contentful
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(ProjectDirection.Left);
 
   useEffect(() => {
@@ -74,7 +77,13 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
           </TitleAndTypeWrapper>
         </ThumbnailInfoWrapper>
         <ImageWrapper>
-          <Image fluid={project.previewPicture.fluid} />
+          <Image
+            fluid={project.previewPicture.fluid}
+            onLoad={() => setImageLoaded(true)}
+            alt={`Preview Image for ${project.title}`}
+            backgroundColor="var(--offwhite)"
+            draggable={false}
+          />
         </ImageWrapper>
       </ThumbnailWrapper>
       <ContentWrapper _direction={direction}>
