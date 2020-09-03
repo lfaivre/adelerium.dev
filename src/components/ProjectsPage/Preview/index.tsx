@@ -42,14 +42,14 @@ import {
 
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
 
-export const Preview = ({ project }: PreviewProps): JSX.Element => {
+export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
   const [direction, setDirection] = useState(ProjectDirection.Left);
 
   useEffect(() => {
     const newDirection =
-      project.order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
+      order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
     setDirection(newDirection);
-  }, [project.order]);
+  }, [order]);
 
   const getDateString = (): string => {
     if (project.dateRangeBeginning !== project.dateRangeEnd) {
@@ -63,9 +63,7 @@ export const Preview = ({ project }: PreviewProps): JSX.Element => {
       <ThumbnailWrapper _direction={direction}>
         <ThumbnailInfoWrapper _direction={direction}>
           <OrderNumberWrapper _direction={direction}>
-            <OrderNumber
-              _direction={direction}
-            >{`0${project.order}.`}</OrderNumber>
+            <OrderNumber _direction={direction}>{`0${order}.`}</OrderNumber>
           </OrderNumberWrapper>
           <TitleAndTypeWrapper _direction={direction}>
             <Title _direction={direction}>{project.title}</Title>

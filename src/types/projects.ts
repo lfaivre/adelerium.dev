@@ -8,14 +8,11 @@ export interface IProjectFields {
   /** Title */
   title: string;
 
-  /** Order */
-  order: number;
+  /** Rating */
+  rating: number;
 
   /** Type */
   type: 'Website' | 'Mobile Application' | 'Design Prototype';
-
-  /** Preview Description */
-  previewDescription: PreviewDescription;
 
   /** Date Range Beginning */
   dateRangeBeginning: string;
@@ -23,20 +20,14 @@ export interface IProjectFields {
   /** Date Range End */
   dateRangeEnd: string;
 
+  /** Preview Description */
+  previewDescription: PreviewDescription;
+
   /** Preview Picture */
   previewPicture: PreviewPicture;
 
   /** Gallery */
   gallery?: PreviewPicture | undefined;
-
-  /** Hosted URL */
-  hostedUrl: string;
-
-  /** GitHub URL */
-  gitHubUrl: string;
-
-  /** Figma URL */
-  figmaUrl: string;
 
   /** Technology Tags */
   technologyTags: (
@@ -71,6 +62,15 @@ export interface IProjectFields {
     | 'Jest'
     | 'Other'
   )[];
+
+  /** Hosted URL */
+  hostedUrl: string;
+
+  /** GitHub URL */
+  gitHubUrl: string;
+
+  /** Figma URL */
+  figmaUrl: string;
 }
 
 /** Project entity that represents projects to display on portfolio site (http://adelerium.dev/). */

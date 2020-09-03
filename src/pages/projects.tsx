@@ -14,8 +14,8 @@ const ProjectsPage = ({ data }: PageProps): JSX.Element => {
     <>
       <SEO title="Projects" />
       <ProjectsPageContentWrapper>
-        {projects.map(({ node }) => {
-          return <Preview project={node} key={node.title} />;
+        {projects.map(({ node }, index) => {
+          return <Preview project={node} order={index + 1} key={node.title} />;
         })}
       </ProjectsPageContentWrapper>
     </>
@@ -27,12 +27,14 @@ export default ProjectsPage;
 
 export const pageQuery = graphql`
   query ProjectsPageQuery {
-    allContentfulProject(sort: { fields: [order], order: ASC }) {
+    allContentfulProject(
+      sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }
+    ) {
       edges {
         node {
           id
           title
-          order
+          rating
           type
           dateRangeBeginning(formatString: "MMM YYYY")
           dateRangeEnd(formatString: "MMM YYYY")

@@ -5,6 +5,7 @@ import { ProjectDirection as PD } from '../../../types/presentation';
 
 export interface PreviewProps {
   project: IProjectFields;
+  order: number;
 }
 
 // @note Types for File: styles.tsx
