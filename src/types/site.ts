@@ -1,6 +1,6 @@
-export interface TSiteData {
-  profile: TProfile;
-  links: TSiteLinks;
+export interface TLink {
+  text: string;
+  url: string;
 }
 
 export interface TProfile {
@@ -16,7 +16,7 @@ export interface TSiteLinks {
   email: TLink;
 }
 
-export interface TLink {
-  text: string;
-  url: string;
+export interface TSiteData {
+  profile: TProfile;
+  links: TSiteLinks;
 }

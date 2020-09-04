@@ -1,14 +1,14 @@
-// REFACTOR: NEED A BETTER IMPLEMENTATION
-
-export interface TSideBarSection {
-  title: string;
-  links: Array<TSideBarLink>;
-}
+// @todo Need a better TypeScript implementation
 
 export interface TSideBarLink {
   isInternal: boolean;
   text: string;
   url: string;
+}
+
+export interface TSideBarSection {
+  title: string;
+  links: Array<TSideBarLink>;
 }
 
 export interface TSideBarData {
