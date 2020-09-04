@@ -74,6 +74,8 @@ export const AboutSection = ({
             ) : (
               <ExternalLink
                 href={sectionData.link.destination}
+                target="_blank"
+                rel="noopener noreferrer"
                 label={sectionData.link.destination}
                 _direction={direction}
               >

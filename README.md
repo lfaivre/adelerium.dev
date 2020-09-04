@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.adelerium.dev/">
+  <a href="https://www.adelerium.dev/" target="_blank" rel="noopener noreferrer">
     <img alt="Portfolio Icon" src="./icon.png" width="60" />
   </a>
 </p>

@@ -108,6 +108,8 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
           {project.hostedUrl !== TEMP_URL_PLACEHOLDER ? (
             <ExternalLink
               href={project.hostedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               label={project.hostedUrl}
               _direction={direction}
             >
@@ -122,6 +124,8 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
           {project.gitHubUrl !== TEMP_URL_PLACEHOLDER ? (
             <ExternalLink
               href={project.gitHubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               label={project.gitHubUrl}
               _direction={direction}
             >
@@ -136,6 +140,8 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
           {project.figmaUrl !== TEMP_URL_PLACEHOLDER ? (
             <ExternalLink
               href={project.figmaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               label={project.figmaUrl}
               _direction={direction}
             >

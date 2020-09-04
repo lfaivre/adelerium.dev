@@ -38,6 +38,8 @@ export const Footer = (props: PathDataHook): JSX.Element => {
           <BusinessTitle>Need a website?</BusinessTitle>
           <BusinessLink
             href={SiteData.links.kd.url}
+            target="_blank"
+            rel="noopener noreferrer"
             label={SiteData.links.kd.url}
           >
             kevaladesign.com
@@ -50,12 +52,16 @@ export const Footer = (props: PathDataHook): JSX.Element => {
         <LinkWrapper>
           <ExternalLink
             href={SiteData.links.linkedin.url}
+            target="_blank"
+            rel="noopener noreferrer"
             label={SiteData.links.linkedin.url}
           >
             li.
           </ExternalLink>
           <ExternalLink
             href={SiteData.links.github.url}
+            target="_blank"
+            rel="noopener noreferrer"
             label={SiteData.links.github.url}
           >
             gh.

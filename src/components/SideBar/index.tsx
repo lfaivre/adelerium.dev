@@ -71,7 +71,13 @@ export const SideBar = (): JSX.Element => {
       ) : (
         <LinkSectionWrapper>
           {SideBarData.external.links.map((link) => (
-            <ExternalLink href={link.url} label={link.url} key={link.text}>
+            <ExternalLink
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              label={link.url}
+              key={link.text}
+            >
               {link.text}
             </ExternalLink>
           ))}
@@ -98,7 +104,12 @@ export const SideBar = (): JSX.Element => {
         </ButtonsWrapper>
       </ViewButtonsWrapper>
       <BrandingWrapper>
-        <Branding href={SiteData.links.kd.url} label={SiteData.links.kd.url}>
+        <Branding
+          href={SiteData.links.kd.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          label={SiteData.links.kd.url}
+        >
           KD.
         </Branding>
       </BrandingWrapper>
