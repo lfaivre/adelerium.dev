@@ -7,11 +7,9 @@ import { AboutSection } from '../components/AboutPage/AboutSection';
 import { PageQueryData } from '../types/about';
 import { AboutPageContentWrapper } from '../styles/pages';
 
-// @todo @important Get count data from query
-const TEMP_COUNT_PLACEHOLDER = 3;
-
 const AboutPage = ({ data }: PageProps): JSX.Element => {
   const aboutSections = (data as PageQueryData).allContentfulAboutSection.edges;
+  const aboutSectionsLength = aboutSections.length;
 
   return (
     <>
@@ -21,7 +19,7 @@ const AboutPage = ({ data }: PageProps): JSX.Element => {
           return (
             <AboutSection
               sectionData={node}
-              count={TEMP_COUNT_PLACEHOLDER}
+              count={aboutSectionsLength}
               order={index + 1}
               key={node.title}
             />

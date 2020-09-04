@@ -4,8 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { WelcomeNavigation } from '../Shared/WelcomeNavigation';
 
 // @todo: Refactor TypeScript, patched in for now
-
-import { SideBarData } from './data';
+import { getStrippedInternalLink } from '../../utils/strings';
 import { SiteData } from '../../data/site';
 import { SideBarView as SBV } from '../../types/presentation';
 
@@ -36,25 +35,51 @@ export const SideBar = (): JSX.Element => {
 
   const sideBarQuery: GraphQLStaticQuery = useStaticQuery(graphql`
     query {
-      profile: file(relativePath: { eq: "profile-1024.jpeg" }) {
-        childImageSharp {
-          fluid(maxWidth: 375, quality: 75) {
-            ...GatsbyImageSharpFluid
+      contentfulSideBar: contentfulSideBar(title: { eq: "Default" }) {
+        profilePicture {
+          fluid(maxWidth: 320, resizingBehavior: SCALE) {
+            ...GatsbyContentfulFluid_tracedSVG
           }
+        }
+        internalLinks {
+          title
+          type
+          destination
+          displayText
+        }
+        externalLinks {
+          title
+          type
+          destination
+          displayText
+        }
+        email
+        brandingLink {
+          destination
         }
       }
     }
   `);
 
+  const { name, tag } = SiteData.profile;
+
+  const {
+    profilePicture,
+    internalLinks,
+    externalLinks,
+    email,
+    brandingLink,
+  } = sideBarQuery.contentfulSideBar;
+
   return (
     <SideBarWrapper>
       <ProfileWrapper>
         <ProfileImageWrapper>
-          <ProfileImage fluid={sideBarQuery.profile.childImageSharp.fluid} />
+          <ProfileImage fluid={profilePicture.fluid} />
         </ProfileImageWrapper>
         <ProfileTextWrapper>
-          <ProfileName>{SiteData.profile.name}</ProfileName>
-          <ProfileTag>{SiteData.profile.tag}</ProfileTag>
+          <ProfileName>{name}</ProfileName>
+          <ProfileTag>{tag}</ProfileTag>
         </ProfileTextWrapper>
       </ProfileWrapper>
       <ResponsiveWelcomeNavigationWrapper>
@@ -62,25 +87,37 @@ export const SideBar = (): JSX.Element => {
       </ResponsiveWelcomeNavigationWrapper>
       {sideBarView === SBV.InternalLinks ? (
         <LinkSectionWrapper>
-          {SideBarData.internal.links.map((link) => (
-            <InternaLink to={link.url} key={link.text}>
-              {link.text}
+          {internalLinks.map((link) => (
+            <InternaLink
+              to={getStrippedInternalLink(link.destination)}
+              key={link.title}
+            >
+              {link.displayText}
             </InternaLink>
           ))}
         </LinkSectionWrapper>
       ) : (
         <LinkSectionWrapper>
-          {SideBarData.external.links.map((link) => (
+          {externalLinks.map((link) => (
             <ExternalLink
-              href={link.url}
+              href={link.destination}
               target="_blank"
               rel="noopener noreferrer"
-              label={link.url}
-              key={link.text}
+              label={link.destination}
+              key={link.title}
             >
-              {link.text}
+              {link.displayText}
             </ExternalLink>
           ))}
+          <ExternalLink
+            href={`mailto:${email}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            label={`mailto:${email}`}
+            key="Email"
+          >
+            Email
+          </ExternalLink>
         </LinkSectionWrapper>
       )}
       <ViewButtonsWrapper>
@@ -105,10 +142,10 @@ export const SideBar = (): JSX.Element => {
       </ViewButtonsWrapper>
       <BrandingWrapper>
         <Branding
-          href={SiteData.links.kd.url}
+          href={brandingLink.destination}
           target="_blank"
           rel="noopener noreferrer"
-          label={SiteData.links.kd.url}
+          label={brandingLink.destination}
         >
           KD.
         </Branding>

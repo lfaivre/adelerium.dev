@@ -1,5 +1,4 @@
 // @docs https://www.gatsbyjs.com/docs/api-files-gatsby-browser/
-// @todo Refactor root, page, and layout implementation
 
 // @note Import Stylesheet(s): Global Styles
 

@@ -3,8 +3,6 @@ import { useLocation } from '@reach/router';
 import { SitePaths } from '../data/paths';
 import { TPathname, TPathData, INDEX, PathDataHook } from '../types/paths';
 
-// @todo Modify TPathData to include 404 path(s)
-
 type State = {
   pathname: TPathname | undefined;
   pathData: TPathData | undefined;

@@ -45,6 +45,69 @@ export interface IAboutSection extends Entry<IAboutSectionFields> {
   };
 }
 
+export interface IFactFields {
+  /** Text */
+  text: string;
+
+  /** Source */
+  source?: string | undefined;
+}
+
+/** Fact entity used in footer for portfolio (https://www.adelerium.dev/). */
+
+export interface IFact extends Entry<IFactFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'fact';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export interface IFooterFields {
+  /** Title */
+  title: string;
+
+  /** Branding Link */
+  brandingLink: ILink;
+
+  /** LinkedIn Link */
+  linkedInLink: ILink;
+
+  /** GitHub Link */
+  gitHubLink: ILink;
+
+  /** Facts */
+  facts: IFact[];
+}
+
+/** Footer data used in portfolio website (https://www.adelerium.dev/). */
+
+export interface IFooter extends Entry<IFooterFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'footer';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface ILinkFields {
   /** Title */
   title: string;
@@ -54,6 +117,9 @@ export interface ILinkFields {
 
   /** Destination */
   destination: string;
+
+  /** Display Text */
+  displayText: string;
 }
 
 /** Link entity used in portfolio website (https://www.adelerium.dev/). */
@@ -163,7 +229,52 @@ export interface IProject extends Entry<IProjectFields> {
   };
 }
 
-export type CONTENT_TYPE = 'aboutSection' | 'link' | 'project';
+export interface ISideBarFields {
+  /** Title */
+  title: string;
+
+  /** Profile Picture */
+  profilePicture: Asset;
+
+  /** Internal Links */
+  internalLinks: ILink[];
+
+  /** External Links */
+  externalLinks: ILink[];
+
+  /** Email */
+  email: string;
+
+  /** Branding Link */
+  brandingLink: ILink;
+}
+
+/** Side bar data used in portfolio (https://www.adelerium.dev/). */
+
+export interface ISideBar extends Entry<ISideBarFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'sideBar';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
+export type CONTENT_TYPE =
+  | 'aboutSection'
+  | 'fact'
+  | 'footer'
+  | 'link'
+  | 'project'
+  | 'sideBar';
 
 export type LOCALE_CODE = 'en-US';
 

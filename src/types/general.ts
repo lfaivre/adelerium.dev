@@ -7,6 +7,9 @@ export interface ILinkFields {
 
   /** Destination */
   destination: string;
+
+  /** Display Text */
+  displayText: string;
 }
 
 /** Link entity used in portfolio website (https://www.adelerium.dev/). */

@@ -1,13 +1,14 @@
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+
 import { StyledInternalLink } from '../Shared/StyledInternalLink';
 
-import { facts } from '../../data/facts';
+import { getRandomInt } from '../../utils/math';
 
 import { PathDataHook } from '../../types/paths';
 import { InternalLinkDirection as ILD } from '../../types/presentation';
-import { SiteData } from '../../data/site';
-import { getRandomInt } from '../../utils/math';
 
+import { GraphQLStaticQuery } from './types';
 import {
   FooterWrapper,
   FirstFooterRow,
@@ -31,38 +32,65 @@ import {
 } from './styles';
 
 export const Footer = (props: PathDataHook): JSX.Element => {
+  const footerQuery: GraphQLStaticQuery = useStaticQuery(graphql`
+    query {
+      contentfulFooter: contentfulFooter(title: { eq: "Default" }) {
+        brandingLink {
+          destination
+        }
+        linkedInLink {
+          destination
+        }
+        gitHubLink {
+          destination
+        }
+        facts {
+          text
+          id
+        }
+      }
+    }
+  `);
+
+  const {
+    brandingLink,
+    linkedInLink,
+    gitHubLink,
+    facts,
+  } = footerQuery.contentfulFooter;
+
   return (
     <FooterWrapper>
       <FirstFooterRow>
         <BusinessWrapper>
           <BusinessTitle>Need a website?</BusinessTitle>
           <BusinessLink
-            href={SiteData.links.kd.url}
+            href={brandingLink.destination}
             target="_blank"
             rel="noopener noreferrer"
-            label={SiteData.links.kd.url}
+            label={brandingLink.destination}
           >
             kevaladesign.com
           </BusinessLink>
         </BusinessWrapper>
         <FactWrapper>
           <FactTitle>Did you know?</FactTitle>
-          <FactText>{facts[getRandomInt(0, facts.length - 1)]}</FactText>
+          <FactText>{facts[getRandomInt(0, facts.length - 1)].text}</FactText>
         </FactWrapper>
         <LinkWrapper>
           <ExternalLink
-            href={SiteData.links.linkedin.url}
+            href={linkedInLink.destination}
             target="_blank"
             rel="noopener noreferrer"
-            label={SiteData.links.linkedin.url}
+            label={linkedInLink.destination}
           >
             li.
           </ExternalLink>
           <ExternalLink
-            href={SiteData.links.github.url}
+            href={gitHubLink.destination}
             target="_blank"
             rel="noopener noreferrer"
-            label={SiteData.links.github.url}
+            label={gitHubLink.destination}
           >
             gh.
           </ExternalLink>
