@@ -167,38 +167,7 @@ export interface IProjectFields {
   gallery?: Asset[] | undefined;
 
   /** Technology Tags */
-  technologyTags: (
-    | 'JavaScript'
-    | 'TypeScript'
-    | 'Python'
-    | 'Bash'
-    | 'React'
-    | 'Redux'
-    | 'Create React App'
-    | 'Vue'
-    | 'Vuex'
-    | 'HTML'
-    | 'Pug'
-    | 'CSS'
-    | 'Sass'
-    | 'Bootstrap'
-    | 'Tailwind CSS'
-    | 'Node.js'
-    | 'Express'
-    | 'React Native'
-    | 'Expo'
-    | 'MongoDB'
-    | 'Postgres'
-    | 'TypeORM'
-    | 'Figma'
-    | 'Docker'
-    | 'Git'
-    | 'GitHub'
-    | 'Gatsby'
-    | 'Next.js'
-    | 'Jest'
-    | 'Other'
-  )[];
+  technologyTags: string[];
 
   /** Hosted URL */
   hostedUrl: string;
