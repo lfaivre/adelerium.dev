@@ -34,7 +34,7 @@
     "react-helmet": "^6.1.0",
     "stylelint": "^13.7.0",
     "tailwindcss": "^1.7.6",
-    "twin.macro": "^1.8.0",
+    "twin.macro": "^1.8.1",
     "typeface-lobster-two": "0.0.72",
     "typeface-mrs-sheppards": "0.0.71",
     "typeface-playfair-display": "^1.1.4",
