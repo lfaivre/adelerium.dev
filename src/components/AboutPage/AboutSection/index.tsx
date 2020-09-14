@@ -4,7 +4,7 @@ import { useAppState } from '../../../state/app-context';
 
 import { SCREEN_SIZE } from '../../../data/presentation';
 import { AboutSectionDirection } from '../../../types/presentation';
-import { getStrippedInternalLink } from '../../../utils/strings';
+import { getStrippedInternalLinkPath } from '../../../utils/strings';
 
 import { AboutSectionProps } from './types';
 import {
@@ -65,7 +65,7 @@ export const AboutSection = ({
           {sectionData.link &&
             (sectionData.link.type === 'internal' ? (
               <InternalLink
-                to={getStrippedInternalLink(sectionData.link.destination)}
+                to={getStrippedInternalLinkPath(sectionData.link.destination)}
                 _direction={direction}
               >
                 {sectionData.firstLinkTextFragment}&nbsp;

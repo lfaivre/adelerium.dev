@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { WelcomeNavigation } from '../Shared/WelcomeNavigation';
 
 // @todo: Refactor TypeScript, patched in for now
-import { getStrippedInternalLink } from '../../utils/strings';
+import { getStrippedInternalLinkPath } from '../../utils/strings';
 import { SiteData } from '../../data/site';
 import { SideBarView as SBV } from '../../types/presentation';
 
@@ -89,7 +89,7 @@ export const SideBar = (): JSX.Element => {
         <LinkSectionWrapper>
           {internalLinks.map((link) => (
             <InternaLink
-              to={getStrippedInternalLink(link.destination)}
+              to={getStrippedInternalLinkPath(link.destination)}
               key={link.title}
             >
               {link.displayText}

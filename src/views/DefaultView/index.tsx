@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 
 import { useAppState, useAppDispatch } from '../../state/app-context';
 import { usePathData } from '../../hooks/location';
-import { handleScroll } from '../../utils/window-interaction';
 
 import { SideBar } from '../../components/SideBar';
 import { Header } from '../../components/Header';
@@ -28,6 +27,12 @@ import {
   FooterWrapper,
 } from './styles';
 import { TPathname } from '../../types/paths';
+
+const handleScroll = (): void => {
+  if (typeof window !== `undefined`) {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }
+};
 
 export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
   const pathData = usePathData();
