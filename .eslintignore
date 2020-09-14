@@ -3,21 +3,23 @@
 .eslintrc.js
 babel-plugin-macros.config.js
 @types/generated/contentful.d.ts
-src/types/projects.ts
 gatsby-browser.js
 gatsby-config.js
 gatsby-node.js
 gatsby-ssr.js
 getContentfulEnvironment.js
-package.json
-package-lock.json
-tailwind.config.js
+jest.config.js
+jest-preprocess.js
+loadershim.js
 postcss.config.js
+src/types/projects.ts
+tailwind.config.js
 
 # Directories
 
 .cache/
 .github/
 .vscode/
+__mocks__/
 node_modules/
 public/

@@ -7,3 +7,4 @@ package-lock.json
 .cache/
 node_modules/
 public/
+**/__snapshots__/
