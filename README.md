@@ -5,11 +5,21 @@
 </p>
 <h1 align="center">adelerium.dev | Portfolio Website</h1>
 
-This project was built using the GatsbyJS default starter. Technologies include React with TypeScript, GraphQL, Emotion, Tailwind CSS, & Styled Components.
+## Information
 
+**Status**
+
+###### Netlify
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c522894d-30c1-412e-8ede-e546a5aec1cb/deploy-status)](https://app.netlify.com/sites/adelerium/deploys)
 
-## 🚀 Quick Start
+###### Travis CI
+[![Build Status](https://travis-ci.com/lfaivre/adelerium.dev.svg?branch=master)](https://travis-ci.com/lfaivre/adelerium.dev)
+
+**Stack**
+
+This project was built using the GatsbyJS default starter. Technologies include React with TypeScript, GraphQL, Emotion, Tailwind CSS, & Styled Components.
+
+## Development
 
 1.  **Clone repository and install packages.**
 
