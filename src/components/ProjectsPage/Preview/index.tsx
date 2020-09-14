@@ -15,9 +15,12 @@ import {
   ThumbnailInfoWrapper,
   OrderNumberWrapper,
   OrderNumber,
+  OrderNumberSkeleton,
   TitleAndTypeWrapper,
   Title,
+  TitleSkeleton,
   Type,
+  TypeSkeleton,
   Bold,
   ImageWrapper,
   Image,
@@ -25,16 +28,22 @@ import {
   DescAndTechWrapper,
   DescriptionWrapper,
   DescriptionTitle,
+  DescriptionTitleSkeleton,
   Description,
+  DescriptionSkeleton,
   TechnologyWrapper,
   TechnologyTitle,
+  TechnologyTitleSkeleton,
   Technology,
+  TechnologySkeleton,
   DividerWrapper,
   Divider,
   LinksWrapper,
   ExternalLink,
   LinkIcon,
+  LinkIconSkeleton,
   LinkText,
+  LinkTextSkeleton,
   ArrowIcon,
 } from './styles';
 
@@ -42,8 +51,6 @@ import {
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
 
 export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
-  // @todo Add loading graphic while image is being fetched from Contentful
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(ProjectDirection.Left);
 
@@ -65,14 +72,25 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
       <ThumbnailWrapper _direction={direction}>
         <ThumbnailInfoWrapper _direction={direction}>
           <OrderNumberWrapper _direction={direction}>
-            <OrderNumber _direction={direction}>{`0${order}.`}</OrderNumber>
+            {imageLoaded && (
+              <OrderNumber _direction={direction}>{`0${order}.`}</OrderNumber>
+            )}
+            {!imageLoaded && (
+              <OrderNumberSkeleton _direction={direction} width={100} />
+            )}
           </OrderNumberWrapper>
           <TitleAndTypeWrapper _direction={direction}>
-            <Title _direction={direction}>{project.title}</Title>
-            <Type _direction={direction}>
-              {project.type}&nbsp;<Bold>&#47;&#47;</Bold>&nbsp;
-              {getDateString()}
-            </Type>
+            {imageLoaded && (
+              <Title _direction={direction}>{project.title}</Title>
+            )}
+            {!imageLoaded && <TitleSkeleton _direction={direction} />}
+            {imageLoaded && (
+              <Type _direction={direction}>
+                {project.type}&nbsp;<Bold>&#47;&#47;</Bold>&nbsp;
+                {getDateString()}
+              </Type>
+            )}
+            {!imageLoaded && <TypeSkeleton _direction={direction} />}
           </TitleAndTypeWrapper>
         </ThumbnailInfoWrapper>
         <ImageWrapper>
@@ -88,16 +106,34 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
       <ContentWrapper _direction={direction}>
         <DescAndTechWrapper _direction={direction}>
           <DescriptionWrapper _direction={direction}>
-            <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>
-            <Description _direction={direction}>
-              {project.previewDescription.previewDescription}
-            </Description>
+            {imageLoaded && (
+              <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>
+            )}
+            {!imageLoaded && (
+              <DescriptionTitleSkeleton _direction={direction} />
+            )}
+            {imageLoaded && (
+              <Description _direction={direction}>
+                {project.previewDescription.previewDescription}
+              </Description>
+            )}
+            {!imageLoaded && (
+              <DescriptionSkeleton _direction={direction} count={2} />
+            )}
           </DescriptionWrapper>
           <TechnologyWrapper _direction={direction}>
-            <TechnologyTitle _direction={direction}>tech.</TechnologyTitle>
-            <Technology _direction={direction}>
-              {project.technologyTags.join(', ')}
-            </Technology>
+            {imageLoaded && (
+              <TechnologyTitle _direction={direction}>tech.</TechnologyTitle>
+            )}
+            {!imageLoaded && <TechnologyTitleSkeleton _direction={direction} />}
+            {imageLoaded && (
+              <Technology _direction={direction}>
+                {project.technologyTags.join(', ')}
+              </Technology>
+            )}
+            {!imageLoaded && (
+              <TechnologySkeleton _direction={direction} count={2} />
+            )}
           </TechnologyWrapper>
         </DescAndTechWrapper>
         <DividerWrapper _direction={direction}>
@@ -113,10 +149,18 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
               label={project.hostedUrl}
               _direction={direction}
             >
-              <LinkIcon icon={faFirefox} />
-              <LinkText _direction={direction}>
-                see&nbsp;it&nbsp;<Bold>hosted.</Bold>
-              </LinkText>
+              {imageLoaded && <LinkIcon icon={faFirefox} />}
+              {!imageLoaded && (
+                <LinkIconSkeleton icon={faFirefox} width={32} height={32} />
+              )}
+              {imageLoaded && (
+                <LinkText _direction={direction}>
+                  see&nbsp;it&nbsp;<Bold>hosted.</Bold>
+                </LinkText>
+              )}
+              {!imageLoaded && (
+                <LinkTextSkeleton _direction={direction} width={115} />
+              )}
             </ExternalLink>
           ) : (
             <></>
@@ -129,10 +173,18 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
               label={project.gitHubUrl}
               _direction={direction}
             >
-              <LinkIcon icon={faGithub} />
-              <LinkText _direction={direction}>
-                view&nbsp;on&nbsp;<Bold>github.</Bold>
-              </LinkText>
+              {imageLoaded && <LinkIcon icon={faGithub} />}
+              {!imageLoaded && (
+                <LinkIconSkeleton icon={faGithub} width={32} height={32} />
+              )}
+              {imageLoaded && (
+                <LinkText _direction={direction}>
+                  view&nbsp;on&nbsp;<Bold>github.</Bold>
+                </LinkText>
+              )}
+              {!imageLoaded && (
+                <LinkTextSkeleton _direction={direction} width={115} />
+              )}
             </ExternalLink>
           ) : (
             <></>
@@ -145,10 +197,18 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
               label={project.figmaUrl}
               _direction={direction}
             >
-              <LinkIcon icon={faFigma} />
-              <LinkText _direction={direction}>
-                view&nbsp;on&nbsp;<Bold>figma.</Bold>
-              </LinkText>
+              {imageLoaded && <LinkIcon icon={faFigma} />}
+              {!imageLoaded && (
+                <LinkIconSkeleton icon={faFigma} width={32} height={32} />
+              )}
+              {imageLoaded && (
+                <LinkText _direction={direction}>
+                  view&nbsp;on&nbsp;<Bold>figma.</Bold>
+                </LinkText>
+              )}
+              {!imageLoaded && (
+                <LinkTextSkeleton _direction={direction} width={115} />
+              )}
             </ExternalLink>
           ) : (
             <></>

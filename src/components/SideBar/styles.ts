@@ -9,10 +9,10 @@ export const SideBarWrapper = tw.div`w-full h-full p-8 md:pt-16 flex flex-col ju
 
 export const ProfileWrapper = tw.div`w-full mb-8 md:mb-8 flex flex-row justify-center items-center md:flex-col md:justify-start md:items-center`;
 
-export const ProfileImageWrapper = tw.div`hidden mobile:block mobile-only:w-32 mobile-only:h-32 sm:w-48 sm:h-48 xl:w-48 xl:h-48 p-2 md:p-4 rounded-full md:mb-4 bg-offwhite`;
+export const ProfileImageWrapper = tw.div`hidden mobile:block mobile-only:w-32 mobile-only:h-32 sm:w-48 sm:h-48 xl:w-48 xl:h-48 p-2 md:p-4 rounded-full md:mb-4 bg-offpink`;
 
 export const ProfileImage = styled(Img)`
-  ${tw`w-full mt-2 ml-2 rounded-full `}
+  ${tw`w-full rounded-full `}
 `;
 
 export const ProfileTextWrapper = tw.div`w-full mobile-only:w-3/5 mobile-only:pl-4 flex flex-col justify-center items-center`;

@@ -10,9 +10,11 @@
 **Status**
 
 ###### Netlify
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c522894d-30c1-412e-8ede-e546a5aec1cb/deploy-status)](https://app.netlify.com/sites/adelerium/deploys)
 
 ###### Travis CI
+
 [![Build Status](https://travis-ci.com/lfaivre/adelerium.dev.svg?branch=master)](https://travis-ci.com/lfaivre/adelerium.dev)
 
 **Stack**

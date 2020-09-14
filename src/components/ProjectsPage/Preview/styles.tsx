@@ -1,4 +1,5 @@
 import tw, { styled } from 'twin.macro';
+import Skeleton from 'react-loading-skeleton';
 import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
@@ -44,29 +45,38 @@ export const OrderNumberWrapper = styled.div<DirectionProps>`
 export const OrderNumber = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`text-charcoal text-6xl md:text-7xl font-lobster-two font-bold`}
+  ${tw`text-charcoal text-6xl md:text-7xl font-lobster-two font-bold leading-normal`}
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--charcoal);
 `;
 
+export const OrderNumberSkeleton = OrderNumber.withComponent(Skeleton);
+
 export const TitleAndTypeWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`flex-1 flex flex-col justify-center`}
+  & > span {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`mb-2 text-charcoal text-2xl md:text-3.5xl font-playfair-display font-bold`}
+  ${tw`w-full mb-2 text-charcoal text-2xl md:text-3.5xl font-playfair-display font-bold leading-normal`}
 `;
+
+export const TitleSkeleton = Title.withComponent(Skeleton);
 
 export const Type = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`text-charcoal text-xs md:text-base font-playfair-display font-normal`}
+  ${tw`text-charcoal text-xs md:text-base font-playfair-display font-normal leading-normal`}
 `;
+
+export const TypeSkeleton = Type.withComponent(Skeleton);
 
 export const Bold = tw.span`font-bold`;
 
@@ -102,37 +112,53 @@ export const DescriptionWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`w-full mb-2 lg:mb-8 flex flex-col justify-center`}
+  & > span {
+    width: 100%;
+  }
 `;
 
 export const DescriptionTitle = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`mb-1 lg:mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold`}
+  ${tw`w-full mb-1 lg:mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold leading-normal`}
 `;
+
+export const DescriptionTitleSkeleton = DescriptionTitle.withComponent(
+  Skeleton
+);
 
 export const Description = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`text-charcoal text-xs mobile:text-base font-playfair-display font-normal`}
+  ${tw`w-full text-charcoal text-xs mobile:text-base font-playfair-display font-normal leading-normal`}
 `;
+
+export const DescriptionSkeleton = Description.withComponent(Skeleton);
 
 export const TechnologyWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`items-start` : tw`items-end`}
   ${tw`w-full flex flex-col justify-center`}
+  & > span {
+    width: 100%;
+  }
 `;
 
 export const TechnologyTitle = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold`}
+  ${tw`w-full mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold leading-normal`}
 `;
+
+export const TechnologyTitleSkeleton = TechnologyTitle.withComponent(Skeleton);
 
 export const Technology = styled.p<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`text-charcoal text-xs mobile:text-base font-playfair-display font-normal`}
+  ${tw`w-full text-charcoal text-xs mobile:text-base font-playfair-display font-normal leading-normal`}
 `;
+
+export const TechnologySkeleton = Technology.withComponent(Skeleton);
 
 export const DividerWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
@@ -160,12 +186,16 @@ export const ExternalLink = styled(OutboundLink)<DirectionProps>`
 export const LinkText = styled.span<DirectionProps>`
   ${({ _direction }) =>
     _direction === PD.Left ? tw`text-left` : tw`text-right`}
-  ${tw`hidden lg:block text-charcoal text-base font-playfair-display font-normal`}
+  ${tw`hidden lg:block text-charcoal text-base font-playfair-display font-normal leading-normal`}
 `;
 
+export const LinkTextSkeleton = LinkText.withComponent(Skeleton);
+
 export const LinkIcon = styled(FontAwesomeIcon)`
-  ${tw`block lg:hidden text-charcoal text-3.5xl`}
+  ${tw`block lg:hidden text-charcoal text-3.5xl leading-normal`}
 `;
+
+export const LinkIconSkeleton = LinkIcon.withComponent(Skeleton);
 
 export const ArrowIcon = styled(FontAwesomeIcon)<DirectionProps>`
   ${({ _direction }) =>
