@@ -50,9 +50,7 @@ export const ButtonsWrapper = tw.div`w-full flex flex-row justify-center items-c
 export const ViewButton = styled.button<SelectedProps>`
   ${tw`w-16 h-16 rounded-full mr-8 last:mr-0 text-4xl font-lobster-two focus:outline-none`}
   ${({ selected }) =>
-    selected
-      ? tw`bg-offwhite text-charcoal`
-      : tw`bg-transparent text-transparent`};
+    selected ? tw`bg-offwhite text-charcoal` : tw`bg-transparent text-transparent`};
   ${({ selected }) =>
     selected
       ? ``

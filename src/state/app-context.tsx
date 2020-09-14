@@ -50,16 +50,13 @@ const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
   const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    const newWindowWidth =
-      windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
+    const newWindowWidth = windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
     dispatch({ type: 'SET_WINDOW_WIDTH', windowWidth: newWindowWidth });
   }, [windowWidth]);
 
   return (
     <AppStateContext.Provider value={state}>
-      <AppDispatchContext.Provider value={dispatch}>
-        {children}
-      </AppDispatchContext.Provider>
+      <AppDispatchContext.Provider value={dispatch}>{children}</AppDispatchContext.Provider>
     </AppStateContext.Provider>
   );
 };

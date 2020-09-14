@@ -15,24 +15,18 @@ const contentfulConfig = {
 };
 
 if (activeEnv === 'development') {
-  console.log(
-    `\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`
-  );
+  console.log(`\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`);
 }
 
 const { spaceId, managementToken, environment } = contentfulConfig;
 
 if (!spaceId || !managementToken || !environment) {
-  throw new Error(
-    'Contentful Space ID, Management Token, and Environment need to be provided.'
-  );
+  throw new Error('Contentful Space ID, Management Token, and Environment need to be provided.');
 }
 
 module.exports = async () => {
   const contentfulClient = contentfulManagement.createClient({
     accessToken: managementToken,
   });
-  return contentfulClient
-    .getSpace(spaceId)
-    .then((space) => space.getEnvironment(environment));
+  return contentfulClient.getSpace(spaceId).then((space) => space.getEnvironment(environment));
 };

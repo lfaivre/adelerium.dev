@@ -52,12 +52,7 @@ export const Footer = (props: PathDataHook): JSX.Element => {
     }
   `);
 
-  const {
-    brandingLink,
-    linkedInLink,
-    gitHubLink,
-    facts,
-  } = footerQuery.contentfulFooter;
+  const { brandingLink, linkedInLink, gitHubLink, facts } = footerQuery.contentfulFooter;
 
   return (
     <FooterWrapper>

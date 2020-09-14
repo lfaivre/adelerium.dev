@@ -22,11 +22,7 @@ import {
   CounterText,
 } from './styles';
 
-export const AboutSection = ({
-  sectionData,
-  count,
-  order,
-}: AboutSectionProps): JSX.Element => {
+export const AboutSection = ({ sectionData, count, order }: AboutSectionProps): JSX.Element => {
   const { windowWidth } = useAppState();
   // @todo Add loading graphic while image is being fetched from Contentful
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -34,10 +30,7 @@ export const AboutSection = ({
   const [direction, setDirection] = useState(AboutSectionDirection.Left);
 
   useEffect(() => {
-    const newDirection =
-      order % 2 === 0
-        ? AboutSectionDirection.Right
-        : AboutSectionDirection.Left;
+    const newDirection = order % 2 === 0 ? AboutSectionDirection.Right : AboutSectionDirection.Left;
     setDirection(newDirection);
   }, [order]);
 
@@ -56,9 +49,7 @@ export const AboutSection = ({
       )}
       <ContentWrapper _direction={direction}>
         <TitleWrapper>
-          <FloatingTitle _direction={direction}>
-            {sectionData.title}
-          </FloatingTitle>
+          <FloatingTitle _direction={direction}>{sectionData.title}</FloatingTitle>
         </TitleWrapper>
         <BodyWrapper _direction={direction}>
           <BodyText _direction={direction}>{sectionData.body.body}</BodyText>

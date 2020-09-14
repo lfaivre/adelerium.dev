@@ -10,8 +10,7 @@ export const Header = (props: PathDataHook): JSX.Element => {
   const [headerTitle, setHeaderTitle] = useState('Home');
 
   useEffect(() => {
-    const newHeaderTitle =
-      props.pathData && props.pathData.text ? props.pathData.text : 'Error';
+    const newHeaderTitle = props.pathData && props.pathData.text ? props.pathData.text : 'Error';
     setHeaderTitle(newHeaderTitle);
   }, [props.pathData]);
 

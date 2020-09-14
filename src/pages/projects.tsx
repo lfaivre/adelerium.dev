@@ -27,9 +27,7 @@ export default ProjectsPage;
 
 export const pageQuery = graphql`
   query ProjectsPageQuery {
-    allContentfulProject(
-      sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }
-    ) {
+    allContentfulProject(sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }) {
       edges {
         node {
           id

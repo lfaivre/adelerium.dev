@@ -237,13 +237,7 @@ export interface ISideBar extends Entry<ISideBarFields> {
   };
 }
 
-export type CONTENT_TYPE =
-  | 'aboutSection'
-  | 'fact'
-  | 'footer'
-  | 'link'
-  | 'project'
-  | 'sideBar';
+export type CONTENT_TYPE = 'aboutSection' | 'fact' | 'footer' | 'link' | 'project' | 'sideBar';
 
 export type LOCALE_CODE = 'en-US';
 

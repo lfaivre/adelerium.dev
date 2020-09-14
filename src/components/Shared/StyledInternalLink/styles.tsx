@@ -18,28 +18,24 @@ export const InternalLink = styled(Link)`
 export const Placeholder = tw.div`h-full w-32`;
 
 export const InternalLinkWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === ILD.Previous ? tw`items-end` : tw`items-start`}
+  ${({ _direction }) => (_direction === ILD.Previous ? tw`items-end` : tw`items-start`)}
   ${tw`w-full h-full flex flex-col justify-center`}
 `;
 
 export const TitleTextWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === ILD.Previous ? tw`justify-end` : tw`justify-start`}
+  ${({ _direction }) => (_direction === ILD.Previous ? tw`justify-end` : tw`justify-start`)}
   ${tw`flex flex-row items-center`}
 `;
 
 export const TitleText = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === ILD.Previous ? tw`text-right` : tw`text-left`}
+  ${({ _direction }) => (_direction === ILD.Previous ? tw`text-right` : tw`text-left`)}
   ${tw`text-base font-playfair-display font-bold text-charcoal`}
 `;
 
 export const PathInfoWrapper = tw.div`w-full flex flex-row justify-between items-center`;
 
 export const PathText = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === ILD.Previous ? tw`text-right` : tw`text-left`}
+  ${({ _direction }) => (_direction === ILD.Previous ? tw`text-right` : tw`text-left`)}
   ${tw`text-base font-playfair-display font-normal text-charcoal`}
 `;
 
@@ -62,8 +58,7 @@ export const Arrow = styled(StyledArrow)`
     right: 0;
     width: 0.5rem;
     height: 0.0625rem;
-    margin-right: ${({ _direction }) =>
-      _direction === ILD.Previous ? `2.5rem` : ``};
+    margin-right: ${({ _direction }) => (_direction === ILD.Previous ? `2.5rem` : ``)};
     display: block;
     background-color: var(--charcoal);
     content: '';

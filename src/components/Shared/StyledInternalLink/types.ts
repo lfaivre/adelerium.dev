@@ -13,6 +13,4 @@ export interface DirectionProps {
   _direction: ILD;
 }
 
-export interface StyledArrowProps
-  extends React.HTMLProps<HTMLSpanElement>,
-    DirectionProps {}
+export interface StyledArrowProps extends React.HTMLProps<HTMLSpanElement>, DirectionProps {}

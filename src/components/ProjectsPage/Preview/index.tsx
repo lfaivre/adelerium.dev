@@ -55,8 +55,7 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
   const [direction, setDirection] = useState(ProjectDirection.Left);
 
   useEffect(() => {
-    const newDirection =
-      order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
+    const newDirection = order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
     setDirection(newDirection);
   }, [order]);
 
@@ -72,17 +71,11 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
       <ThumbnailWrapper _direction={direction}>
         <ThumbnailInfoWrapper _direction={direction}>
           <OrderNumberWrapper _direction={direction}>
-            {imageLoaded && (
-              <OrderNumber _direction={direction}>{`0${order}.`}</OrderNumber>
-            )}
-            {!imageLoaded && (
-              <OrderNumberSkeleton _direction={direction} width={100} />
-            )}
+            {imageLoaded && <OrderNumber _direction={direction}>{`0${order}.`}</OrderNumber>}
+            {!imageLoaded && <OrderNumberSkeleton _direction={direction} width={100} />}
           </OrderNumberWrapper>
           <TitleAndTypeWrapper _direction={direction}>
-            {imageLoaded && (
-              <Title _direction={direction}>{project.title}</Title>
-            )}
+            {imageLoaded && <Title _direction={direction}>{project.title}</Title>}
             {!imageLoaded && <TitleSkeleton _direction={direction} />}
             {imageLoaded && (
               <Type _direction={direction}>
@@ -106,34 +99,22 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
       <ContentWrapper _direction={direction}>
         <DescAndTechWrapper _direction={direction}>
           <DescriptionWrapper _direction={direction}>
-            {imageLoaded && (
-              <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>
-            )}
-            {!imageLoaded && (
-              <DescriptionTitleSkeleton _direction={direction} />
-            )}
+            {imageLoaded && <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>}
+            {!imageLoaded && <DescriptionTitleSkeleton _direction={direction} />}
             {imageLoaded && (
               <Description _direction={direction}>
                 {project.previewDescription.previewDescription}
               </Description>
             )}
-            {!imageLoaded && (
-              <DescriptionSkeleton _direction={direction} count={2} />
-            )}
+            {!imageLoaded && <DescriptionSkeleton _direction={direction} count={2} />}
           </DescriptionWrapper>
           <TechnologyWrapper _direction={direction}>
-            {imageLoaded && (
-              <TechnologyTitle _direction={direction}>tech.</TechnologyTitle>
-            )}
+            {imageLoaded && <TechnologyTitle _direction={direction}>tech.</TechnologyTitle>}
             {!imageLoaded && <TechnologyTitleSkeleton _direction={direction} />}
             {imageLoaded && (
-              <Technology _direction={direction}>
-                {project.technologyTags.join(', ')}
-              </Technology>
+              <Technology _direction={direction}>{project.technologyTags.join(', ')}</Technology>
             )}
-            {!imageLoaded && (
-              <TechnologySkeleton _direction={direction} count={2} />
-            )}
+            {!imageLoaded && <TechnologySkeleton _direction={direction} count={2} />}
           </TechnologyWrapper>
         </DescAndTechWrapper>
         <DividerWrapper _direction={direction}>
@@ -150,17 +131,13 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
               _direction={direction}
             >
               {imageLoaded && <LinkIcon icon={faFirefox} />}
-              {!imageLoaded && (
-                <LinkIconSkeleton icon={faFirefox} width={32} height={32} />
-              )}
+              {!imageLoaded && <LinkIconSkeleton icon={faFirefox} width={32} height={32} />}
               {imageLoaded && (
                 <LinkText _direction={direction}>
                   see&nbsp;it&nbsp;<Bold>hosted.</Bold>
                 </LinkText>
               )}
-              {!imageLoaded && (
-                <LinkTextSkeleton _direction={direction} width={115} />
-              )}
+              {!imageLoaded && <LinkTextSkeleton _direction={direction} width={115} />}
             </ExternalLink>
           ) : (
             <></>
@@ -174,17 +151,13 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
               _direction={direction}
             >
               {imageLoaded && <LinkIcon icon={faGithub} />}
-              {!imageLoaded && (
-                <LinkIconSkeleton icon={faGithub} width={32} height={32} />
-              )}
+              {!imageLoaded && <LinkIconSkeleton icon={faGithub} width={32} height={32} />}
               {imageLoaded && (
                 <LinkText _direction={direction}>
                   view&nbsp;on&nbsp;<Bold>github.</Bold>
                 </LinkText>
               )}
-              {!imageLoaded && (
-                <LinkTextSkeleton _direction={direction} width={115} />
-              )}
+              {!imageLoaded && <LinkTextSkeleton _direction={direction} width={115} />}
             </ExternalLink>
           ) : (
             <></>
@@ -198,17 +171,13 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
               _direction={direction}
             >
               {imageLoaded && <LinkIcon icon={faFigma} />}
-              {!imageLoaded && (
-                <LinkIconSkeleton icon={faFigma} width={32} height={32} />
-              )}
+              {!imageLoaded && <LinkIconSkeleton icon={faFigma} width={32} height={32} />}
               {imageLoaded && (
                 <LinkText _direction={direction}>
                   view&nbsp;on&nbsp;<Bold>figma.</Bold>
                 </LinkText>
               )}
-              {!imageLoaded && (
-                <LinkTextSkeleton _direction={direction} width={115} />
-              )}
+              {!imageLoaded && <LinkTextSkeleton _direction={direction} width={115} />}
             </ExternalLink>
           ) : (
             <></>

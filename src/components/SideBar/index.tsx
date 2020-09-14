@@ -88,10 +88,7 @@ export const SideBar = (): JSX.Element => {
       {sideBarView === SBV.InternalLinks ? (
         <LinkSectionWrapper>
           {internalLinks.map((link) => (
-            <InternaLink
-              to={getStrippedInternalLinkPath(link.destination)}
-              key={link.title}
-            >
+            <InternaLink to={getStrippedInternalLinkPath(link.destination)} key={link.title}>
               {link.displayText}
             </InternaLink>
           ))}

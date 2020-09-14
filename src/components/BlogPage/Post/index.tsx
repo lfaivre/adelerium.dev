@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { PostProps } from './types';
-import {
-  BlogPostWrapper,
-  TitleWrapper,
-  Title,
-  SubtitleWrapper,
-  Subtitle,
-} from './styles';
+import { BlogPostWrapper, TitleWrapper, Title, SubtitleWrapper, Subtitle } from './styles';
 
 export const Post = ({ blogPost }: PostProps): JSX.Element => {
   return (

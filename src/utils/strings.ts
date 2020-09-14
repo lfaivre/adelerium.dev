@@ -12,9 +12,7 @@ export const getStrippedInternalLinkPath = (fullURL: string): TPathname => {
     );
   }
   if (linkParts[2] !== DOMAIN) {
-    throw new Error(
-      `Invalid domain provided:\nExpected: ${DOMAIN}:\nReceived: ${linkParts[2]}`
-    );
+    throw new Error(`Invalid domain provided:\nExpected: ${DOMAIN}:\nReceived: ${linkParts[2]}`);
   }
   if (linkParts[1] !== `` || linkParts[3] === undefined) {
     throw new Error(

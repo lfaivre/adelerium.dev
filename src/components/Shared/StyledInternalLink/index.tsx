@@ -25,8 +25,7 @@ export const StyledInternalLink = ({
     let newPathname;
 
     if (pathData !== undefined) {
-      newPathname =
-        direction === ILD.Previous ? pathData.previous : pathData.next;
+      newPathname = direction === ILD.Previous ? pathData.previous : pathData.next;
     } else {
       newPathname = INDEX;
     }
@@ -45,11 +44,7 @@ export const StyledInternalLink = ({
           </TitleText>
         </TitleTextWrapper>
         <PathInfoWrapper>
-          {direction === ILD.Previous ? (
-            <Arrow _direction={direction} />
-          ) : (
-            <></>
-          )}
+          {direction === ILD.Previous ? <Arrow _direction={direction} /> : <></>}
           <PathText _direction={direction}>{linkDataFromProps().text}</PathText>
           {direction === ILD.Next ? <Arrow _direction={direction} /> : <></>}
         </PathInfoWrapper>

@@ -46,17 +46,9 @@ describe('strings util: get a stripped internal link path', () => {
     const INVALID_FULL_URL_3 = `${PROTOCOL}://www.test.com`;
     const INVALID_FULL_URL_4 = `${PROTOCOL}//${DOMAIN}`;
 
-    expect(() =>
-      getStrippedInternalLinkPath(INVALID_FULL_URL_1)
-    ).toThrowError();
-    expect(() =>
-      getStrippedInternalLinkPath(INVALID_FULL_URL_2)
-    ).toThrowError();
-    expect(() =>
-      getStrippedInternalLinkPath(INVALID_FULL_URL_3)
-    ).toThrowError();
-    expect(() =>
-      getStrippedInternalLinkPath(INVALID_FULL_URL_4)
-    ).toThrowError();
+    expect(() => getStrippedInternalLinkPath(INVALID_FULL_URL_1)).toThrowError();
+    expect(() => getStrippedInternalLinkPath(INVALID_FULL_URL_2)).toThrowError();
+    expect(() => getStrippedInternalLinkPath(INVALID_FULL_URL_3)).toThrowError();
+    expect(() => getStrippedInternalLinkPath(INVALID_FULL_URL_4)).toThrowError();
   });
 });

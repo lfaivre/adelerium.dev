@@ -1,7 +1,6 @@
 // @docs https://www.gatsbyjs.com/docs/api-files-gatsby-config/
 
-const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
 
 // @todo Use chalk to print a more visual message
 console.log(`USING ENVIRONMENT: ${activeEnv.toUpperCase()}`);
@@ -16,17 +15,13 @@ const contentfulConfig = {
 };
 
 if (activeEnv === 'development') {
-  console.log(
-    `\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`
-  );
+  console.log(`\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`);
 }
 
 const { spaceId, accessToken, host, environment } = contentfulConfig;
 
 if (!spaceId || !accessToken || !host || !environment) {
-  throw new Error(
-    'Contentful Space ID, Access Token, Host, and Environment need to be provided.'
-  );
+  throw new Error('Contentful Space ID, Access Token, Host, and Environment need to be provided.');
 }
 
 module.exports = {

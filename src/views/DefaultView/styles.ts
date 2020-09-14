@@ -48,8 +48,7 @@ export const HeaderWrapper = styled.div<HeaderWrapperProps>`
 
 export const MainWrapper = styled.div<MainWrapperProps>`
   ${tw`z-10 w-full`}
-  margin-top: ${({ headerHeight, isIndex }) =>
-    !isIndex ? `${headerHeight}px` : 0}
+  margin-top: ${({ headerHeight, isIndex }) => (!isIndex ? `${headerHeight}px` : 0)}
 `;
 
 export const ReturnButtonWrapper = tw.div`z-10 w-full p-8 flex flex-shrink-0 flex-row justify-center md:justify-end items-center`;

@@ -6,12 +6,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import { SEOProps, GraphQLStaticQuery } from './types';
 
-export const SEO = ({
-  description = ``,
-  lang = `en`,
-  meta = [],
-  title,
-}: SEOProps): JSX.Element => {
+export const SEO = ({ description = ``, lang = `en`, meta = [], title }: SEOProps): JSX.Element => {
   const siteQuery: GraphQLStaticQuery = useStaticQuery(
     graphql`
       query {
@@ -26,8 +21,7 @@ export const SEO = ({
     `
   );
 
-  const metaDescription =
-    description || siteQuery.site.siteMetadata.description;
+  const metaDescription = description || siteQuery.site.siteMetadata.description;
 
   return (
     <Helmet

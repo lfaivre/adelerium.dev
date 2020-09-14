@@ -8,9 +8,7 @@ import { DirectionProps } from './types';
 
 export const PreviewWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
-    _direction === PD.Left
-      ? tw`flex-col lg:flex-row`
-      : tw`flex-col lg:flex-row-reverse`}
+    _direction === PD.Left ? tw`flex-col lg:flex-row` : tw`flex-col lg:flex-row-reverse`}
   ${tw`relative w-full p-4 mobile:p-8 mb-2 md:mb-4 last:mb-0 flex bg-offpink`}
 `;
 
@@ -28,9 +26,7 @@ export const ThumbnailWrapper = styled.div<DirectionProps>`
 
 export const ThumbnailInfoWrapper = styled.div<DirectionProps>`
   ${({ _direction }) =>
-    _direction === PD.Left
-      ? tw`flex-row justify-start`
-      : tw`flex-row-reverse justify-end`}
+    _direction === PD.Left ? tw`flex-row justify-start` : tw`flex-row-reverse justify-end`}
   ${tw`w-full mb-2 flex items-center`}
 `;
 
@@ -43,8 +39,7 @@ export const OrderNumberWrapper = styled.div<DirectionProps>`
 `;
 
 export const OrderNumber = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`text-charcoal text-6xl md:text-7xl font-lobster-two font-bold leading-normal`}
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
@@ -54,8 +49,7 @@ export const OrderNumber = styled.p<DirectionProps>`
 export const OrderNumberSkeleton = OrderNumber.withComponent(Skeleton);
 
 export const TitleAndTypeWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`items-start` : tw`items-end`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`items-start` : tw`items-end`)}
   ${tw`flex-1 flex flex-col justify-center`}
   & > span {
     width: 100%;
@@ -63,16 +57,14 @@ export const TitleAndTypeWrapper = styled.div<DirectionProps>`
 `;
 
 export const Title = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`w-full mb-2 text-charcoal text-2xl md:text-3.5xl font-playfair-display font-bold leading-normal`}
 `;
 
 export const TitleSkeleton = Title.withComponent(Skeleton);
 
 export const Type = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`text-charcoal text-xs md:text-base font-playfair-display font-normal leading-normal`}
 `;
 
@@ -97,20 +89,17 @@ export const Image = styled(Img)`
 `;
 
 export const ContentWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`items-start` : tw`items-end`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`items-start` : tw`items-end`)}
   ${tw`flex-1 lg:px-8 flex flex-col justify-center`}
 `;
 
 export const DescAndTechWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`items-start` : tw`items-end`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`items-start` : tw`items-end`)}
   ${tw`w-full mb-4 mobile:mb-8 flex flex-col justify-center`}
 `;
 
 export const DescriptionWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`items-start` : tw`items-end`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`items-start` : tw`items-end`)}
   ${tw`w-full mb-2 lg:mb-8 flex flex-col justify-center`}
   & > span {
     width: 100%;
@@ -118,26 +107,21 @@ export const DescriptionWrapper = styled.div<DirectionProps>`
 `;
 
 export const DescriptionTitle = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`w-full mb-1 lg:mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold leading-normal`}
 `;
 
-export const DescriptionTitleSkeleton = DescriptionTitle.withComponent(
-  Skeleton
-);
+export const DescriptionTitleSkeleton = DescriptionTitle.withComponent(Skeleton);
 
 export const Description = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`w-full text-charcoal text-xs mobile:text-base font-playfair-display font-normal leading-normal`}
 `;
 
 export const DescriptionSkeleton = Description.withComponent(Skeleton);
 
 export const TechnologyWrapper = styled.div<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`items-start` : tw`items-end`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`items-start` : tw`items-end`)}
   ${tw`w-full flex flex-col justify-center`}
   & > span {
     width: 100%;
@@ -145,16 +129,14 @@ export const TechnologyWrapper = styled.div<DirectionProps>`
 `;
 
 export const TechnologyTitle = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`w-full mb-2 text-charcoal text-base mobile:text-2xl font-playfair-display font-bold leading-normal`}
 `;
 
 export const TechnologyTitleSkeleton = TechnologyTitle.withComponent(Skeleton);
 
 export const Technology = styled.p<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`w-full text-charcoal text-xs mobile:text-base font-playfair-display font-normal leading-normal`}
 `;
 
@@ -177,15 +159,12 @@ export const LinksWrapper = styled.div<DirectionProps>`
 `;
 
 export const ExternalLink = styled(OutboundLink)<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`mr-8 last:mr-0` : tw`ml-8`}
-  ${({ _direction }) =>
-    _direction !== PD.Left && `&:first-of-type {margin-left: 0}`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`mr-8 last:mr-0` : tw`ml-8`)}
+  ${({ _direction }) => _direction !== PD.Left && `&:first-of-type {margin-left: 0}`}
 `;
 
 export const LinkText = styled.span<DirectionProps>`
-  ${({ _direction }) =>
-    _direction === PD.Left ? tw`text-left` : tw`text-right`}
+  ${({ _direction }) => (_direction === PD.Left ? tw`text-left` : tw`text-right`)}
   ${tw`hidden lg:block text-charcoal text-base font-playfair-display font-normal leading-normal`}
 `;
 
@@ -199,9 +178,7 @@ export const LinkIconSkeleton = LinkIcon.withComponent(Skeleton);
 
 export const ArrowIcon = styled(FontAwesomeIcon)<DirectionProps>`
   ${({ _direction }) =>
-    _direction === PD.Left
-      ? tw`absolute right-project-arrow`
-      : tw`absolute left-project-arrow`}
+    _direction === PD.Left ? tw`absolute right-project-arrow` : tw`absolute left-project-arrow`}
   ${tw` hidden lg:block bottom-project-arrow text-project-arrow`}
   color: transparent;
   & > g g path {

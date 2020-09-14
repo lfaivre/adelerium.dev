@@ -24,9 +24,7 @@ const locationReducer = (_state: State, action: Action): State => {
     case 'SET_PATHDATA': {
       const pathname = action.payload;
       const isValidPath = pathname !== undefined && pathname in SitePaths;
-      const pathData = isValidPath
-        ? SitePaths[pathname as TPathname]
-        : undefined;
+      const pathData = isValidPath ? SitePaths[pathname as TPathname] : undefined;
       const isIndex = isValidPath && pathname === INDEX;
       return { pathname, pathData, isValidPath, isIndex };
     }
@@ -43,9 +41,7 @@ export const usePathData = (): PathDataHook => {
 
   useEffect(() => {
     const newPathname =
-      location.pathname in SitePaths
-        ? (location.pathname as TPathname)
-        : undefined;
+      location.pathname in SitePaths ? (location.pathname as TPathname) : undefined;
     if (newPathname !== state.pathname) {
       dispatch({ type: 'SET_PATHDATA', payload: newPathname });
     }

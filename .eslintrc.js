@@ -11,12 +11,7 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: { jsx: true },
     project: './tsconfig.json',
-    projectFolderIgnoreList: [
-      './.cache/',
-      './.github/',
-      './node_modules/',
-      './public/',
-    ],
+    projectFolderIgnoreList: ['./.cache/', './.github/', './node_modules/', './public/'],
     tsconfigRootDir: '.',
   },
   env: {

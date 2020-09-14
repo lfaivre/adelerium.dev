@@ -7,10 +7,7 @@ import { useAppState } from '../state/app-context';
 
 import { SCREEN_SIZE } from '../data/presentation';
 
-import {
-  IndexPageNavigatorWrapper,
-  IndexPageContentWrapper,
-} from '../styles/pages';
+import { IndexPageNavigatorWrapper, IndexPageContentWrapper } from '../styles/pages';
 
 const IndexPage = (): JSX.Element => {
   const { windowWidth } = useAppState();

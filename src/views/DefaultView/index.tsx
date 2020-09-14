@@ -67,10 +67,8 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
 
   const shouldShowBackgroundImage = (): boolean => {
     return (
-      (windowWidth < SCREEN_SIZE.MD &&
-        (pathData.pathname as TPathname) in pathsWithImgBgsMobile) ||
-      (windowWidth >= SCREEN_SIZE.MD &&
-        (pathData.pathname as TPathname) in pathsWithImgBgsDesktop)
+      (windowWidth < SCREEN_SIZE.MD && (pathData.pathname as TPathname) in pathsWithImgBgsMobile) ||
+      (windowWidth >= SCREEN_SIZE.MD && (pathData.pathname as TPathname) in pathsWithImgBgsDesktop)
     );
   };
 
@@ -92,9 +90,7 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
             />
           </HeaderWrapper>
         )}
-        {shouldShowBackgroundImage() && (
-          <BackgroundImage layoutWidth={layoutWidth} />
-        )}
+        {shouldShowBackgroundImage() && <BackgroundImage layoutWidth={layoutWidth} />}
         <MainWrapper headerHeight={headerHeight} isIndex={pathData.isIndex}>
           {children}
         </MainWrapper>
