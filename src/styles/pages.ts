@@ -1,7 +1,5 @@
 import tw, { styled } from 'twin.macro';
 
-// @temp Disabling incorrect linting error
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface PageContentWrapperProps {
   staticsHeight: number;
 }

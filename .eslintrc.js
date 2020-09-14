@@ -50,35 +50,27 @@ module.exports = {
     'unicorn',
   ],
   rules: {
-    // "react/prop-types": "off",
     'eslint-comments/no-unused-disable': 'error',
-
     'no-prototype-builtins': 'off',
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
-    'no-use-before-define': [
-      'error',
-      { functions: false, classes: true, variables: true },
-    ],
-    // "@typescript-eslint/explicit-function-return-type": "off",
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       { allowExpressions: true, allowTypedFunctionExpressions: true },
     ],
-    '@typescript-eslint/no-use-before-define': [
-      'error',
-      { functions: false, classes: true, variables: true, typedefs: true },
-    ],
+    // @note @temp https://github.com/typescript-eslint/typescript-eslint/issues/2540
+    // 'no-use-before-define': [
+    //   'error',
+    //   { functions: false, classes: true, variables: true },
+    // ],
+    // '@typescript-eslint/no-use-before-define': [
+    //   'error',
+    //   { functions: false, classes: true, variables: true, typedefs: true },
+    // ],
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'error',
     'unicorn/prevent-abbreviations': 'off',
   },
-  // overrides: [
-  //   {
-  //     files: ["*.js"],
-  //     rules: {
-  //       "@typescript-eslint/no-var-requires": "off",
-  //     },
-  //   },
-  // ],
 };

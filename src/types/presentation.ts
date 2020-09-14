@@ -1,6 +1,3 @@
-/* eslint-disable no-shadow */
-/* @note https://github.com/typescript-eslint/typescript-eslint/issues/325 */
-
 export enum InternalLinkDirection {
   Previous,
   Next,
@@ -34,5 +31,3 @@ export enum ScreenSize {
   LG,
   XL,
 }
-
-/* eslint-enable no-shadow */
