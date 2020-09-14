@@ -9,6 +9,7 @@ gatsby-node.js
 gatsby-ssr.js
 getContentfulEnvironment.js
 jest.config.js
+jest.setup.js
 jest-preprocess.js
 loadershim.js
 postcss.config.js
