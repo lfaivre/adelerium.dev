@@ -54,7 +54,7 @@
     "@types/react-test-renderer": "^16.9.3",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.1",
     "babel-jest": "^26.3.0",
     "babel-preset-gatsby": "^0.5.9",
     "contentful-typescript-codegen": "^3.2.1",
