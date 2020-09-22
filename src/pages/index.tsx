@@ -1,4 +1,5 @@
 import React from 'react';
+import { PageProps, graphql } from 'gatsby';
 
 import { SEO } from '../components/Shared/SEO';
 import { SideBar } from '../components/SideBar';
@@ -7,14 +8,17 @@ import { useAppState } from '../state/app-context';
 
 import { SCREEN_SIZE } from '../data/presentation';
 
+import { PageQueryData } from '../types/home';
 import { IndexPageNavigatorWrapper, IndexPageContentWrapper } from '../styles/pages';
 
-const IndexPage = (): JSX.Element => {
+const IndexPage = ({ data, location }: PageProps): JSX.Element => {
   const { windowWidth } = useAppState();
+
+  const metaImage = (data as PageQueryData).contentfulAsset.fixed;
 
   return (
     <>
-      <SEO title="Home" />
+      <SEO title="Home" pathname={location.pathname} image={metaImage} />
       {!(windowWidth < SCREEN_SIZE.XL) ? (
         <IndexPageContentWrapper />
       ) : (
@@ -28,3 +32,13 @@ const IndexPage = (): JSX.Element => {
 
 // eslint-disable-next-line import/no-default-export
 export default IndexPage;
+
+export const pageQuery = graphql`
+  query HomePageQuery {
+    contentfulAsset(title: { eq: "Home Page Meta Image" }) {
+      fixed(width: 3360, resizingBehavior: SCALE) {
+        ...GatsbyContentfulFixed
+      }
+    }
+  }
+`;

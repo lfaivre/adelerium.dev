@@ -1,4 +1,4 @@
-import { FluidObject } from 'gatsby-image';
+import { FluidObject, FixedObject } from 'gatsby-image';
 
 import { ILink } from './general';
 
@@ -49,6 +49,9 @@ export interface IAboutSection extends IAboutSectionFields {
 
 type AboutSectionNode = { node: IAboutSectionFields };
 type AllContentfulAboutSection = { edges: AboutSectionNode[] };
+type ContentfulAsset = { fixed: FixedObject };
+
 export type PageQueryData = {
   allContentfulAboutSection: AllContentfulAboutSection;
+  contentfulAsset: ContentfulAsset;
 };

@@ -1,27 +1,35 @@
-// @docs https://www.gatsbyjs.org/docs/use-static-query/
-
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import { SEOProps, GraphQLStaticQuery } from './types';
 
-export const SEO = ({ description = ``, lang = `en`, meta = [], title }: SEOProps): JSX.Element => {
-  const siteQuery: GraphQLStaticQuery = useStaticQuery(
+export const SEO = ({
+  description = ``,
+  lang = `en`,
+  meta = [],
+  title,
+  pathname,
+  keywords = [],
+  image,
+}: SEOProps): ReactElement => {
+  const { site }: GraphQLStaticQuery = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title
             description
+            title
             author
+            siteUrl
           }
         }
       }
     `
   );
 
-  const metaDescription = description || siteQuery.site.siteMetadata.description;
+  const metaDescription = description || site.siteMetadata.description;
+  const metaUrl = `${site.siteMetadata.siteUrl}${pathname}`;
 
   return (
     <Helmet
@@ -30,7 +38,7 @@ export const SEO = ({ description = ``, lang = `en`, meta = [], title }: SEOProp
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${siteQuery.site.siteMetadata.title}`}
+      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -41,6 +49,10 @@ export const SEO = ({ description = ``, lang = `en`, meta = [], title }: SEOProp
           content: title,
         },
         {
+          property: `og:url`,
+          content: metaUrl,
+        },
+        {
           property: `og:description`,
           content: metaDescription,
         },
@@ -49,12 +61,12 @@ export const SEO = ({ description = ``, lang = `en`, meta = [], title }: SEOProp
           content: `website`,
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
+          property: `og:locale`,
+          content: `en_US`,
         },
         {
           name: `twitter:creator`,
-          content: siteQuery.site.siteMetadata.author,
+          content: site.siteMetadata.author,
         },
         {
           name: `twitter:title`,
@@ -64,7 +76,50 @@ export const SEO = ({ description = ``, lang = `en`, meta = [], title }: SEOProp
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+        // {
+        //   name: `google-site-verification`,
+        //   content: ``,
+        // },
+      ]
+        .concat([
+          {
+            property: `og:image`,
+            content: `http:${image.src}`,
+          },
+          {
+            property: `og:image:secure_url`,
+            content: `https:${image.src}`,
+          },
+          {
+            property: `og:image:type`,
+            content: `image/png`,
+          },
+          {
+            property: `og:image:alt`,
+            content: title,
+          },
+          {
+            property: `og:image:width`,
+            content: `${image.width}`.replace(`$`, ``),
+          },
+          {
+            property: `og:image:height`,
+            content: `$${image.height}`.replace(`$`, ``),
+          },
+          {
+            name: `twitter:card`,
+            content: `summary_large_image`,
+          },
+        ])
+        .concat(
+          keywords && keywords.length > 0
+            ? {
+                name: `keywords`,
+                content: keywords.join(`,`),
+              }
+            : []
+        )
+        .concat(meta)}
     />
   );
 };

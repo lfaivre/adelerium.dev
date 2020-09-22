@@ -7,13 +7,14 @@ import { AboutSection } from '../components/AboutPage/AboutSection';
 import { PageQueryData } from '../types/about';
 import { AboutPageContentWrapper } from '../styles/pages';
 
-const AboutPage = ({ data }: PageProps): JSX.Element => {
+const AboutPage = ({ data, location }: PageProps): JSX.Element => {
+  const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const aboutSections = (data as PageQueryData).allContentfulAboutSection.edges;
   const aboutSectionsLength = aboutSections.length;
 
   return (
     <>
-      <SEO title="About" />
+      <SEO title="About" pathname={location.pathname} image={metaImage} />
       <AboutPageContentWrapper>
         {aboutSections.map(({ node }, index) => {
           return (
@@ -35,6 +36,11 @@ export default AboutPage;
 
 export const pageQuery = graphql`
   query AboutPageQuery {
+    contentfulAsset(title: { eq: "About Page Meta Image" }) {
+      fixed(width: 3360, resizingBehavior: SCALE) {
+        ...GatsbyContentfulFixed
+      }
+    }
     allContentfulAboutSection(sort: { fields: order, order: ASC }) {
       edges {
         node {

@@ -7,12 +7,13 @@ import { Preview } from '../components/ProjectsPage/Preview';
 import { PageQueryData } from '../types/projects';
 import { ProjectsPageContentWrapper } from '../styles/pages';
 
-const ProjectsPage = ({ data }: PageProps): JSX.Element => {
+const ProjectsPage = ({ data, location }: PageProps): JSX.Element => {
+  const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const projects = (data as PageQueryData).allContentfulProject.edges;
 
   return (
     <>
-      <SEO title="Projects" />
+      <SEO title="Projects" pathname={location.pathname} image={metaImage} />
       <ProjectsPageContentWrapper>
         {projects.map(({ node }, index) => {
           return <Preview project={node} order={index + 1} key={node.title} />;
@@ -27,6 +28,11 @@ export default ProjectsPage;
 
 export const pageQuery = graphql`
   query ProjectsPageQuery {
+    contentfulAsset(title: { eq: "Projects Page Meta Image" }) {
+      fixed(width: 3360, resizingBehavior: SCALE) {
+        ...GatsbyContentfulFixed
+      }
+    }
     allContentfulProject(sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }) {
       edges {
         node {

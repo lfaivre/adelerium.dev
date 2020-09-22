@@ -1,4 +1,4 @@
-import { FluidObject } from 'gatsby-image';
+import { FluidObject, FixedObject } from 'gatsby-image';
 
 type PreviewDescription = { previewDescription: string };
 type PreviewPicture = { fluid: FluidObject | FluidObject[] };
@@ -62,4 +62,9 @@ export interface IProject extends IProjectFields {
 
 type ProjectNode = { node: IProjectFields };
 type AllContentfulProject = { edges: ProjectNode[] };
-export type PageQueryData = { allContentfulProject: AllContentfulProject };
+type ContentfulAsset = { fixed: FixedObject };
+
+export type PageQueryData = {
+  allContentfulProject: AllContentfulProject;
+  contentfulAsset: ContentfulAsset;
+};

@@ -1,23 +1,26 @@
-// @note Types for File: index.tsx
+import { FixedObject } from 'gatsby-image';
 
-interface MetaAttribute {
-  name: string;
-  content: string;
-}
+type MetaProps =
+  | { name: string; content: string; property?: undefined }
+  | { property: string; content: string; name?: undefined };
 
-export interface SEOProps {
+export type SEOProps = {
   description?: string;
   lang?: string;
-  meta?: Array<MetaAttribute>;
+  meta?: MetaProps[];
   title: string;
-}
+  pathname: string;
+  keywords?: string[];
+  image: FixedObject;
+};
 
-interface MetaData {
-  title: string;
+type SiteMetaData = {
   description: string;
+  title: string;
   author: string;
-}
+  siteUrl: string;
+};
 
-export type Site = { siteMetadata: MetaData };
+export type Site = { siteMetadata: SiteMetaData };
 
 export type GraphQLStaticQuery = { site: Site };

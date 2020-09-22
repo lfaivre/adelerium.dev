@@ -24,11 +24,16 @@ if (!spaceId || !accessToken || !host || !environment) {
   throw new Error('Contentful Space ID, Access Token, Host, and Environment need to be provided.');
 }
 
+const title = `Lorenzo Faivre - Portfolio`;
+const description = `Online portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, freelancer, and co-founder based in Phoenix, Arizona.`;
+const siteUrl = process.env.URL || process.env.DEPLOY_URL || `https://www.adelerium.dev`;
+
 module.exports = {
   siteMetadata: {
-    title: `Lorenzo Faivre - Portfolio`,
-    description: `Online portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, freelancer, and co-founder based in Phoenix, Arizona.`,
-    author: `@lfaivre`,
+    title,
+    description,
+    author: `@lorenzofaivre`,
+    siteUrl,
   },
   plugins: [
     // @note (top) gatsby-plugin-react-helmet
@@ -56,16 +61,17 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Lorenzo Faivre - Portfolio`,
+        name: title,
         short_name: `adelerium`,
-        description: `Online portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, freelancer, and co-founder based in Phoenix, Arizona.`,
+        description,
         lang: `en`,
         start_url: `/`,
         background_color: `#1e2223`,
         theme_color: `#fcf0ec`,
-        theme_color_in_head: false,
+        theme_color_in_head: true,
         display: `standalone`,
         icon: `src/images/icon.png`,
+        cache_busting_mode: `query`,
         crossOrigin: `use-credentials`,
       },
     },
