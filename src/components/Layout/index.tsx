@@ -29,7 +29,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
     <LayoutWrapper ref={layoutRef}>
       {isLoading && <LoadingView />}
-      {!isLoading && <DefaultView>{children}</DefaultView>}
+      <DefaultView>{children}</DefaultView>
     </LayoutWrapper>
   );
 };
