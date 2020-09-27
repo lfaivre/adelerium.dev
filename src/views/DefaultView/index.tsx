@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import { useAppState, useAppDispatch } from '../../state/app-context';
-import { usePathData } from '../../hooks/location';
+import { useAppState, useAppDispatch } from '../../shared/hooks/global-state';
+import { usePathData } from '../../shared/hooks/location';
 
 import { SideBar } from '../../components/SideBar';
 import { Header } from '../../components/Header';

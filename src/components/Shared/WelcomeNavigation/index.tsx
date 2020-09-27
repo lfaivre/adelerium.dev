@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyledInternalLink } from '../StyledInternalLink';
 
-import { usePathData } from '../../../hooks/location';
+import { usePathData } from '../../../shared/hooks/location';
 import { InternalLinkDirection as ILD } from '../../../types/presentation';
 
 import { WelcomeNavigationWrapper, TitleWrapper, Title } from './styles';

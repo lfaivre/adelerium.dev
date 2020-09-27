@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
-import { useWindowWidth } from '../hooks/screen-size';
-import { SCREEN_SIZE } from '../data/presentation';
-import { Action, Dispatch, State, AppProviderProps } from '../types/state';
+import { useWindowWidth } from './screen-size';
+import { SCREEN_SIZE } from '../../data/presentation';
+import { Action, Dispatch, State, AppProviderProps } from '../../types/state';
 
 const initialState: State = {
   isLoading: true,

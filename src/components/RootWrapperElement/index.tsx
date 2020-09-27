@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppProvider } from '../../state/app-context';
+import { AppProvider } from '../../shared/hooks/global-state';
 import { RootWrapperElementProps } from './types';
 
 export const RootWrapperElement = ({ element }: RootWrapperElementProps): React.ReactNode => {

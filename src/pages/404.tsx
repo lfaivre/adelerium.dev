@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 
-import { useAppState } from '../state/app-context';
+import { useAppState } from '../shared/hooks/global-state';
 
 import { SEO } from '../components/Shared/SEO';
 import { Message } from '../components/404Page/Message';

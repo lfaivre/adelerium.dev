@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useAppState } from '../../../state/app-context';
+import { useAppState } from '../../../shared/hooks/global-state';
 
 import { SCREEN_SIZE } from '../../../data/presentation';
 import { AboutSectionDirection } from '../../../types/presentation';

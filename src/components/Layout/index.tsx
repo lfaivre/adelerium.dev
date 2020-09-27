@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { GlobalStyles } from 'twin.macro';
 
-import { useAppState, useAppDispatch } from '../../state/app-context';
+import { useAppState, useAppDispatch } from '../../shared/hooks/global-state';
 
 import { DefaultView } from '../../views/DefaultView';
 import { LoadingView } from '../../views/LoadingView';

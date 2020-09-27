@@ -4,7 +4,7 @@ import { PageProps, graphql } from 'gatsby';
 import { SEO } from '../components/Shared/SEO';
 import { SideBar } from '../components/SideBar';
 
-import { useAppState } from '../state/app-context';
+import { useAppState } from '../shared/hooks/global-state';
 
 import { SCREEN_SIZE } from '../data/presentation';
 
