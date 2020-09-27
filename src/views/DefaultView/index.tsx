@@ -11,7 +11,7 @@ import {
   SCREEN_SIZE,
   pathsWithImgBgsDesktop,
   pathsWithImgBgsMobile,
-} from '../../data/presentation';
+} from '../../shared/constants/presentation';
 
 import { DefaultViewProps } from './types';
 import {

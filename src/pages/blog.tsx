@@ -7,7 +7,7 @@ import { SEO } from '../components/Shared/SEO';
 import { Post } from '../components/BlogPage/Post';
 
 import { PageQueryData } from '../types/blog';
-import { ContentfulBlogData } from '../data/blog';
+import { ContentfulBlogData } from '../shared/constants/contentful-mock';
 import { BlogPageContentWrapper } from '../shared/styles/pages';
 
 const BlogPage = ({ data, location }: PageProps): JSX.Element => {

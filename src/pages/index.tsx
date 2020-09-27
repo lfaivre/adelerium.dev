@@ -6,7 +6,7 @@ import { SideBar } from '../components/SideBar';
 
 import { useAppState } from '../shared/hooks/global-state';
 
-import { SCREEN_SIZE } from '../data/presentation';
+import { SCREEN_SIZE } from '../shared/constants/presentation';
 
 import { PageQueryData } from '../types/home';
 import { IndexPageNavigatorWrapper, IndexPageContentWrapper } from '../shared/styles/pages';

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 import { useWindowWidth } from './screen-size';
-import { SCREEN_SIZE } from '../../data/presentation';
+import { SCREEN_SIZE } from '../constants/presentation';
 import { Action, Dispatch, State, AppProviderProps } from '../../types/state';
 
 const initialState: State = {

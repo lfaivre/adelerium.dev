@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useAppState } from '../../../shared/hooks/global-state';
 
-import { SCREEN_SIZE } from '../../../data/presentation';
+import { SCREEN_SIZE } from '../../../shared/constants/presentation';
 import { AboutSectionDirection } from '../../../types/presentation';
 import { getStrippedInternalLinkPath } from '../../../services/strings';
 

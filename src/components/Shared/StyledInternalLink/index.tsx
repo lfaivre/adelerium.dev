@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SitePaths } from '../../../data/paths';
+import { SitePaths } from '../../../shared/constants/paths';
 import { INDEX, TPathname } from '../../../types/paths';
 import { InternalLinkDirection as ILD } from '../../../types/presentation';
 

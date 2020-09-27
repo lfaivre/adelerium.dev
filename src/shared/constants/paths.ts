@@ -12,7 +12,7 @@ import {
   BLOG_TEXT,
   TSitePaths,
   TPathData,
-} from '../types/paths';
+} from '../../types/paths';
 
 const indexPathData = {
   pathname: INDEX,

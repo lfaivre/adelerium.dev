@@ -1,5 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
-import { BlogPost, BlogData } from '../types/blog';
+
+import { TSiteData } from '../../types/site';
+import { BlogPost, BlogData } from '../../types/blog';
+
+export const SiteData: TSiteData = {
+  profile: {
+    name: 'Lorenzo Faivre',
+    tag: 'A software engineer, among other things',
+  },
+};
 
 const BlogPosts: Array<BlogPost> = [
   {
