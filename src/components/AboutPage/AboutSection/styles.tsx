@@ -4,7 +4,7 @@ import Img from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
 import { DirectionProps } from './types';
-import { AboutSectionDirection as ASD } from '../../../types/presentation';
+import { AboutSectionDirection as ASD } from '../../../shared/types/presentation';
 
 export const AboutSectionWrapper = styled.div<DirectionProps>`
   ${({ _direction }) => (_direction === ASD.Left ? tw`flex-row` : tw`flex-row-reverse`)}

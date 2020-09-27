@@ -1,4 +1,4 @@
-import { TPathname } from '../types/paths';
+import { TPathname } from '../shared/types/paths';
 
 const PROTOCOL = `https`;
 const DOMAIN = `www.adelerium.dev`;

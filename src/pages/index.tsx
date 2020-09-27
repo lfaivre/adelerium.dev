@@ -8,7 +8,7 @@ import { useAppState } from '../shared/hooks/global-state';
 
 import { SCREEN_SIZE } from '../shared/constants/presentation';
 
-import { PageQueryData } from '../types/home';
+import { PageQueryData } from '../shared/types/pages/home';
 import { IndexPageNavigatorWrapper, IndexPageContentWrapper } from '../shared/styles/pages';
 
 const IndexPage = ({ data, location }: PageProps): JSX.Element => {

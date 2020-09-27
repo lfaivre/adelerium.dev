@@ -1,5 +1,5 @@
-import { IProjectFields } from '../../../types/projects';
-import { ProjectDirection as PD } from '../../../types/presentation';
+import { IProjectFields } from '../../../shared/types/pages/projects';
+import { ProjectDirection as PD } from '../../../shared/types/presentation';
 
 // @note Types for File: index.tsx
 

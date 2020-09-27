@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import { ProjectDirection as PD } from '../../../types/presentation';
+import { ProjectDirection as PD } from '../../../shared/types/presentation';
 import { DirectionProps } from './types';
 
 export const PreviewWrapper = styled.div<DirectionProps>`

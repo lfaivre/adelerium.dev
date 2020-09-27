@@ -1,5 +1,5 @@
-import { PathDataHook } from '../../../types/paths';
-import { InternalLinkDirection as ILD } from '../../../types/presentation';
+import { PathDataHook } from '../../../shared/types/paths';
+import { InternalLinkDirection as ILD } from '../../../shared/types/presentation';
 
 // @note Types for File: index.ts
 

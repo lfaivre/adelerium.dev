@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { TSiteData } from '../../types/site';
-import { BlogPost, BlogData } from '../../types/blog';
+import { TSiteData } from '../types/site';
+import { BlogPost, BlogData } from '../types/pages/blog';
 
 export const SiteData: TSiteData = {
   profile: {

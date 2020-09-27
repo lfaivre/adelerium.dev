@@ -1,7 +1,7 @@
 import React from 'react';
 import tw, { styled } from 'twin.macro';
 import { Link } from 'gatsby';
-import { InternalLinkDirection as ILD } from '../../../types/presentation';
+import { InternalLinkDirection as ILD } from '../../../shared/types/presentation';
 import { DirectionProps, StyledArrowProps } from './types';
 
 const StyledArrow = ({ className, ...rest }: StyledArrowProps): JSX.Element => (

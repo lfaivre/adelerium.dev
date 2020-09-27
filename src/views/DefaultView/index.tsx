@@ -26,7 +26,7 @@ import {
   ReturnButtonIndicator,
   FooterWrapper,
 } from './styles';
-import { TPathname } from '../../types/paths';
+import { TPathname } from '../../shared/types/paths';
 
 const handleScroll = (): void => {
   if (typeof window !== `undefined`) {

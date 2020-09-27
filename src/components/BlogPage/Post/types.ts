@@ -1,4 +1,4 @@
-import { BlogPost } from '../../../types/blog';
+import { BlogPost } from '../../../shared/types/pages/blog';
 
 // @note Types for File: index.tsx
 

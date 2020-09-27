@@ -4,7 +4,7 @@ import { PageProps, graphql } from 'gatsby';
 import { SEO } from '../components/Shared/SEO';
 import { Preview } from '../components/ProjectsPage/Preview';
 
-import { PageQueryData } from '../types/projects';
+import { PageQueryData } from '../shared/types/pages/projects';
 import { ProjectsPageContentWrapper } from '../shared/styles/pages';
 
 const ProjectsPage = ({ data, location }: PageProps): JSX.Element => {

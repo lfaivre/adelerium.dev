@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyledInternalLink } from '../Shared/StyledInternalLink';
 
-import { INDEX, PathDataHook } from '../../types/paths';
-import { InternalLinkDirection as ILD } from '../../types/presentation';
+import { INDEX, PathDataHook } from '../../shared/types/paths';
+import { InternalLinkDirection as ILD } from '../../shared/types/presentation';
 
 import { HeaderWrapper, InternalLink, TitleWrapper, Title } from './styles';
 

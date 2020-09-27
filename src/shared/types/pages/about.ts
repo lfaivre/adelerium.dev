@@ -1,6 +1,6 @@
 import { FluidObject, FixedObject } from 'gatsby-image';
 
-import { ILink } from './general';
+import { ILink } from '../links';
 
 type Body = { body: string };
 type AccentImage = { fluid: FluidObject | FluidObject[] };

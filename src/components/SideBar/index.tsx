@@ -6,7 +6,7 @@ import { WelcomeNavigation } from '../Shared/WelcomeNavigation';
 // @todo: Refactor TypeScript, patched in for now
 import { getStrippedInternalLinkPath } from '../../services/strings';
 import { SiteData } from '../../shared/constants/contentful-mock';
-import { SideBarView as SBV } from '../../types/presentation';
+import { SideBarView as SBV } from '../../shared/types/presentation';
 
 import { GraphQLStaticQuery } from './types';
 import {

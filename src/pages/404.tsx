@@ -6,7 +6,7 @@ import { useAppState } from '../shared/hooks/global-state';
 import { SEO } from '../components/Shared/SEO';
 import { Message } from '../components/404Page/Message';
 
-import { PageQueryData } from '../types/404';
+import { PageQueryData } from '../shared/types/pages/404';
 import { ErrorPageContentWrapper } from '../shared/styles/pages';
 
 const NotFoundPage = ({ data, location }: PageProps): JSX.Element => {

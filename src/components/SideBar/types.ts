@@ -1,5 +1,5 @@
 import { FluidObject } from 'gatsby-image';
-import { ILinkFields } from '../../types/general';
+import { ILinkFields } from '../../shared/types/links';
 
 // @note Types for File: index.ts
 

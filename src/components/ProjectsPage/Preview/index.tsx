@@ -6,7 +6,7 @@ import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 
-import { ProjectDirection } from '../../../types/presentation';
+import { ProjectDirection } from '../../../shared/types/presentation';
 
 import { PreviewProps } from './types';
 import {

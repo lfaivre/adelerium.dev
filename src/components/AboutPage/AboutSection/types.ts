@@ -1,5 +1,5 @@
-import { IAboutSectionFields } from '../../../types/about';
-import { AboutSectionDirection as ASD } from '../../../types/presentation';
+import { IAboutSectionFields } from '../../../shared/types/pages/about';
+import { AboutSectionDirection as ASD } from '../../../shared/types/presentation';
 
 // @note Types for File: index.tsx
 

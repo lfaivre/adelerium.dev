@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from 'react';
 import { useLocation } from '@reach/router';
 import { SitePaths } from '../constants/paths';
-import { TPathname, TPathData, INDEX, PathDataHook } from '../../types/paths';
+import { TPathname, TPathData, INDEX, PathDataHook } from '../types/paths';
 
 type State = {
   pathname: TPathname | undefined;

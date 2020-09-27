@@ -6,7 +6,7 @@ import { useAppState } from '../shared/hooks/global-state';
 import { SEO } from '../components/Shared/SEO';
 import { Post } from '../components/BlogPage/Post';
 
-import { PageQueryData } from '../types/blog';
+import { PageQueryData } from '../shared/types/pages/blog';
 import { ContentfulBlogData } from '../shared/constants/contentful-mock';
 import { BlogPageContentWrapper } from '../shared/styles/pages';
 
