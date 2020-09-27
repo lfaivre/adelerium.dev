@@ -1,5 +1,3 @@
-// @docs https://aka.ms/tsconfig.json
-
 {
   "include": ["./src/**/*", "@types/**/*.d.ts"],
   "compilerOptions": {

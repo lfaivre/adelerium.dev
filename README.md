@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://www.adelerium.dev/" target="_blank" rel="noopener noreferrer">
-    <img alt="Portfolio Icon" src="./icon.png" width="60" />
+    <img alt="Portfolio Icon" src="https://github.com/lfaivre/adelerium.dev/blob/master/src/images/icon.png?raw=true" width="60" />
   </a>
 </p>
-<h1 align="center">adelerium.dev | Portfolio Website</h1>
+<h1 align="center">adelerium</h1>
 
 ## Information
 
@@ -19,30 +19,37 @@
 
 **Stack**
 
-This project was built using the GatsbyJS default starter. Technologies include React with TypeScript, GraphQL, Emotion, Tailwind CSS, & Styled Components.
+This project was built using the [Gatsby.js](https://www.gatsbyjs.com/) default starter. Additionally, this project utilizes:
+
+- TypeScript
+- ESLint
+- Prettier
+- Jest
+- React Testing Library
+- Travis CI
+- Tailwind CSS
+- Emotion
 
 ## Development
 
-1.  **Clone repository and install packages.**
+1.  **Clone Repository and Install NPM Packages**
 
-    ```shell
+    ```sh
     git clone https://github.com/lfaivre/adelerium.dev.git
     cd adelerium.dev/
     npm install
     ```
 
-1.  **Run Gatsby develop process.**
+2.  **Initialize Development Environment Variables**
 
-    ```shell
-    gatsby develop
+    ```sh
+    touch .env.development
     ```
 
-1.  **Site is ready for development.**
+    Use the `.env.example` file as a reference for the required environment variables.
 
-    The site is now running at `http://localhost:8000`. The second link: `http://localhost:8000/___graphql` is a tool to experiment with querying data.
+3.  **Start Gatsby Development Process**
 
-    To access the local server using other devices on the network, run the following:
-
-    ```shell
-    gatsby develop -H 0.0.0.0
+    ```sh
+    npm run develop
     ```

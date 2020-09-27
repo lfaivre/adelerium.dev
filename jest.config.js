@@ -1,5 +1,3 @@
-// @docs https://www.gatsbyjs.com/docs/unit-testing/
-
 module.exports = {
   transform: {
     '^.+\\.[jt]sx?$': '<rootDir>/jest-preprocess.js',

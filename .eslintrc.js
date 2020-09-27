@@ -1,17 +1,11 @@
-// @docs https://eslint.org/docs/user-guide/configuring#specifying-parser-options
-// @docs https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md
-// @docs https://github.com/iamturns/create-exposed-app/blob/master/.eslintrc.js
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    // ecmaVersion: 6,
-    ecmaVersion: 2020,
+    ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: { jsx: true },
     project: './tsconfig.json',
-    projectFolderIgnoreList: ['./.cache/', './.github/', './node_modules/', './public/'],
     tsconfigRootDir: '.',
   },
   env: {
@@ -50,27 +44,26 @@ module.exports = {
     'unicorn',
   ],
   rules: {
-    'eslint-comments/no-unused-disable': 'error',
-    'no-prototype-builtins': 'off',
-    'import/prefer-default-export': 'off',
-    'import/no-default-export': 'error',
-    'react/destructuring-assignment': 'off',
-    'react/jsx-filename-extension': 'off',
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       { allowExpressions: true, allowTypedFunctionExpressions: true },
     ],
-    // @note @temp https://github.com/typescript-eslint/typescript-eslint/issues/2540
-    // 'no-use-before-define': [
-    //   'error',
-    //   { functions: false, classes: true, variables: true },
-    // ],
-    // '@typescript-eslint/no-use-before-define': [
-    //   'error',
-    //   { functions: false, classes: true, variables: true, typedefs: true },
-    // ],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      { functions: false, classes: true, variables: true, typedefs: true },
+    ],
+    'class-methods-use-this': 'off',
+    'eslint-comments/no-unused-disable': 'error',
+    'import/prefer-default-export': 'off',
+    'import/no-default-export': 'error',
+    'no-console': 'off',
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['draft'] }],
+    'no-prototype-builtins': 'off',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': 'error',
+    'react/destructuring-assignment': 'off',
+    'react/jsx-filename-extension': 'off',
+    'unicorn/filename-case': 'off',
+    'unicorn/no-null': 'off',
     'unicorn/prevent-abbreviations': 'off',
   },
 };

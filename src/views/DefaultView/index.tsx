@@ -39,11 +39,9 @@ export const DefaultView = ({ children }: DefaultViewProps): JSX.Element => {
   const { windowWidth, layoutWidth, headerHeight } = useAppState();
   const dispatch = useAppDispatch();
 
-  /* eslint-disable unicorn/no-null */
   const headerRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
   const returnRef = useRef<HTMLDivElement | null>(null);
-  /* eslint-enable unicorn/no-null */
 
   // @todo Extract this to an external hook
   useEffect(() => {

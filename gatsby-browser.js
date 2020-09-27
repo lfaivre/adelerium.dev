@@ -1,5 +1,3 @@
-// @docs https://www.gatsbyjs.com/docs/api-files-gatsby-browser/
-
 // @note Import Stylesheet(s): Global Styles
 
 import './src/styles/index.css';

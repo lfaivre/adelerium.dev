@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { GlobalStyles } from 'twin.macro';
 
 import { useAppState, useAppDispatch } from '../../state/app-context';
 
@@ -12,7 +13,6 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   const { isLoading, windowWidth } = useAppState();
   const dispatch = useAppDispatch();
 
-  /* eslint-disable-next-line unicorn/no-null */
   const layoutRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -27,10 +27,13 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
   }, [windowWidth, dispatch]);
 
   return (
-    <LayoutWrapper ref={layoutRef}>
-      {isLoading && <LoadingView />}
-      <DefaultView>{children}</DefaultView>
-    </LayoutWrapper>
+    <>
+      <GlobalStyles />
+      <LayoutWrapper ref={layoutRef}>
+        {isLoading && <LoadingView />}
+        <DefaultView>{children}</DefaultView>
+      </LayoutWrapper>
+    </>
   );
 };
 

@@ -154,12 +154,11 @@ module.exports = {
     //   },
     // },
     `gatsby-plugin-remove-serviceworker`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-contentful`,
       options: CONTENTFUL_CONFIGURATION,
     },
     `gatsby-plugin-netlify`,
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-postcss`,
   ],
 };

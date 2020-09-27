@@ -1,5 +1,3 @@
-@tailwind base;
-
 :root {
   /* @todo Completely remove variables from root and add to tailwind config (if possible) */
 

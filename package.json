@@ -1,5 +1,5 @@
 {
-  "name": "adelerium.dev",
+  "name": "adelerium",
   "private": true,
   "description": "Lorenzo Faivre's Portfolio Website",
   "version": "1.0.0",
@@ -21,7 +21,6 @@
     "gatsby-plugin-manifest": "^2.4.31",
     "gatsby-plugin-netlify": "^2.3.15",
     "gatsby-plugin-offline": "^3.2.28",
-    "gatsby-plugin-postcss": "^2.3.12",
     "gatsby-plugin-react-helmet": "^3.3.11",
     "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-robots-txt": "^1.5.3",
@@ -29,8 +28,6 @@
     "gatsby-source-contentful": "^2.3.47",
     "gatsby-source-filesystem": "^2.3.30",
     "gatsby-transformer-sharp": "^2.5.15",
-    "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -87,24 +84,32 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "start": "npm run develop",
-    "clean": "gatsby clean",
-    "develop": "gatsby develop",
     "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
     "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:update-snapshots": "jest -u",
     "tsc:check": "tsc --noEmit",
-    "tsc:watch": "tsc --noEmit --watch",
-    "eslint:check": "npx eslint . --ext .js,.jsx,.ts,.tsx",
+    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prettier:check": "prettier --list-different \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:update-snapshots": "jest -u"
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run prettier:write"
+    }
+  },
+  "babelMacros": {
+    "twin": {
+      "config": "tailwind.config.js",
+      "preset": "emotion",
+      "debugProp": true,
+      "debugPlugins": false,
+      "debug": false
     }
   },
   "repository": {

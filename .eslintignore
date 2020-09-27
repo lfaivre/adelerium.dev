@@ -1,7 +1,6 @@
 # Files
 
 .eslintrc.js
-babel-plugin-macros.config.js
 @types/generated/contentful.d.ts
 gatsby-browser.js
 gatsby-config.js
@@ -12,15 +11,11 @@ jest.config.js
 jest.setup.js
 jest-preprocess.js
 loadershim.js
-postcss.config.js
-src/types/projects.ts
 tailwind.config.js
 
 # Directories
 
 .cache/
-.github/
-.vscode/
 __mocks__/
 node_modules/
 public/

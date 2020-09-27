@@ -1,32 +1,28 @@
-// @docs https://github.com/intercom/contentful-typescript-codegen
+// @note Set Environment Variables (via dotenv)
 
-const contentfulManagement = require('contentful-management');
+const ACTIVE_ENV = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || `development`;
+require('dotenv').config({ path: `.env.${ACTIVE_ENV}` });
 
-const activeEnv = process.env.NODE_ENV || 'development';
-// @todo Use chalk to print a more visual message
-console.log(`USING ENVIRONMENT: ${activeEnv.toUpperCase()}`);
+// @note Define and Extract Contentful Configuration
 
-require('dotenv').config({ path: `.env.${activeEnv}` });
+const { CONTENTFUL_SPACE_ID, CONTENTFUL_MANAGEMENT_TOKEN, CONTENTFUL_ENVIRONMENT } = process.env;
 
-const contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID,
-  managementToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
-  environment: process.env.CONTENTFUL_ENVIRONMENT,
+(() => {
+  if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_MANAGEMENT_TOKEN || !CONTENTFUL_ENVIRONMENT) {
+    throw new Error(`Invalid Configuration: Contentful`);
+  }
+})();
+
+const CONTENTFUL_CONFIGURATION = {
+  spaceId: CONTENTFUL_SPACE_ID,
+  managementToken: CONTENTFUL_MANAGEMENT_TOKEN,
+  environment: CONTENTFUL_ENVIRONMENT,
 };
 
-if (activeEnv === 'development') {
-  console.log(`\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`);
-}
-
-const { spaceId, managementToken, environment } = contentfulConfig;
-
-if (!spaceId || !managementToken || !environment) {
-  throw new Error('Contentful Space ID, Management Token, and Environment need to be provided.');
-}
+const { spaceId, managementToken: accessToken, environment } = CONTENTFUL_CONFIGURATION;
+const contentfulManagement = require('contentful-management');
 
 module.exports = async () => {
-  const contentfulClient = contentfulManagement.createClient({
-    accessToken: managementToken,
-  });
+  const contentfulClient = contentfulManagement.createClient({ accessToken });
   return contentfulClient.getSpace(spaceId).then((space) => space.getEnvironment(environment));
 };

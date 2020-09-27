@@ -1,5 +1,3 @@
-// @docs https://www.gatsbyjs.com/docs/unit-testing/
-
 const React = require('react');
 const gatsby = jest.requireActual('gatsby');
 
