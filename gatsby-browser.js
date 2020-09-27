@@ -1,12 +1,14 @@
 // @note Import Stylesheet(s): Global Styles
 
-import './src/styles/index.css';
+import './src/shared/styles/global.css';
 
-// @note Import Stylesheet(s): Font Awesome
+// @note Import Stylesheet(s) and Configure: Font Awesome
 
-import './src/styles/font-awesome';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
-// @note Import Stylesheet(s): Google fonts
+// @note Import Stylesheet(s): Fonts
 
 import 'typeface-lobster-two';
 import 'typeface-mrs-sheppards';

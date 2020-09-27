@@ -7,7 +7,7 @@ import { SEO } from '../components/Shared/SEO';
 import { Message } from '../components/404Page/Message';
 
 import { PageQueryData } from '../types/404';
-import { ErrorPageContentWrapper } from '../styles/pages';
+import { ErrorPageContentWrapper } from '../shared/styles/pages';
 
 const NotFoundPage = ({ data, location }: PageProps): JSX.Element => {
   const { headerHeight, footerHeight, returnHeight } = useAppState();

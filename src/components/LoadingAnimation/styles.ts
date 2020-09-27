@@ -7,7 +7,7 @@ export const LoadingAnimationContainer = styled.div`
 
   & div {
     position: absolute;
-    border: 0.25rem solid var(--offpink);
+    border: 0.25rem solid var(--color-OffPink);
     border-radius: 50%;
     opacity: 1;
     animation: ripple 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;

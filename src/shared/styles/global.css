@@ -1,16 +1,15 @@
 :root {
-  /* @todo Completely remove variables from root and add to tailwind config (if possible) */
-
   /* COLORS */
-  --offwhite: #f3f2f1;
-  --charcoal: #1e2223;
-  --offpink: #fcf0ec;
-  --offpink-translucent: rgba(252, 240, 236, 0.5);
+
+  --color-OffWhite: #f3f2f1;
+  --color-Charcoal: #1e2223;
+  --color-OffPink: #fcf0ec;
+  --color-OffPink--Translucent50: rgba(252, 240, 236, 0.5);
 }
 
 html {
+  background-color: var(--color-Charcoal);
   scroll-behavior: smooth;
-  background-color: var(--charcoal);
 }
 
 body {
@@ -22,18 +21,16 @@ body {
 }
 
 body #___gatsby {
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 body #___gatsby #gatsby-focus-wrapper {
-  position: relative;
-
-  height: 100%;
   width: 100%;
-
+  height: 100%;
   display: flex;
+  position: relative;
   flex-direction: row;
-  justify-content: center;
   align-items: flex-start;
+  justify-content: center;
 }

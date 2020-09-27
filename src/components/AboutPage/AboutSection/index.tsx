@@ -42,7 +42,7 @@ export const AboutSection = ({ sectionData, count, order }: AboutSectionProps): 
             fluid={sectionData.accentImage.fluid}
             onLoad={() => setImageLoaded(true)}
             alt={`Accent image for ${sectionData.title} section.`}
-            backgroundColor="var(--charcoal)"
+            backgroundColor="var(--color-Charcoal)"
             draggable={false}
           />
         </ImageWrapper>

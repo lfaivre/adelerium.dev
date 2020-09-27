@@ -54,5 +54,5 @@ export const ViewButton = styled.button<SelectedProps>`
   ${({ selected }) =>
     selected
       ? ``
-      : `-webkit-text-fill-color: transparent; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: var(--offwhite);`};
+      : `-webkit-text-fill-color: transparent; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: var(--color-OffWhite);`};
 `;

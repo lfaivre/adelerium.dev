@@ -5,7 +5,7 @@ import { SEO } from '../components/Shared/SEO';
 import { AboutSection } from '../components/AboutPage/AboutSection';
 
 import { PageQueryData } from '../types/about';
-import { AboutPageContentWrapper } from '../styles/pages';
+import { AboutPageContentWrapper } from '../shared/styles/pages';
 
 const AboutPage = ({ data, location }: PageProps): JSX.Element => {
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;

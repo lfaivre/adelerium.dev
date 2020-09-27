@@ -56,7 +56,7 @@ export const ReturnButtonWrapper = tw.div`z-10 w-full p-8 flex flex-shrink-0 fle
 export const ReturnButton = styled.button`
   ${tw`w-16 h-16 border-2 border-solid border-offwhite rounded-full flex flex-col justify-center items-center bg-transparent overflow-hidden focus:outline-none`}
   &:hover > span:first-of-type {
-    background-color: var(--offwhite);
+    background-color: var(--color-OffWhite);
   }
 `;
 

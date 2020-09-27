@@ -43,7 +43,7 @@ export const OrderNumber = styled.p<DirectionProps>`
   ${tw`text-charcoal text-6xl md:text-7xl font-lobster-two font-bold leading-normal`}
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--charcoal);
+  -webkit-text-stroke-color: var(--color-Charcoal);
 `;
 
 export const OrderNumberSkeleton = OrderNumber.withComponent(Skeleton);
@@ -182,7 +182,7 @@ export const ArrowIcon = styled(FontAwesomeIcon)<DirectionProps>`
   ${tw` hidden lg:block bottom-project-arrow text-project-arrow`}
   color: transparent;
   & > g g path {
-    stroke: var(--charcoal);
+    stroke: var(--color-Charcoal);
     stroke-width: 4;
   }
 `;

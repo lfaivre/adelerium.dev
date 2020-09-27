@@ -28,10 +28,12 @@ module.exports = {
         'project-arrow': '2rem',
       },
       colors: {
-        offwhite: '#F3F2F1',
-        charcoal: '#1E2223',
-        offpink: '#FCF0EC',
-        'offpink-translucent': 'rgba(252,240,236, 0.5)',
+        offwhite: 'var(--color-OffWhite)',
+        charcoal: 'var(--color-Charcoal)',
+        offpink: {
+          default: 'var(--color-OffPink)',
+          translucent50: 'var(--color-OffPink--Translucent50)',
+        },
       },
       fontFamily: {
         'playfair-display': ['"Playfair Display"', 'serif'],

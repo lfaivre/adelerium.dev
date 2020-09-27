@@ -8,7 +8,7 @@ import { Post } from '../components/BlogPage/Post';
 
 import { PageQueryData } from '../types/blog';
 import { ContentfulBlogData } from '../data/blog';
-import { BlogPageContentWrapper } from '../styles/pages';
+import { BlogPageContentWrapper } from '../shared/styles/pages';
 
 const BlogPage = ({ data, location }: PageProps): JSX.Element => {
   const { headerHeight, footerHeight, returnHeight } = useAppState();

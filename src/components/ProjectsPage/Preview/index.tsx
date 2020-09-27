@@ -91,7 +91,7 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
             fluid={project.previewPicture.fluid}
             onLoad={() => setImageLoaded(true)}
             alt={`Preview Image for ${project.title}`}
-            backgroundColor="var(--offwhite)"
+            backgroundColor="var(--color-OffWhite)"
             draggable={false}
           />
         </ImageWrapper>

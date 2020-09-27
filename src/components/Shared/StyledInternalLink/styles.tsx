@@ -48,7 +48,7 @@ export const Arrow = styled(StyledArrow)`
     height: 0.0625rem;
     position: relative;
     display: block;
-    background-color: var(--charcoal);
+    background-color: var(--color-Charcoal);
     will-change: transform;
   }
   & > span:before,
@@ -60,7 +60,7 @@ export const Arrow = styled(StyledArrow)`
     height: 0.0625rem;
     margin-right: ${({ _direction }) => (_direction === ILD.Previous ? `2.5rem` : ``)};
     display: block;
-    background-color: var(--charcoal);
+    background-color: var(--color-Charcoal);
     content: '';
   }
   & > span:before {
