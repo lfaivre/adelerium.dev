@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import { StyledInternalLink } from '../Shared/StyledInternalLink';
 
-import { getRandomInt } from '../../utils/math';
+import { getRandomInt } from '../../services/math';
 
 import { PathDataHook } from '../../types/paths';
 import { InternalLinkDirection as ILD } from '../../types/presentation';

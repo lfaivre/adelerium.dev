@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { WelcomeNavigation } from '../Shared/WelcomeNavigation';
 
 // @todo: Refactor TypeScript, patched in for now
-import { getStrippedInternalLinkPath } from '../../utils/strings';
+import { getStrippedInternalLinkPath } from '../../services/strings';
 import { SiteData } from '../../data/site';
 import { SideBarView as SBV } from '../../types/presentation';
 
