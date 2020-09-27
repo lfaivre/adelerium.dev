@@ -1,52 +1,98 @@
-// @docs https://www.gatsbyjs.com/docs/api-files-gatsby-config/
+// @note Set Environment Variables (via dotenv)
 
-const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
+const ACTIVE_ENV = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || `development`;
+require('dotenv').config({ path: `.env.${ACTIVE_ENV}` });
 
-// @todo Use chalk to print a more visual message
-console.log(`USING ENVIRONMENT: ${activeEnv.toUpperCase()}`);
+// @note Use Netlify Environment to Set Configuration
 
-require('dotenv').config({ path: `.env.${activeEnv}` });
+const {
+  URL: NETLIFY_SITE_URL = `https://www.adelerium.dev`,
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = ACTIVE_ENV,
+} = process.env;
 
-const contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST,
-  environment: process.env.CONTENTFUL_ENVIRONMENT,
+(() => {
+  if (!NETLIFY_SITE_URL || !NETLIFY_DEPLOY_URL || !NETLIFY_ENV) {
+    throw new Error(`Invalid Configuration: Netlify`);
+  }
+})();
+
+const siteUrl = NETLIFY_ENV === `production` ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
+// @note Set Google Analytics Tracking ID
+
+const { GA_TRACKING_ID } = process.env;
+
+(() => {
+  if (!GA_TRACKING_ID) {
+    throw new Error(`Invalid Configuration: Google Analytics`);
+  }
+})();
+
+// @note Define and Extract Contentful Configuration
+
+const {
+  CONTENTFUL_SPACE_ID,
+  CONTENTFUL_ACCESS_TOKEN,
+  CONTENTFUL_HOST,
+  CONTENTFUL_ENVIRONMENT,
+} = process.env;
+
+(() => {
+  if (
+    !CONTENTFUL_SPACE_ID ||
+    !CONTENTFUL_ACCESS_TOKEN ||
+    !CONTENTFUL_HOST ||
+    !CONTENTFUL_ENVIRONMENT
+  ) {
+    throw new Error(`Invalid Configuration: Contentful`);
+  }
+})();
+
+const CONTENTFUL_CONFIGURATION = {
+  spaceId: CONTENTFUL_SPACE_ID,
+  accessToken: CONTENTFUL_ACCESS_TOKEN,
+  host: CONTENTFUL_HOST,
+  environment: CONTENTFUL_ENVIRONMENT,
 };
 
-if (activeEnv === 'development') {
-  console.log(`\nCONTENTFUL CONFIG: ${JSON.stringify(contentfulConfig, null, 2)}`);
-}
+// @note Define and Extract Website and PWA Metadata
 
-const { spaceId, accessToken, host, environment } = contentfulConfig;
+const WEBSITE_METADATA = {
+  title: `Lorenzo Faivre - Software Engineer & Artist`,
+  description: `Portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, artist, freelancer, and cofounder based in Phoenix, Arizona.`,
+  author: `@lorenzofaivre`,
+};
 
-if (!spaceId || !accessToken || !host || !environment) {
-  throw new Error('Contentful Space ID, Access Token, Host, and Environment need to be provided.');
-}
+const PWA_METADATA = {
+  short_name: `adelerium`,
+  lang: `en`,
+  background_color: `#1e2223`,
+  theme_color: `#fcf0ec`,
+};
 
-const title = `Lorenzo Faivre - Portfolio`;
-const description = `Online portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, freelancer, and co-founder based in Phoenix, Arizona.`;
-const siteUrl = process.env.URL || process.env.DEPLOY_URL || `https://www.adelerium.dev`;
+const { title, description, author } = WEBSITE_METADATA;
+const { short_name, lang, background_color, theme_color } = PWA_METADATA;
 
 module.exports = {
   siteMetadata: {
     title,
     description,
-    author: `@lorenzofaivre`,
+    author,
     siteUrl,
   },
   plugins: [
-    // @note (top) gatsby-plugin-react-helmet
     `gatsby-plugin-react-helmet`,
-    // @note (top) gatsby-plugin-google-analytics
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GA_TRACKING_ID,
-        head: false,
+        trackingId: GA_TRACKING_ID,
+        head: true,
         anonymize: true,
         respectDNT: true,
-        defer: true,
+        defer: false,
+        allowAdFeatures: false,
+        forceSSL: true,
       },
     },
     {
@@ -62,27 +108,58 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: title,
-        short_name: `adelerium`,
+        short_name,
         description,
-        lang: `en`,
+        lang,
         start_url: `/`,
-        background_color: `#1e2223`,
-        theme_color: `#fcf0ec`,
-        theme_color_in_head: true,
+        background_color,
+        theme_color,
         display: `standalone`,
         icon: `src/images/icon.png`,
-        cache_busting_mode: `query`,
+        cache_busting_mode: `none`,
         crossOrigin: `use-credentials`,
       },
     },
+    `gatsby-plugin-advanced-sitemap`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: `*` }],
+            sitemap: `${siteUrl}/sitemap.xml`,
+            host: siteUrl,
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: `*`, disallow: [`/`] }],
+            sitemap: null,
+            host: null,
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: `*`, disallow: [`/`] }],
+            sitemap: null,
+            host: null,
+          },
+        },
+      },
+    },
     // @note (after gatsby-plugin-manifest) gatsby-plugin-offline
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-postcss`,
-    `gatsby-plugin-netlify`,
+    // {
+    //   resolve: `gatsby-plugin-offline`,
+    //   options: {
+    //     workboxConfig: {
+    //       globPatterns: [`**/icon*`],
+    //     },
+    //   },
+    // },
+    `gatsby-plugin-remove-serviceworker`,
     {
       resolve: `gatsby-source-contentful`,
-      options: contentfulConfig,
+      options: CONTENTFUL_CONFIGURATION,
     },
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-postcss`,
   ],
 };
