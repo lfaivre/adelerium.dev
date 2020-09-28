@@ -2,7 +2,7 @@
 
 exports[`LoadingAnimation renders correctly 1`] = `
 <div
-  className="loading-ripple css-1sd1lsw"
+  className="css-r1s0tf"
 >
   <div />
   <div />

@@ -1,7 +1,9 @@
-import React from 'react';
-import { AppProvider } from '../../../shared/hooks/global-state';
-import { RootWrapperElementProps } from './types';
+import React, { ReactElement } from 'react';
 
-export const RootWrapperElement = ({ element }: RootWrapperElementProps): React.ReactNode => {
-  return <AppProvider>{element}</AppProvider>;
-};
+import { AppProvider } from '../../../shared/hooks/global-state';
+
+type RootWrapperElementProps = { element: ReactElement };
+
+export const RootWrapperElement = ({ element }: RootWrapperElementProps): ReactElement => (
+  <AppProvider>{element}</AppProvider>
+);

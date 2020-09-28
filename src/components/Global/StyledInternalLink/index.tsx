@@ -1,56 +1,83 @@
-import React from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { Link } from 'gatsby';
+import 'twin.macro';
 
 import { SitePaths } from '../../../shared/constants/paths';
-import { INDEX, TPathname } from '../../../shared/types/paths';
-import { InternalLinkDirection as ILD } from '../../../shared/types/presentation';
+import { PathDataHook, INDEX, TPathname } from '../../../shared/types/paths';
+import { InternalLinkDirection } from '../../../shared/types/presentation';
 
-import { StyledInternalLinkProps } from './types';
-import {
-  InternalLink,
-  Placeholder,
-  InternalLinkWrapper,
-  TitleTextWrapper,
-  TitleText,
-  PathInfoWrapper,
-  PathText,
-  Arrow,
-} from './styles';
+import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
+import { NormalParagraphType, BoldParagraphType } from '../../../shared/styles/text';
+
+import { Arrow } from './styles';
+
+const PREVIOUS = `Previous` as const;
+const NEXT = `Next` as const;
+
+type StyledInternalLinkProps = PathDataHook & { direction: InternalLinkDirection };
 
 export const StyledInternalLink = ({
-  pathname,
   pathData,
   direction,
-}: StyledInternalLinkProps): JSX.Element => {
-  const linkDataFromProps = (): { pathname: TPathname; text: string } => {
-    let newPathname;
+}: StyledInternalLinkProps): ReactElement => {
+  const [destinationPathname, setDestinationPathname] = useState<TPathname>(INDEX);
 
-    if (pathData !== undefined) {
-      newPathname = direction === ILD.Previous ? pathData.previous : pathData.next;
-    } else {
-      newPathname = INDEX;
-    }
-
-    const { text } = SitePaths[newPathname];
-
-    return { pathname: newPathname, text };
+  const isPrevious = (): boolean => {
+    return direction === InternalLinkDirection.Previous;
   };
 
-  return linkDataFromProps().pathname !== pathname ? (
-    <InternalLink to={linkDataFromProps().pathname}>
-      <InternalLinkWrapper _direction={direction}>
-        <TitleTextWrapper _direction={direction}>
-          <TitleText _direction={direction}>
-            {direction === ILD.Previous ? 'Previous' : 'Next'}
-          </TitleText>
-        </TitleTextWrapper>
-        <PathInfoWrapper>
-          {direction === ILD.Previous ? <Arrow _direction={direction} /> : <></>}
-          <PathText _direction={direction}>{linkDataFromProps().text}</PathText>
-          {direction === ILD.Next ? <Arrow _direction={direction} /> : <></>}
-        </PathInfoWrapper>
-      </InternalLinkWrapper>
-    </InternalLink>
-  ) : (
-    <Placeholder />
+  useEffect(() => {
+    const newDestinationPathname = !pathData
+      ? INDEX
+      : direction === InternalLinkDirection.Previous
+      ? pathData.previous
+      : pathData.next;
+    setDestinationPathname(newDestinationPathname);
+  }, [pathData, direction]);
+
+  return (
+    <Link to={destinationPathname}>
+      <FlexColumnWrapper
+        alignItems={isPrevious() ? `items-end` : `items-start`}
+        justifyContent="justify-center"
+      >
+        <FlexRowWrapper
+          alignItems="items-center"
+          justifyContent={isPrevious() ? `justify-end` : `justify-start`}
+        >
+          <BoldParagraphType
+            color="text-charcoal"
+            textAlign={isPrevious() ? `text-right` : `text-left`}
+          >
+            {isPrevious() ? PREVIOUS : NEXT}
+          </BoldParagraphType>
+        </FlexRowWrapper>
+        <FlexRowWrapper
+          reverse={!isPrevious()}
+          alignItems="items-center"
+          justifyContent="justify-between"
+        >
+          {isPrevious() ? (
+            <div tw="mr-4">
+              <Arrow direction={direction} backgroundColor="bg-charcoal">
+                <span />
+              </Arrow>
+            </div>
+          ) : (
+            <div tw="transform rotate-180 ml-4">
+              <Arrow direction={direction} backgroundColor="bg-charcoal">
+                <span />
+              </Arrow>
+            </div>
+          )}
+          <NormalParagraphType
+            color="text-charcoal"
+            textAlign={isPrevious() ? `text-right` : `text-left`}
+          >
+            {SitePaths[destinationPathname].text}
+          </NormalParagraphType>
+        </FlexRowWrapper>
+      </FlexColumnWrapper>
+    </Link>
   );
 };

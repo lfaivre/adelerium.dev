@@ -1,32 +1,55 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
-import { SideBar } from '../components/Global/SideBar';
+import { Header } from '../components/Global/Layout/DefaultView/Header';
 
-import { useAppState } from '../shared/hooks/global-state';
-
-import { SCREEN_SIZE } from '../shared/constants/presentation';
+import { usePathData } from '../shared/hooks/location';
 
 import { PageQueryData } from '../shared/types/pages/home';
-import { IndexPageNavigatorWrapper, IndexPageContentWrapper } from '../shared/styles/pages';
 
-const IndexPage = ({ data, location }: PageProps): JSX.Element => {
-  const { windowWidth } = useAppState();
+import { FlexRowWrapper } from '../shared/styles/wrappers';
 
-  const metaImage = (data as PageQueryData).contentfulAsset.fixed;
+const IndexPage = ({ data, location }: PageProps): ReactElement => {
+  const pathData = usePathData();
+  const metaImage = (data as PageQueryData).metaImage.fixed;
+  const backgroundImage = (data as PageQueryData).backgroundImage.childImageSharp.fluid;
 
   return (
-    <>
+    <FlexRowWrapper
+      alignItems="items-center"
+      justifyContent="justify-center"
+      backgroundColor="bg-offwhite"
+      tw="relative w-full h-screen"
+    >
       <SEO title="Home" pathname={location.pathname} image={metaImage} />
-      {!(windowWidth < SCREEN_SIZE.XL) ? (
-        <IndexPageContentWrapper />
-      ) : (
-        <IndexPageNavigatorWrapper>
-          <SideBar />
-        </IndexPageNavigatorWrapper>
-      )}
-    </>
+      <Img
+        fluid={backgroundImage}
+        draggable={false}
+        tw="absolute top-0 left-0 opacity-75 z-0 w-full h-full object-cover object-center select-none"
+      />
+      <FlexRowWrapper
+        alignItems="items-start"
+        justifyContent="justify-center"
+        backgroundColor="bg-offwhite"
+        tw="absolute z-10 w-full"
+      >
+        <FlexRowWrapper
+          alignItems="items-start"
+          justifyContent="justify-center"
+          tw="w-full max-w-screen-md"
+        >
+          <Header
+            pathname={pathData.pathname}
+            isIndex={pathData.isIndex}
+            pathData={pathData.pathData}
+            isValidPath={pathData.isValidPath}
+          />
+        </FlexRowWrapper>
+      </FlexRowWrapper>
+    </FlexRowWrapper>
   );
 };
 
@@ -35,9 +58,16 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query HomePageQuery {
-    contentfulAsset(title: { eq: "Home Page Meta Image" }) {
+    metaImage: contentfulAsset(title: { eq: "Home Page Meta Image" }) {
       fixed(width: 3360, resizingBehavior: SCALE) {
         ...GatsbyContentfulFixed
+      }
+    }
+    backgroundImage: file(relativePath: { eq: "waves-1680.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1680, quality: 100, grayscale: true) {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
   }

@@ -1,7 +1,11 @@
-import { FixedObject } from 'gatsby-image';
+import { FixedObject, FluidObject } from 'gatsby-image';
 
-type ContentfulAsset = { fixed: FixedObject };
+type MetaImage = { fixed: FixedObject };
+
+type ChildImageSharp = { fluid: FluidObject };
+type BackgroundImage = { childImageSharp: ChildImageSharp };
 
 export type PageQueryData = {
-  contentfulAsset: ContentfulAsset;
+  metaImage: MetaImage;
+  backgroundImage: BackgroundImage;
 };

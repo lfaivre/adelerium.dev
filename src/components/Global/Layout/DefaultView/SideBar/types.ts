@@ -1,5 +1,5 @@
 import { FluidObject } from 'gatsby-image';
-import { ILinkFields } from '../../../shared/types/links';
+import { ILinkFields } from '../../../../../shared/types/links';
 
 // @note Types for File: index.ts
 
@@ -28,9 +28,3 @@ export interface ISideBarFields {
 }
 
 export type GraphQLStaticQuery = { contentfulSideBar: ISideBarFields };
-
-// @note Types for File: styles.ts
-
-export interface SelectedProps {
-  selected: boolean;
-}

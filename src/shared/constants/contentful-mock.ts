@@ -5,15 +5,15 @@ import { BlogPost, BlogData } from '../types/pages/blog';
 
 export const SiteData: TSiteData = {
   profile: {
-    name: 'Lorenzo Faivre',
-    tag: 'A software engineer, among other things',
+    name: `Lorenzo Faivre`,
+    tag: `Software Engineer & Artist`,
   },
 };
 
 const BlogPosts: Array<BlogPost> = [
   {
     id: uuidv4(),
-    title: 'Currently under construction.',
+    title: `Currently under construction.`,
     subtitle: '',
     body: '',
   },

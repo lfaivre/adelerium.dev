@@ -48,6 +48,7 @@ module.exports = {
       'error',
       { allowExpressions: true, allowTypedFunctionExpressions: true },
     ],
+    '@typescript-eslint/naming-convention': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
       { functions: false, classes: true, variables: true, typedefs: true },
@@ -62,6 +63,10 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/require-default-props': [
+      2,
+      { forbidDefaultForRequired: true, ignoreFunctionalComponents: true },
+    ],
     'unicorn/filename-case': 'off',
     'unicorn/no-null': 'off',
     'unicorn/prevent-abbreviations': 'off',

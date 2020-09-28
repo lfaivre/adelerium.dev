@@ -1,10 +1,8 @@
-import { ILinkFields } from '../../../shared/types/links';
-
-// @note Types for File: index.ts
+import { ILinkFields } from '../../../../../shared/types/links';
 
 /** Fact entity used in footer for portfolio (https://www.adelerium.dev/). */
 
-export interface IFactFields {
+interface IFactFields {
   /** Text */
   text: string;
 
@@ -30,5 +28,3 @@ export interface IFooterFields {
   /** Facts */
   facts: Partial<IFactFields>[];
 }
-
-export type GraphQLStaticQuery = { contentfulFooter: IFooterFields };

@@ -1,11 +1,24 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, ReactElement } from 'react';
 
 import { useWindowWidth } from './screen-size';
 import { SCREEN_SIZE } from '../constants/presentation';
-import { Action, Dispatch, State, AppProviderProps } from '../types/state';
+import {
+  SET_LOADING,
+  SET_SIDEBAR_VISIBILITY,
+  SET_WINDOW_WIDTH,
+  SET_LAYOUT_WIDTH,
+  SET_HEADER_HEIGHT,
+  SET_FOOTER_HEIGHT,
+  SET_RETURN_HEIGHT,
+  Action,
+  Dispatch,
+  State,
+  AppProviderProps,
+} from '../types/state';
 
 const initialState: State = {
   isLoading: true,
+  sideBarIsVisible: false,
   windowWidth: 0,
   layoutWidth: 0,
   headerHeight: 0,
@@ -20,22 +33,25 @@ const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 const appStateReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'SET_LOADING': {
+    case SET_LOADING: {
       return { ...state, isLoading: action.isLoading };
     }
-    case 'SET_WINDOW_WIDTH': {
+    case SET_SIDEBAR_VISIBILITY: {
+      return { ...state, sideBarIsVisible: action.sideBarIsVisible };
+    }
+    case SET_WINDOW_WIDTH: {
       return { ...state, windowWidth: action.windowWidth };
     }
-    case 'SET_LAYOUT_WIDTH': {
+    case SET_LAYOUT_WIDTH: {
       return { ...state, layoutWidth: action.layoutWidth };
     }
-    case 'SET_HEADER_HEIGHT': {
+    case SET_HEADER_HEIGHT: {
       return { ...state, headerHeight: action.headerHeight };
     }
-    case 'SET_FOOTER_HEIGHT': {
+    case SET_FOOTER_HEIGHT: {
       return { ...state, footerHeight: action.footerHeight };
     }
-    case 'SET_RETURN_HEIGHT': {
+    case SET_RETURN_HEIGHT: {
       return { ...state, returnHeight: action.returnHeight };
     }
     default: {
@@ -45,13 +61,13 @@ const appStateReducer = (state: State, action: Action): State => {
   }
 };
 
-const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
+const AppProvider = ({ children }: AppProviderProps): ReactElement => {
   const [state, dispatch] = useReducer(appStateReducer, initialState);
   const windowWidth = useWindowWidth();
 
   useEffect(() => {
     const newWindowWidth = windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
-    dispatch({ type: 'SET_WINDOW_WIDTH', windowWidth: newWindowWidth });
+    dispatch({ type: SET_WINDOW_WIDTH, windowWidth: newWindowWidth });
   }, [windowWidth]);
 
   return (
@@ -72,7 +88,7 @@ const useAppState = (): State => {
 const useAppDispatch = (): Dispatch => {
   const context = useContext(AppDispatchContext);
   if (context === undefined) {
-    throw new Error('useAppState must be used within an AppProvider');
+    throw new Error('useAppDispatch must be used within an AppProvider');
   }
   return context;
 };

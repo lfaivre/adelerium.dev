@@ -1,8 +1,32 @@
 import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import { FixedObject } from 'gatsby-image';
 
-import { SEOProps, GraphQLStaticQuery } from './types';
+type MetaProps =
+  | { name: string; content: string; property?: undefined }
+  | { property: string; content: string; name?: undefined };
+
+type SEOProps = {
+  description?: string;
+  lang?: string;
+  meta?: MetaProps[];
+  title: string;
+  pathname: string;
+  keywords?: string[];
+  image: FixedObject;
+};
+
+type SiteMetaData = {
+  description: string;
+  title: string;
+  author: string;
+  siteUrl: string;
+};
+
+type Site = { siteMetadata: SiteMetaData };
+
+type GraphQLStaticQuery = { site: Site };
 
 export const SEO = ({
   description = ``,
@@ -76,10 +100,6 @@ export const SEO = ({
           name: `twitter:description`,
           content: metaDescription,
         },
-        // {
-        //   name: `google-site-verification`,
-        //   content: ``,
-        // },
       ]
         .concat([
           {
@@ -100,11 +120,11 @@ export const SEO = ({
           },
           {
             property: `og:image:width`,
-            content: `${image.width}`.replace(`$`, ``),
+            content: `${image.width}`,
           },
           {
             property: `og:image:height`,
-            content: `$${image.height}`.replace(`$`, ``),
+            content: `${image.height}`,
           },
           {
             name: `twitter:card`,

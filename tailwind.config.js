@@ -20,31 +20,40 @@ module.exports = {
         '3/4': '75%',
         global: '1680px',
       },
+      maxHeight: {
+        global: '1080px',
+      },
       margin: {
         'about-title-left': '-7.5rem',
         'about-title-right': '-7.5rem',
       },
       inset: {
         'project-arrow': '2rem',
+        8: '2rem',
       },
       colors: {
         offwhite: 'var(--color-OffWhite)',
         charcoal: 'var(--color-Charcoal)',
         offpink: {
           default: 'var(--color-OffPink)',
+          translucent25: 'var(--color-OffPink--Translucent25)',
           translucent50: 'var(--color-OffPink--Translucent50)',
         },
       },
       fontFamily: {
-        'playfair-display': ['"Playfair Display"', 'serif'],
-        'playfair-display-sc': ['"Playfair Display SC"', 'serif'],
+        helvetica: ['Helvetica', 'Arial', 'sans-serif'],
         'lobster-two': ['"Lobster Two"', 'cursive'],
         'mrs-sheppards': ['"Mrs Sheppards"', 'cursive'],
+        'playfair-display': ['"Playfair Display"', 'serif'],
       },
       fontSize: {
+        '2xs': '0.5rem',
         '3.5xl': '2rem',
         '7xl': '4.5rem',
         'project-arrow': '6rem',
+      },
+      lineHeight: {
+        149: '149%',
       },
       opacity: {
         80: '.8',

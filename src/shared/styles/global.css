@@ -4,12 +4,12 @@
   --color-OffWhite: #f3f2f1;
   --color-Charcoal: #1e2223;
   --color-OffPink: #fcf0ec;
+  --color-OffPink--Translucent25: rgba(252, 240, 236, 0.25);
   --color-OffPink--Translucent50: rgba(252, 240, 236, 0.5);
 }
 
 html {
   background-color: var(--color-Charcoal);
-  scroll-behavior: smooth;
 }
 
 body {
