@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { GlobalStyles } from 'twin.macro';
 
-import { useAppState, useAppDispatch } from '../../shared/hooks/global-state';
+import { useAppState, useAppDispatch } from '../../../shared/hooks/global-state';
 
-import { DefaultView } from '../../views/DefaultView';
-import { LoadingView } from '../../views/LoadingView';
+import { DefaultView } from '../DefaultView';
+import { LoadingView } from '../LoadingView';
 
 import { LayoutProps, PageWrapperElementProps } from './types';
 import { LayoutWrapper } from './styles';

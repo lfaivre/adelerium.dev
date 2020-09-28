@@ -1,4 +1,4 @@
-import { ILinkFields } from '../../shared/types/links';
+import { ILinkFields } from '../../../shared/types/links';
 
 // @note Types for File: index.ts
 

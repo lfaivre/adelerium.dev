@@ -3,7 +3,7 @@ import { PageProps, graphql } from 'gatsby';
 
 import { useAppState } from '../shared/hooks/global-state';
 
-import { SEO } from '../components/Shared/SEO';
+import { SEO } from '../components/Global/SEO';
 import { Message } from '../components/404Page/Message';
 
 import { PageQueryData } from '../shared/types/pages/404';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 
-import { SEO } from '../components/Shared/SEO';
-import { SideBar } from '../components/SideBar';
+import { SEO } from '../components/Global/SEO';
+import { SideBar } from '../components/Global/SideBar';
 
 import { useAppState } from '../shared/hooks/global-state';
 

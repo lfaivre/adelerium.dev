@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 
-import { useAppState, useAppDispatch } from '../../shared/hooks/global-state';
-import { usePathData } from '../../shared/hooks/location';
+import { useAppState, useAppDispatch } from '../../../shared/hooks/global-state';
+import { usePathData } from '../../../shared/hooks/location';
 
-import { SideBar } from '../../components/SideBar';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { SideBar } from '../SideBar';
+import { Header } from '../Header';
+import { Footer } from '../Footer';
 
 import {
   SCREEN_SIZE,
   pathsWithImgBgsDesktop,
   pathsWithImgBgsMobile,
-} from '../../shared/constants/presentation';
+} from '../../../shared/constants/presentation';
 
 import { DefaultViewProps } from './types';
 import {
@@ -26,7 +26,7 @@ import {
   ReturnButtonIndicator,
   FooterWrapper,
 } from './styles';
-import { TPathname } from '../../shared/types/paths';
+import { TPathname } from '../../../shared/types/paths';
 
 const handleScroll = (): void => {
   if (typeof window !== `undefined`) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 
-import { SEO } from '../components/Shared/SEO';
+import { SEO } from '../components/Global/SEO';
 import { AboutSection } from '../components/AboutPage/AboutSection';
 
 import { PageQueryData } from '../shared/types/pages/about';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingAnimation } from '../../components/LoadingAnimation';
+import { LoadingAnimation } from '../LoadingAnimation';
 
 import { LoadingViewContainer } from './styles';
 

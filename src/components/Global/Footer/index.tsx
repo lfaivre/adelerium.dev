@@ -1,12 +1,12 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { StyledInternalLink } from '../Shared/StyledInternalLink';
+import { StyledInternalLink } from '../StyledInternalLink';
 
-import { getRandomInt } from '../../services/math';
+import { getRandomInt } from '../../../services/math';
 
-import { PathDataHook } from '../../shared/types/paths';
-import { InternalLinkDirection as ILD } from '../../shared/types/presentation';
+import { PathDataHook } from '../../../shared/types/paths';
+import { InternalLinkDirection as ILD } from '../../../shared/types/presentation';
 
 import { GraphQLStaticQuery } from './types';
 import {

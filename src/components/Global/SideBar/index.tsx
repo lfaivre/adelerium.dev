@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import { WelcomeNavigation } from '../Shared/WelcomeNavigation';
+import { WelcomeNavigation } from '../WelcomeNavigation';
 
 // @todo: Refactor TypeScript, patched in for now
-import { getStrippedInternalLinkPath } from '../../services/strings';
-import { SiteData } from '../../shared/constants/contentful-mock';
-import { SideBarView as SBV } from '../../shared/types/presentation';
+import { getStrippedInternalLinkPath } from '../../../services/strings';
+import { SiteData } from '../../../shared/constants/contentful-mock';
+import { SideBarView as SBV } from '../../../shared/types/presentation';
 
 import { GraphQLStaticQuery } from './types';
 import {

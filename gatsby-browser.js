@@ -15,8 +15,8 @@ import 'typeface-mrs-sheppards';
 import 'typeface-playfair-display';
 import 'typeface-playfair-display-sc';
 
-import { RootWrapperElement } from './src/components/RootWrapperElement';
-import { PageWrapperElement } from './src/components/Layout';
+import { RootWrapperElement } from './src/components/Global/RootWrapperElement';
+import { PageWrapperElement } from './src/components/Global/Layout';
 
 export const wrapRootElement = RootWrapperElement;
 export const wrapPageElement = PageWrapperElement;
