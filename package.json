@@ -40,7 +40,7 @@
     "typeface-mrs-sheppards": "0.0.71",
     "typeface-playfair-display": "^1.1.4",
     "typeface-playfair-display-sc": "0.0.72",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
