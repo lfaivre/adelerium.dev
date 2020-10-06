@@ -7,6 +7,13 @@ const getWindowWidth = (): number => {
   return 0;
 };
 
+const getWindowHeight = (): number => {
+  if (typeof window !== `undefined`) {
+    return window.innerHeight ? window.innerHeight : 0;
+  }
+  return 0;
+};
+
 export const useWindowWidth = (): number => {
   const [windowWidth, setWindowWidth] = useState<number>(getWindowWidth);
 
@@ -25,4 +32,24 @@ export const useWindowWidth = (): number => {
   }, []);
 
   return windowWidth;
+};
+
+export const useWindowHeight = (): number => {
+  const [windowHeight, setWindowHeight] = useState<number>(getWindowHeight);
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      setWindowHeight(getWindowHeight);
+    };
+
+    if (window) {
+      window.addEventListener('resize', handleResize);
+    }
+
+    return () => {
+      if (window) window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return windowHeight;
 };

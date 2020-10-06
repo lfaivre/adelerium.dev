@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useReducer, useEffect, ReactElement } from 'react';
 
-import { useWindowWidth } from './screen-size';
+import { useWindowWidth, useWindowHeight } from './screen-size';
 import { SCREEN_SIZE } from '../constants/presentation';
 import {
   SET_LOADING,
   SET_SIDEBAR_VISIBILITY,
   SET_WINDOW_WIDTH,
+  SET_WINDOW_HEIGHT,
   SET_LAYOUT_WIDTH,
   SET_HEADER_HEIGHT,
   SET_FOOTER_HEIGHT,
@@ -20,6 +21,7 @@ const initialState: State = {
   isLoading: true,
   sideBarIsVisible: false,
   windowWidth: 0,
+  windowHeight: 0,
   layoutWidth: 0,
   headerHeight: 0,
   footerHeight: 0,
@@ -41,6 +43,9 @@ const appStateReducer = (state: State, action: Action): State => {
     }
     case SET_WINDOW_WIDTH: {
       return { ...state, windowWidth: action.windowWidth };
+    }
+    case SET_WINDOW_HEIGHT: {
+      return { ...state, windowHeight: action.windowHeight };
     }
     case SET_LAYOUT_WIDTH: {
       return { ...state, layoutWidth: action.layoutWidth };
@@ -64,11 +69,17 @@ const appStateReducer = (state: State, action: Action): State => {
 const AppProvider = ({ children }: AppProviderProps): ReactElement => {
   const [state, dispatch] = useReducer(appStateReducer, initialState);
   const windowWidth = useWindowWidth();
+  const windowHeight = useWindowHeight();
 
   useEffect(() => {
     const newWindowWidth = windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
     dispatch({ type: SET_WINDOW_WIDTH, windowWidth: newWindowWidth });
   }, [windowWidth]);
+
+  useEffect(() => {
+    const newWindowHeight = windowHeight !== undefined ? windowHeight : 0;
+    dispatch({ type: SET_WINDOW_HEIGHT, windowHeight: newWindowHeight });
+  }, [windowHeight]);
 
   return (
     <AppStateContext.Provider value={state}>

@@ -9,7 +9,6 @@ import { usePathData } from '../../../../../shared/hooks/location';
 import { getStrippedInternalLinkPath } from '../../../../../services/strings';
 import { SiteData } from '../../../../../shared/constants/contentful-mock';
 import { SideBarView as SBV } from '../../../../../shared/types/presentation';
-// import { TPathData } from '../../../../../shared/types/paths';
 
 import {
   BoldParagraphType,
@@ -29,21 +28,14 @@ import { Line, ViewButton } from './styles';
 
 import { GraphQLStaticQuery } from './types';
 
-// @todo Convert to hook
-const getWindowHeight = (): number => {
-  if (typeof window !== `undefined`) {
-    return window.innerHeight ? window.innerHeight : 0;
-  }
-  return 0;
-};
-
+// @todo Move to shared file
 const IPHONE_X_LANDSCAPE_HEIGHT = 667;
 const IPHONE_5_LANDSCAPE_HEIGHT = 320;
 
 // @todo Break into smaller, more reusable components
 
 export const SideBar = (): ReactElement => {
-  const { sideBarIsVisible } = useAppState();
+  const { sideBarIsVisible, windowHeight } = useAppState();
   const pathData = usePathData();
   const [sideBarView, setSideBarView] = useState(SBV.InternalLinks);
 
@@ -97,7 +89,7 @@ export const SideBar = (): ReactElement => {
         justifyContent="justify-start"
         tw="p-8 w-full h-full max-h-global"
       >
-        {getWindowHeight() >= IPHONE_X_LANDSCAPE_HEIGHT && (
+        {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
           <FlexColumnWrapper
             alignItems="items-center"
             justifyContent="justify-start"
@@ -196,7 +188,7 @@ export const SideBar = (): ReactElement => {
             )}
           </FlexColumnWrapper>
         </FlexColumnWrapper>
-        {getWindowHeight() > IPHONE_5_LANDSCAPE_HEIGHT && (
+        {windowHeight > IPHONE_5_LANDSCAPE_HEIGHT && (
           <FlexColumnWrapper
             alignItems="items-center"
             justifyContent="justify-start"
@@ -242,7 +234,7 @@ export const SideBar = (): ReactElement => {
             </AccentType>
           </ViewButton>
         </FlexRowWrapper>
-        {getWindowHeight() >= IPHONE_X_LANDSCAPE_HEIGHT && (
+        {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
           <FlexColumnWrapper
             alignItems="items-center"
             justifyContent="justify-start"
