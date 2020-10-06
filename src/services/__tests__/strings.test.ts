@@ -10,7 +10,6 @@ describe('strings util: get a stripped internal link path', () => {
       `${PROTOCOL}://${DOMAIN}/`,
       `${PROTOCOL}://${DOMAIN}/about`,
       `${PROTOCOL}://${DOMAIN}/projects`,
-      `${PROTOCOL}://${DOMAIN}/blog`,
     ];
 
     const getCorrectStrippedLinkPath = (fullURL: string): string => {
@@ -23,9 +22,6 @@ describe('strings util: get a stripped internal link path', () => {
         }
         case `${PROTOCOL}://${DOMAIN}/projects`: {
           return `/projects`;
-        }
-        case `${PROTOCOL}://${DOMAIN}/blog`: {
-          return `/blog`;
         }
         default: {
           throw new Error(`Invalid full internal URL provided: ${fullURL}`);

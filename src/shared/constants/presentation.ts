@@ -1,4 +1,4 @@
-import { INDEX, ABOUT, ABOUT_ALT, PROJECTS, PROJECTS_ALT, BLOG, BLOG_ALT } from '../types/paths';
+import { INDEX, ABOUT, ABOUT_ALT, PROJECTS, PROJECTS_ALT } from '../types/paths';
 
 export const XSMOBILE = 360;
 export const MOBILE = 375;
@@ -25,6 +25,4 @@ export const pathsWithImgBgsMobile = {
   [ABOUT_ALT]: ABOUT_ALT,
   [PROJECTS]: PROJECTS,
   [PROJECTS_ALT]: PROJECTS_ALT,
-  [BLOG]: BLOG,
-  [BLOG_ALT]: BLOG_ALT,
 };

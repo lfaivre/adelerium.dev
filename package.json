@@ -38,8 +38,7 @@
     "twin.macro": "^1.10.0",
     "typeface-lobster-two": "^1.1.13",
     "typeface-mrs-sheppards": "^1.1.13",
-    "typeface-playfair-display": "^1.1.13",
-    "uuid": "^8.3.1"
+    "typeface-playfair-display": "^1.1.13"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
