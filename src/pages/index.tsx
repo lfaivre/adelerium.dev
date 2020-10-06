@@ -15,33 +15,35 @@ const IndexPage = ({ data, location }: PageProps): ReactElement => {
   const backgroundImage = (data as PageQueryData).backgroundImage.childImageSharp.fluid;
 
   return (
-    <FlexRowWrapper
-      alignItems="items-center"
-      justifyContent="justify-center"
-      backgroundColor="bg-offwhite"
-      tw="relative w-full h-screen"
-    >
+    <>
       <SEO title="Home" pathname={location.pathname} image={metaImage} />
-      <Img
-        fluid={backgroundImage}
-        draggable={false}
-        tw="absolute top-0 left-0 opacity-75 z-0 w-full h-full object-cover object-center select-none"
-      />
       <FlexRowWrapper
-        alignItems="items-start"
+        alignItems="items-center"
         justifyContent="justify-center"
         backgroundColor="bg-offwhite"
-        tw="absolute z-10 w-full"
+        tw="relative w-full h-screen"
       >
+        <Img
+          fluid={backgroundImage}
+          draggable={false}
+          tw="absolute top-0 left-0 opacity-75 z-0 w-full h-full object-cover object-center select-none"
+        />
         <FlexRowWrapper
           alignItems="items-start"
           justifyContent="justify-center"
-          tw="w-full max-w-screen-md"
+          backgroundColor="bg-offwhite"
+          tw="absolute z-10 w-full"
         >
-          <Header />
+          <FlexRowWrapper
+            alignItems="items-start"
+            justifyContent="justify-center"
+            tw="w-full max-w-screen-md"
+          >
+            <Header />
+          </FlexRowWrapper>
         </FlexRowWrapper>
       </FlexRowWrapper>
-    </FlexRowWrapper>
+    </>
   );
 };
 

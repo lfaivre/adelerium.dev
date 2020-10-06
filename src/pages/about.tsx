@@ -1,32 +1,23 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
+import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
-import { AboutSection } from '../components/AboutPage/AboutSection';
+import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
+
+import { FlexRowWrapper } from '../shared/styles/wrappers';
 
 import { PageQueryData } from '../shared/types/pages/about';
-import { AboutPageContentWrapper } from '../shared/styles/pages';
 
-const AboutPage = ({ data, location }: PageProps): JSX.Element => {
+const AboutPage = ({ data, location }: PageProps): ReactElement => {
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
-  const aboutSections = (data as PageQueryData).allContentfulAboutSection.edges;
-  const aboutSectionsLength = aboutSections.length;
 
   return (
     <>
       <SEO title="About" pathname={location.pathname} image={metaImage} />
-      <AboutPageContentWrapper>
-        {aboutSections.map(({ node }, index) => {
-          return (
-            <AboutSection
-              sectionData={node}
-              count={aboutSectionsLength}
-              order={index + 1}
-              key={node.title}
-            />
-          );
-        })}
-      </AboutPageContentWrapper>
+      <FlexRowWrapper alignItems="items-start" justifyContent="justify-start" tw="p-2 md:p-4">
+        <SocialLinkSquare />
+      </FlexRowWrapper>
     </>
   );
 };
@@ -39,29 +30,6 @@ export const pageQuery = graphql`
     contentfulAsset(title: { eq: "About Page Meta Image" }) {
       fixed(width: 3360, resizingBehavior: SCALE) {
         ...GatsbyContentfulFixed
-      }
-    }
-    allContentfulAboutSection(sort: { fields: order, order: ASC }) {
-      edges {
-        node {
-          title
-          order
-          body {
-            body
-          }
-          firstLinkTextFragment
-          secondLinkTextFragment
-          link {
-            title
-            type
-            destination
-          }
-          accentImage {
-            fluid(maxWidth: 480, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-        }
       }
     }
   }
