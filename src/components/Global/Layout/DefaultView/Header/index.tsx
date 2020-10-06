@@ -2,11 +2,12 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import tw from 'twin.macro';
 
 import { useAppState, useAppDispatch } from '../../../../../shared/hooks/global-state';
+import { usePathData } from '../../../../../shared/hooks/location';
 import { SET_SIDEBAR_VISIBILITY } from '../../../../../shared/types/state';
 
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
-import { PathDataHook, INDEX_TEXT } from '../../../../../shared/types/paths';
+import { INDEX_TEXT } from '../../../../../shared/types/paths';
 import { InternalLinkDirection } from '../../../../../shared/types/presentation';
 
 import { FlexRowWrapper } from '../../../../../shared/styles/wrappers';
@@ -15,11 +16,10 @@ import { BoldParagraphType, BoldTypeAsButton } from '../../../../../shared/style
 const DEFAULT_HEADER_TEXT = `Home`;
 const ERROR_HEADER_TEXT = `Error`;
 
-type HeaderProps = PathDataHook;
-
-export const Header = ({ pathname, isIndex, pathData, isValidPath }: HeaderProps): ReactElement => {
+export const Header = (): ReactElement => {
   const { sideBarIsVisible } = useAppState();
   const dispatch = useAppDispatch();
+  const { pathname, isIndex, pathData, isValidPath } = usePathData();
   const [headerTitle, setHeaderTitle] = useState<string>(DEFAULT_HEADER_TEXT);
   const [toggleIsVisible, setToggleIsVisible] = useState<boolean>(false);
 

@@ -6,14 +6,11 @@ import 'twin.macro';
 import { SEO } from '../components/Global/SEO';
 import { Header } from '../components/Global/Layout/DefaultView/Header';
 
-import { usePathData } from '../shared/hooks/location';
-
 import { PageQueryData } from '../shared/types/pages/home';
 
 import { FlexRowWrapper } from '../shared/styles/wrappers';
 
 const IndexPage = ({ data, location }: PageProps): ReactElement => {
-  const pathData = usePathData();
   const metaImage = (data as PageQueryData).metaImage.fixed;
   const backgroundImage = (data as PageQueryData).backgroundImage.childImageSharp.fluid;
 
@@ -41,12 +38,7 @@ const IndexPage = ({ data, location }: PageProps): ReactElement => {
           justifyContent="justify-center"
           tw="w-full max-w-screen-md"
         >
-          <Header
-            pathname={pathData.pathname}
-            isIndex={pathData.isIndex}
-            pathData={pathData.pathData}
-            isValidPath={pathData.isValidPath}
-          />
+          <Header />
         </FlexRowWrapper>
       </FlexRowWrapper>
     </FlexRowWrapper>

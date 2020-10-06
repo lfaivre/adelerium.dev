@@ -4,9 +4,9 @@ import 'twin.macro';
 
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
+import { usePathData } from '../../../../../shared/hooks/location';
 import { getRandomInt } from '../../../../../services/math';
 
-import { PathDataHook } from '../../../../../shared/types/paths';
 import { InternalLinkDirection } from '../../../../../shared/types/presentation';
 import { IFooterFields } from './types';
 
@@ -24,10 +24,9 @@ import {
   FlexRowWrapper,
 } from '../../../../../shared/styles/wrappers';
 
-type FooterProps = PathDataHook;
 type GraphQLStaticQuery = { contentfulFooter: IFooterFields };
 
-export const Footer = ({ pathname, isIndex, pathData, isValidPath }: FooterProps): ReactElement => {
+export const Footer = (): ReactElement => {
   const footerQuery: GraphQLStaticQuery = useStaticQuery(graphql`
     query {
       contentfulFooter: contentfulFooter(title: { eq: "Default" }) {
@@ -49,6 +48,8 @@ export const Footer = ({ pathname, isIndex, pathData, isValidPath }: FooterProps
   `);
 
   const { brandingLink, linkedInLink, gitHubLink, facts } = footerQuery.contentfulFooter;
+
+  const { pathname, isIndex, pathData, isValidPath } = usePathData();
 
   const getRandomFact = (): string => {
     return facts[getRandomInt(0, facts.length - 1)].text || `This site was built with Gatsby.js.`;

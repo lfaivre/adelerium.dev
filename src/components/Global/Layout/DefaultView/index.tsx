@@ -102,12 +102,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             tw="w-full"
             ref={headerRef}
           >
-            <Header
-              pathname={pathData.pathname}
-              isIndex={pathData.isIndex}
-              pathData={pathData.pathData}
-              isValidPath={pathData.isValidPath}
-            />
+            <Header />
           </FlexRowWrapper>
         )}
         <ScrollableWrapper
@@ -135,12 +130,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
                 </ReturnButton>
               </FlexRowWrapper>
               <FullWidthWrapper ref={footerRef}>
-                <Footer
-                  pathname={pathData.pathname}
-                  isIndex={pathData.isIndex}
-                  pathData={pathData.pathData}
-                  isValidPath={pathData.isValidPath}
-                />
+                <Footer />
               </FullWidthWrapper>
             </>
           )}
