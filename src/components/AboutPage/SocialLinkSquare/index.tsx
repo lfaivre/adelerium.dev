@@ -2,6 +2,7 @@ import React, { ReactElement, useLayoutEffect, useState } from 'react';
 import { css } from 'twin.macro';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
+import { SCREEN_SIZE } from '../../../shared/constants/presentation';
 import { FlexColumnWrapper } from '../../../shared/styles/wrappers';
 import { BoldType } from '../../../shared/styles/text';
 import { useAppState } from '../../../shared/hooks/global-state';
@@ -11,10 +12,6 @@ import { SocialLinkSquareComponent } from './styles';
 import { SocialLink } from './types';
 
 // @note Size: 1/3
-
-const sizeDivisor = 3;
-const numberOfGutters = 4;
-const sizeOfGutters = 16;
 
 type SocialLinkSquareProps = SocialLink;
 
@@ -31,6 +28,10 @@ export const SocialLinkSquare = ({
   const [size, setSize] = useState<number>(0);
 
   useLayoutEffect(() => {
+    const sizeDivisor = layoutWidth >= SCREEN_SIZE.MD ? 3 : 1;
+    const numberOfGutters = layoutWidth >= SCREEN_SIZE.MD ? 4 : 2;
+    const sizeOfGutters = layoutWidth >= SCREEN_SIZE.MD ? 16 : 8;
+
     const calculatedSize = (layoutWidth - numberOfGutters * sizeOfGutters) / sizeDivisor;
     const newSize = calculatedSize > 0 ? calculatedSize : 0;
     setSize(newSize);
@@ -48,7 +49,7 @@ export const SocialLinkSquare = ({
     <SocialLinkSquareComponent
       width={size}
       height={size}
-      tw="relative p-8"
+      tw="relative mb-2 md:mb-0 p-4 lg:p-8"
       css={backgroundColorStyles}
     >
       <OutboundLink

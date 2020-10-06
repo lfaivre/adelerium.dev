@@ -24,15 +24,20 @@ const AboutPage = ({ data, location }: PageProps): ReactElement => {
     <>
       <SEO title="About" pathname={location.pathname} image={metaImage} />
       <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="p-2 md:p-4">
-        <FlexRowWrapper
+        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+          <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
+          <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
+          <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
+        </div>
+        {/* <FlexRowWrapper
           alignItems="items-start"
           justifyContent="justify-between"
-          tw="flex-wrap w-full mb-2 md:mb-4"
+          tw="w-full mb-2 md:mb-4"
         >
           <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
           <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
           <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
-        </FlexRowWrapper>
+        </FlexRowWrapper> */}
         <FlexRowWrapper
           alignItems="items-start"
           justifyContent="justify-between"
