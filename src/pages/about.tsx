@@ -5,6 +5,7 @@ import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
+import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
 
 import { FlexColumnWrapper, FlexRowWrapper } from '../shared/styles/wrappers';
 
@@ -16,6 +17,7 @@ import {
   LINKEDIN_SOCIALLINK_DATA,
   GOOGLE_SOCIALLINK_DATA,
 } from '../shared/constants/social-link-squares';
+import { PINNED_PODCAST_MEDIALINK_DATA } from '../shared/constants/media-link-squares';
 
 const AboutPage = ({ data, location }: PageProps): ReactElement => {
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
@@ -29,21 +31,14 @@ const AboutPage = ({ data, location }: PageProps): ReactElement => {
           <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
           <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
         </div>
-        {/* <FlexRowWrapper
-          alignItems="items-start"
-          justifyContent="justify-between"
-          tw="w-full mb-2 md:mb-4"
-        >
-          <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
-          <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
-          <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
-        </FlexRowWrapper> */}
         <FlexRowWrapper
           alignItems="items-start"
           justifyContent="justify-between"
           tw="flex-wrap w-full"
         >
           <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
+          <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
+          <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
         </FlexRowWrapper>
       </FlexColumnWrapper>
     </>
