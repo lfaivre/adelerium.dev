@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 
-import { SocialLink } from '../SocialLinkSquare/types';
+import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
 export const SocialLinkData: SocialLink = {
   title: `GitHub`,

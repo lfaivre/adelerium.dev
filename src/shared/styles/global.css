@@ -7,6 +7,9 @@
   --color-OffPink--Translucent25: rgba(252, 240, 236, 0.25);
   --color-OffPink--Translucent50: rgba(252, 240, 236, 0.5);
   --color-GitHubGray: #24292e;
+  --color-FigmaGreen: #0acf83;
+  --color-LinkedInBlue: #2867b2;
+  --color-GoogleRed: #d44638;
 }
 
 html {

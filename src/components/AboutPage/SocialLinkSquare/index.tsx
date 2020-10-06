@@ -33,7 +33,6 @@ export const SocialLinkSquare = ({
   useLayoutEffect(() => {
     const calculatedSize = (layoutWidth - numberOfGutters * sizeOfGutters) / sizeDivisor;
     const newSize = calculatedSize > 0 ? calculatedSize : 0;
-    console.log(`SocialLinkSquare Size: ${newSize}`);
     setSize(newSize);
   }, [layoutWidth]);
 
@@ -55,9 +54,16 @@ export const SocialLinkSquare = ({
       <OutboundLink
         href={externalLink}
         label={externalLink}
+        target="_blank"
+        rel="noopener noreferrer"
         tw="absolute top-0 left-0 flex flex-row items-center justify-center transition-opacity duration-300 ease-in-out opacity-0 hover:opacity-100 z-10 bg-offwhite p-8 w-full h-full"
       >
-        <BoldType color="text-charcoal" textAlign="text-center" css={externalLinkTextStyles}>
+        <BoldType
+          color="text-charcoal"
+          textAlign="text-center"
+          tw="uppercase"
+          css={externalLinkTextStyles}
+        >
           {externalLinkText}
         </BoldType>
       </OutboundLink>
