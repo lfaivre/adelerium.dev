@@ -6,6 +6,7 @@
   --color-OffPink: #fcf0ec;
   --color-OffPink--Translucent25: rgba(252, 240, 236, 0.25);
   --color-OffPink--Translucent50: rgba(252, 240, 236, 0.5);
+  --color-GitHubGray: #24292e;
 }
 
 html {
