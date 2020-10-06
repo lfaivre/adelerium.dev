@@ -7,7 +7,7 @@ import { SEO } from '../components/Global/SEO';
 import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
 
-import { FlexColumnWrapper, FlexRowWrapper } from '../shared/styles/wrappers';
+import { FlexColumnWrapper } from '../shared/styles/wrappers';
 
 import { PageQueryData } from '../shared/types/pages/about';
 
@@ -17,7 +17,12 @@ import {
   LINKEDIN_SOCIALLINK_DATA,
   GOOGLE_SOCIALLINK_DATA,
 } from '../shared/constants/social-link-squares';
-import { PINNED_PODCAST_MEDIALINK_DATA } from '../shared/constants/media-link-squares';
+import {
+  PINNED_PODCAST_MEDIALINK_DATA,
+  PINNED_SONG_MEDIALINK_DATA,
+  MOST_PLAYED_SONG_MEDIALINK_DATA,
+  PINNED_PLAYLIST_MEDIALINK_DATA,
+} from '../shared/constants/media-link-squares';
 
 const AboutPage = ({ data, location }: PageProps): ReactElement => {
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
@@ -31,15 +36,15 @@ const AboutPage = ({ data, location }: PageProps): ReactElement => {
           <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
           <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
         </div>
-        <FlexRowWrapper
-          alignItems="items-start"
-          justifyContent="justify-between"
-          tw="flex-wrap w-full"
-        >
+        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
           <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
           <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
-          <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
-        </FlexRowWrapper>
+          <MediaLinkSquare {...PINNED_SONG_MEDIALINK_DATA} />
+        </div>
+        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+          <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
+          <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
+        </div>
       </FlexColumnWrapper>
     </>
   );

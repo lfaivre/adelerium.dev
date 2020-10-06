@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
+import { faApple } from '@fortawesome/free-brands-svg-icons/faApple';
 
 import { MediaLink } from '../../../components/AboutPage/MediaLinkSquare/types';
 
@@ -14,8 +14,8 @@ type ImageQueryType = { backgroundImage: ChildImageSharp };
 const ImageQuery = (): FluidObject => {
   const data: ImageQueryType = useStaticQuery(
     graphql`
-      query PinnedPodcastBackgroundImage {
-        backgroundImage: file(relativePath: { eq: "media-link-squares/pinned-podcast.jpg" }) {
+      query PinnedPlaylistBackgroundImage {
+        backgroundImage: file(relativePath: { eq: "media-link-squares/pinned-playlist.jpeg" }) {
           childImageSharp {
             fluid(maxWidth: 540, quality: 100, grayscale: false) {
               ...GatsbyImageSharpFluid
@@ -29,12 +29,12 @@ const ImageQuery = (): FluidObject => {
 };
 
 export const MediaLinkData: MediaLink = {
-  description: `Pinned Podcast`,
+  description: `Pinned Playlist`,
   date: `October 2, 2020`,
-  title: `History Hyenas`,
-  subTitle: `Yannis Pappas & Chris Distefano`,
-  externalLink: `https://www.youtube.com/c/HistoryHyenas`,
-  Icon: <FontAwesomeIcon icon={faYoutube} size="2x" />,
+  title: `that good`,
+  subTitle: `@lorenzofaivre`,
+  externalLink: `https://music.apple.com/us/playlist/that-good/pl.u-55D662lU8dzeb9B`,
+  Icon: <FontAwesomeIcon icon={faApple} size="2x" />,
   backgroundImageQuery: ImageQuery,
   styling: {
     titleTextColor: `var(--color-OffWhite)`,

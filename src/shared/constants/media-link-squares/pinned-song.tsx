@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
+import { faSoundcloud } from '@fortawesome/free-brands-svg-icons/faSoundcloud';
 
 import { MediaLink } from '../../../components/AboutPage/MediaLinkSquare/types';
 
@@ -14,8 +14,8 @@ type ImageQueryType = { backgroundImage: ChildImageSharp };
 const ImageQuery = (): FluidObject => {
   const data: ImageQueryType = useStaticQuery(
     graphql`
-      query PinnedPodcastBackgroundImage {
-        backgroundImage: file(relativePath: { eq: "media-link-squares/pinned-podcast.jpg" }) {
+      query PinnedSongBackgroundImage {
+        backgroundImage: file(relativePath: { eq: "media-link-squares/pinned-song.jpg" }) {
           childImageSharp {
             fluid(maxWidth: 540, quality: 100, grayscale: false) {
               ...GatsbyImageSharpFluid
@@ -29,12 +29,12 @@ const ImageQuery = (): FluidObject => {
 };
 
 export const MediaLinkData: MediaLink = {
-  description: `Pinned Podcast`,
+  description: `Pinned Song`,
   date: `October 2, 2020`,
-  title: `History Hyenas`,
-  subTitle: `Yannis Pappas & Chris Distefano`,
-  externalLink: `https://www.youtube.com/c/HistoryHyenas`,
-  Icon: <FontAwesomeIcon icon={faYoutube} size="2x" />,
+  title: `Luv Scars - Lil Uzi Vert (Luv Is Rage 2)`,
+  subTitle: `4K WorldWide!`,
+  externalLink: `https://soundcloud.com/4kworldwide/luv-scars-lil-uzi-vert-luv-is-rage-2`,
+  Icon: <FontAwesomeIcon icon={faSoundcloud} size="2x" />,
   backgroundImageQuery: ImageQuery,
   styling: {
     titleTextColor: `var(--color-OffWhite)`,
