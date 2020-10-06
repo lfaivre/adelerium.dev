@@ -20,18 +20,33 @@ const typeTextAlignMap: { [key in TypeTextAlignValues]: TwStyle } = {
   'text-justify': tw`text-justify`,
 };
 
-type TypeProps = { color: TypeColorValues; textAlign?: TypeTextAlignValues };
+type TypeWordBreakValues = `break-normal` | `break-words` | `break-all` | `truncate`;
+
+const typeWordBreakMap: { [key in TypeWordBreakValues]: TwStyle } = {
+  'break-normal': tw`break-normal`,
+  'break-words': tw`break-words`,
+  'break-all': tw`break-all`,
+  truncate: tw`truncate`,
+};
+
+type TypeProps = {
+  color: TypeColorValues;
+  textAlign?: TypeTextAlignValues;
+  wordBreak?: TypeWordBreakValues;
+};
 
 export const NormalParagraphType = styled.p<TypeProps>`
-  ${tw`font-playfair-display text-base font-normal break-normal select-none`}
+  ${tw`font-playfair-display text-base font-normal select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`break-normal`)}
 `;
 
 export const BoldParagraphType = styled.p<TypeProps>`
-  ${tw`font-playfair-display text-base font-bold truncate select-none`}
+  ${tw`font-playfair-display text-base font-bold select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;
 
 export const NormalParagraphTypeAsAnchor = NormalParagraphType.withComponent(OutboundLink);
@@ -43,9 +58,10 @@ BoldParagraphTypeAsAnchor.defaultProps = { target: `_blank`, rel: `noopener nore
 export const BoldParagraphTypeAsButton = BoldParagraphType.withComponent(`button`);
 
 export const BoldType = styled.p<TypeProps>`
-  ${tw`leading-149 font-helvetica text-base font-bold truncate select-none`}
+  ${tw`leading-149 font-helvetica text-base font-bold select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;
 
 export const BoldTypeAsAnchor = BoldType.withComponent(OutboundLink);
@@ -61,13 +77,15 @@ export const BrandingType = styled.p<TypeProps>`
   ${tw`lowercase font-mrs-sheppards font-normal select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;
 
 export const BrandingTypeAsAnchor = BrandingType.withComponent(OutboundLink);
 BrandingTypeAsAnchor.defaultProps = { target: `_blank`, rel: `noopener noreferrer` };
 
 export const AccentType = styled.p<TypeProps>`
-  ${tw`font-lobster-two font-normal truncate select-none`}
+  ${tw`font-lobster-two font-normal select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;

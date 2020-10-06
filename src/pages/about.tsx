@@ -11,6 +11,8 @@ import { FlexColumnWrapper } from '../shared/styles/wrappers';
 
 import { PageQueryData } from '../shared/types/pages/about';
 
+import { StaticIntroduction } from '../components/AboutPage/StaticIntroduction';
+
 import {
   GITHUB_SOCIALLINK_DATA,
   FIGMA_SOCIALLINK_DATA,
@@ -32,9 +34,11 @@ const AboutPage = ({ data, location }: PageProps): ReactElement => {
       <SEO title="About" pathname={location.pathname} image={metaImage} />
       <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="p-2 md:p-4">
         <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+          <StaticIntroduction />
           <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
+        </div>
+        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
           <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
-          <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
         </div>
         <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
           <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
@@ -42,6 +46,7 @@ const AboutPage = ({ data, location }: PageProps): ReactElement => {
           <MediaLinkSquare {...PINNED_SONG_MEDIALINK_DATA} />
         </div>
         <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+          <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
           <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
           <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
         </div>

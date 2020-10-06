@@ -11,8 +11,6 @@ import { SocialLinkSquareComponent } from './styles';
 
 import { SocialLink } from './types';
 
-// @note Size: 1/3
-
 type SocialLinkSquareProps = SocialLink;
 
 export const SocialLinkSquare = ({
