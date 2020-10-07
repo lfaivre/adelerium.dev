@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 import { SEO } from '../components/Global/SEO';
 import { Preview } from '../components/ProjectsPage/Preview';
@@ -15,9 +16,11 @@ const ProjectsPage = ({ data, location }: PageProps): JSX.Element => {
     <>
       <SEO title="Projects" pathname={location.pathname} image={metaImage} />
       <ProjectsPageContentWrapper>
-        {projects.map(({ node }, index) => {
-          return <Preview project={node} order={index + 1} key={node.title} />;
-        })}
+        <SkeletonTheme color="var(--color-OffWhite)" highlightColor="var(--color-OffPink)">
+          {projects.map(({ node }, index) => {
+            return <Preview project={node} order={index + 1} key={node.title} />;
+          })}
+        </SkeletonTheme>
       </ProjectsPageContentWrapper>
     </>
   );

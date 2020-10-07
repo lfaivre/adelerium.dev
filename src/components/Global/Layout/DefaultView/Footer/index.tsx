@@ -117,7 +117,12 @@ export const Footer = (): ReactElement => {
           justifyContent="justify-center"
           tw="hidden md:flex w-2/6"
         >
-          <BrandingType color="text-charcoal" textAlign="text-center" tw="text-3xl">
+          <BrandingType
+            color="text-charcoal"
+            textAlign="text-center"
+            tw="text-3xl"
+            wordBreak="break-normal"
+          >
             KD.
           </BrandingType>
         </FlexRowWrapper>

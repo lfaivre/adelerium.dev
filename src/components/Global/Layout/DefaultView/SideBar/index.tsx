@@ -110,7 +110,7 @@ export const SideBar = (): ReactElement => {
               <BoldParagraphType
                 color="text-offwhite"
                 textAlign="text-center"
-                tw="mb-2 w-full text-2xl"
+                tw="mb-2 w-full text-2xl lowercase"
               >
                 {name}
               </BoldParagraphType>

@@ -36,14 +36,14 @@ type TypeProps = {
 };
 
 export const NormalParagraphType = styled.p<TypeProps>`
-  ${tw`font-playfair-display text-base font-normal select-none`}
+  ${tw`leading-149 font-playfair-display text-base font-normal select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`break-normal`)}
 `;
 
 export const BoldParagraphType = styled.p<TypeProps>`
-  ${tw`font-playfair-display text-base font-bold select-none`}
+  ${tw`leading-149 font-playfair-display text-base font-bold select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
@@ -84,8 +84,10 @@ export const BrandingTypeAsAnchor = BrandingType.withComponent(OutboundLink);
 BrandingTypeAsAnchor.defaultProps = { target: `_blank`, rel: `noopener noreferrer` };
 
 export const AccentType = styled.p<TypeProps>`
-  ${tw`font-lobster-two font-normal select-none`}
+  ${tw`leading-149 font-lobster-two font-normal select-none`}
   ${({ color }) => typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;
+
+export const BoldSpan = tw.span`font-bold`;

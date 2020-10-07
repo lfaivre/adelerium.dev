@@ -26,7 +26,7 @@ const IndexPage = ({ data, location }: PageProps): ReactElement => {
         <Img
           fluid={backgroundImage}
           draggable={false}
-          tw="absolute top-0 left-0 opacity-75 z-0 w-full h-full object-cover object-center select-none"
+          tw="absolute top-0 left-0 opacity-25 z-0 w-full h-full object-cover object-center select-none"
         />
         <FlexRowWrapper
           alignItems="items-start"

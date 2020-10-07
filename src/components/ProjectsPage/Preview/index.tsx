@@ -1,58 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
+import Img from 'gatsby-image';
+import Skeleton from 'react-loading-skeleton';
+import tw from 'twin.macro';
 
-// @todo: Move icons to separate file
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 
+import { IProjectFields } from '../../../shared/types/pages/projects';
 import { ProjectDirection } from '../../../shared/types/presentation';
 
-import { PreviewProps } from './types';
 import {
-  PreviewWrapper,
-  ThumbnailWrapper,
-  ThumbnailInfoWrapper,
-  OrderNumberWrapper,
-  OrderNumber,
-  OrderNumberSkeleton,
-  TitleAndTypeWrapper,
-  Title,
-  TitleSkeleton,
-  Type,
-  TypeSkeleton,
-  Bold,
-  ImageWrapper,
-  Image,
-  ContentWrapper,
-  DescAndTechWrapper,
-  DescriptionWrapper,
-  DescriptionTitle,
-  DescriptionTitleSkeleton,
-  Description,
-  DescriptionSkeleton,
-  TechnologyWrapper,
-  TechnologyTitle,
-  TechnologyTitleSkeleton,
-  Technology,
-  TechnologySkeleton,
-  DividerWrapper,
-  Divider,
-  LinksWrapper,
-  ExternalLink,
-  LinkIcon,
-  LinkIconSkeleton,
-  LinkText,
-  LinkTextSkeleton,
-  ArrowIcon,
-} from './styles';
+  FullWidthWrapper,
+  FlexColumnWrapper,
+  FlexRowWrapper,
+} from '../../../shared/styles/wrappers';
+import {
+  NormalParagraphType,
+  NormalParagraphTypeAsAnchor,
+  BoldParagraphType,
+  BoldType,
+  BoldSpan,
+} from '../../../shared/styles/text';
+
+import { OrderNumber, BoxShadowStyles, Divider } from './styles';
+
+type PreviewContentTitle = `Description` | `Technology`;
+type PreviewContentItem = { title: PreviewContentTitle; content: string };
+type PreviewContentKey = `description` | `technology`;
+type PreviewContent = { [key in PreviewContentKey]: PreviewContentItem };
+
+type ExternalLinkTitle = `Hosted` | `GitHub` | `Figma`;
+type ExternalLinkItem = {
+  title: ExternalLinkTitle;
+  url: string;
+  TextElement: ReactElement;
+  Icon: ReactElement;
+};
+type ExternalLinkKey = `hosted` | `github` | `figma`;
+type ExternalLinks = { [key in ExternalLinkKey]: ExternalLinkItem };
+
+type PreviewProps = { project: IProjectFields; order: number };
 
 // @temp Need to figure out how to enable a default value for external links
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
 
-export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
+export const Preview = ({ project, order }: PreviewProps): ReactElement => {
+  const [componentLoaded, setComponentLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(ProjectDirection.Left);
+
+  useEffect(() => {
+    setComponentLoaded(true);
+  }, []);
 
   useEffect(() => {
     const newDirection = order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
@@ -61,134 +62,228 @@ export const Preview = ({ project, order }: PreviewProps): JSX.Element => {
 
   const getDateString = (): string => {
     if (project.dateRangeBeginning !== project.dateRangeEnd) {
-      return `${project.dateRangeBeginning} - ${project.dateRangeEnd}`;
+      return `${project.dateRangeBeginning} / ${project.dateRangeEnd}`;
     }
     return `${project.dateRangeBeginning}`;
   };
 
+  const shouldDisplayContent = (): boolean => componentLoaded && imageLoaded;
+
+  const isLeftOriented = (): boolean => direction === ProjectDirection.Left;
+
+  const previewContent: PreviewContent = {
+    description: {
+      title: `Description`,
+      content: project.previewDescription.previewDescription,
+    },
+    technology: {
+      title: `Technology`,
+      content: project.technologyTags.join(', '),
+    },
+  };
+
+  const externalLinks: ExternalLinks = {
+    hosted: {
+      title: `Hosted`,
+      url: project.hostedUrl,
+      TextElement: (
+        <>
+          see&nbsp;it&nbsp;<BoldSpan>hosted.</BoldSpan>
+        </>
+      ),
+      Icon: <FontAwesomeIcon icon={faFirefox} size="3x" />,
+    },
+    github: {
+      title: `GitHub`,
+      url: project.gitHubUrl,
+      TextElement: (
+        <>
+          view&nbsp;on&nbsp;<BoldSpan>github.</BoldSpan>
+        </>
+      ),
+      Icon: <FontAwesomeIcon icon={faGithub} size="3x" />,
+    },
+    figma: {
+      title: `Figma`,
+      url: project.figmaUrl,
+      TextElement: (
+        <>
+          view&nbsp;on&nbsp;<BoldSpan>figma.</BoldSpan>
+        </>
+      ),
+      Icon: <FontAwesomeIcon icon={faFigma} size="3x" />,
+    },
+  };
+
   return (
-    <PreviewWrapper _direction={direction}>
-      <ThumbnailWrapper _direction={direction}>
-        <ThumbnailInfoWrapper _direction={direction}>
-          <OrderNumberWrapper _direction={direction}>
-            {imageLoaded && <OrderNumber _direction={direction}>{`0${order}.`}</OrderNumber>}
-            {!imageLoaded && <OrderNumberSkeleton _direction={direction} width={100} />}
-          </OrderNumberWrapper>
-          <TitleAndTypeWrapper _direction={direction}>
-            {imageLoaded && <Title _direction={direction}>{project.title}</Title>}
-            {!imageLoaded && <TitleSkeleton _direction={direction} />}
-            {imageLoaded && (
-              <Type _direction={direction}>
-                {project.type}&nbsp;<Bold>&#47;&#47;</Bold>&nbsp;
-                {getDateString()}
-              </Type>
-            )}
-            {!imageLoaded && <TypeSkeleton _direction={direction} />}
-          </TitleAndTypeWrapper>
-        </ThumbnailInfoWrapper>
-        <ImageWrapper>
-          <Image
+    <div
+      css={[
+        tw`flex relative mb-2 md:mb-4 last:mb-0 bg-offpink p-4 md:p-8 w-full`,
+        isLeftOriented() ? tw`flex-col lg:flex-row` : tw`flex-col lg:flex-row-reverse`,
+      ]}
+    >
+      <FlexColumnWrapper
+        alignItems="items-center"
+        justifyContent="justify-start"
+        css={[
+          tw`mb-4 md:mb-8 lg:mb-0 w-full lg:w-1/2`,
+          isLeftOriented() ? tw`lg:items-start lg:mr-8` : tw`lg:items-end lg:ml-8`,
+        ]}
+      >
+        <FlexRowWrapper
+          alignItems="items-center"
+          justifyContent="justify-start"
+          reverse={!isLeftOriented()}
+          css={[tw`w-full mb-2`, isLeftOriented() ? tw`justify-start` : tw`justify-end`]}
+        >
+          <FlexRowWrapper
+            alignItems="items-center"
+            justifyContent="justify-start"
+            reverse={!isLeftOriented()}
+            css={[
+              tw`h-full`,
+              isLeftOriented() ? tw`justify-start mr-4 md:mr-8` : tw`justify-end ml-4 md:ml-8`,
+            ]}
+          >
+            <OrderNumber css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}>
+              {shouldDisplayContent() ? `0${order}.` : <Skeleton width={120} />}
+            </OrderNumber>
+          </FlexRowWrapper>
+          <FlexColumnWrapper
+            alignItems="items-start"
+            justifyContent="justify-center"
+            css={[
+              tw`flex-grow h-full overflow-hidden`,
+              isLeftOriented() ? tw`items-start` : tw`items-end`,
+            ]}
+          >
+            <BoldParagraphType
+              color="text-charcoal"
+              css={[
+                tw`mb-2 w-full text-2xl md:text-3.5xl`,
+                isLeftOriented() ? tw`text-left` : tw`text-right`,
+              ]}
+            >
+              {shouldDisplayContent() ? project.title : <Skeleton />}
+            </BoldParagraphType>
+            <BoldType
+              color="text-charcoal"
+              css={[
+                tw`w-full uppercase text-xs`,
+                isLeftOriented() ? tw`text-left` : tw`text-right`,
+              ]}
+            >
+              {shouldDisplayContent() ? `${project.type} - ${getDateString()}` : <Skeleton />}
+            </BoldType>
+          </FlexColumnWrapper>
+        </FlexRowWrapper>
+        <FullWidthWrapper backgroundColor="bg-offwhite" css={[tw`p-4 w-full`, BoxShadowStyles]}>
+          <Img
             fluid={project.previewPicture.fluid}
             onLoad={() => setImageLoaded(true)}
             alt={`Preview Image for ${project.title}`}
-            backgroundColor="var(--color-OffWhite)"
             draggable={false}
+            backgroundColor="var(--color-OffWhite)"
+            css={[tw`select-none`, BoxShadowStyles]}
           />
-        </ImageWrapper>
-      </ThumbnailWrapper>
-      <ContentWrapper _direction={direction}>
-        <DescAndTechWrapper _direction={direction}>
-          <DescriptionWrapper _direction={direction}>
-            {imageLoaded && <DescriptionTitle _direction={direction}>desc.</DescriptionTitle>}
-            {!imageLoaded && <DescriptionTitleSkeleton _direction={direction} />}
-            {imageLoaded && (
-              <Description _direction={direction}>
-                {project.previewDescription.previewDescription}
-              </Description>
-            )}
-            {!imageLoaded && <DescriptionSkeleton _direction={direction} count={2} />}
-          </DescriptionWrapper>
-          <TechnologyWrapper _direction={direction}>
-            {imageLoaded && <TechnologyTitle _direction={direction}>tech.</TechnologyTitle>}
-            {!imageLoaded && <TechnologyTitleSkeleton _direction={direction} />}
-            {imageLoaded && (
-              <Technology _direction={direction}>{project.technologyTags.join(', ')}</Technology>
-            )}
-            {!imageLoaded && <TechnologySkeleton _direction={direction} count={2} />}
-          </TechnologyWrapper>
-        </DescAndTechWrapper>
-        <DividerWrapper _direction={direction}>
+        </FullWidthWrapper>
+      </FlexColumnWrapper>
+      <FlexColumnWrapper
+        alignItems="items-start"
+        justifyContent="justify-center"
+        css={[tw`flex-1 lg:px-8`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+      >
+        <FlexColumnWrapper
+          alignItems="items-start"
+          justifyContent="justify-center"
+          css={[tw`mb-4 md:mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+        >
+          {Object.keys(previewContent).map((key) => (
+            <FlexColumnWrapper
+              alignItems="items-start"
+              justifyContent="justify-center"
+              css={[
+                tw`mb-4 lg:mb-8 last:mb-0 w-full`,
+                isLeftOriented() ? tw`items-start` : tw`items-end`,
+              ]}
+              key={previewContent[key as PreviewContentKey].title}
+            >
+              <BoldType
+                color="text-charcoal"
+                css={[tw`w-full uppercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
+              >
+                {shouldDisplayContent() ? (
+                  `${previewContent[key as PreviewContentKey].title}`
+                ) : (
+                  <Skeleton />
+                )}
+              </BoldType>
+              <NormalParagraphType
+                color="text-charcoal"
+                css={[
+                  tw`w-full text-xs md:text-base`,
+                  isLeftOriented() ? tw`text-left` : tw`text-right`,
+                ]}
+              >
+                {shouldDisplayContent() ? (
+                  previewContent[key as PreviewContentKey].content
+                ) : (
+                  <Skeleton />
+                )}
+              </NormalParagraphType>
+            </FlexColumnWrapper>
+          ))}
+        </FlexColumnWrapper>
+        <FlexColumnWrapper
+          alignItems="items-start"
+          justifyContent="justify-center"
+          css={[tw`mb-4 lg:mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+        >
           <Divider />
           <Divider />
-        </DividerWrapper>
-        <LinksWrapper _direction={direction}>
-          {project.hostedUrl !== TEMP_URL_PLACEHOLDER ? (
-            <ExternalLink
-              href={project.hostedUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              label={project.hostedUrl}
-              _direction={direction}
-            >
-              {imageLoaded && <LinkIcon icon={faFirefox} />}
-              {!imageLoaded && <LinkIconSkeleton icon={faFirefox} width={32} height={32} />}
-              {imageLoaded && (
-                <LinkText _direction={direction}>
-                  see&nbsp;it&nbsp;<Bold>hosted.</Bold>
-                </LinkText>
-              )}
-              {!imageLoaded && <LinkTextSkeleton _direction={direction} width={115} />}
-            </ExternalLink>
-          ) : (
-            <></>
+        </FlexColumnWrapper>
+        <FlexRowWrapper
+          alignItems="items-center"
+          justifyContent="justify-center"
+          css={[
+            tw`w-full`,
+            isLeftOriented()
+              ? tw`justify-center lg:justify-start`
+              : tw`justify-center lg:justify-end`,
+          ]}
+        >
+          {Object.keys(externalLinks).map(
+            (key) =>
+              externalLinks[key as ExternalLinkKey].url !== TEMP_URL_PLACEHOLDER && (
+                <NormalParagraphTypeAsAnchor
+                  href={externalLinks[key as ExternalLinkKey].url}
+                  label={externalLinks[key as ExternalLinkKey].url}
+                  color="text-charcoal"
+                  css={[
+                    tw`mr-8 last:mr-0 lowercase`,
+                    isLeftOriented() ? tw`text-left` : tw`text-right`,
+                  ]}
+                  key={externalLinks[key as ExternalLinkKey].title}
+                >
+                  <span tw="hidden lg:block">
+                    {shouldDisplayContent() ? (
+                      externalLinks[key as ExternalLinkKey].TextElement
+                    ) : (
+                      <Skeleton />
+                    )}
+                  </span>
+                  <span tw="block lg:hidden">
+                    {shouldDisplayContent() ? (
+                      externalLinks[key as ExternalLinkKey].Icon
+                    ) : (
+                      <Skeleton width={48} height={48} />
+                    )}
+                  </span>
+                </NormalParagraphTypeAsAnchor>
+              )
           )}
-          {project.gitHubUrl !== TEMP_URL_PLACEHOLDER ? (
-            <ExternalLink
-              href={project.gitHubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              label={project.gitHubUrl}
-              _direction={direction}
-            >
-              {imageLoaded && <LinkIcon icon={faGithub} />}
-              {!imageLoaded && <LinkIconSkeleton icon={faGithub} width={32} height={32} />}
-              {imageLoaded && (
-                <LinkText _direction={direction}>
-                  view&nbsp;on&nbsp;<Bold>github.</Bold>
-                </LinkText>
-              )}
-              {!imageLoaded && <LinkTextSkeleton _direction={direction} width={115} />}
-            </ExternalLink>
-          ) : (
-            <></>
-          )}
-          {project.figmaUrl !== TEMP_URL_PLACEHOLDER ? (
-            <ExternalLink
-              href={project.figmaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              label={project.figmaUrl}
-              _direction={direction}
-            >
-              {imageLoaded && <LinkIcon icon={faFigma} />}
-              {!imageLoaded && <LinkIconSkeleton icon={faFigma} width={32} height={32} />}
-              {imageLoaded && (
-                <LinkText _direction={direction}>
-                  view&nbsp;on&nbsp;<Bold>figma.</Bold>
-                </LinkText>
-              )}
-              {!imageLoaded && <LinkTextSkeleton _direction={direction} width={115} />}
-            </ExternalLink>
-          ) : (
-            <></>
-          )}
-        </LinksWrapper>
-      </ContentWrapper>
-      <ArrowIcon
-        icon={faArrowUp}
-        transform={{ rotate: direction === ProjectDirection.Left ? -45 : 45 }}
-        _direction={direction}
-      />
-    </PreviewWrapper>
+        </FlexRowWrapper>
+      </FlexColumnWrapper>
+    </div>
   );
 };

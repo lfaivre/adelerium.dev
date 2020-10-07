@@ -17,13 +17,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 
 import { FullWidthWrapper, FlexRowWrapper } from '../../../../shared/styles/wrappers';
-import {
-  SideBarWrapper,
-  ContentWrapper,
-  ScrollableWrapper,
-  ReturnButton,
-  ReturnButtonIndicator,
-} from './styles';
+import { ScrollableWrapper, ReturnButton, ReturnButtonIndicator } from './styles';
 
 const DEFAULT_SIDEBAR_WIDTH = 0.25 * 1680;
 
@@ -88,14 +82,14 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     width: ${layoutWidth}px;
   `;
 
-  const props1 = useSpring({
+  const sideBarWrapperProps = useSpring({
     to: {
       left: sideBarIsVisible ? 0 : -sideBarWidth,
     },
     config: config.stiff,
   });
 
-  const props2 = useSpring({
+  const contentWrapperProps = useSpring({
     to: {
       left: sideBarIsVisible ? sideBarWidth : 0,
     },
@@ -108,12 +102,15 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
       justifyContent="justify-start"
       tw="relative z-0 w-full h-full"
     >
-      <animated.div style={props1} css={[tw`absolute top-0 h-full`, sideBarWidthStyles]}>
+      <animated.div
+        style={sideBarWrapperProps}
+        css={[tw`absolute top-0 h-full`, sideBarWidthStyles]}
+      >
         <SideBar />
       </animated.div>
       <animated.div
         onClick={handleOutOfBoundsToggle}
-        style={props2}
+        style={contentWrapperProps}
         css={[tw`absolute top-0 flex flex-col items-start justify-start h-full`, layoutWidthStyles]}
       >
         {!pathData.isIndex && (
