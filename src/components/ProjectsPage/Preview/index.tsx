@@ -146,7 +146,11 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             ]}
           >
             <OrderNumber css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}>
-              {shouldDisplayContent() ? `0${order}.` : <Skeleton width={120} />}
+              {shouldDisplayContent() ? (
+                `${order.toString().padStart(2, `0`)}.`
+              ) : (
+                <Skeleton width={120} />
+              )}
             </OrderNumber>
           </FlexRowWrapper>
           <FlexColumnWrapper
