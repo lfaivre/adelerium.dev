@@ -1,24 +1,21 @@
 import tw, { styled, TwStyle } from 'twin.macro';
+import { animated } from 'react-spring';
 
 type LayoutWidth = { layoutWidth: number };
 
-type SideBarWrapperProps = { sideBarIsCollapsed: boolean; sideBarWidth: number };
+type SideBarWrapperProps = { sideBarWidth: number };
 
-export const SideBarWrapper = styled.div<SideBarWrapperProps>`
+export const SideBarWrapper = styled(animated.div)<SideBarWrapperProps>`
   ${tw`absolute top-0 h-full`}
-  left: ${({ sideBarIsCollapsed, sideBarWidth }) =>
-    sideBarIsCollapsed ? `-${sideBarWidth || 0}px` : 0};
-  transition: left 0.3s ease-in-out;
   width: ${({ sideBarWidth }) => `${sideBarWidth || 0}px`};
 `;
 
 type ContentWrapperProps = LayoutWidth & { sideBarIsCollapsed: boolean; sideBarWidth: number };
 
-export const ContentWrapper = styled.div<ContentWrapperProps>`
+export const ContentWrapper = styled(animated.div)<ContentWrapperProps>`
   ${tw`absolute top-0 flex flex-col items-start justify-start h-full`}
   left: ${({ sideBarIsCollapsed, sideBarWidth }) =>
     sideBarIsCollapsed ? 0 : `${sideBarWidth || 0}px`};
-  transition: left 0.3s ease-in-out;
   width: ${({ layoutWidth }) => `${layoutWidth || 0}px`};
 `;
 

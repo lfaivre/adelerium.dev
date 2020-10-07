@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import 'twin.macro';
+import { useSpring, animated, config } from 'react-spring';
+import tw, { css } from 'twin.macro';
 
 import { useAppState, useAppDispatch } from '../../../../shared/hooks/global-state';
 import { usePathData } from '../../../../shared/hooks/location';
@@ -79,20 +80,41 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: false });
   };
 
+  const sideBarWidthStyles = css`
+    width: ${sideBarWidth}px;
+  `;
+
+  const layoutWidthStyles = css`
+    width: ${layoutWidth}px;
+  `;
+
+  const props1 = useSpring({
+    to: {
+      left: sideBarIsVisible ? 0 : -sideBarWidth,
+    },
+    config: config.stiff,
+  });
+
+  const props2 = useSpring({
+    to: {
+      left: sideBarIsVisible ? sideBarWidth : 0,
+    },
+    config: config.stiff,
+  });
+
   return (
     <FlexRowWrapper
       alignItems="items-start"
       justifyContent="justify-start"
       tw="relative z-0 w-full h-full"
     >
-      <SideBarWrapper sideBarIsCollapsed={!sideBarIsVisible} sideBarWidth={sideBarWidth}>
+      <animated.div style={props1} css={[tw`absolute top-0 h-full`, sideBarWidthStyles]}>
         <SideBar />
-      </SideBarWrapper>
-      <ContentWrapper
-        layoutWidth={layoutWidth}
-        sideBarIsCollapsed={!sideBarIsVisible}
-        sideBarWidth={sideBarWidth}
+      </animated.div>
+      <animated.div
         onClick={handleOutOfBoundsToggle}
+        style={props2}
+        css={[tw`absolute top-0 flex flex-col items-start justify-start h-full`, layoutWidthStyles]}
       >
         {!pathData.isIndex && (
           <FlexRowWrapper
@@ -135,7 +157,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             </>
           )}
         </ScrollableWrapper>
-      </ContentWrapper>
+      </animated.div>
     </FlexRowWrapper>
   );
 };
