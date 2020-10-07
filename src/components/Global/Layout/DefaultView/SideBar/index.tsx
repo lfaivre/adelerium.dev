@@ -93,7 +93,7 @@ export const SideBar = (): ReactElement => {
           <FlexColumnWrapper
             alignItems="items-center"
             justifyContent="justify-start"
-            tw="mb-8 w-full"
+            tw="pt-8 mb-8 w-full"
           >
             <DefaultWrapper
               backgroundColor="bg-offwhite"

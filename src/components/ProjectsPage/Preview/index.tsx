@@ -1,5 +1,6 @@
-import React, { useState, useEffect, ReactElement } from 'react';
+import React, { useState, useEffect, ReactElement, useRef } from 'react';
 import Img from 'gatsby-image';
+import { useSpring, animated, interpolate } from 'react-spring';
 import Skeleton from 'react-loading-skeleton';
 import tw from 'twin.macro';
 
@@ -11,11 +12,7 @@ import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 import { IProjectFields } from '../../../shared/types/pages/projects';
 import { ProjectDirection } from '../../../shared/types/presentation';
 
-import {
-  FullWidthWrapper,
-  FlexColumnWrapper,
-  FlexRowWrapper,
-} from '../../../shared/styles/wrappers';
+import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
 import {
   NormalParagraphType,
   NormalParagraphTypeAsAnchor,
@@ -25,6 +22,7 @@ import {
 } from '../../../shared/styles/text';
 
 import { OrderNumber, BoxShadowStyles, Divider } from './styles';
+import { useDimensions } from '../../../shared/hooks/useDimensions';
 
 type PreviewContentTitle = `Description` | `Technology`;
 type PreviewContentItem = { title: PreviewContentTitle; content: string };
@@ -46,10 +44,27 @@ type PreviewProps = { project: IProjectFields; order: number };
 // @temp Need to figure out how to enable a default value for external links
 const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
 
+const calc = (x: number, y: number): [number, number, number] => [
+  -(y - window.innerHeight / 2) / 40,
+  -(x - window.innerWidth / 2) / 40,
+  1.1,
+];
+
+const translate = (x: number, y: number, s: number): string =>
+  `perspective(1000px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+
 export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   const [componentLoaded, setComponentLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(ProjectDirection.Left);
+  const [props, set] = useSpring(() => ({
+    xys: [0, 0, 1],
+    config: { mass: 5, tension: 200, friction: 60 },
+  }));
+
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const { width, height } = useDimensions({ ref: divRef });
+  console.log(`width: ${width}\nheight:${height}`);
 
   useEffect(() => {
     setComponentLoaded(true);
@@ -91,7 +106,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           see&nbsp;it&nbsp;<BoldSpan>hosted.</BoldSpan>
         </>
       ),
-      Icon: <FontAwesomeIcon icon={faFirefox} size="3x" />,
+      Icon: <FontAwesomeIcon icon={faFirefox} size="2x" />,
     },
     github: {
       title: `GitHub`,
@@ -101,7 +116,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           view&nbsp;on&nbsp;<BoldSpan>github.</BoldSpan>
         </>
       ),
-      Icon: <FontAwesomeIcon icon={faGithub} size="3x" />,
+      Icon: <FontAwesomeIcon icon={faGithub} size="2x" />,
     },
     figma: {
       title: `Figma`,
@@ -111,14 +126,14 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           view&nbsp;on&nbsp;<BoldSpan>figma.</BoldSpan>
         </>
       ),
-      Icon: <FontAwesomeIcon icon={faFigma} size="3x" />,
+      Icon: <FontAwesomeIcon icon={faFigma} size="2x" />,
     },
   };
 
   return (
     <div
       css={[
-        tw`flex relative mb-2 md:mb-4 last:mb-0 p-4 md:p-8 w-full`,
+        tw`flex mb-2 md:mb-4 last:mb-0 p-4 md:p-8 w-full`,
         isLeftOriented() ? tw`flex-col lg:flex-row` : tw`flex-col lg:flex-row-reverse`,
       ]}
     >
@@ -181,21 +196,31 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             </BoldType>
           </FlexColumnWrapper>
         </FlexRowWrapper>
-        <FullWidthWrapper backgroundColor="bg-offwhite" css={[tw`p-4 w-full`, BoxShadowStyles]}>
+        <animated.div
+          ref={divRef}
+          onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+          onMouseLeave={() => set({ xys: [0, 0, 1] })}
+          // eslint-disable-next-line react/prop-types
+          style={{ transform: props.xys.interpolate(translate as () => string) }}
+          css={[tw`bg-offwhite p-4 w-full`, BoxShadowStyles]}
+        >
           <Img
             fluid={project.previewPicture.fluid}
             onLoad={() => setImageLoaded(true)}
             alt={`Preview Image for ${project.title}`}
             draggable={false}
             backgroundColor="var(--color-OffWhite)"
-            css={[tw`select-none`, BoxShadowStyles]}
+            css={[tw`w-full select-none`, BoxShadowStyles]}
           />
-        </FullWidthWrapper>
+        </animated.div>
       </FlexColumnWrapper>
       <FlexColumnWrapper
         alignItems="items-start"
         justifyContent="justify-center"
-        css={[tw`flex-1 lg:px-8`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+        css={[
+          tw`flex-1 lg:px-8 w-full lg:w-1/2`,
+          isLeftOriented() ? tw`items-start` : tw`items-end`,
+        ]}
       >
         <FlexColumnWrapper
           alignItems="items-start"

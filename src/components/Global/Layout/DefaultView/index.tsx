@@ -86,14 +86,14 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     to: {
       left: sideBarIsVisible ? 0 : -sideBarWidth,
     },
-    config: config.stiff,
+    config: { ...config.slow, clamp: true },
   });
 
   const contentWrapperProps = useSpring({
     to: {
       left: sideBarIsVisible ? sideBarWidth : 0,
     },
-    config: config.stiff,
+    config: { ...config.slow, clamp: true },
   });
 
   return (

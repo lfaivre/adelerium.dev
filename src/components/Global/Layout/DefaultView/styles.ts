@@ -22,7 +22,7 @@ export const ContentWrapper = styled(animated.div)<ContentWrapperProps>`
 type ScrollableWrapperProps = { headerHeight: number; pathIsIndex: boolean };
 
 export const ScrollableWrapper = styled.div<ScrollableWrapperProps>`
-  ${tw`flex flex-col items-start justify-start w-full overflow-y-scroll`}
+  ${tw`flex flex-col items-start justify-start w-full overflow-x-hidden overflow-y-scroll`}
   height: ${({ headerHeight, pathIsIndex }) =>
     pathIsIndex ? `100vh` : `calc(100vh - ${headerHeight || 0}px)`}
 `;
