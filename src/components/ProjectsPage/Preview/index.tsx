@@ -118,7 +118,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   return (
     <div
       css={[
-        tw`flex relative mb-2 md:mb-4 last:mb-0 bg-offpink p-4 md:p-8 w-full`,
+        tw`flex relative mb-2 md:mb-4 last:mb-0 p-4 md:p-8 w-full`,
         isLeftOriented() ? tw`flex-col lg:flex-row` : tw`flex-col lg:flex-row-reverse`,
       ]}
     >
@@ -158,7 +158,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             ]}
           >
             <BoldParagraphType
-              color="text-charcoal"
+              color="text-offwhite"
               css={[
                 tw`mb-2 w-full text-2xl md:text-3.5xl`,
                 isLeftOriented() ? tw`text-left` : tw`text-right`,
@@ -167,7 +167,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
               {shouldDisplayContent() ? project.title : <Skeleton />}
             </BoldParagraphType>
             <BoldType
-              color="text-charcoal"
+              color="text-offwhite"
               css={[
                 tw`w-full uppercase text-xs`,
                 isLeftOriented() ? tw`text-left` : tw`text-right`,
@@ -209,7 +209,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
               key={previewContent[key as PreviewContentKey].title}
             >
               <BoldType
-                color="text-charcoal"
+                color="text-offwhite"
                 css={[tw`w-full uppercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
               >
                 {shouldDisplayContent() ? (
@@ -219,7 +219,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
                 )}
               </BoldType>
               <NormalParagraphType
-                color="text-charcoal"
+                color="text-offwhite"
                 css={[
                   tw`w-full text-xs md:text-base`,
                   isLeftOriented() ? tw`text-left` : tw`text-right`,
@@ -258,7 +258,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
                 <NormalParagraphTypeAsAnchor
                   href={externalLinks[key as ExternalLinkKey].url}
                   label={externalLinks[key as ExternalLinkKey].url}
-                  color="text-charcoal"
+                  color="text-offwhite"
                   css={[
                     tw`mr-8 last:mr-0 lowercase`,
                     isLeftOriented() ? tw`text-left` : tw`text-right`,
