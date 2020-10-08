@@ -46,18 +46,19 @@ export const Header = (): ReactElement => {
           color="text-charcoal"
           textAlign="text-left"
           css={[
-            tw`transition-opacity duration-300 ease-in-out text-4xl`,
+            tw`z-0 transition-opacity duration-300 ease-in-out text-4xl`,
             toggleIsVisible && tw`opacity-0`,
           ]}
           aria-label="Toggle Side Bar Navigation"
         >{`${headerTitle}.`}</BoldParagraphType>
         <BoldTypeAsButton
           color="text-charcoal"
+          textAlign="text-left"
           onClick={() =>
             dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: !sideBarIsVisible })
           }
           css={[
-            tw`block absolute left-0 transition-opacity duration-300 ease-in-out opacity-0 focus:outline-none pt-2 h-full uppercase`,
+            tw`block absolute left-0 z-0 transition-opacity duration-300 ease-in-out opacity-0 focus:outline-none pt-2 h-full uppercase`,
             toggleIsVisible && tw`opacity-100`,
           ]}
         >
