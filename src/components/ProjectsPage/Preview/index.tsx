@@ -1,6 +1,6 @@
-import React, { useState, useEffect, ReactElement, useRef } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import Img from 'gatsby-image';
-import { useSpring, animated, interpolate } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 import Skeleton from 'react-loading-skeleton';
 import tw from 'twin.macro';
 
@@ -22,7 +22,6 @@ import {
 } from '../../../shared/styles/text';
 
 import { OrderNumber, BoxShadowStyles, Divider } from './styles';
-import { useDimensions } from '../../../shared/hooks/useDimensions';
 
 type PreviewContentTitle = `Description` | `Technology`;
 type PreviewContentItem = { title: PreviewContentTitle; content: string };
@@ -61,10 +60,6 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
     xys: [0, 0, 1],
     config: { mass: 5, tension: 200, friction: 60 },
   }));
-
-  const divRef = useRef<HTMLDivElement | null>(null);
-  const { width, height } = useDimensions({ ref: divRef });
-  console.log(`width: ${width}\nheight:${height}`);
 
   useEffect(() => {
     setComponentLoaded(true);
@@ -197,7 +192,6 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           </FlexColumnWrapper>
         </FlexRowWrapper>
         <animated.div
-          ref={divRef}
           onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
           onMouseLeave={() => set({ xys: [0, 0, 1] })}
           // eslint-disable-next-line react/prop-types

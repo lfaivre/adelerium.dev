@@ -75,3 +75,10 @@ export const FlexRowWrapper = styled.div<FlexWrapperProps>`
   ${({ justifyContent }) => wrapperJustifyContentMap[justifyContent]}
   ${({ backgroundColor }) => backgroundColor && wrapperBackgroundColorMap[backgroundColor]}
 `;
+
+type MinHeightScreenWrapperProps = { staticsHeight: number } & DefaultWrapperProps;
+
+export const MinHeightScreenWrapper = styled.div<MinHeightScreenWrapperProps>`
+  min-height: ${({ staticsHeight }) => `calc(100vh - ${staticsHeight}px);`}
+    ${({ backgroundColor }) => backgroundColor && wrapperBackgroundColorMap[backgroundColor]};
+`;

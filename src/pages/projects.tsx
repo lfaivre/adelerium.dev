@@ -6,18 +6,23 @@ import 'twin.macro';
 import { SEO } from '../components/Global/SEO';
 import { Preview } from '../components/ProjectsPage/Preview';
 
+import { useAppState } from '../shared/hooks/global-state';
+
 import { PageQueryData } from '../shared/types/pages/projects';
 
-import { FlexColumnWrapper } from '../shared/styles/wrappers';
+import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
 
-const ProjectsPage = ({ data, location }: PageProps): ReactElement => {
+const ProjectsPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
+  const { headerHeight, footerHeight, returnHeight } = useAppState();
+  const staticsHeight = headerHeight + footerHeight + returnHeight;
+
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const projects = (data as PageQueryData).allContentfulProject.edges;
 
   return (
     <>
-      <SEO title="Projects" pathname={location.pathname} image={metaImage} />
-      <div tw="w-full p-2 md:p-4">
+      <SEO title="Projects" pathname={pathname} image={metaImage} />
+      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
         <SkeletonTheme
           color="var(--color-OffWhite)"
           highlightColor="var(--color-OffPink)"
@@ -29,7 +34,7 @@ const ProjectsPage = ({ data, location }: PageProps): ReactElement => {
             })}
           </FlexColumnWrapper>
         </SkeletonTheme>
-      </div>
+      </MinHeightScreenWrapper>
     </>
   );
 };

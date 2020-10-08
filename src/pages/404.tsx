@@ -1,15 +1,17 @@
 import React, { ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
-
-import { useAppState } from '../shared/hooks/global-state';
+import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 import { Message } from '../components/404Page/Message';
 
-import { PageQueryData } from '../shared/types/pages/404';
-import { ErrorPageContentWrapper } from '../shared/styles/pages';
+import { useAppState } from '../shared/hooks/global-state';
 
-const NotFoundPage = ({ data, location }: PageProps): ReactElement => {
+import { PageQueryData } from '../shared/types/pages/404';
+
+import { MinHeightScreenWrapper } from '../shared/styles/wrappers';
+
+const NotFoundPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
   const { headerHeight, footerHeight, returnHeight } = useAppState();
   const staticsHeight = headerHeight + footerHeight + returnHeight;
 
@@ -17,10 +19,10 @@ const NotFoundPage = ({ data, location }: PageProps): ReactElement => {
 
   return (
     <>
-      <SEO title="404: Not Found" pathname={location.pathname} image={metaImage} />
-      <ErrorPageContentWrapper staticsHeight={staticsHeight}>
+      <SEO title="404: Not Found" pathname={pathname} image={metaImage} />
+      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
         <Message />
-      </ErrorPageContentWrapper>
+      </MinHeightScreenWrapper>
     </>
   );
 };

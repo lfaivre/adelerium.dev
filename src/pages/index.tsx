@@ -10,13 +10,13 @@ import { PageQueryData } from '../shared/types/pages/home';
 
 import { FlexRowWrapper } from '../shared/styles/wrappers';
 
-const IndexPage = ({ data, location }: PageProps): ReactElement => {
+const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
   const metaImage = (data as PageQueryData).metaImage.fixed;
   const backgroundImage = (data as PageQueryData).backgroundImage.childImageSharp.fluid;
 
   return (
     <>
-      <SEO title="Home" pathname={location.pathname} image={metaImage} />
+      <SEO title="Home" pathname={pathname} image={metaImage} />
       <FlexRowWrapper
         alignItems="items-center"
         justifyContent="justify-center"

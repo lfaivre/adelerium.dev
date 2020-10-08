@@ -7,7 +7,9 @@ import { SEO } from '../components/Global/SEO';
 import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
 
-import { FlexColumnWrapper } from '../shared/styles/wrappers';
+import { useAppState } from '../shared/hooks/global-state';
+
+import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
 
 import { PageQueryData } from '../shared/types/pages/about';
 
@@ -26,35 +28,36 @@ import {
   PINNED_PLAYLIST_MEDIALINK_DATA,
 } from '../shared/constants/media-link-squares';
 
-const AboutPage = ({ data, location }: PageProps): ReactElement => {
+const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
+  const { headerHeight, footerHeight, returnHeight } = useAppState();
+  const staticsHeight = headerHeight + footerHeight + returnHeight;
+
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
 
   return (
     <>
-      <SEO title="About" pathname={location.pathname} image={metaImage} />
-      <FlexColumnWrapper
-        alignItems="items-start"
-        justifyContent="justify-start"
-        tw="w-full p-2 md:p-4"
-      >
-        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-          <StaticIntroduction />
-          <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
-        </div>
-        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-          <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
-        </div>
-        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-          <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
-          <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
-          <MediaLinkSquare {...PINNED_SONG_MEDIALINK_DATA} />
-        </div>
-        <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-          <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
-          <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
-          <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
-        </div>
-      </FlexColumnWrapper>
+      <SEO title="About" pathname={pathname} image={metaImage} />
+      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
+        <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
+          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+            <StaticIntroduction />
+            <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
+          </div>
+          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+            <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
+          </div>
+          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+            <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
+            <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
+            <MediaLinkSquare {...PINNED_SONG_MEDIALINK_DATA} />
+          </div>
+          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+            <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
+            <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
+            <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
+          </div>
+        </FlexColumnWrapper>
+      </MinHeightScreenWrapper>
     </>
   );
 };
