@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useState, useRef, useEffect } from 'react';
 import { PageProps, graphql } from 'gatsby';
 import { useSpring, animated, config } from 'react-spring';
 import tw, { css } from 'twin.macro';
@@ -25,6 +25,8 @@ const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
   const { sideBarIsVisible } = useAppState();
   const dispatch = useAppDispatch();
 
+  const [browserSupportsAnimation, setBrowserSupportsAnimation] = useState<boolean>(true);
+
   const metaImage = (data as PageQueryData).metaImage.fixed;
 
   const springProps = useSpring({
@@ -33,7 +35,14 @@ const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
     config: config.molasses,
   });
 
-  const browserSupportsAnimation = CSS.supports(CSS_OFFSET_PATH);
+  useEffect(() => {
+    try {
+      const browserCheck = CSS.supports(CSS_OFFSET_PATH);
+      setBrowserSupportsAnimation(browserCheck || false);
+    } catch {
+      console.log(`Failed browser check or triggered during a static build`);
+    }
+  }, []);
 
   const buttonRef = useRef(null);
   const { width } = useDimensions({ ref: buttonRef });
