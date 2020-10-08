@@ -32,7 +32,11 @@ const AboutPage = ({ data, location }: PageProps): ReactElement => {
   return (
     <>
       <SEO title="About" pathname={location.pathname} image={metaImage} />
-      <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="p-2 md:p-4">
+      <FlexColumnWrapper
+        alignItems="items-start"
+        justifyContent="justify-start"
+        tw="w-full p-2 md:p-4"
+      >
         <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
           <StaticIntroduction />
           <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />

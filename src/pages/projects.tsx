@@ -1,12 +1,14 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 import { Preview } from '../components/ProjectsPage/Preview';
 
 import { PageQueryData } from '../shared/types/pages/projects';
-import { ProjectsPageContentWrapper } from '../shared/styles/pages';
+
+import { FlexColumnWrapper } from '../shared/styles/wrappers';
 
 const ProjectsPage = ({ data, location }: PageProps): JSX.Element => {
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
@@ -15,13 +17,19 @@ const ProjectsPage = ({ data, location }: PageProps): JSX.Element => {
   return (
     <>
       <SEO title="Projects" pathname={location.pathname} image={metaImage} />
-      <ProjectsPageContentWrapper>
-        <SkeletonTheme color="var(--color-OffWhite)" highlightColor="var(--color-OffPink)">
-          {projects.map(({ node }, index) => {
-            return <Preview project={node} order={index + 1} key={node.title} />;
-          })}
+      <div tw="w-full p-2 md:p-4">
+        <SkeletonTheme
+          color="var(--color-OffWhite)"
+          highlightColor="var(--color-OffPink)"
+          tw="w-full"
+        >
+          <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
+            {projects.map(({ node }, index) => {
+              return <Preview project={node} order={index + 1} key={node.title} />;
+            })}
+          </FlexColumnWrapper>
         </SkeletonTheme>
-      </ProjectsPageContentWrapper>
+      </div>
     </>
   );
 };
