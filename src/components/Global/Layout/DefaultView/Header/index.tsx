@@ -16,7 +16,9 @@ import { BoldParagraphType, BoldTypeAsButton } from '../../../../../shared/style
 const DEFAULT_HEADER_TEXT = `Home`;
 const ERROR_HEADER_TEXT = `Error`;
 
-export const Header = (): ReactElement => {
+type HeaderProps = { disableToggle?: boolean };
+
+export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
   const { sideBarIsVisible } = useAppState();
   const dispatch = useAppDispatch();
   const { pathname, isIndex, pathData, isValidPath } = usePathData();
@@ -38,7 +40,7 @@ export const Header = (): ReactElement => {
       <FlexRowWrapper
         alignItems="items-center"
         justifyContent="justify-start"
-        onMouseOver={() => setToggleIsVisible(true)}
+        onMouseOver={() => !disableToggle && setToggleIsVisible(true)}
         onMouseOut={() => setToggleIsVisible(false)}
         tw="relative w-1/2 h-full"
       >
@@ -52,14 +54,17 @@ export const Header = (): ReactElement => {
           aria-label="Toggle Side Bar Navigation"
         >{`${headerTitle}.`}</BoldParagraphType>
         <BoldTypeAsButton
+          disabled={disableToggle}
           color="text-charcoal"
           textAlign="text-left"
           onClick={() =>
+            !disableToggle &&
             dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: !sideBarIsVisible })
           }
           css={[
             tw`block absolute left-0 z-0 transition-opacity duration-300 ease-in-out opacity-0 focus:outline-none pt-2 h-full uppercase`,
             toggleIsVisible && tw`opacity-100`,
+            disableToggle && tw`cursor-default`,
           ]}
         >
           Toggle Navigation

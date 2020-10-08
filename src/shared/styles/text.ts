@@ -76,8 +76,8 @@ export const BoldTypeAsButton = BoldType.withComponent(`button`);
 export const BrandingType = styled.p<TypeProps>`
   ${tw`lowercase font-mrs-sheppards font-normal select-none`}
   ${({ color }) => typeColorMap[color]}
-  ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
-  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
+  ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-center`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`break-normal`)}
 `;
 
 export const BrandingTypeAsAnchor = BrandingType.withComponent(OutboundLink);

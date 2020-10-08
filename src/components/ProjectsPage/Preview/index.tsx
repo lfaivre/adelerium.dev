@@ -292,7 +292,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
                     {shouldDisplayContent() ? (
                       externalLinks[key as ExternalLinkKey].TextElement
                     ) : (
-                      <Skeleton />
+                      <Skeleton width={120} />
                     )}
                   </span>
                   <span tw="block lg:hidden">

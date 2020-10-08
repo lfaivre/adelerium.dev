@@ -30,6 +30,7 @@ module.exports = {
       inset: {
         'project-arrow': '2rem',
         8: '2rem',
+        '-8': '-2rem',
       },
       colors: {
         offwhite: 'var(--color-OffWhite)',
