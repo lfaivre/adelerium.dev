@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'twin.macro';
@@ -10,7 +10,7 @@ import { PageQueryData } from '../shared/types/pages/projects';
 
 import { FlexColumnWrapper } from '../shared/styles/wrappers';
 
-const ProjectsPage = ({ data, location }: PageProps): JSX.Element => {
+const ProjectsPage = ({ data, location }: PageProps): ReactElement => {
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const projects = (data as PageQueryData).allContentfulProject.edges;
 

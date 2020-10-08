@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 import { MessageWrapper, TitleWrapper, Title } from './styles';
 
-export const Message = (): JSX.Element => {
+export const Message = (): ReactElement => {
   return (
     <MessageWrapper>
       <TitleWrapper>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
 
 import { useAppState } from '../shared/hooks/global-state';
@@ -9,7 +9,7 @@ import { Message } from '../components/404Page/Message';
 import { PageQueryData } from '../shared/types/pages/404';
 import { ErrorPageContentWrapper } from '../shared/styles/pages';
 
-const NotFoundPage = ({ data, location }: PageProps): JSX.Element => {
+const NotFoundPage = ({ data, location }: PageProps): ReactElement => {
   const { headerHeight, footerHeight, returnHeight } = useAppState();
   const staticsHeight = headerHeight + footerHeight + returnHeight;
 
