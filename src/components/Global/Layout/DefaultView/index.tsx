@@ -70,7 +70,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   };
 
   const handleOutOfBoundsToggle = (): void => {
-    if (!sideBarIsVisible || pathData.isIndex === true) return;
+    if (!sideBarIsVisible) return;
     dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: false });
   };
 

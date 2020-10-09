@@ -2,9 +2,11 @@ import { ReactElement } from 'react';
 
 export const SET_LOADING = 'SET_LOADING';
 export const SET_SIDEBAR_VISIBILITY = 'SET_SIDEBAR_VISIBILITY';
+
 export const SET_WINDOW_WIDTH = 'SET_WINDOW_WIDTH';
 export const SET_WINDOW_HEIGHT = 'SET_WINDOW_HEIGHT';
 export const SET_LAYOUT_WIDTH = 'SET_LAYOUT_WIDTH';
+
 export const SET_HEADER_HEIGHT = 'SET_HEADER_HEIGHT';
 export const SET_FOOTER_HEIGHT = 'SET_FOOTER_HEIGHT';
 export const SET_RETURN_HEIGHT = 'SET_RETURN_HEIGHT';

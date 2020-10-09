@@ -14,6 +14,8 @@ import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrap
 import { PageQueryData } from '../shared/types/pages/about';
 
 import { StaticIntroduction } from '../components/AboutPage/StaticIntroduction';
+import { StaticLocation } from '../components/AboutPage/StaticLocation';
+import { StaticResume } from '../components/AboutPage/StaticResume';
 
 import {
   GITHUB_SOCIALLINK_DATA,
@@ -45,16 +47,22 @@ const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
           </div>
           <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
             <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
+            <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
+            <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
           </div>
           <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-            <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
-            <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
+            <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
+            <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
             <MediaLinkSquare {...PINNED_SONG_MEDIALINK_DATA} />
           </div>
           <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+            <StaticResume />
             <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
-            <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
-            <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
+          </div>
+          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
+            <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
+            <StaticLocation />
+            <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
           </div>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>
