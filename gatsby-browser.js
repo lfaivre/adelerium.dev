@@ -1,3 +1,9 @@
+import { enableAllPlugins } from 'immer';
+
+// @note Enable Immer
+
+enableAllPlugins();
+
 // @note Import Stylesheet(s): Global Styles
 
 import './src/shared/styles/global.css';

@@ -28,6 +28,7 @@
     "gatsby-source-contentful": "^2.3.50",
     "gatsby-source-filesystem": "^2.3.33",
     "gatsby-transformer-sharp": "^2.5.17",
+    "immer": "^7.0.9",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -40,7 +41,8 @@
     "twin.macro": "^1.10.0",
     "typeface-lobster-two": "^1.1.13",
     "typeface-mrs-sheppards": "^1.1.13",
-    "typeface-playfair-display": "^1.1.13"
+    "typeface-playfair-display": "^1.1.13",
+    "use-immer": "^0.4.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
