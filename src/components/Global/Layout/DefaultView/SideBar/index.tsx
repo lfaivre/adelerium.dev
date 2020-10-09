@@ -81,8 +81,8 @@ export const SideBar = (): ReactElement => {
     <FlexRowWrapper
       alignItems="items-center"
       justifyContent="justify-center"
-      backgroundColor="bg-charcoal"
-      tw="w-full h-full"
+      backgroundColor="bg-offwhite"
+      tw="border-r-2 border-charcoal w-full h-full"
     >
       <FlexColumnWrapper
         alignItems="items-center"
@@ -95,10 +95,7 @@ export const SideBar = (): ReactElement => {
             justifyContent="justify-start"
             tw="pt-8 mb-8 w-full"
           >
-            <DefaultWrapper
-              backgroundColor="bg-offwhite"
-              tw="mb-4 rounded-full p-2 sm:p-4 w-32 h-32 sm:w-48 sm:h-48"
-            >
+            <DefaultWrapper tw="mb-4 rounded-full p-2 sm:p-4 w-32 h-32 sm:w-48 sm:h-48">
               <Img
                 fluid={profilePicture.fluid}
                 alt="Profile Picture"
@@ -108,13 +105,13 @@ export const SideBar = (): ReactElement => {
             </DefaultWrapper>
             <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
               <BoldParagraphType
-                color="text-offwhite"
+                color="text-charcoal"
                 textAlign="text-center"
                 tw="mb-2 w-full text-2xl lowercase"
               >
                 {name}
               </BoldParagraphType>
-              <BoldType color="text-offpink" textAlign="text-center" tw="w-full uppercase text-xs">
+              <BoldType color="text-charcoal" textAlign="text-center" tw="w-full uppercase text-xs">
                 {tag}
               </BoldType>
             </FlexColumnWrapper>
@@ -136,7 +133,7 @@ export const SideBar = (): ReactElement => {
                   <FlexRowWrapper
                     alignItems="items-center"
                     justifyContent="justify-start"
-                    tw="mb-2 last:mb-0 w-full"
+                    tw="w-full"
                     key={link.title}
                   >
                     <span
@@ -144,17 +141,21 @@ export const SideBar = (): ReactElement => {
                         tw`mr-1 w-1 h-full`,
                         sideBarIsVisible &&
                           link.displayText === pathData.pathData?.text &&
-                          tw`bg-offpink`,
+                          tw`bg-charcoal`,
                       ]}
                     />
                     <BoldTypeAsGatsbyLink
                       to={getStrippedInternalLinkPath(link.destination)}
-                      color="text-offwhite"
+                      color={
+                        sideBarIsVisible && link.displayText === pathData.pathData?.text
+                          ? `text-offwhite`
+                          : `text-charcoal`
+                      }
                       css={[
-                        tw`flex-grow px-2 pt-3 pb-2 uppercase text-base`,
+                        tw`flex-grow p-2 pt-3 uppercase text-base`,
                         sideBarIsVisible &&
                           link.displayText === pathData.pathData?.text &&
-                          tw`bg-offpink-translucent25`,
+                          tw`bg-charcoal`,
                       ]}
                     >
                       {link.displayText}
@@ -169,8 +170,8 @@ export const SideBar = (): ReactElement => {
                     href={link.destination}
                     label={link.destination}
                     key={link.title}
-                    color="text-offwhite"
-                    tw="transition-colors duration-300 ease-in-out mb-2 last:mb-0 hover:bg-offpink-translucent25 px-2 pt-3 pb-2 w-full uppercase text-base"
+                    color="text-charcoal"
+                    tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase text-base"
                   >
                     {link.displayText}
                   </BoldTypeAsAnchor>
@@ -179,8 +180,8 @@ export const SideBar = (): ReactElement => {
                   href={`mailto:${email}`}
                   label={`mailto:${email}`}
                   key="Email"
-                  color="text-offwhite"
-                  tw="transition-colors duration-300 ease-in-out mb-2 last:mb-0 hover:bg-offpink-translucent25 px-2 pt-3 pb-2 w-full uppercase text-base"
+                  color="text-charcoal"
+                  tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase text-base"
                 >
                   Email
                 </BoldTypeAsAnchor>
@@ -194,8 +195,8 @@ export const SideBar = (): ReactElement => {
             justifyContent="justify-start"
             tw="mb-8 w-full"
           >
-            <Line borderColor="border-offwhite" />
-            <Line borderColor="border-offwhite" />
+            <Line borderColor="border-charcoal" />
+            <Line borderColor="border-charcoal" />
           </FlexColumnWrapper>
         )}
         <FlexRowWrapper
@@ -206,12 +207,12 @@ export const SideBar = (): ReactElement => {
           <ViewButton
             onClick={() => setSideBarView(SBV.InternalLinks)}
             selected={sideBarView === SBV.InternalLinks}
-            backgroundColor={sideBarView === SBV.InternalLinks ? `bg-offwhite` : `bg-transparent`}
-            strokeColor={sideBarView === SBV.InternalLinks ? `text-transparent` : `text-offwhite`}
+            backgroundColor={sideBarView === SBV.InternalLinks ? `bg-charcoal` : `bg-transparent`}
+            strokeColor={sideBarView === SBV.InternalLinks ? `text-transparent` : `text-charcoal`}
             aria-label="Internal Links"
           >
             <AccentType
-              color={sideBarView === SBV.InternalLinks ? `text-charcoal` : `text-transparent`}
+              color={sideBarView === SBV.InternalLinks ? `text-offwhite` : `text-transparent`}
               textAlign="text-center"
               tw="text-4xl"
             >
@@ -221,12 +222,12 @@ export const SideBar = (): ReactElement => {
           <ViewButton
             onClick={() => setSideBarView(SBV.ExternalLinks)}
             selected={sideBarView === SBV.ExternalLinks}
-            backgroundColor={sideBarView === SBV.ExternalLinks ? `bg-offwhite` : `bg-transparent`}
-            strokeColor={sideBarView === SBV.ExternalLinks ? `text-transparent` : `text-offwhite`}
+            backgroundColor={sideBarView === SBV.ExternalLinks ? `bg-charcoal` : `bg-transparent`}
+            strokeColor={sideBarView === SBV.ExternalLinks ? `text-transparent` : `text-charcoal`}
             aria-label="External Links"
           >
             <AccentType
-              color={sideBarView === SBV.ExternalLinks ? `text-charcoal` : `text-transparent`}
+              color={sideBarView === SBV.ExternalLinks ? `text-offwhite` : `text-transparent`}
               textAlign="text-center"
               tw="text-4xl"
             >
@@ -243,7 +244,7 @@ export const SideBar = (): ReactElement => {
             <BrandingTypeAsAnchor
               href={brandingLink.destination}
               label={brandingLink.destination}
-              color="text-offwhite"
+              color="text-charcoal"
               tw="text-2xl"
             >
               KD.
