@@ -118,7 +118,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             alignItems="items-start"
             justifyContent="justify-center"
             backgroundColor="bg-offwhite"
-            tw="w-full"
+            tw="p-4 md:px-8 w-full"
             ref={headerRef}
           >
             <Header />

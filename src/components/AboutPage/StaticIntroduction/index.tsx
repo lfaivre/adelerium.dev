@@ -15,12 +15,12 @@ export const StaticIntroduction = ({
   dimensions: { width, height },
 }: StaticIntroductionProps): ReactElement => {
   return (
-    <StaticIntroductionComponent width={width} height={height} tw="mb-2 md:mb-0 bg-offpink p-8">
+    <StaticIntroductionComponent width={width} height={height} tw="mb-2 md:mb-0 p-4 lg:p-8">
       <BoldParagraphType
-        color="text-charcoal"
+        color="text-offwhite"
         textAlign="text-center"
         wordBreak="break-normal"
-        tw="text-2xl md:text-4xl"
+        tw="w-full text-2xl md:text-3xl lg:text-4xl"
       >
         {StaticIntroductionText}
       </BoldParagraphType>

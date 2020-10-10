@@ -128,7 +128,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   return (
     <div
       css={[
-        tw`flex mb-2 md:mb-4 last:mb-0 p-4 md:p-8 w-full`,
+        tw`flex mb-2 lg:mb-4 last:mb-0 p-4 lg:p-8 w-full`,
         isLeftOriented() ? tw`flex-col lg:flex-row` : tw`flex-col lg:flex-row-reverse`,
       ]}
     >
@@ -136,7 +136,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         alignItems="items-center"
         justifyContent="justify-start"
         css={[
-          tw`mb-4 md:mb-8 lg:mb-0 w-full lg:w-1/2`,
+          tw`mb-8 lg:mb-0 w-full lg:w-1/2`,
           isLeftOriented() ? tw`lg:items-start lg:mr-8` : tw`lg:items-end lg:ml-8`,
         ]}
       >
@@ -150,10 +150,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             alignItems="items-center"
             justifyContent="justify-start"
             reverse={!isLeftOriented()}
-            css={[
-              tw`h-full`,
-              isLeftOriented() ? tw`justify-start mr-4 md:mr-8` : tw`justify-end ml-4 md:ml-8`,
-            ]}
+            css={[isLeftOriented() ? tw`justify-start mr-4 lg:mr-8` : tw`justify-end ml-4 lg:ml-8`]}
           >
             <OrderNumber css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}>
               {shouldDisplayContent() ? (
@@ -165,16 +162,17 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           </FlexRowWrapper>
           <FlexColumnWrapper
             alignItems="items-start"
-            justifyContent="justify-center"
+            justifyContent="justify-start"
             css={[
-              tw`flex-grow h-full overflow-hidden`,
+              tw`flex-grow overflow-hidden`,
               isLeftOriented() ? tw`items-start` : tw`items-end`,
             ]}
           >
             <BoldParagraphType
               color="text-offwhite"
+              wordBreak="break-normal"
               css={[
-                tw`mb-2 w-full text-2xl md:text-3.5xl`,
+                tw`mb-2 w-full text-xl md:text-3xl`,
                 isLeftOriented() ? tw`text-left` : tw`text-right`,
               ]}
             >
@@ -182,8 +180,9 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             </BoldParagraphType>
             <BoldType
               color="text-offwhite"
+              wordBreak="break-normal"
               css={[
-                tw`w-full uppercase text-xs`,
+                tw`w-full uppercase text-xs md:text-xs`,
                 isLeftOriented() ? tw`text-left` : tw`text-right`,
               ]}
             >
@@ -219,16 +218,13 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         <FlexColumnWrapper
           alignItems="items-start"
           justifyContent="justify-center"
-          css={[tw`mb-4 md:mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+          css={[tw`mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
         >
           {Object.keys(previewContent).map((key) => (
             <FlexColumnWrapper
               alignItems="items-start"
               justifyContent="justify-center"
-              css={[
-                tw`mb-4 lg:mb-8 last:mb-0 w-full`,
-                isLeftOriented() ? tw`items-start` : tw`items-end`,
-              ]}
+              css={[tw`mb-8 last:mb-0 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
               key={previewContent[key as PreviewContentKey].title}
             >
               <BoldType
@@ -243,10 +239,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
               </BoldType>
               <NormalParagraphType
                 color="text-offwhite"
-                css={[
-                  tw`w-full text-xs md:text-base`,
-                  isLeftOriented() ? tw`text-left` : tw`text-right`,
-                ]}
+                css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
               >
                 {shouldDisplayContent() ? (
                   previewContent[key as PreviewContentKey].content
@@ -260,7 +253,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         <FlexColumnWrapper
           alignItems="items-start"
           justifyContent="justify-center"
-          css={[tw`mb-4 lg:mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+          css={[tw`mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
         >
           <Divider />
           <Divider />

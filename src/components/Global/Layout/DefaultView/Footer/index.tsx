@@ -117,12 +117,7 @@ export const Footer = (): ReactElement => {
           justifyContent="justify-center"
           tw="hidden md:flex w-2/6"
         >
-          <BrandingType
-            color="text-charcoal"
-            textAlign="text-center"
-            tw="text-3xl"
-            wordBreak="break-normal"
-          >
+          <BrandingType color="text-charcoal" textAlign="text-center" wordBreak="break-normal">
             KD.
           </BrandingType>
         </FlexRowWrapper>
@@ -140,10 +135,18 @@ export const Footer = (): ReactElement => {
       </FlexRowWrapper>
       <hr tw="block md:hidden mb-4 md:mb-2 border-t border-charcoal w-full h-0" />
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
-        <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
-          <BoldType color="text-charcoal" textAlign="text-center" tw="uppercase text-xs">
-            &copy;&nbsp;{new Date().getFullYear()}
-            &nbsp;Lorenzo&nbsp;Faivre&nbsp;&amp;&nbsp;Kevala&nbsp;Design&nbsp;LLC
+        <FlexRowWrapper
+          alignItems="items-start"
+          justifyContent="justify-center"
+          tw="w-full overflow-hidden"
+        >
+          <BoldType
+            color="text-charcoal"
+            textAlign="text-center"
+            tw="w-full uppercase text-xs md:text-xs"
+            wordBreak="break-normal"
+          >
+            &copy; {new Date().getFullYear()} Lorenzo Faivre &amp; Kevala Design LLC
           </BoldType>
         </FlexRowWrapper>
       </FlexRowWrapper>

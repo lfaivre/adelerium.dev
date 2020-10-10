@@ -60,32 +60,36 @@ export const MediaLinkSquare = ({
           <FlexRowWrapper
             alignItems="items-center"
             justifyContent="justify-between"
-            tw="w-full text-offwhite"
+            tw="w-full overflow-x-hidden text-offwhite"
           >
-            <FlexRowWrapper alignItems="items-center" justifyContent="justify-start">
+            <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="mr-2">
               {Icon}
             </FlexRowWrapper>
-            <FlexColumnWrapper alignItems="items-end" justifyContent="justify-center">
-              <BoldType color="text-offwhite" textAlign="text-right" tw="uppercase">
+            <FlexColumnWrapper
+              alignItems="items-end"
+              justifyContent="justify-center"
+              tw="flex-grow"
+            >
+              <BoldType color="text-offwhite" textAlign="text-right" tw="w-full uppercase">
                 {description}
               </BoldType>
               <BoldType
                 color="text-offwhite"
                 textAlign="text-right"
-                tw="uppercase text-xs font-normal"
+                tw="w-full uppercase text-xs md:text-xs font-normal"
               >
                 {date}
               </BoldType>
             </FlexColumnWrapper>
           </FlexRowWrapper>
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
-            <BoldType color="text-offwhite" textAlign="text-left" tw="uppercase">
+            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full">
               {title}
             </BoldType>
             <BoldType
               color="text-offwhite"
               textAlign="text-left"
-              tw="uppercase text-xs font-normal"
+              tw="w-full text-xs md:text-xs font-normal"
             >
               {subTitle}
             </BoldType>

@@ -95,7 +95,7 @@ export const SideBar = (): ReactElement => {
             justifyContent="justify-start"
             tw="pt-8 mb-8 w-full"
           >
-            <DefaultWrapper tw="mb-4 rounded-full p-2 sm:p-4 w-32 h-32 sm:w-48 sm:h-48">
+            <DefaultWrapper tw="mb-4 rounded-full p-2 md:p-4 w-32 h-32 md:w-48 md:h-48">
               <Img
                 fluid={profilePicture.fluid}
                 alt="Profile Picture"
@@ -107,11 +107,15 @@ export const SideBar = (): ReactElement => {
               <BoldParagraphType
                 color="text-charcoal"
                 textAlign="text-center"
-                tw="mb-2 w-full text-2xl lowercase"
+                tw="mb-2 w-full text-2xl md:text-2xl lowercase"
               >
                 {name}
               </BoldParagraphType>
-              <BoldType color="text-charcoal" textAlign="text-center" tw="w-full uppercase text-xs">
+              <BoldType
+                color="text-charcoal"
+                textAlign="text-center"
+                tw="w-full uppercase text-xs md:text-xs"
+              >
                 {tag}
               </BoldType>
             </FlexColumnWrapper>
@@ -152,7 +156,7 @@ export const SideBar = (): ReactElement => {
                           : `text-charcoal`
                       }
                       css={[
-                        tw`flex-grow p-2 pt-3 uppercase text-base`,
+                        tw`flex-grow p-2 pt-3 uppercase`,
                         sideBarIsVisible &&
                           link.displayText === pathData.pathData?.text &&
                           tw`bg-charcoal`,
@@ -171,7 +175,7 @@ export const SideBar = (): ReactElement => {
                     label={link.destination}
                     key={link.title}
                     color="text-charcoal"
-                    tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase text-base"
+                    tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
                   >
                     {link.displayText}
                   </BoldTypeAsAnchor>
@@ -181,7 +185,7 @@ export const SideBar = (): ReactElement => {
                   label={`mailto:${email}`}
                   key="Email"
                   color="text-charcoal"
-                  tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase text-base"
+                  tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
                 >
                   Email
                 </BoldTypeAsAnchor>
@@ -245,7 +249,6 @@ export const SideBar = (): ReactElement => {
               href={brandingLink.destination}
               label={brandingLink.destination}
               color="text-charcoal"
-              tw="text-2xl"
             >
               KD.
             </BrandingTypeAsAnchor>

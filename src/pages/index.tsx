@@ -10,6 +10,8 @@ import { KoiPond } from '../components/HomePage/KoiPond';
 import { useAppState, useAppDispatch } from '../shared/hooks/global-state';
 import { useDimensions } from '../shared/hooks/useDimensions';
 
+import { SCREEN_SIZE } from '../shared/constants/presentation';
+
 import { PageQueryData } from '../shared/types/pages/home';
 
 import { FlexRowWrapper } from '../shared/styles/wrappers';
@@ -22,7 +24,7 @@ const CSS_OFFSET_PATH = `offset-path: path('M11.7692 229.5C14.552 200.052 7.5190
 const KEVALA_DESIGN_LINK = `https://www.kevaladesign.com`;
 
 const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
-  const { sideBarIsVisible } = useAppState();
+  const { sideBarIsVisible, layoutWidth } = useAppState();
   const dispatch = useAppDispatch();
 
   const [browserSupportsAnimation, setBrowserSupportsAnimation] = useState<boolean>(true);
@@ -69,7 +71,7 @@ const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
           color="text-charcoal"
           textAlign="text-center"
           css={[
-            tw`absolute transform -rotate-90 z-10 left-0 focus:outline-none px-2 py-1 text-xs uppercase`,
+            tw`hidden md:block absolute transform -rotate-90 z-10 focus:outline-none px-2 py-1 text-xs md:text-xs uppercase`,
             positionLeftStyles,
           ]}
         >
@@ -79,7 +81,7 @@ const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
           href={KEVALA_DESIGN_LINK}
           label={KEVALA_DESIGN_LINK}
           color="text-charcoal"
-          tw="absolute bottom-8 right-8 text-2xl"
+          tw="absolute bottom-8 right-8"
         >
           KD.
         </BrandingTypeAsAnchor>
@@ -88,9 +90,9 @@ const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
             <FlexRowWrapper
               alignItems="items-start"
               justifyContent="justify-center"
-              tw="w-full max-w-screen-md"
+              tw="py-4 px-8 md:px-32 w-full max-w-sm md:max-w-screen-md"
             >
-              <Header disableToggle />
+              <Header disableToggle={layoutWidth >= SCREEN_SIZE.MD} />
             </FlexRowWrapper>
           </FlexRowWrapper>
         </animated.div>

@@ -15,12 +15,12 @@ export const StaticLocation = ({
   dimensions: { width, height },
 }: StaticLocationProps): ReactElement => {
   return (
-    <StaticLocationComponent width={width} height={height} tw="mb-2 md:mb-0 bg-offpink p-8">
+    <StaticLocationComponent width={width} height={height} tw="mb-2 md:mb-0 p-4 lg:p-8">
       <BoldParagraphType
-        color="text-charcoal"
+        color="text-offwhite"
         textAlign="text-center"
         wordBreak="break-normal"
-        tw="md:w-3/4 md:text-left text-2xl md:text-4xl"
+        tw="w-full lg:w-3/4 lg:text-left text-2xl md:text-3xl lg:text-4xl"
       >
         {StaticLocationText}
       </BoldParagraphType>

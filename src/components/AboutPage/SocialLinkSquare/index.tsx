@@ -67,11 +67,19 @@ export const SocialLinkSquare = ({
         >
           {Icon}
         </FlexColumnWrapper>
-        <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
-          <BoldType color="text-offwhite" textAlign="text-left" tw="uppercase">
+        <FlexColumnWrapper
+          alignItems="items-start"
+          justifyContent="justify-center"
+          tw="w-full overflow-x-hidden"
+        >
+          <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase">
             {title}
           </BoldType>
-          <BoldType color="text-offwhite" textAlign="text-left" tw="uppercase text-xs font-normal">
+          <BoldType
+            color="text-offwhite"
+            textAlign="text-left"
+            tw="w-full text-xs md:text-xs font-normal"
+          >
             {subTitle}
           </BoldType>
         </FlexColumnWrapper>

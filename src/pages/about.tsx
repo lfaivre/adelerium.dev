@@ -55,20 +55,18 @@ const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
           <TileRowWrapper>
             <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
             <MediaLinkSquare data={mediaLinks[PINNED_PLAYLIST]} dimensions={size1} />
-            <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
-          </TileRowWrapper>
-          <TileRowWrapper>
-            <MediaLinkSquare data={mediaLinks[MOST_PLAYED_SONG]} dimensions={size1} />
-            <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
-            <MediaLinkSquare data={mediaLinks[PINNED_SONG]} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[GOOGLE]} dimensions={size1} />
           </TileRowWrapper>
           <TileRowWrapper>
             <StaticResume dimensions={size2} />
             <SocialLinkSquare data={socialLinks[LINKEDIN]} dimensions={size1} />
           </TileRowWrapper>
           <TileRowWrapper>
-            <SocialLinkSquare data={socialLinks[GOOGLE]} dimensions={size1} />
+            <MediaLinkSquare data={mediaLinks[MOST_PLAYED_SONG]} dimensions={size1} />
             <StaticLocation dimensions={size1} />
+            <MediaLinkSquare data={mediaLinks[PINNED_SONG]} dimensions={size1} />
+          </TileRowWrapper>
+          <TileRowWrapper>
             <MediaLinkSquare data={mediaLinks[PINNED_PODCAST]} dimensions={size1} />
           </TileRowWrapper>
         </FlexColumnWrapper>

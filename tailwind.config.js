@@ -6,14 +6,6 @@ module.exports = {
   purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
   theme: {
     extend: {
-      screens: {
-        xsmobile: '360px',
-        mobile: '375px',
-        'mobile-only': { min: '375px', max: '639px' },
-        'sm-only': { min: '640px', max: '767px' },
-        'md-only': { min: '768px', max: '1023px' },
-        'lg-only': { min: '1024px', max: '1279px' },
-      },
       maxWidth: {
         '1/4': '25%',
         '1/2': '50%',
@@ -28,7 +20,6 @@ module.exports = {
         'about-title-right': '-7.5rem',
       },
       inset: {
-        'project-arrow': '2rem',
         8: '2rem',
         '-8': '-2rem',
       },
@@ -51,7 +42,6 @@ module.exports = {
         '2xs': '0.5rem',
         '3.5xl': '2rem',
         '7xl': '4.5rem',
-        'project-arrow': '6rem',
       },
       lineHeight: {
         149: '149%',
