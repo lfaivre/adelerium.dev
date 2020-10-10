@@ -16,7 +16,7 @@ const StaticResumeTitleText = `Are you looking to hire? Here’s my resume.`;
 const StaticResumeLinkText = `View on Google Drive`;
 
 // @todo Source link from Contentful
-const resumeLink = `https://github.com`;
+const resumeLink = `https://drive.google.com/file/d/19Gdz-dwWnlBov73sDIBnr68bf04NvnIL/view?usp=sharing`;
 
 export const StaticResume = ({
   dimensions: { width, height },
