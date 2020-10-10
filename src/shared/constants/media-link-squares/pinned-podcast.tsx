@@ -28,7 +28,7 @@ const ImageQuery = (): FluidObject => {
   return data.backgroundImage.childImageSharp.fluid;
 };
 
-export const MediaLinkData: MediaLink = {
+export const data: MediaLink = {
   description: `Pinned Podcast`,
   date: `October 2, 2020`,
   title: `History Hyenas`,

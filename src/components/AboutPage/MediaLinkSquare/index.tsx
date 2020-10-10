@@ -1,43 +1,33 @@
-import React, { ReactElement, useLayoutEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import Img from 'gatsby-image';
 import { css } from 'twin.macro';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
-import { SCREEN_SIZE } from '../../../shared/constants/presentation';
+import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
+
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
 import { BoldType } from '../../../shared/styles/text';
-import { useAppState } from '../../../shared/hooks/global-state';
 
 import { MediaLinkSquareComponent } from './styles';
 
 import { MediaLink } from './types';
 
-type MediaLinkSquareProps = MediaLink;
+type MediaLinkSquareProps = { data: MediaLink; dimensions: TileDimensions };
 
 export const MediaLinkSquare = ({
-  description,
-  date,
-  title,
-  subTitle,
-  externalLink,
-  backgroundImageQuery,
-  Icon,
-  styling: { backgroundColor },
+  data: {
+    description,
+    date,
+    title,
+    subTitle,
+    externalLink,
+    backgroundImageQuery,
+    Icon,
+    styling: { backgroundColor },
+  },
+  dimensions: { width, height },
 }: MediaLinkSquareProps): ReactElement => {
-  const { layoutWidth } = useAppState();
-
-  const [size, setSize] = useState<number>(0);
   const backgroundImage = backgroundImageQuery();
-
-  useLayoutEffect(() => {
-    const sizeDivisor = layoutWidth >= SCREEN_SIZE.MD ? 3 : 1;
-    const numberOfGutters = layoutWidth >= SCREEN_SIZE.MD ? 4 : 2;
-    const sizeOfGutters = layoutWidth >= SCREEN_SIZE.MD ? 16 : 8;
-
-    const calculatedSize = (layoutWidth - numberOfGutters * sizeOfGutters) / sizeDivisor;
-    const newSize = calculatedSize > 0 ? calculatedSize : 0;
-    setSize(newSize);
-  }, [layoutWidth]);
 
   const backgroundColorStyles = css`
     background-color: ${backgroundColor};
@@ -45,8 +35,8 @@ export const MediaLinkSquare = ({
 
   return (
     <MediaLinkSquareComponent
-      width={size}
-      height={size}
+      width={width}
+      height={height}
       tw="relative mb-2 md:mb-0"
       css={backgroundColorStyles}
     >

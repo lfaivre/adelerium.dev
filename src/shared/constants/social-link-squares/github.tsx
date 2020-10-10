@@ -5,7 +5,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 
 import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
-export const SocialLinkData: SocialLink = {
+export const data: SocialLink = {
   title: `GitHub`,
   subTitle: `github.com/lfaivre`,
   externalLinkText: `View GitHub Profile`,

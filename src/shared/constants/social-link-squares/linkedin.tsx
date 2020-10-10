@@ -5,7 +5,7 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedIn';
 
 import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
-export const SocialLinkData: SocialLink = {
+export const data: SocialLink = {
   title: `LinkedIn`,
   subTitle: `linkedin.com/lorenzofaivre`,
   externalLinkText: `View LinkedIn Profile`,

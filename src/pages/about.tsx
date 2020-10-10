@@ -1,13 +1,13 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
-import 'twin.macro';
+import tw from 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
 
 import { useAppState } from '../shared/hooks/global-state';
+import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
 
 import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
 
@@ -17,6 +17,7 @@ import { StaticIntroduction } from '../components/AboutPage/StaticIntroduction';
 import { StaticLocation } from '../components/AboutPage/StaticLocation';
 import { StaticResume } from '../components/AboutPage/StaticResume';
 
+import { SCREEN_SIZE } from '../shared/constants/presentation';
 import {
   GITHUB_SOCIALLINK_DATA,
   FIGMA_SOCIALLINK_DATA,
@@ -30,9 +31,13 @@ import {
   PINNED_PLAYLIST_MEDIALINK_DATA,
 } from '../shared/constants/media-link-squares';
 
+const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
+
 const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
   const { headerHeight, footerHeight, returnHeight } = useAppState();
   const staticsHeight = headerHeight + footerHeight + returnHeight;
+
+  const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: SCREEN_SIZE.MD });
 
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
 
@@ -41,29 +46,29 @@ const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
       <SEO title="About" pathname={pathname} image={metaImage} />
       <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
-          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-            <StaticIntroduction />
-            <SocialLinkSquare {...GITHUB_SOCIALLINK_DATA} />
-          </div>
-          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-            <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
-            <MediaLinkSquare {...PINNED_PLAYLIST_MEDIALINK_DATA} />
-            <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
-          </div>
-          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-            <MediaLinkSquare {...MOST_PLAYED_SONG_MEDIALINK_DATA} />
-            <SocialLinkSquare {...FIGMA_SOCIALLINK_DATA} />
-            <MediaLinkSquare {...PINNED_SONG_MEDIALINK_DATA} />
-          </div>
-          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-            <StaticResume />
-            <SocialLinkSquare {...LINKEDIN_SOCIALLINK_DATA} />
-          </div>
-          <div tw="flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full">
-            <SocialLinkSquare {...GOOGLE_SOCIALLINK_DATA} />
-            <StaticLocation />
-            <MediaLinkSquare {...PINNED_PODCAST_MEDIALINK_DATA} />
-          </div>
+          <TileRowWrapper>
+            <StaticIntroduction dimensions={size2} />
+            <SocialLinkSquare data={GITHUB_SOCIALLINK_DATA} dimensions={size1} />
+          </TileRowWrapper>
+          <TileRowWrapper>
+            <SocialLinkSquare data={FIGMA_SOCIALLINK_DATA} dimensions={size1} />
+            <MediaLinkSquare data={PINNED_PLAYLIST_MEDIALINK_DATA} dimensions={size1} />
+            <SocialLinkSquare data={FIGMA_SOCIALLINK_DATA} dimensions={size1} />
+          </TileRowWrapper>
+          <TileRowWrapper>
+            <MediaLinkSquare data={MOST_PLAYED_SONG_MEDIALINK_DATA} dimensions={size1} />
+            <SocialLinkSquare data={FIGMA_SOCIALLINK_DATA} dimensions={size1} />
+            <MediaLinkSquare data={PINNED_SONG_MEDIALINK_DATA} dimensions={size1} />
+          </TileRowWrapper>
+          <TileRowWrapper>
+            <StaticResume dimensions={size2} />
+            <SocialLinkSquare data={LINKEDIN_SOCIALLINK_DATA} dimensions={size1} />
+          </TileRowWrapper>
+          <TileRowWrapper>
+            <SocialLinkSquare data={GOOGLE_SOCIALLINK_DATA} dimensions={size1} />
+            <StaticLocation dimensions={size1} />
+            <MediaLinkSquare data={PINNED_PODCAST_MEDIALINK_DATA} dimensions={size1} />
+          </TileRowWrapper>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>
     </>
@@ -82,5 +87,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-/* eslint-enable react/jsx-props-no-spreading */

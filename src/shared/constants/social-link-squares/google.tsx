@@ -5,7 +5,7 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons/faGoogle';
 
 import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
-export const SocialLinkData: SocialLink = {
+export const data: SocialLink = {
   title: `Email`,
   subTitle: `lorenzo.faivre@gmail.com`,
   externalLinkText: `Send Me an Email`,

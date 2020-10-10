@@ -1,40 +1,29 @@
-import React, { ReactElement, useLayoutEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { css } from 'twin.macro';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 
-import { SCREEN_SIZE } from '../../../shared/constants/presentation';
+import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
+
 import { FlexColumnWrapper } from '../../../shared/styles/wrappers';
 import { BoldType } from '../../../shared/styles/text';
-import { useAppState } from '../../../shared/hooks/global-state';
 
 import { SocialLinkSquareComponent } from './styles';
 
 import { SocialLink } from './types';
 
-type SocialLinkSquareProps = SocialLink;
+type SocialLinkSquareProps = { data: SocialLink; dimensions: TileDimensions };
 
 export const SocialLinkSquare = ({
-  title,
-  subTitle,
-  externalLinkText,
-  externalLink,
-  Icon,
-  styling: { backgroundColor, externalLinkTextColor },
+  data: {
+    title,
+    subTitle,
+    externalLinkText,
+    externalLink,
+    Icon,
+    styling: { backgroundColor, externalLinkTextColor },
+  },
+  dimensions: { width, height },
 }: SocialLinkSquareProps): ReactElement => {
-  const { layoutWidth } = useAppState();
-
-  const [size, setSize] = useState<number>(0);
-
-  useLayoutEffect(() => {
-    const sizeDivisor = layoutWidth >= SCREEN_SIZE.MD ? 3 : 1;
-    const numberOfGutters = layoutWidth >= SCREEN_SIZE.MD ? 4 : 2;
-    const sizeOfGutters = layoutWidth >= SCREEN_SIZE.MD ? 16 : 8;
-
-    const calculatedSize = (layoutWidth - numberOfGutters * sizeOfGutters) / sizeDivisor;
-    const newSize = calculatedSize > 0 ? calculatedSize : 0;
-    setSize(newSize);
-  }, [layoutWidth]);
-
   const externalLinkTextStyles = css`
     color: ${externalLinkTextColor};
   `;
@@ -45,8 +34,8 @@ export const SocialLinkSquare = ({
 
   return (
     <SocialLinkSquareComponent
-      width={size}
-      height={size}
+      width={width}
+      height={height}
       tw="relative mb-2 md:mb-0 p-4 lg:p-8"
       css={backgroundColorStyles}
     >

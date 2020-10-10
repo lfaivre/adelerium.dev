@@ -5,7 +5,7 @@ import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 
 import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
-export const SocialLinkData: SocialLink = {
+export const data: SocialLink = {
   title: `Figma`,
   subTitle: `figma.com/@lorenzofaivre`,
   externalLinkText: `View Figma Profile`,

@@ -1,7 +1,7 @@
-import { SocialLinkData as GITHUB } from './github';
-import { SocialLinkData as FIGMA } from './figma';
-import { SocialLinkData as LINKEDIN } from './linkedin';
-import { SocialLinkData as GOOGLE } from './google';
+import { data as GITHUB } from './github';
+import { data as FIGMA } from './figma';
+import { data as LINKEDIN } from './linkedin';
+import { data as GOOGLE } from './google';
 
 export const GITHUB_SOCIALLINK_DATA = GITHUB;
 export const FIGMA_SOCIALLINK_DATA = FIGMA;

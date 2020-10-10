@@ -7,6 +7,7 @@ export const MD = 768;
 export const LG = 1024;
 export const XL = 1280;
 
+// @todo Turn this into a typed enum value
 export const SCREEN_SIZE = Object.freeze({
   XSMOBILE,
   MOBILE,

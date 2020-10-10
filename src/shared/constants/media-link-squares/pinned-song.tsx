@@ -28,7 +28,7 @@ const ImageQuery = (): FluidObject => {
   return data.backgroundImage.childImageSharp.fluid;
 };
 
-export const MediaLinkData: MediaLink = {
+export const data: MediaLink = {
   description: `Pinned Song`,
   date: `October 2, 2020`,
   title: `Luv Scars - Lil Uzi Vert (Luv Is Rage 2)`,
