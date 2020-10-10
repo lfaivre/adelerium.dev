@@ -1,9 +1,25 @@
-import { data as PINNED_PODCAST } from './pinned-podcast';
-import { data as PINNED_SONG } from './pinned-song';
-import { data as MOST_PLAYED_SONG } from './most-played-song';
-import { data as PINNED_PLAYLIST } from './pinned-playlist';
+import { MediaLink } from '../../../components/AboutPage/MediaLinkSquare/types';
 
-export const PINNED_PODCAST_MEDIALINK_DATA = PINNED_PODCAST;
-export const PINNED_SONG_MEDIALINK_DATA = PINNED_SONG;
-export const MOST_PLAYED_SONG_MEDIALINK_DATA = MOST_PLAYED_SONG;
-export const PINNED_PLAYLIST_MEDIALINK_DATA = PINNED_PLAYLIST;
+import { data as PINNED_PODCAST_DATA } from './pinned-podcast';
+import { data as PINNED_SONG_DATA } from './pinned-song';
+import { data as MOST_PLAYED_SONG_DATA } from './most-played-song';
+import { data as PINNED_PLAYLIST_DATA } from './pinned-playlist';
+
+export const PINNED_PODCAST = `PINNED_PODCAST`;
+export const PINNED_SONG = `PINNED_SONG`;
+export const MOST_PLAYED_SONG = `MOST_PLAYED_SONG`;
+export const PINNED_PLAYLIST = `PINNED_PLAYLIST`;
+
+type MediaLinkKeys =
+  | typeof PINNED_PODCAST
+  | typeof PINNED_SONG
+  | typeof MOST_PLAYED_SONG
+  | typeof PINNED_PLAYLIST;
+type MediaLinks = { [key in MediaLinkKeys]: MediaLink };
+
+export const mediaLinks: MediaLinks = {
+  [PINNED_PODCAST]: PINNED_PODCAST_DATA,
+  [PINNED_SONG]: PINNED_SONG_DATA,
+  [MOST_PLAYED_SONG]: MOST_PLAYED_SONG_DATA,
+  [PINNED_PLAYLIST]: PINNED_PLAYLIST_DATA,
+};

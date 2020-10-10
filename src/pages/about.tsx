@@ -19,16 +19,18 @@ import { StaticResume } from '../components/AboutPage/StaticResume';
 
 import { SCREEN_SIZE } from '../shared/constants/presentation';
 import {
-  GITHUB_SOCIALLINK_DATA,
-  FIGMA_SOCIALLINK_DATA,
-  LINKEDIN_SOCIALLINK_DATA,
-  GOOGLE_SOCIALLINK_DATA,
+  socialLinks,
+  GITHUB,
+  FIGMA,
+  LINKEDIN,
+  GOOGLE,
 } from '../shared/constants/social-link-squares';
 import {
-  PINNED_PODCAST_MEDIALINK_DATA,
-  PINNED_SONG_MEDIALINK_DATA,
-  MOST_PLAYED_SONG_MEDIALINK_DATA,
-  PINNED_PLAYLIST_MEDIALINK_DATA,
+  mediaLinks,
+  PINNED_PODCAST,
+  PINNED_SONG,
+  MOST_PLAYED_SONG,
+  PINNED_PLAYLIST,
 } from '../shared/constants/media-link-squares';
 
 const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
@@ -48,26 +50,26 @@ const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
           <TileRowWrapper>
             <StaticIntroduction dimensions={size2} />
-            <SocialLinkSquare data={GITHUB_SOCIALLINK_DATA} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[GITHUB]} dimensions={size1} />
           </TileRowWrapper>
           <TileRowWrapper>
-            <SocialLinkSquare data={FIGMA_SOCIALLINK_DATA} dimensions={size1} />
-            <MediaLinkSquare data={PINNED_PLAYLIST_MEDIALINK_DATA} dimensions={size1} />
-            <SocialLinkSquare data={FIGMA_SOCIALLINK_DATA} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
+            <MediaLinkSquare data={mediaLinks[PINNED_PLAYLIST]} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
           </TileRowWrapper>
           <TileRowWrapper>
-            <MediaLinkSquare data={MOST_PLAYED_SONG_MEDIALINK_DATA} dimensions={size1} />
-            <SocialLinkSquare data={FIGMA_SOCIALLINK_DATA} dimensions={size1} />
-            <MediaLinkSquare data={PINNED_SONG_MEDIALINK_DATA} dimensions={size1} />
+            <MediaLinkSquare data={mediaLinks[MOST_PLAYED_SONG]} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
+            <MediaLinkSquare data={mediaLinks[PINNED_SONG]} dimensions={size1} />
           </TileRowWrapper>
           <TileRowWrapper>
             <StaticResume dimensions={size2} />
-            <SocialLinkSquare data={LINKEDIN_SOCIALLINK_DATA} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[LINKEDIN]} dimensions={size1} />
           </TileRowWrapper>
           <TileRowWrapper>
-            <SocialLinkSquare data={GOOGLE_SOCIALLINK_DATA} dimensions={size1} />
+            <SocialLinkSquare data={socialLinks[GOOGLE]} dimensions={size1} />
             <StaticLocation dimensions={size1} />
-            <MediaLinkSquare data={PINNED_PODCAST_MEDIALINK_DATA} dimensions={size1} />
+            <MediaLinkSquare data={mediaLinks[PINNED_PODCAST]} dimensions={size1} />
           </TileRowWrapper>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>

@@ -1,9 +1,21 @@
-import { data as GITHUB } from './github';
-import { data as FIGMA } from './figma';
-import { data as LINKEDIN } from './linkedin';
-import { data as GOOGLE } from './google';
+import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
-export const GITHUB_SOCIALLINK_DATA = GITHUB;
-export const FIGMA_SOCIALLINK_DATA = FIGMA;
-export const LINKEDIN_SOCIALLINK_DATA = LINKEDIN;
-export const GOOGLE_SOCIALLINK_DATA = GOOGLE;
+import { data as GITHUB_DATA } from './github';
+import { data as FIGMA_DATA } from './figma';
+import { data as LINKEDIN_DATA } from './linkedin';
+import { data as GOOGLE_DATA } from './google';
+
+export const GITHUB = `GitHub`;
+export const FIGMA = `Figma`;
+export const LINKEDIN = `LinkedIn`;
+export const GOOGLE = `Google`;
+
+type SocialLinkKeys = typeof GITHUB | typeof FIGMA | typeof LINKEDIN | typeof GOOGLE;
+type SocialLinks = { [key in SocialLinkKeys]: SocialLink };
+
+export const socialLinks: SocialLinks = {
+  [GITHUB]: GITHUB_DATA,
+  [FIGMA]: FIGMA_DATA,
+  [LINKEDIN]: LINKEDIN_DATA,
+  [GOOGLE]: GOOGLE_DATA,
+};
