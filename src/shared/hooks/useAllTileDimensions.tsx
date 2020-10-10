@@ -60,9 +60,15 @@ export const useAllTileDimensions = ({
   useEffect(() => {
     setAllTileDimensions((draft) => {
       const { sizeOfGuttersInPx } = configuration;
-      const defaultDimension = normalizeDimension(
-        (layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS) / (3 / DEFAULT_TILE_SIZE)
-      );
+      const defaultDimension = metBreakpoint
+        ? normalizeDimension(
+            (layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS) / (3 / DEFAULT_TILE_SIZE)
+          )
+        : normalizeDimension(
+            layoutWidth -
+              sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS +
+              sizeOfGuttersInPx * (3 - DEFAULT_TILE_SIZE)
+          );
 
       Object.keys(draft).forEach((key) => {
         const tileSize = (Number.parseInt(key, 10) as TileSize) || DEFAULT_TILE_SIZE;
@@ -72,12 +78,12 @@ export const useAllTileDimensions = ({
             sizeOfGuttersInPx * (tileSize - DEFAULT_TILE_SIZE)
         );
 
-        draft[tileSize].width = dimension;
-        draft[tileSize].height = defaultDimension;
-        draft[tileSize].squareHeight = dimension;
+        draft[tileSize].width = metBreakpoint ? dimension : defaultDimension;
+        draft[tileSize].height = metBreakpoint ? defaultDimension : defaultDimension;
+        draft[tileSize].squareHeight = metBreakpoint ? dimension : defaultDimension;
       });
     });
-  }, [layoutWidth, configuration, setAllTileDimensions]);
+  }, [metBreakpoint, layoutWidth, configuration, setAllTileDimensions]);
 
   return allTileDimensions;
 };
