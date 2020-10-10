@@ -67,8 +67,8 @@ const WEBSITE_METADATA = {
 const PWA_METADATA = {
   short_name: `adelerium`,
   lang: `en`,
-  background_color: `#1e2223`,
-  theme_color: `#fcf0ec`,
+  background_color: `#000000`,
+  theme_color: `#f3f2f1`,
 };
 
 const { title, description, author } = WEBSITE_METADATA;
