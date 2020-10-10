@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -25,7 +25,14 @@ type DefaultViewProps = { children: ReactElement };
 
 export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const pathData = usePathData();
-  const { sideBarIsVisible, windowWidth, layoutWidth, headerHeight } = useAppState();
+  const {
+    sideBarIsVisible,
+    headerIsVisible,
+    returnButtonIsVisible,
+    footerIsVisible,
+    windowWidth,
+    layoutWidth,
+  } = useAppState();
   const dispatch = useAppDispatch();
 
   const [sideBarWidth, setSideBarWidth] = useState<number>(DEFAULT_SIDEBAR_WIDTH);
@@ -36,18 +43,26 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const scrollableContainerRef = useRef<HTMLDivElement | null>(null);
 
   // @todo Extract this to an external hook
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (headerRef.current && headerRef.current.clientHeight) {
       const { clientHeight } = headerRef.current;
       dispatch({ type: SET_HEADER_HEIGHT, headerHeight: clientHeight });
+    } else {
+      dispatch({ type: SET_HEADER_HEIGHT, headerHeight: 0 });
     }
+
     if (footerRef.current && footerRef.current.clientHeight) {
       const { clientHeight } = footerRef.current;
       dispatch({ type: SET_FOOTER_HEIGHT, footerHeight: clientHeight });
+    } else {
+      dispatch({ type: SET_FOOTER_HEIGHT, footerHeight: 0 });
     }
+
     if (returnRef.current && returnRef.current.clientHeight) {
       const { clientHeight } = returnRef.current;
       dispatch({ type: SET_RETURN_HEIGHT, returnHeight: clientHeight });
+    } else {
+      dispatch({ type: SET_RETURN_HEIGHT, returnHeight: 0 });
     }
   }, [pathData.pathname, pathData.isIndex, windowWidth, dispatch]);
 
@@ -113,7 +128,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={contentWrapperProps}
         css={[tw`absolute top-0 flex flex-col items-start justify-start h-full`, layoutWidthStyles]}
       >
-        {!pathData.isIndex && (
+        {headerIsVisible && (
           <FlexRowWrapper
             alignItems="items-start"
             justifyContent="justify-center"
@@ -124,34 +139,30 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             <Header />
           </FlexRowWrapper>
         )}
-        <ScrollableWrapper
-          ref={scrollableContainerRef}
-          headerHeight={headerHeight}
-          pathIsIndex={pathData.isIndex}
-        >
+        <ScrollableWrapper ref={scrollableContainerRef}>
           <FullWidthWrapper>{children}</FullWidthWrapper>
-          {!pathData.isIndex && (
-            <>
-              <FlexRowWrapper
-                alignItems="items-center"
-                justifyContent="justify-center"
-                ref={returnRef}
-                tw="flex-shrink-0 md:justify-end p-8 w-full"
+          {returnButtonIsVisible && (
+            <FlexRowWrapper
+              alignItems="items-center"
+              justifyContent="justify-center"
+              ref={returnRef}
+              tw="flex-shrink-0 md:justify-end p-8 w-full"
+            >
+              <ReturnButton
+                borderColor="border-offwhite"
+                backgroundColor="bg-offwhite"
+                aria-label="Return To Top"
+                onClick={handleReturn}
               >
-                <ReturnButton
-                  borderColor="border-offwhite"
-                  backgroundColor="bg-offwhite"
-                  aria-label="Return To Top"
-                  onClick={handleReturn}
-                >
-                  <ReturnButtonIndicator />
-                  <ReturnButtonIndicator />
-                </ReturnButton>
-              </FlexRowWrapper>
-              <FullWidthWrapper ref={footerRef}>
-                <Footer />
-              </FullWidthWrapper>
-            </>
+                <ReturnButtonIndicator />
+                <ReturnButtonIndicator />
+              </ReturnButton>
+            </FlexRowWrapper>
+          )}
+          {footerIsVisible && (
+            <FullWidthWrapper ref={footerRef}>
+              <Footer />
+            </FullWidthWrapper>
           )}
         </ScrollableWrapper>
       </animated.div>

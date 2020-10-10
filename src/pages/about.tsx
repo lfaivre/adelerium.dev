@@ -81,7 +81,7 @@ export default AboutPage;
 export const pageQuery = graphql`
   query AboutPageQuery {
     contentfulAsset(title: { eq: "About Page Meta Image" }) {
-      fixed(width: 3360, resizingBehavior: SCALE) {
+      fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
         ...GatsbyContentfulFixed
       }
     }

@@ -19,13 +19,7 @@ export const ContentWrapper = styled(animated.div)<ContentWrapperProps>`
   width: ${({ layoutWidth }) => `${layoutWidth || 0}px`};
 `;
 
-type ScrollableWrapperProps = { headerHeight: number; pathIsIndex: boolean };
-
-export const ScrollableWrapper = styled.div<ScrollableWrapperProps>`
-  ${tw`flex flex-col items-start justify-start w-full overflow-x-hidden overflow-y-scroll`}
-  height: ${({ headerHeight, pathIsIndex }) =>
-    pathIsIndex ? `100vh` : `calc(100vh - ${headerHeight || 0}px)`}
-`;
+export const ScrollableWrapper = tw.div`flex flex-col items-start justify-start w-full overflow-x-hidden overflow-y-scroll`;
 
 // @todo Move color map to shared utility
 

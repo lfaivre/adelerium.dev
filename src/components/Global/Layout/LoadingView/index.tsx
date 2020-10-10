@@ -10,7 +10,7 @@ export const LoadingView = (): ReactElement => {
     <FlexRowWrapper
       alignItems="items-center"
       justifyContent="justify-center"
-      backgroundColor="bg-charcoal"
+      backgroundColor="bg-offwhite"
       tw="absolute top-0 left-0 z-40 w-full h-full"
     >
       <LoadingAnimation />

@@ -5,6 +5,9 @@ import { SCREEN_SIZE } from '../constants/presentation';
 import {
   SET_LOADING,
   SET_SIDEBAR_VISIBILITY,
+  SET_HEADER_VISIBILITY,
+  SET_RETURN_BUTTON_VISIBILITY,
+  SET_FOOTER_VISIBILITY,
   SET_WINDOW_WIDTH,
   SET_WINDOW_HEIGHT,
   SET_LAYOUT_WIDTH,
@@ -20,6 +23,9 @@ import {
 const initialState: State = {
   isLoading: true,
   sideBarIsVisible: false,
+  headerIsVisible: true,
+  returnButtonIsVisible: true,
+  footerIsVisible: true,
   windowWidth: 0,
   windowHeight: 0,
   layoutWidth: 0,
@@ -40,6 +46,15 @@ const appStateReducer = (state: State, action: Action): State => {
     }
     case SET_SIDEBAR_VISIBILITY: {
       return { ...state, sideBarIsVisible: action.sideBarIsVisible };
+    }
+    case SET_HEADER_VISIBILITY: {
+      return { ...state, headerIsVisible: action.headerIsVisible };
+    }
+    case SET_RETURN_BUTTON_VISIBILITY: {
+      return { ...state, returnButtonIsVisible: action.returnButtonIsVisible };
+    }
+    case SET_FOOTER_VISIBILITY: {
+      return { ...state, footerIsVisible: action.footerIsVisible };
     }
     case SET_WINDOW_WIDTH: {
       return { ...state, windowWidth: action.windowWidth };

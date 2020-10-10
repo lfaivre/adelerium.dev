@@ -3,6 +3,10 @@ import { ReactElement } from 'react';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_SIDEBAR_VISIBILITY = 'SET_SIDEBAR_VISIBILITY';
 
+export const SET_HEADER_VISIBILITY = 'SET_HEADER_VISIBILITY';
+export const SET_RETURN_BUTTON_VISIBILITY = 'SET_RETURN_BUTTON_VISIBILITY';
+export const SET_FOOTER_VISIBILITY = 'SET_FOOTER_VISIBILITY';
+
 export const SET_WINDOW_WIDTH = 'SET_WINDOW_WIDTH';
 export const SET_WINDOW_HEIGHT = 'SET_WINDOW_HEIGHT';
 export const SET_LAYOUT_WIDTH = 'SET_LAYOUT_WIDTH';
@@ -14,6 +18,9 @@ export const SET_RETURN_HEIGHT = 'SET_RETURN_HEIGHT';
 export type Action =
   | { type: typeof SET_LOADING; isLoading: boolean }
   | { type: typeof SET_SIDEBAR_VISIBILITY; sideBarIsVisible: boolean }
+  | { type: typeof SET_HEADER_VISIBILITY; headerIsVisible: boolean }
+  | { type: typeof SET_RETURN_BUTTON_VISIBILITY; returnButtonIsVisible: boolean }
+  | { type: typeof SET_FOOTER_VISIBILITY; footerIsVisible: boolean }
   | { type: typeof SET_WINDOW_WIDTH; windowWidth: number }
   | { type: typeof SET_WINDOW_HEIGHT; windowHeight: number }
   | { type: typeof SET_LAYOUT_WIDTH; layoutWidth: number }
@@ -26,6 +33,9 @@ export type Dispatch = (action: Action) => void;
 export type State = {
   isLoading: boolean;
   sideBarIsVisible: boolean;
+  headerIsVisible: boolean;
+  returnButtonIsVisible: boolean;
+  footerIsVisible: boolean;
   windowWidth: number;
   windowHeight: number;
   layoutWidth: number;

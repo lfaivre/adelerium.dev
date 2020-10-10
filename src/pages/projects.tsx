@@ -45,7 +45,7 @@ export default ProjectsPage;
 export const pageQuery = graphql`
   query ProjectsPageQuery {
     contentfulAsset(title: { eq: "Projects Page Meta Image" }) {
-      fixed(width: 3360, resizingBehavior: SCALE) {
+      fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
         ...GatsbyContentfulFixed
       }
     }

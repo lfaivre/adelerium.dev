@@ -4,7 +4,7 @@ import { LoadingAnimationWrapper } from './styles';
 
 export const LoadingAnimation = (): ReactElement => {
   return (
-    <LoadingAnimationWrapper borderColor="border-offpink">
+    <LoadingAnimationWrapper borderColor="border-charcoal">
       <div />
       <div />
     </LoadingAnimationWrapper>

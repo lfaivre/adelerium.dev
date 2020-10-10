@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { useLayoutEffect, ReactElement } from 'react';
 import { PageProps, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { useSpring, animated, config } from 'react-spring';
@@ -6,17 +6,34 @@ import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 
-import { useAppState } from '../shared/hooks/global-state';
+import { useAppState, useAppDispatch } from '../shared/hooks/global-state';
 
-import { INDEX } from '../shared/types/paths';
+import { SET_RETURN_BUTTON_VISIBILITY, SET_FOOTER_VISIBILITY } from '../shared/types/state';
 import { PageQueryData } from '../shared/types/pages/404';
 
 import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
-import { BoldTypeAsGatsbyLink } from '../shared/styles/text';
 
 const NotFoundPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
-  const { headerHeight, footerHeight, returnHeight } = useAppState();
+  const {
+    headerHeight,
+    footerHeight,
+    returnHeight,
+    returnButtonIsVisible,
+    footerIsVisible,
+  } = useAppState();
   const staticsHeight = headerHeight + footerHeight + returnHeight;
+
+  const dispatch = useAppDispatch();
+
+  useLayoutEffect(() => {
+    dispatch({ type: SET_RETURN_BUTTON_VISIBILITY, returnButtonIsVisible: false });
+    dispatch({ type: SET_FOOTER_VISIBILITY, footerIsVisible: false });
+
+    return () => {
+      dispatch({ type: SET_RETURN_BUTTON_VISIBILITY, returnButtonIsVisible: true });
+      dispatch({ type: SET_FOOTER_VISIBILITY, footerIsVisible: true });
+    };
+  }, [returnButtonIsVisible, footerIsVisible, dispatch]);
 
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const accentImage = (data as PageQueryData).accentImage.childImageSharp.fluid;
@@ -30,20 +47,25 @@ const NotFoundPage = ({ data, location: { pathname } }: PageProps): ReactElement
   return (
     <>
       <SEO title="404: Not Found" pathname={pathname} image={metaImage} />
-      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
-        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="w-full">
-          <animated.div style={springProps} tw="flex flex-row justify-center w-full">
+      <MinHeightScreenWrapper
+        staticsHeight={staticsHeight}
+        backgroundColor="bg-offwhite"
+        tw="flex p-2 md:p-4 w-full h-full"
+      >
+        <FlexColumnWrapper
+          alignItems="items-center"
+          justifyContent="justify-center"
+          tw="w-full h-full"
+        >
+          <animated.div style={springProps} tw="flex flex-row justify-center p-8 w-full">
             <Img
               fluid={accentImage}
               alt=""
               loading="eager"
               draggable={false}
-              tw="w-1/2 mb-4 select-none"
+              tw="mb-4 w-full md:w-1/2 max-w-md select-none"
             />
           </animated.div>
-          <BoldTypeAsGatsbyLink color="text-offwhite" to={INDEX} tw="p-2 pt-3 uppercase">
-            Exit to Home
-          </BoldTypeAsGatsbyLink>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>
     </>
@@ -56,13 +78,13 @@ export default NotFoundPage;
 export const pageQuery = graphql`
   query NotFoundPageQuery {
     contentfulAsset(title: { eq: "404 Page Meta Image" }) {
-      fixed(width: 3360, resizingBehavior: SCALE) {
+      fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
         ...GatsbyContentfulFixed
       }
     }
     accentImage: file(relativePath: { eq: "error-page-accent.png" }) {
       childImageSharp {
-        fluid(maxWidth: 840, quality: 100) {
+        fluid(maxWidth: 453, quality: 100) {
           ...GatsbyImageSharpFluid_tracedSVG
         }
       }

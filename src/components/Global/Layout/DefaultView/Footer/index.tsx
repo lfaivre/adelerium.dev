@@ -56,7 +56,10 @@ export const Footer = (): ReactElement => {
   };
 
   return (
-    <FullWidthWrapper backgroundColor="bg-offwhite" tw="px-4 pt-8 pb-4 md:p-8">
+    <FullWidthWrapper
+      backgroundColor="bg-offwhite"
+      tw="px-4 pt-8 pb-4 md:p-8 border-t-2 border-charcoal"
+    >
       <FlexRowWrapper
         alignItems="items-start"
         justifyContent="justify-start"
