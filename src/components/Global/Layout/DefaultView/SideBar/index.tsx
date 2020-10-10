@@ -46,7 +46,7 @@ export const SideBar = (): ReactElement => {
       }
       contentfulSideBar: contentfulSideBar(title: { eq: "Default" }) {
         profilePicture {
-          fluid(maxWidth: 320, resizingBehavior: SCALE) {
+          fluid(maxWidth: 320, resizingBehavior: SCALE, quality: 100) {
             ...GatsbyContentfulFluid_tracedSVG
           }
         }
