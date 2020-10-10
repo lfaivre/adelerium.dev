@@ -16,6 +16,8 @@ module.exports = {
         global: '1080px',
       },
       margin: {
+        '1/4': '0.0625rem',
+        '1/2': '0.125rem',
         'about-title-left': '-7.5rem',
         'about-title-right': '-7.5rem',
       },

@@ -27,4 +27,10 @@ export interface ISideBarFields {
   brandingLink: Partial<ILinkFields>;
 }
 
-export type GraphQLStaticQuery = { contentfulSideBar: ISideBarFields };
+type Fluid = { fluid: FluidObject };
+type ChildImageSharp = { childImageSharp: Fluid };
+
+export type GraphQLStaticQuery = {
+  profileBackgroundImage: ChildImageSharp;
+  contentfulSideBar: ISideBarFields;
+};

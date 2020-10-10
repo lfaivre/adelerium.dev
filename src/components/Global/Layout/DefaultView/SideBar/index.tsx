@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import tw from 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 // @todo: Refactor TypeScript, patched in for now
 import { useAppState } from '../../../../../shared/hooks/global-state';
@@ -18,11 +18,7 @@ import {
   BrandingTypeAsAnchor,
   AccentType,
 } from '../../../../../shared/styles/text';
-import {
-  DefaultWrapper,
-  FlexColumnWrapper,
-  FlexRowWrapper,
-} from '../../../../../shared/styles/wrappers';
+import { FlexColumnWrapper, FlexRowWrapper } from '../../../../../shared/styles/wrappers';
 
 import { Line, ViewButton } from './styles';
 
@@ -41,6 +37,13 @@ export const SideBar = (): ReactElement => {
 
   const sideBarQuery: GraphQLStaticQuery = useStaticQuery(graphql`
     query {
+      profileBackgroundImage: file(relativePath: { eq: "profile-background.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 192, quality: 100) {
+            ...GatsbyImageSharpFluid_tracedSVG
+          }
+        }
+      }
       contentfulSideBar: contentfulSideBar(title: { eq: "Default" }) {
         profilePicture {
           fluid(maxWidth: 320, resizingBehavior: SCALE) {
@@ -69,6 +72,12 @@ export const SideBar = (): ReactElement => {
 
   const { name, tag } = SiteData.profile;
 
+  const profileBackgroundImage = sideBarQuery.profileBackgroundImage.childImageSharp.fluid;
+
+  const backgroundImageStyles = css`
+    background: var(--color-OffWhite) url(${profileBackgroundImage.src}) no-repeat center;
+  `;
+
   const {
     profilePicture,
     internalLinks,
@@ -95,14 +104,19 @@ export const SideBar = (): ReactElement => {
             justifyContent="justify-start"
             tw="pt-8 mb-8 w-full"
           >
-            <DefaultWrapper tw="mb-4 rounded-full p-2 md:p-4 w-32 h-32 md:w-48 md:h-48">
+            <FlexRowWrapper
+              alignItems="items-center"
+              justifyContent="justify-center"
+              css={[tw`mb-4 rounded-full w-40 h-40 md:w-48 md:h-48`, backgroundImageStyles]}
+            >
               <Img
                 fluid={profilePicture.fluid}
+                loading="eager"
                 alt="Profile Picture"
                 draggable={false}
-                tw="rounded-full w-full h-full object-cover object-center select-none"
+                tw="rounded-full w-32 h-32 md:w-40 md:h-40 select-none"
               />
-            </DefaultWrapper>
+            </FlexRowWrapper>
             <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
               <BoldParagraphType
                 color="text-charcoal"
@@ -142,7 +156,7 @@ export const SideBar = (): ReactElement => {
                   >
                     <span
                       css={[
-                        tw`mr-1 w-1 h-full`,
+                        tw`mr-1/2 w-1 h-full`,
                         sideBarIsVisible &&
                           link.displayText === pathData.pathData?.text &&
                           tw`bg-charcoal`,
@@ -212,11 +226,11 @@ export const SideBar = (): ReactElement => {
             onClick={() => setSideBarView(SBV.InternalLinks)}
             selected={sideBarView === SBV.InternalLinks}
             backgroundColor={sideBarView === SBV.InternalLinks ? `bg-charcoal` : `bg-transparent`}
-            strokeColor={sideBarView === SBV.InternalLinks ? `text-transparent` : `text-charcoal`}
+            strokeColor={sideBarView === SBV.InternalLinks ? `text-offwhite` : `text-charcoal`}
             aria-label="Internal Links"
           >
             <AccentType
-              color={sideBarView === SBV.InternalLinks ? `text-offwhite` : `text-transparent`}
+              color={sideBarView === SBV.InternalLinks ? `text-charcoal` : `text-transparent`}
               textAlign="text-center"
               tw="text-4xl"
             >
@@ -227,11 +241,11 @@ export const SideBar = (): ReactElement => {
             onClick={() => setSideBarView(SBV.ExternalLinks)}
             selected={sideBarView === SBV.ExternalLinks}
             backgroundColor={sideBarView === SBV.ExternalLinks ? `bg-charcoal` : `bg-transparent`}
-            strokeColor={sideBarView === SBV.ExternalLinks ? `text-transparent` : `text-charcoal`}
+            strokeColor={sideBarView === SBV.ExternalLinks ? `text-offwhite` : `text-charcoal`}
             aria-label="External Links"
           >
             <AccentType
-              color={sideBarView === SBV.ExternalLinks ? `text-offwhite` : `text-transparent`}
+              color={sideBarView === SBV.ExternalLinks ? `text-charcoal` : `text-transparent`}
               textAlign="text-center"
               tw="text-4xl"
             >
