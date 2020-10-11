@@ -7,7 +7,7 @@ import { SET_LOADING, SET_LAYOUT_WIDTH } from '../../../shared/types/state';
 import { DefaultView } from './DefaultView';
 import { LoadingView } from './LoadingView';
 
-import { FlexColumnWrapper } from '../../../shared/styles/wrappers';
+import { FullWidthWrapper } from '../../../shared/styles/wrappers';
 
 type LayoutProps = { children: ReactElement };
 
@@ -31,15 +31,10 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
   return (
     <>
       <GlobalStyles />
-      <FlexColumnWrapper
-        alignItems="items-center"
-        justifyContent="justify-start"
-        ref={layoutRef}
-        tw="relative w-full max-w-global h-full overflow-x-hidden"
-      >
+      <FullWidthWrapper ref={layoutRef} tw="relative w-full max-w-global h-full">
         {isLoading && <LoadingView />}
         <DefaultView>{children}</DefaultView>
-      </FlexColumnWrapper>
+      </FullWidthWrapper>
     </>
   );
 };

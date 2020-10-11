@@ -87,188 +87,182 @@ export const SideBar = (): ReactElement => {
   } = sideBarQuery.contentfulSideBar;
 
   return (
-    <FlexRowWrapper
+    <FlexColumnWrapper
       alignItems="items-center"
-      justifyContent="justify-center"
+      justifyContent="justify-start"
       backgroundColor="bg-offwhite"
-      tw="border-r-2 border-charcoal w-full h-full"
+      tw="p-8 w-full h-full"
     >
-      <FlexColumnWrapper
-        alignItems="items-center"
-        justifyContent="justify-start"
-        tw="p-8 w-full h-full max-h-global"
-      >
-        {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
-          <FlexColumnWrapper
-            alignItems="items-center"
-            justifyContent="justify-start"
-            tw="pt-8 mb-8 w-full"
-          >
-            <FlexRowWrapper
-              alignItems="items-center"
-              justifyContent="justify-center"
-              css={[tw`mb-4 rounded-full w-40 h-40 md:w-48 md:h-48`, backgroundImageStyles]}
-            >
-              <Img
-                fluid={profilePicture.fluid}
-                loading="eager"
-                alt="Profile Picture"
-                draggable={false}
-                tw="rounded-full w-32 h-32 md:w-40 md:h-40 select-none"
-              />
-            </FlexRowWrapper>
-            <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
-              <BoldParagraphType
-                color="text-charcoal"
-                textAlign="text-center"
-                tw="mb-2 w-full text-2xl md:text-2xl lowercase"
-              >
-                {name}
-              </BoldParagraphType>
-              <BoldType
-                color="text-charcoal"
-                textAlign="text-center"
-                tw="w-full uppercase text-xs md:text-xs"
-              >
-                {tag}
-              </BoldType>
-            </FlexColumnWrapper>
-          </FlexColumnWrapper>
-        )}
+      {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
         <FlexColumnWrapper
           alignItems="items-center"
           justifyContent="justify-start"
-          tw="flex-grow mb-8 w-full overflow-y-scroll"
+          tw="pt-8 mb-8 w-full"
         >
-          <FlexColumnWrapper
+          <FlexRowWrapper
             alignItems="items-center"
             justifyContent="justify-center"
-            tw="my-auto w-full"
+            css={[tw`mb-4 rounded-full w-40 h-40 md:w-48 md:h-48`, backgroundImageStyles]}
           >
-            {sideBarView === SBV.InternalLinks ? (
-              <>
-                {internalLinks.map((link) => (
-                  <FlexRowWrapper
-                    alignItems="items-center"
-                    justifyContent="justify-start"
-                    tw="w-full"
-                    key={link.title}
-                  >
-                    <span
-                      css={[
-                        tw`mr-1/2 w-1 h-full`,
-                        sideBarIsVisible &&
-                          link.displayText === pathData.pathData?.text &&
-                          tw`bg-charcoal`,
-                      ]}
-                    />
-                    <BoldTypeAsGatsbyLink
-                      to={getStrippedInternalLinkPath(link.destination)}
-                      color={
-                        sideBarIsVisible && link.displayText === pathData.pathData?.text
-                          ? `text-offwhite`
-                          : `text-charcoal`
-                      }
-                      css={[
-                        tw`flex-grow p-2 pt-3 uppercase`,
-                        sideBarIsVisible &&
-                          link.displayText === pathData.pathData?.text &&
-                          tw`bg-charcoal`,
-                      ]}
-                    >
-                      {link.displayText}
-                    </BoldTypeAsGatsbyLink>
-                  </FlexRowWrapper>
-                ))}
-              </>
-            ) : (
-              <>
-                {externalLinks.map((link) => (
-                  <BoldTypeAsAnchor
-                    href={link.destination}
-                    label={link.destination}
-                    key={link.title}
-                    color="text-charcoal"
-                    tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
+            <Img
+              fluid={profilePicture.fluid}
+              loading="eager"
+              alt="Profile Picture"
+              draggable={false}
+              tw="rounded-full w-32 h-32 md:w-40 md:h-40 select-none"
+            />
+          </FlexRowWrapper>
+          <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
+            <BoldParagraphType
+              color="text-charcoal"
+              textAlign="text-center"
+              tw="mb-2 w-full text-2xl md:text-2xl lowercase"
+            >
+              {name}
+            </BoldParagraphType>
+            <BoldType
+              color="text-charcoal"
+              textAlign="text-center"
+              tw="w-full uppercase text-xs md:text-xs"
+            >
+              {tag}
+            </BoldType>
+          </FlexColumnWrapper>
+        </FlexColumnWrapper>
+      )}
+      <FlexColumnWrapper
+        alignItems="items-center"
+        justifyContent="justify-start"
+        tw="flex-grow mb-8 w-full overflow-y-scroll"
+      >
+        <FlexColumnWrapper
+          alignItems="items-center"
+          justifyContent="justify-center"
+          tw="my-auto w-full"
+        >
+          {sideBarView === SBV.InternalLinks ? (
+            <>
+              {internalLinks.map((link) => (
+                <FlexRowWrapper
+                  alignItems="items-center"
+                  justifyContent="justify-start"
+                  tw="w-full"
+                  key={link.title}
+                >
+                  <span
+                    css={[
+                      tw`mr-1/2 w-1 h-full`,
+                      sideBarIsVisible &&
+                        link.displayText === pathData.pathData?.text &&
+                        tw`bg-charcoal`,
+                    ]}
+                  />
+                  <BoldTypeAsGatsbyLink
+                    to={getStrippedInternalLinkPath(link.destination)}
+                    color={
+                      sideBarIsVisible && link.displayText === pathData.pathData?.text
+                        ? `text-offwhite`
+                        : `text-charcoal`
+                    }
+                    css={[
+                      tw`flex-grow p-2 pt-3 uppercase`,
+                      sideBarIsVisible &&
+                        link.displayText === pathData.pathData?.text &&
+                        tw`bg-charcoal`,
+                    ]}
                   >
                     {link.displayText}
-                  </BoldTypeAsAnchor>
-                ))}
+                  </BoldTypeAsGatsbyLink>
+                </FlexRowWrapper>
+              ))}
+            </>
+          ) : (
+            <>
+              {externalLinks.map((link) => (
                 <BoldTypeAsAnchor
-                  href={`mailto:${email}`}
-                  label={`mailto:${email}`}
-                  key="Email"
+                  href={link.destination}
+                  label={link.destination}
+                  key={link.title}
                   color="text-charcoal"
                   tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
                 >
-                  Email
+                  {link.displayText}
                 </BoldTypeAsAnchor>
-              </>
-            )}
-          </FlexColumnWrapper>
+              ))}
+              <BoldTypeAsAnchor
+                href={`mailto:${email}`}
+                label={`mailto:${email}`}
+                key="Email"
+                color="text-charcoal"
+                tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
+              >
+                Email
+              </BoldTypeAsAnchor>
+            </>
+          )}
         </FlexColumnWrapper>
-        {windowHeight > IPHONE_5_LANDSCAPE_HEIGHT && (
-          <FlexColumnWrapper
-            alignItems="items-center"
-            justifyContent="justify-start"
-            tw="mb-8 w-full"
-          >
-            <Line borderColor="border-charcoal" />
-            <Line borderColor="border-charcoal" />
-          </FlexColumnWrapper>
-        )}
-        <FlexRowWrapper
-          alignItems="items-center"
-          justifyContent="justify-center"
-          tw="flex-shrink-0 w-full"
-        >
-          <ViewButton
-            onClick={() => setSideBarView(SBV.InternalLinks)}
-            selected={sideBarView === SBV.InternalLinks}
-            backgroundColor={sideBarView === SBV.InternalLinks ? `bg-charcoal` : `bg-transparent`}
-            strokeColor={sideBarView === SBV.InternalLinks ? `text-offwhite` : `text-charcoal`}
-            aria-label="Internal Links"
-          >
-            <AccentType
-              color={sideBarView === SBV.InternalLinks ? `text-charcoal` : `text-transparent`}
-              textAlign="text-center"
-              tw="text-4xl"
-            >
-              01.
-            </AccentType>
-          </ViewButton>
-          <ViewButton
-            onClick={() => setSideBarView(SBV.ExternalLinks)}
-            selected={sideBarView === SBV.ExternalLinks}
-            backgroundColor={sideBarView === SBV.ExternalLinks ? `bg-charcoal` : `bg-transparent`}
-            strokeColor={sideBarView === SBV.ExternalLinks ? `text-offwhite` : `text-charcoal`}
-            aria-label="External Links"
-          >
-            <AccentType
-              color={sideBarView === SBV.ExternalLinks ? `text-charcoal` : `text-transparent`}
-              textAlign="text-center"
-              tw="text-4xl"
-            >
-              02.
-            </AccentType>
-          </ViewButton>
-        </FlexRowWrapper>
-        {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
-          <FlexColumnWrapper
-            alignItems="items-center"
-            justifyContent="justify-start"
-            tw="mt-8 w-full"
-          >
-            <BrandingTypeAsAnchor
-              href={brandingLink.destination}
-              label={brandingLink.destination}
-              color="text-charcoal"
-            >
-              KD.
-            </BrandingTypeAsAnchor>
-          </FlexColumnWrapper>
-        )}
       </FlexColumnWrapper>
-    </FlexRowWrapper>
+      {windowHeight > IPHONE_5_LANDSCAPE_HEIGHT && (
+        <FlexColumnWrapper
+          alignItems="items-center"
+          justifyContent="justify-start"
+          tw="mb-8 w-full"
+        >
+          <Line borderColor="border-charcoal" />
+          <Line borderColor="border-charcoal" />
+        </FlexColumnWrapper>
+      )}
+      <FlexRowWrapper
+        alignItems="items-center"
+        justifyContent="justify-center"
+        tw="flex-shrink-0 w-full"
+      >
+        <ViewButton
+          onClick={() => setSideBarView(SBV.InternalLinks)}
+          selected={sideBarView === SBV.InternalLinks}
+          backgroundColor={sideBarView === SBV.InternalLinks ? `bg-charcoal` : `bg-transparent`}
+          strokeColor={sideBarView === SBV.InternalLinks ? `text-offwhite` : `text-charcoal`}
+          aria-label="Internal Links"
+        >
+          <AccentType
+            color={sideBarView === SBV.InternalLinks ? `text-charcoal` : `text-transparent`}
+            textAlign="text-center"
+            tw="text-4xl"
+          >
+            01.
+          </AccentType>
+        </ViewButton>
+        <ViewButton
+          onClick={() => setSideBarView(SBV.ExternalLinks)}
+          selected={sideBarView === SBV.ExternalLinks}
+          backgroundColor={sideBarView === SBV.ExternalLinks ? `bg-charcoal` : `bg-transparent`}
+          strokeColor={sideBarView === SBV.ExternalLinks ? `text-offwhite` : `text-charcoal`}
+          aria-label="External Links"
+        >
+          <AccentType
+            color={sideBarView === SBV.ExternalLinks ? `text-charcoal` : `text-transparent`}
+            textAlign="text-center"
+            tw="text-4xl"
+          >
+            02.
+          </AccentType>
+        </ViewButton>
+      </FlexRowWrapper>
+      {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
+        <FlexColumnWrapper
+          alignItems="items-center"
+          justifyContent="justify-start"
+          tw="mt-8 w-full"
+        >
+          <BrandingTypeAsAnchor
+            href={brandingLink.destination}
+            label={brandingLink.destination}
+            color="text-charcoal"
+          >
+            KD.
+          </BrandingTypeAsAnchor>
+        </FlexColumnWrapper>
+      )}
+    </FlexColumnWrapper>
   );
 };

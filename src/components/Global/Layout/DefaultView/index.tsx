@@ -17,9 +17,15 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 
 import { FullWidthWrapper, FlexRowWrapper } from '../../../../shared/styles/wrappers';
-import { ScrollableWrapper, ReturnButton, ReturnButtonIndicator } from './styles';
+import { ReturnButton, ReturnButtonIndicator } from './styles';
 
 const DEFAULT_SIDEBAR_WIDTH = 0.25 * 1680;
+
+const handleReturn = (): void => {
+  if (typeof window !== `undefined`) {
+    window.scrollTo({ top: 0, left: 0, behavior: `smooth` });
+  }
+};
 
 type DefaultViewProps = { children: ReactElement };
 
@@ -32,6 +38,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     footerIsVisible,
     windowWidth,
     layoutWidth,
+    headerHeight,
   } = useAppState();
   const dispatch = useAppDispatch();
 
@@ -40,7 +47,6 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const footerRef = useRef<HTMLDivElement | null>(null);
   const returnRef = useRef<HTMLDivElement | null>(null);
-  const scrollableContainerRef = useRef<HTMLDivElement | null>(null);
 
   // @todo Extract this to an external hook
   useLayoutEffect(() => {
@@ -68,8 +74,8 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   useLayoutEffect(() => {
     dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: false });
-    if (scrollableContainerRef && scrollableContainerRef.current) {
-      scrollableContainerRef.current.scrollTo({ top: 0, left: 0 });
+    if (typeof window !== `undefined`) {
+      window.scrollTo({ top: 0 });
     }
   }, [dispatch, pathData.pathname]);
 
@@ -77,12 +83,6 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     const newSideBarWidth = layoutWidth < SCREEN_SIZE.SM ? layoutWidth : DEFAULT_SIDEBAR_WIDTH;
     setSideBarWidth(newSideBarWidth);
   }, [layoutWidth]);
-
-  const handleReturn = (): void => {
-    if (scrollableContainerRef && scrollableContainerRef.current) {
-      scrollableContainerRef.current.scrollTo({ top: 0, left: 0, behavior: `smooth` });
-    }
-  };
 
   const handleOutOfBoundsToggle = (): void => {
     if (!sideBarIsVisible) return;
@@ -97,75 +97,103 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     width: ${layoutWidth}px;
   `;
 
+  const headerPaddingStyles = css`
+    padding-top: ${headerHeight}px;
+  `;
+
+  const gutterWidthStyles = css`
+    width: ${(windowWidth - layoutWidth) / 2}px;
+  `;
+
+  const headerWrapperProps = useSpring({
+    to: {
+      left: sideBarIsVisible
+        ? (windowWidth - layoutWidth) / 2 + sideBarWidth
+        : (windowWidth - layoutWidth) / 2,
+    },
+    config: { ...config.default, clamp: false },
+  });
+
   const sideBarWrapperProps = useSpring({
     to: {
-      left: sideBarIsVisible ? 0 : -sideBarWidth,
+      left: sideBarIsVisible
+        ? (windowWidth - layoutWidth) / 2
+        : (windowWidth - layoutWidth) / 2 - sideBarWidth,
     },
-    config: { ...config.gentle, clamp: true },
+    config: { ...config.default, clamp: false },
   });
 
   const contentWrapperProps = useSpring({
     to: {
-      left: sideBarIsVisible ? sideBarWidth : 0,
+      marginLeft: sideBarIsVisible ? sideBarWidth : 0,
     },
-    config: { ...config.gentle, clamp: true },
+    config: { ...config.default, clamp: false },
   });
 
   return (
-    <FlexRowWrapper
-      alignItems="items-start"
-      justifyContent="justify-start"
-      tw="relative z-0 w-full h-full"
-    >
+    <>
+      {headerIsVisible && (
+        <animated.div
+          ref={headerRef}
+          style={headerWrapperProps}
+          css={[
+            tw`fixed top-0 z-30 flex flex-row items-start justify-center bg-offwhite p-4 md:px-8`,
+            layoutWidthStyles,
+          ]}
+        >
+          <Header />
+        </animated.div>
+      )}
+
       <animated.div
         style={sideBarWrapperProps}
-        css={[tw`absolute top-0 h-full`, sideBarWidthStyles]}
+        css={[
+          tw`fixed top-0 z-30 border-r-2 border-charcoal h-screen max-h-global`,
+          sideBarWidthStyles,
+        ]}
       >
         <SideBar />
       </animated.div>
+
       <animated.div
         onClick={handleOutOfBoundsToggle}
         style={contentWrapperProps}
-        css={[tw`absolute top-0 flex flex-col items-start justify-start h-full`, layoutWidthStyles]}
+        css={[
+          tw`z-0 flex flex-col items-start justify-start w-full`,
+          layoutWidthStyles,
+          headerIsVisible && headerPaddingStyles,
+        ]}
       >
-        {headerIsVisible && (
+        <FullWidthWrapper>{children}</FullWidthWrapper>
+
+        {returnButtonIsVisible && (
           <FlexRowWrapper
-            alignItems="items-start"
+            alignItems="items-center"
             justifyContent="justify-center"
-            backgroundColor="bg-offwhite"
-            tw="flex-shrink-0 p-4 md:px-8 w-full"
-            ref={headerRef}
+            ref={returnRef}
+            tw="flex-shrink-0 md:justify-end p-8 w-full"
           >
-            <Header />
+            <ReturnButton
+              borderColor="border-offwhite"
+              backgroundColor="bg-offwhite"
+              aria-label="Return To Top"
+              onClick={handleReturn}
+            >
+              <ReturnButtonIndicator />
+              <ReturnButtonIndicator />
+            </ReturnButton>
           </FlexRowWrapper>
         )}
-        <ScrollableWrapper ref={scrollableContainerRef}>
-          <FullWidthWrapper>{children}</FullWidthWrapper>
-          {returnButtonIsVisible && (
-            <FlexRowWrapper
-              alignItems="items-center"
-              justifyContent="justify-center"
-              ref={returnRef}
-              tw="flex-shrink-0 md:justify-end p-8 w-full"
-            >
-              <ReturnButton
-                borderColor="border-offwhite"
-                backgroundColor="bg-offwhite"
-                aria-label="Return To Top"
-                onClick={handleReturn}
-              >
-                <ReturnButtonIndicator />
-                <ReturnButtonIndicator />
-              </ReturnButton>
-            </FlexRowWrapper>
-          )}
-          {footerIsVisible && (
-            <FullWidthWrapper ref={footerRef} tw="flex-shrink-0">
-              <Footer />
-            </FullWidthWrapper>
-          )}
-        </ScrollableWrapper>
+
+        {footerIsVisible && (
+          <FullWidthWrapper ref={footerRef} tw="flex-shrink-0">
+            <Footer />
+          </FullWidthWrapper>
+        )}
       </animated.div>
-    </FlexRowWrapper>
+
+      <div css={[tw`fixed top-0 left-0 z-40 w-32 h-screen bg-charcoal`, gutterWidthStyles]} />
+      <div css={[tw`fixed top-0 right-0 z-40 w-32 h-screen bg-charcoal`, gutterWidthStyles]} />
+    </>
   );
 };

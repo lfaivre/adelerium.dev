@@ -55,7 +55,7 @@ const NotFoundPage = ({ data, location: { pathname } }: PageProps): ReactElement
         <FlexColumnWrapper
           alignItems="items-center"
           justifyContent="justify-center"
-          tw="w-full h-full"
+          tw="flex-grow w-full"
         >
           <animated.div style={springProps} tw="flex flex-row justify-center p-8 w-full">
             <Img
