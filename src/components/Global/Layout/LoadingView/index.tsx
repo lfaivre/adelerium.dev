@@ -1,12 +1,25 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import 'twin.macro';
 
 import { LoadingAnimation } from './LoadingAnimation';
 
+import { useAppState, useAppDispatch } from '../../../../shared/hooks/global-state';
+import { usePathData } from '../../../../shared/hooks/location';
+
+import { SET_LOADING } from '../../../../shared/types/state';
+
 import { FlexRowWrapper } from '../../../../shared/styles/wrappers';
 
 export const LoadingView = (): ReactElement => {
-  return (
+  const { isLoading } = useAppState();
+  const dispatch = useAppDispatch();
+  const { pathname } = usePathData();
+
+  useEffect(() => {
+    dispatch({ type: SET_LOADING, isLoading: true });
+  }, [pathname, dispatch]);
+
+  return isLoading ? (
     <FlexRowWrapper
       alignItems="items-center"
       justifyContent="justify-center"
@@ -15,5 +28,7 @@ export const LoadingView = (): ReactElement => {
     >
       <LoadingAnimation />
     </FlexRowWrapper>
+  ) : (
+    <></>
   );
 };

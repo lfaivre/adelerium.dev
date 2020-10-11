@@ -14,8 +14,8 @@ export const useDimensions = ({ ref }: useDimensionsProps): useDimensionsState =
   useEffect(() => {
     resizeObserverRef.current = new ResizeObserver((entries = []) => {
       entries.forEach((entry) => {
-        const { width, height } = entry.contentRect;
-        setDimensions({ width, height });
+        const { clientWidth, clientHeight } = entry.target;
+        setDimensions({ width: clientWidth, height: clientHeight });
       });
     });
 
