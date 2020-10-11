@@ -133,7 +133,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             alignItems="items-start"
             justifyContent="justify-center"
             backgroundColor="bg-offwhite"
-            tw="p-4 md:px-8 w-full"
+            tw="flex-shrink-0 p-4 md:px-8 w-full"
             ref={headerRef}
           >
             <Header />
@@ -160,7 +160,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             </FlexRowWrapper>
           )}
           {footerIsVisible && (
-            <FullWidthWrapper ref={footerRef}>
+            <FullWidthWrapper ref={footerRef} tw="flex-shrink-0">
               <Footer />
             </FullWidthWrapper>
           )}

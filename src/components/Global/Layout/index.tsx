@@ -35,7 +35,7 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
         alignItems="items-center"
         justifyContent="justify-start"
         ref={layoutRef}
-        tw="relative w-full max-w-global h-screen overflow-hidden"
+        tw="relative w-full max-w-global h-full overflow-x-hidden"
       >
         {isLoading && <LoadingView />}
         <DefaultView>{children}</DefaultView>
