@@ -129,12 +129,13 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   const headerWrapperProps = useSpring({
     to: {
-      display: headerIsVisible && windowGutterWidth ? `flex` : `none`,
-      left: windowGutterWidth
-        ? sideBarIsVisible
-          ? windowGutterWidth + sideBarWidth
-          : windowGutterWidth
-        : 0,
+      display: headerIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
+      left:
+        windowGutterWidth !== undefined
+          ? sideBarIsVisible
+            ? windowGutterWidth + sideBarWidth
+            : windowGutterWidth
+          : 0,
     },
     config: { ...config.default, clamp: false },
   });
@@ -144,12 +145,13 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
       display: `none`,
     },
     to: {
-      display: sideBarIsVisible && windowGutterWidth ? `flex` : `none`,
-      left: windowGutterWidth
-        ? sideBarIsVisible
-          ? windowGutterWidth
-          : windowGutterWidth - sideBarWidth
-        : 0,
+      display: sideBarIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
+      left:
+        windowGutterWidth !== undefined
+          ? sideBarIsVisible
+            ? windowGutterWidth
+            : windowGutterWidth - sideBarWidth
+          : 0,
     },
     config: { ...config.default, clamp: false },
   });
@@ -157,7 +159,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const contentWrapperProps = useSpring({
     to: {
       paddingTop: headerIsVisible ? headerHeight : 0,
-      marginLeft: windowGutterWidth ? (sideBarIsVisible ? sideBarWidth : 0) : 0,
+      marginLeft: windowGutterWidth !== undefined ? (sideBarIsVisible ? sideBarWidth : 0) : 0,
     },
     config: { ...config.default, clamp: false },
   });
