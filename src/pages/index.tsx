@@ -7,7 +7,7 @@ import { SEO } from '../components/Global/SEO';
 import { Header } from '../components/Global/Layout/DefaultView/Header';
 import { KoiPond } from '../components/HomePage/KoiPond';
 
-import { useAppState, useAppDispatch } from '../shared/hooks/global-state';
+import { useAppState, useAppDispatch } from '../shared/hooks/app-state';
 import { useDimensions } from '../shared/hooks/useDimensions';
 
 import { SCREEN_SIZE } from '../shared/constants/presentation';
@@ -77,10 +77,10 @@ const IndexPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
   }, []);
 
   const buttonRef = useRef(null);
-  const { width } = useDimensions({ ref: buttonRef });
+  const { width: sideBarToggleWidth } = useDimensions({ ref: buttonRef });
 
   const positionLeftStyles = css`
-    left: ${-(width / 2) + 32}px;
+    left: ${-(sideBarToggleWidth / 2) + 32}px;
   `;
 
   return (

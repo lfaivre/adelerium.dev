@@ -1,8 +1,6 @@
-import React, { createContext, useContext, useEffect, ReactElement } from 'react';
+import React, { createContext, useContext, ReactElement } from 'react';
 import { useImmerReducer } from 'use-immer';
 
-import { useWindowWidth, useWindowHeight } from './screen-size';
-import { SCREEN_SIZE } from '../constants/presentation';
 import {
   SET_VIEW,
   SET_DIMENSIONS,
@@ -33,10 +31,11 @@ const initialState: State = {
   },
 };
 
-/* eslint-disable unicorn/no-useless-undefined */
+// eslint-disable-next-line unicorn/no-useless-undefined
 const AppStateContext = createContext<State | undefined>(undefined);
+
+// eslint-disable-next-line unicorn/no-useless-undefined
 const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
-/* eslint-enable unicorn/no-useless-undefined */
 
 /**
  * @todo Fix Type Issues in Reducer
@@ -82,25 +81,6 @@ const appStateReducer = (draft: State, action: Action): void => {
 
 const AppProvider = ({ children }: AppProviderProps): ReactElement => {
   const [state, dispatch] = useImmerReducer(appStateReducer, initialState);
-
-  const windowWidth = useWindowWidth();
-  const windowHeight = useWindowHeight();
-
-  useEffect(() => {
-    const updatedWindowWidth = windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
-    dispatch({
-      type: SET_DIMENSIONS,
-      payload: { appWindow: { width: updatedWindowWidth, height: -1 } },
-    });
-  }, [windowWidth, dispatch]);
-
-  useEffect(() => {
-    const updatedWindowHeight = windowHeight !== undefined ? windowHeight : 0;
-    dispatch({
-      type: SET_DIMENSIONS,
-      payload: { appWindow: { width: -1, height: updatedWindowHeight } },
-    });
-  }, [windowHeight, dispatch]);
 
   return (
     <AppStateContext.Provider value={state}>

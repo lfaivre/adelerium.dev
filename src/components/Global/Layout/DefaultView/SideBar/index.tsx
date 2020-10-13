@@ -4,8 +4,8 @@ import Img from 'gatsby-image';
 import tw, { css } from 'twin.macro';
 
 // @todo: Refactor TypeScript, patched in for now
-import { useAppState } from '../../../../../shared/hooks/global-state';
-import { usePathData } from '../../../../../shared/hooks/location';
+import { useAppState } from '../../../../../shared/hooks/app-state';
+import { usePathData } from '../../../../../shared/hooks/usePathData';
 import { getStrippedInternalLinkPath } from '../../../../../services/strings';
 import { SiteData } from '../../../../../shared/constants/contentful-mock';
 import { SideBarView as SBV } from '../../../../../shared/types/presentation';

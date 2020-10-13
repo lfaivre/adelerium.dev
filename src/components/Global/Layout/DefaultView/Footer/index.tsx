@@ -4,7 +4,7 @@ import 'twin.macro';
 
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
-import { usePathData } from '../../../../../shared/hooks/location';
+import { usePathData } from '../../../../../shared/hooks/usePathData';
 import { getRandomInt } from '../../../../../services/math';
 
 import { InternalLinkDirection } from '../../../../../shared/types/presentation';

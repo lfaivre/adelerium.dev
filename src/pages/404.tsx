@@ -6,7 +6,7 @@ import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 
-import { useAppState, useAppDispatch } from '../shared/hooks/global-state';
+import { useAppState, useAppDispatch } from '../shared/hooks/app-state';
 
 import { SET_VIEW } from '../shared/types/state';
 import { PageQueryData } from '../shared/types/pages/404';

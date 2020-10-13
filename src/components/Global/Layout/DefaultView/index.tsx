@@ -2,8 +2,8 @@ import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } fro
 import { useSpring, animated, config } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
-import { useAppState, useAppDispatch } from '../../../../shared/hooks/global-state';
-import { usePathData } from '../../../../shared/hooks/location';
+import { useAppState, useAppDispatch } from '../../../../shared/hooks/app-state';
+import { usePathData } from '../../../../shared/hooks/usePathData';
 import { useDimensions } from '../../../../shared/hooks/useDimensions';
 import { SCREEN_SIZE } from '../../../../shared/constants/presentation';
 import { SET_VIEW, SET_DIMENSIONS } from '../../../../shared/types/state';
@@ -85,37 +85,28 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
    */
 
   const headerRef = useRef(null);
-  const { height: observedHeaderHeight } = useDimensions({ ref: headerRef });
+  const headerDimensions = useDimensions({ ref: headerRef });
 
   useLayoutEffect(() => {
-    if (observedHeaderHeight === 0) return;
-    dispatch({
-      type: SET_DIMENSIONS,
-      payload: { header: { width: -1, height: observedHeaderHeight } },
-    });
-  }, [observedHeaderHeight, dispatch]);
+    const { width, height } = headerDimensions;
+    dispatch({ type: SET_DIMENSIONS, payload: { header: { width, height } } });
+  }, [headerDimensions, dispatch]);
 
   const footerRef = useRef(null);
-  const { height: observedFooterHeight } = useDimensions({ ref: footerRef });
+  const footerDimensions = useDimensions({ ref: footerRef });
 
   useLayoutEffect(() => {
-    if (observedFooterHeight === 0) return;
-    dispatch({
-      type: SET_DIMENSIONS,
-      payload: { footer: { width: -1, height: observedFooterHeight } },
-    });
-  }, [observedFooterHeight, dispatch]);
+    const { width, height } = footerDimensions;
+    dispatch({ type: SET_DIMENSIONS, payload: { footer: { width, height } } });
+  }, [footerDimensions, dispatch]);
 
   const returnRef = useRef(null);
-  const { height: observedReturnButtonHeight } = useDimensions({ ref: returnRef });
+  const returnButtonDimensions = useDimensions({ ref: returnRef });
 
   useLayoutEffect(() => {
-    if (observedReturnButtonHeight === 0) return;
-    dispatch({
-      type: SET_DIMENSIONS,
-      payload: { returnButton: { width: -1, height: observedReturnButtonHeight } },
-    });
-  }, [observedReturnButtonHeight, dispatch]);
+    const { width, height } = returnButtonDimensions;
+    dispatch({ type: SET_DIMENSIONS, payload: { returnButton: { width, height } } });
+  }, [returnButtonDimensions, dispatch]);
 
   /**
    * After Layout Effect(s)

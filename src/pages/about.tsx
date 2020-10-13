@@ -6,7 +6,7 @@ import { SEO } from '../components/Global/SEO';
 import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
 
-import { useAppState } from '../shared/hooks/global-state';
+import { useAppState } from '../shared/hooks/app-state';
 import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
 
 import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';

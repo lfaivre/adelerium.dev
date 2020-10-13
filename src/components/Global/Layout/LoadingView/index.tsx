@@ -3,8 +3,8 @@ import 'twin.macro';
 
 import { LoadingAnimation } from './LoadingAnimation';
 
-import { useAppState, useAppDispatch } from '../../../../shared/hooks/global-state';
-import { usePathData } from '../../../../shared/hooks/location';
+import { useAppState, useAppDispatch } from '../../../../shared/hooks/app-state';
+import { usePathData } from '../../../../shared/hooks/usePathData';
 
 import { SET_VIEW } from '../../../../shared/types/state';
 

@@ -1,8 +1,9 @@
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { GlobalStyles } from 'twin.macro';
 
-import { useAppDispatch } from '../../../shared/hooks/global-state';
+import { useAppDispatch } from '../../../shared/hooks/app-state';
 
+import { useWindowDimensions } from '../../../shared/hooks/useWindowDimensions';
 import { useDimensions } from '../../../shared/hooks/useDimensions';
 import { SET_DIMENSIONS } from '../../../shared/types/state';
 
@@ -15,16 +16,20 @@ type LayoutProps = { children: ReactElement };
 
 export const Layout = ({ children }: LayoutProps): ReactElement => {
   const dispatch = useAppDispatch();
-
-  const layoutRef = useRef(null);
-  const { width: observedLayoutWidth } = useDimensions({ ref: layoutRef });
+  const windowDimensions = useWindowDimensions();
 
   useLayoutEffect(() => {
-    dispatch({
-      type: SET_DIMENSIONS,
-      payload: { layout: { width: observedLayoutWidth, height: -1 } },
-    });
-  }, [observedLayoutWidth, dispatch]);
+    const { width, height } = windowDimensions;
+    dispatch({ type: SET_DIMENSIONS, payload: { appWindow: { width, height } } });
+  }, [windowDimensions, dispatch]);
+
+  const layoutRef = useRef(null);
+  const layoutDimensions = useDimensions({ ref: layoutRef });
+
+  useLayoutEffect(() => {
+    const { width, height } = layoutDimensions;
+    dispatch({ type: SET_DIMENSIONS, payload: { layout: { width, height } } });
+  }, [layoutDimensions, dispatch]);
 
   return (
     <>

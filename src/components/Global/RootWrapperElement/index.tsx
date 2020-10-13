@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { AppProvider } from '../../../shared/hooks/global-state';
+import { AppProvider } from '../../../shared/hooks/app-state';
 
 type RootWrapperElementProps = { element: ReactElement };
 
