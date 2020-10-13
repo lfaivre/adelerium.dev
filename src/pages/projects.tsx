@@ -13,8 +13,16 @@ import { PageQueryData } from '../shared/types/pages/projects';
 import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
 
 const ProjectsPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
-  const { headerHeight, footerHeight, returnHeight } = useAppState();
-  const staticsHeight = headerHeight + footerHeight + returnHeight;
+  const {
+    dimensions: {
+      header: { height: headerHeight },
+      footer: { height: footerHeight },
+      returnButton: { height: returnButtonHeight },
+    },
+  } = useAppState();
+
+  // @todo Convert this to component state
+  const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const projects = (data as PageQueryData).allContentfulProject.edges;

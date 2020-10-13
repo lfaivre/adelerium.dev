@@ -36,8 +36,16 @@ import {
 const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
 
 const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
-  const { headerHeight, footerHeight, returnHeight } = useAppState();
-  const staticsHeight = headerHeight + footerHeight + returnHeight;
+  const {
+    dimensions: {
+      header: { height: headerHeight },
+      footer: { height: footerHeight },
+      returnButton: { height: returnButtonHeight },
+    },
+  } = useAppState();
+
+  // @todo Convert this to component state
+  const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: SCREEN_SIZE.MD });
 

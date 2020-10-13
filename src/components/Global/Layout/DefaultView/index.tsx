@@ -6,13 +6,7 @@ import { useAppState, useAppDispatch } from '../../../../shared/hooks/global-sta
 import { usePathData } from '../../../../shared/hooks/location';
 import { useDimensions } from '../../../../shared/hooks/useDimensions';
 import { SCREEN_SIZE } from '../../../../shared/constants/presentation';
-import {
-  SET_LOADING,
-  SET_SIDEBAR_VISIBILITY,
-  SET_HEADER_HEIGHT,
-  SET_FOOTER_HEIGHT,
-  SET_RETURN_HEIGHT,
-} from '../../../../shared/types/state';
+import { SET_VIEW, SET_DIMENSIONS } from '../../../../shared/types/state';
 
 import { SideBar } from './SideBar';
 import { Header } from './Header';
@@ -31,21 +25,25 @@ type DefaultViewProps = { children: ReactElement };
 
 export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const {
-    isLoading,
-    sideBarIsVisible,
-    headerIsVisible,
-    returnButtonIsVisible,
-    footerIsVisible,
-    windowWidth,
-    layoutWidth,
-    headerHeight,
+    view: {
+      loadingScreen: { isVisible: loadingScreenIsVisible },
+      sideBar: { isVisible: sideBarIsVisible },
+      header: { isVisible: headerIsVisible },
+      footer: { isVisible: footerIsVisible },
+      returnButton: { isVisible: returnButtonIsVisible },
+    },
+    dimensions: {
+      appWindow: { width: windowWidth },
+      layout: { width: layoutWidth },
+      header: { height: headerHeight },
+    },
   } = useAppState();
   const dispatch = useAppDispatch();
   const { pathname } = usePathData();
 
   const handleOutOfBoundsToggle = (): void => {
     if (!sideBarIsVisible) return;
-    dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: false });
+    dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: false } } });
   };
 
   /**
@@ -75,7 +73,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   useLayoutEffect(() => {
     if (typeof window !== `undefined`) window.scrollTo({ top: 0 });
-    dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: false });
+    dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: false } } });
   }, [pathname, dispatch]);
 
   /**
@@ -91,7 +89,10 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   useLayoutEffect(() => {
     if (observedHeaderHeight === 0) return;
-    dispatch({ type: SET_HEADER_HEIGHT, headerHeight: observedHeaderHeight });
+    dispatch({
+      type: SET_DIMENSIONS,
+      payload: { header: { width: -1, height: observedHeaderHeight } },
+    });
   }, [observedHeaderHeight, dispatch]);
 
   const footerRef = useRef(null);
@@ -99,16 +100,22 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   useLayoutEffect(() => {
     if (observedFooterHeight === 0) return;
-    dispatch({ type: SET_FOOTER_HEIGHT, footerHeight: observedFooterHeight });
+    dispatch({
+      type: SET_DIMENSIONS,
+      payload: { footer: { width: -1, height: observedFooterHeight } },
+    });
   }, [observedFooterHeight, dispatch]);
 
   const returnRef = useRef(null);
-  const { height: observedReturnHeight } = useDimensions({ ref: returnRef });
+  const { height: observedReturnButtonHeight } = useDimensions({ ref: returnRef });
 
   useLayoutEffect(() => {
-    if (observedReturnHeight === 0) return;
-    dispatch({ type: SET_RETURN_HEIGHT, returnHeight: observedReturnHeight });
-  }, [observedReturnHeight, dispatch]);
+    if (observedReturnButtonHeight === 0) return;
+    dispatch({
+      type: SET_DIMENSIONS,
+      payload: { returnButton: { width: -1, height: observedReturnButtonHeight } },
+    });
+  }, [observedReturnButtonHeight, dispatch]);
 
   /**
    * After Layout Effect(s)
@@ -117,9 +124,9 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
    */
 
   useEffect(() => {
-    if (!isLoading) return;
-    dispatch({ type: SET_LOADING, isLoading: false });
-  }, [isLoading, dispatch]);
+    if (!loadingScreenIsVisible) return;
+    dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: false } } });
+  }, [loadingScreenIsVisible, dispatch]);
 
   /**
    * Initialize React Spring Element Configurations
@@ -226,6 +233,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         <FullWidthWrapper
           ref={footerRef}
           css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0`]}
+          backgroundColor="bg-offwhite"
         >
           <Footer />
         </FullWidthWrapper>

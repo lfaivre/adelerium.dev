@@ -1,37 +1,36 @@
-import React, { createContext, useContext, useReducer, useEffect, ReactElement } from 'react';
+import React, { createContext, useContext, useEffect, ReactElement } from 'react';
+import { useImmerReducer } from 'use-immer';
 
 import { useWindowWidth, useWindowHeight } from './screen-size';
 import { SCREEN_SIZE } from '../constants/presentation';
 import {
-  SET_LOADING,
-  SET_SIDEBAR_VISIBILITY,
-  SET_HEADER_VISIBILITY,
-  SET_RETURN_BUTTON_VISIBILITY,
-  SET_FOOTER_VISIBILITY,
-  SET_WINDOW_WIDTH,
-  SET_WINDOW_HEIGHT,
-  SET_LAYOUT_WIDTH,
-  SET_HEADER_HEIGHT,
-  SET_FOOTER_HEIGHT,
-  SET_RETURN_HEIGHT,
+  SET_VIEW,
+  SET_DIMENSIONS,
   Action,
   Dispatch,
+  ElementViewStates,
+  ElementViewState,
+  ElementDimensions,
+  ElementDimensionsState,
   State,
   AppProviderProps,
 } from '../types/state';
 
 const initialState: State = {
-  isLoading: true,
-  sideBarIsVisible: false,
-  headerIsVisible: true,
-  returnButtonIsVisible: true,
-  footerIsVisible: true,
-  windowWidth: 0,
-  windowHeight: 0,
-  layoutWidth: 0,
-  headerHeight: 0,
-  footerHeight: 0,
-  returnHeight: 0,
+  view: {
+    loadingScreen: { isVisible: true },
+    sideBar: { isVisible: false },
+    header: { isVisible: true },
+    footer: { isVisible: true },
+    returnButton: { isVisible: true },
+  },
+  dimensions: {
+    appWindow: { width: 0, height: 0 },
+    layout: { width: 0, height: 0 },
+    header: { width: 0, height: 0 },
+    footer: { width: 0, height: 0 },
+    returnButton: { width: 0, height: 0 },
+  },
 };
 
 /* eslint-disable unicorn/no-useless-undefined */
@@ -39,62 +38,69 @@ const AppStateContext = createContext<State | undefined>(undefined);
 const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
 /* eslint-enable unicorn/no-useless-undefined */
 
-const appStateReducer = (state: State, action: Action): State => {
+/**
+ * @todo Fix Type Issues in Reducer
+ *
+ * @note Currently unable to fulfill type checking requirements using bracket notation
+ * @issue https://github.com/microsoft/TypeScript/issues/10530
+ */
+
+const appStateReducer = (draft: State, action: Action): void => {
   switch (action.type) {
-    case SET_LOADING: {
-      return { ...state, isLoading: action.isLoading };
+    case SET_VIEW: {
+      (Object.keys(action.payload) as [keyof Partial<ElementViewState>]).forEach((element) => {
+        (Object.keys(action.payload[element] as Partial<ElementViewStates>) as [
+          keyof Partial<ElementViewStates>
+        ]).forEach((attribute) => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          draft.view[element][attribute] = action.payload[element]![attribute];
+        });
+      });
+      break;
     }
-    case SET_SIDEBAR_VISIBILITY: {
-      return { ...state, sideBarIsVisible: action.sideBarIsVisible };
-    }
-    case SET_HEADER_VISIBILITY: {
-      return { ...state, headerIsVisible: action.headerIsVisible };
-    }
-    case SET_RETURN_BUTTON_VISIBILITY: {
-      return { ...state, returnButtonIsVisible: action.returnButtonIsVisible };
-    }
-    case SET_FOOTER_VISIBILITY: {
-      return { ...state, footerIsVisible: action.footerIsVisible };
-    }
-    case SET_WINDOW_WIDTH: {
-      return { ...state, windowWidth: action.windowWidth };
-    }
-    case SET_WINDOW_HEIGHT: {
-      return { ...state, windowHeight: action.windowHeight };
-    }
-    case SET_LAYOUT_WIDTH: {
-      return { ...state, layoutWidth: action.layoutWidth };
-    }
-    case SET_HEADER_HEIGHT: {
-      return { ...state, headerHeight: action.headerHeight };
-    }
-    case SET_FOOTER_HEIGHT: {
-      return { ...state, footerHeight: action.footerHeight };
-    }
-    case SET_RETURN_HEIGHT: {
-      return { ...state, returnHeight: action.returnHeight };
+    case SET_DIMENSIONS: {
+      (Object.keys(action.payload) as [keyof Partial<ElementDimensionsState>]).forEach(
+        (element) => {
+          (Object.keys(action.payload[element] as Partial<ElementDimensions>) as [
+            keyof Partial<ElementDimensions>
+          ]).forEach((attribute) => {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            if (action.payload[element]![attribute] === -1) return;
+
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            draft.dimensions[element][attribute] = action.payload[element]![attribute];
+          });
+        }
+      );
+      break;
     }
     default: {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      throw new Error(`UNHANDLED ACTION: ${action}`);
+      break;
     }
   }
 };
 
 const AppProvider = ({ children }: AppProviderProps): ReactElement => {
-  const [state, dispatch] = useReducer(appStateReducer, initialState);
+  const [state, dispatch] = useImmerReducer(appStateReducer, initialState);
+
   const windowWidth = useWindowWidth();
   const windowHeight = useWindowHeight();
 
   useEffect(() => {
-    const newWindowWidth = windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
-    dispatch({ type: SET_WINDOW_WIDTH, windowWidth: newWindowWidth });
-  }, [windowWidth]);
+    const updatedWindowWidth = windowWidth !== undefined ? windowWidth : SCREEN_SIZE.MOBILE;
+    dispatch({
+      type: SET_DIMENSIONS,
+      payload: { appWindow: { width: updatedWindowWidth, height: -1 } },
+    });
+  }, [windowWidth, dispatch]);
 
   useEffect(() => {
-    const newWindowHeight = windowHeight !== undefined ? windowHeight : 0;
-    dispatch({ type: SET_WINDOW_HEIGHT, windowHeight: newWindowHeight });
-  }, [windowHeight]);
+    const updatedWindowHeight = windowHeight !== undefined ? windowHeight : 0;
+    dispatch({
+      type: SET_DIMENSIONS,
+      payload: { appWindow: { width: -1, height: updatedWindowHeight } },
+    });
+  }, [windowHeight, dispatch]);
 
   return (
     <AppStateContext.Provider value={state}>

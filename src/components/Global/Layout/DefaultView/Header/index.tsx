@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 
 import { useAppState, useAppDispatch } from '../../../../../shared/hooks/global-state';
 import { usePathData } from '../../../../../shared/hooks/location';
-import { SET_SIDEBAR_VISIBILITY } from '../../../../../shared/types/state';
+import { SET_VIEW } from '../../../../../shared/types/state';
 
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
@@ -19,7 +19,11 @@ const ERROR_HEADER_TEXT = `Error`;
 type HeaderProps = { disableToggle?: boolean };
 
 export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
-  const { sideBarIsVisible } = useAppState();
+  const {
+    view: {
+      sideBar: { isVisible: sideBarIsVisible },
+    },
+  } = useAppState();
   const dispatch = useAppDispatch();
   const { pathname, isIndex, pathData, isValidPath } = usePathData();
   const [headerTitle, setHeaderTitle] = useState<string>(DEFAULT_HEADER_TEXT);
@@ -55,7 +59,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
           textAlign="text-left"
           onClick={() =>
             !disableToggle &&
-            dispatch({ type: SET_SIDEBAR_VISIBILITY, sideBarIsVisible: !sideBarIsVisible })
+            dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })
           }
           css={[
             tw`block absolute left-0 z-0 transition-opacity duration-300 ease-in-out opacity-0 focus:outline-none pt-1 md:pt-2 h-full uppercase`,

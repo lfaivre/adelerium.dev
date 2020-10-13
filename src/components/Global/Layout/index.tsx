@@ -4,7 +4,7 @@ import { GlobalStyles } from 'twin.macro';
 import { useAppDispatch } from '../../../shared/hooks/global-state';
 
 import { useDimensions } from '../../../shared/hooks/useDimensions';
-import { SET_LAYOUT_WIDTH } from '../../../shared/types/state';
+import { SET_DIMENSIONS } from '../../../shared/types/state';
 
 import { DefaultView } from './DefaultView';
 import { LoadingView } from './LoadingView';
@@ -20,7 +20,10 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
   const { width: observedLayoutWidth } = useDimensions({ ref: layoutRef });
 
   useLayoutEffect(() => {
-    dispatch({ type: SET_LAYOUT_WIDTH, layoutWidth: observedLayoutWidth });
+    dispatch({
+      type: SET_DIMENSIONS,
+      payload: { layout: { width: observedLayoutWidth, height: -1 } },
+    });
   }, [observedLayoutWidth, dispatch]);
 
   return (

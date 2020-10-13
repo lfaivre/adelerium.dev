@@ -8,32 +8,37 @@ import { SEO } from '../components/Global/SEO';
 
 import { useAppState, useAppDispatch } from '../shared/hooks/global-state';
 
-import { SET_RETURN_BUTTON_VISIBILITY, SET_FOOTER_VISIBILITY } from '../shared/types/state';
+import { SET_VIEW } from '../shared/types/state';
 import { PageQueryData } from '../shared/types/pages/404';
 
 import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
 
 const NotFoundPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
   const {
-    headerHeight,
-    footerHeight,
-    returnHeight,
-    returnButtonIsVisible,
-    footerIsVisible,
+    dimensions: {
+      header: { height: headerHeight },
+      footer: { height: footerHeight },
+      returnButton: { height: returnButtonHeight },
+    },
   } = useAppState();
-  const staticsHeight = headerHeight + footerHeight + returnHeight;
+
+  // @todo Convert this to component state
+  const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch({ type: SET_RETURN_BUTTON_VISIBILITY, returnButtonIsVisible: false });
-    dispatch({ type: SET_FOOTER_VISIBILITY, footerIsVisible: false });
-
+    dispatch({
+      type: SET_VIEW,
+      payload: { footer: { isVisible: false }, returnButton: { isVisible: false } },
+    });
     return () => {
-      dispatch({ type: SET_RETURN_BUTTON_VISIBILITY, returnButtonIsVisible: true });
-      dispatch({ type: SET_FOOTER_VISIBILITY, footerIsVisible: true });
+      dispatch({
+        type: SET_VIEW,
+        payload: { footer: { isVisible: true }, returnButton: { isVisible: true } },
+      });
     };
-  }, [returnButtonIsVisible, footerIsVisible, dispatch]);
+  }, [dispatch]);
 
   const metaImage = (data as PageQueryData).contentfulAsset.fixed;
   const accentImage = (data as PageQueryData).accentImage.childImageSharp.fluid;

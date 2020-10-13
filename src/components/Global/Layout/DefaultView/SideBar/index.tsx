@@ -31,7 +31,14 @@ const IPHONE_5_LANDSCAPE_HEIGHT = 320;
 // @todo Break into smaller, more reusable components
 
 export const SideBar = (): ReactElement => {
-  const { sideBarIsVisible, windowHeight } = useAppState();
+  const {
+    view: {
+      sideBar: { isVisible: sideBarIsVisible },
+    },
+    dimensions: {
+      appWindow: { height: windowHeight },
+    },
+  } = useAppState();
   const pathData = usePathData();
   const [sideBarView, setSideBarView] = useState(SBV.InternalLinks);
 

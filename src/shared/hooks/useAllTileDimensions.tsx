@@ -40,7 +40,11 @@ const normalizeDimension = (dimension: number): number => (dimension >= -1 ? dim
 export const useAllTileDimensions = ({
   breakpoint,
 }: UseAllTileDimensionsProps): UseAllTileDimensionsState => {
-  const { layoutWidth } = useAppState();
+  const {
+    dimensions: {
+      layout: { width: layoutWidth },
+    },
+  } = useAppState();
   const [configuration, setConfiguration] = useImmer(initialUseAllTileDimensionsConfiguration);
   const [metBreakpoint, setMetBreakpoint] = useState(layoutWidth >= breakpoint);
   const [allTileDimensions, setAllTileDimensions] = useImmer(initialAllTileDimensions);
