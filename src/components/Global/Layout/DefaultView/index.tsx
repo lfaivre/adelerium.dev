@@ -100,8 +100,8 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     dispatch({ type: SET_DIMENSIONS, payload: { footer: { width, height } } });
   }, [footerDimensions, dispatch]);
 
-  const returnRef = useRef(null);
-  const returnButtonDimensions = useDimensions({ ref: returnRef });
+  const returnButtonRef = useRef(null);
+  const returnButtonDimensions = useDimensions({ ref: returnButtonRef });
 
   useLayoutEffect(() => {
     const { width, height } = returnButtonDimensions;
@@ -139,9 +139,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   });
 
   const sideBarWrapperProps = useSpring({
-    from: {
-      display: `none`,
-    },
+    from: { display: `none` },
     to: {
       display: sideBarIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
       left:
@@ -156,7 +154,6 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   const contentWrapperProps = useSpring({
     to: {
-      paddingTop: headerIsVisible ? headerHeight : 0,
       marginLeft: windowGutterWidth !== undefined ? (sideBarIsVisible ? sideBarWidth : 0) : 0,
     },
     config: { ...config.default, clamp: false },
@@ -195,6 +192,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         css={[
           css`
             width: ${layoutWidth}px;
+            padding-top: ${headerIsVisible ? headerHeight : 0}px;
           `,
           tw`z-0 flex flex-col items-start justify-start w-full`,
         ]}
@@ -204,7 +202,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         <FlexRowWrapper
           alignItems="items-center"
           justifyContent="justify-center"
-          ref={returnRef}
+          ref={returnButtonRef}
           css={[
             returnButtonIsVisible ? tw`flex` : tw`hidden`,
             tw`flex-shrink-0 md:justify-end p-8 w-full`,
