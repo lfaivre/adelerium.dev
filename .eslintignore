@@ -2,6 +2,7 @@
 
 .eslintrc.js
 @types/generated/contentful.d.ts
+apollo.config.js
 gatsby-browser.js
 gatsby-config.js
 gatsby-node.js
@@ -19,3 +20,4 @@ tailwind.config.js
 __mocks__/
 node_modules/
 public/
+src/graphql/types/

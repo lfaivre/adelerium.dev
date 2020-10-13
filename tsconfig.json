@@ -1,5 +1,6 @@
 {
   "include": ["./src/**/*", "@types/**/*.d.ts"],
+  "exclude": ["./src/graphql/types/globalTypes.ts"],
   "compilerOptions": {
     /* Basic Options */
     "target": "es5",

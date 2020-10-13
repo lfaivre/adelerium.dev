@@ -57,6 +57,7 @@
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
+    "apollo": "^2.31.0",
     "babel-jest": "^26.5.2",
     "babel-preset-gatsby": "^0.5.13",
     "contentful-typescript-codegen": "^3.2.1",
@@ -98,7 +99,8 @@
     "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prettier:check": "prettier --list-different \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
+    "graphql:ts-codegen": "apollo client:codegen --target=typescript --useReadOnlyTypes --mergeInFieldsFromFragmentSpreads --outputFlat ./src/graphql/types/"
   },
   "husky": {
     "hooks": {
