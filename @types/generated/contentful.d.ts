@@ -65,7 +65,7 @@ export interface ILinkFields {
   title: string;
 
   /** Type */
-  type: 'internal' | 'external';
+  type: 'Internal' | 'External';
 
   /** Destination */
   destination: string;
@@ -74,7 +74,7 @@ export interface ILinkFields {
   displayText: string;
 }
 
-/** Link entity used in portfolio website (https://www.adelerium.dev/). */
+/** Link data sourced by multiple components. */
 
 export interface ILink extends Entry<ILinkFields> {
   sys: {
@@ -122,16 +122,16 @@ export interface IProjectFields {
   technologyTags: string[];
 
   /** Hosted URL */
-  hostedUrl: string;
+  hostedUrl?: string | undefined;
 
   /** GitHub URL */
-  gitHubUrl: string;
+  gitHubUrl?: string | undefined;
 
   /** Figma URL */
-  figmaUrl: string;
+  figmaUrl?: string | undefined;
 }
 
-/** Project entity that represents projects to display on portfolio site (http://adelerium.dev/). */
+/** Data sourced by Project component(s). */
 
 export interface IProject extends Entry<IProjectFields> {
   sys: {

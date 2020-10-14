@@ -1,18 +1,19 @@
 import React, { ReactElement } from 'react';
-import { PageProps, graphql } from 'gatsby';
-import { SkeletonTheme } from 'react-loading-skeleton';
+import { PageProps } from 'gatsby';
+import { FixedObject } from 'gatsby-image';
 import 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
-import { Preview } from '../components/ProjectsPage/Preview';
+import { PreviewList } from '../components/ProjectsPage/PreviewList';
 
+import { useProjectsPageQueryData } from '../graphql/queries/useProjectsPageQueryData';
 import { useAppState } from '../shared/hooks/app-state';
 
-import { PageQueryData } from '../shared/types/pages/projects';
+import { MinHeightScreenWrapper } from '../shared/styles/wrappers';
 
-import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
+const ProjectsPage = ({ location: { pathname } }: PageProps): ReactElement => {
+  const { metaImage } = useProjectsPageQueryData();
 
-const ProjectsPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
   const {
     dimensions: {
       header: { height: headerHeight },
@@ -24,24 +25,11 @@ const ProjectsPage = ({ data, location: { pathname } }: PageProps): ReactElement
   // @todo Convert this to component state
   const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
-  const metaImage = (data as PageQueryData).contentfulAsset.fixed;
-  const projects = (data as PageQueryData).allContentfulProject.edges;
-
   return (
     <>
-      <SEO title="Projects" pathname={pathname} image={metaImage} />
+      <SEO title="Projects" pathname={pathname} image={metaImage?.fixed as FixedObject} />
       <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
-        <SkeletonTheme
-          color="var(--color-OffWhite)"
-          highlightColor="var(--color-OffPink)"
-          tw="w-full"
-        >
-          <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
-            {projects.map(({ node }, index) => {
-              return <Preview project={node} order={index + 1} key={node.title} />;
-            })}
-          </FlexColumnWrapper>
-        </SkeletonTheme>
+        <PreviewList />
       </MinHeightScreenWrapper>
     </>
   );
@@ -49,37 +37,3 @@ const ProjectsPage = ({ data, location: { pathname } }: PageProps): ReactElement
 
 // eslint-disable-next-line import/no-default-export
 export default ProjectsPage;
-
-export const pageQuery = graphql`
-  query ProjectsPageQuery {
-    contentfulAsset(title: { eq: "Projects Page Meta Image" }) {
-      fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
-        ...GatsbyContentfulFixed
-      }
-    }
-    allContentfulProject(sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }) {
-      edges {
-        node {
-          id
-          title
-          rating
-          type
-          dateRangeBeginning(formatString: "MMM YYYY")
-          dateRangeEnd(formatString: "MMM YYYY")
-          previewDescription {
-            previewDescription
-          }
-          previewPicture {
-            fluid(maxWidth: 720, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          technologyTags
-          hostedUrl
-          gitHubUrl
-          figmaUrl
-        }
-      }
-    }
-  }
-`;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from 'react';
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import { useSpring, animated } from 'react-spring';
 import Skeleton from 'react-loading-skeleton';
 import tw from 'twin.macro';
@@ -9,7 +9,7 @@ import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 
-import { IProjectFields } from '../../../shared/types/pages/projects';
+import { PreviewListQuery_projectPreviews_edges_node as Project } from '../../../graphql/types/PreviewListQuery';
 import { ProjectDirection } from '../../../shared/types/presentation';
 
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
@@ -31,17 +31,16 @@ type PreviewContent = { [key in PreviewContentKey]: PreviewContentItem };
 type ExternalLinkTitle = `Hosted` | `GitHub` | `Figma`;
 type ExternalLinkItem = {
   title: ExternalLinkTitle;
-  url: string;
+  url: string | null;
   TextElement: ReactElement;
   Icon: ReactElement;
 };
 type ExternalLinkKey = `hosted` | `github` | `figma`;
 type ExternalLinks = { [key in ExternalLinkKey]: ExternalLinkItem };
 
-type PreviewProps = { project: IProjectFields; order: number };
+type PreviewProps = { project: Project; order: number };
 
-// @temp Need to figure out how to enable a default value for external links
-const TEMP_URL_PLACEHOLDER = 'https://github.com/lfaivre';
+const linkDestinationOnError = `https://github.com/lfaivre`;
 
 const calc = (x: number, y: number): [number, number, number] => [
   -(y - window.innerHeight / 2) / 40,
@@ -71,10 +70,11 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   }, [order]);
 
   const getDateString = (): string => {
-    if (project.dateRangeBeginning !== project.dateRangeEnd) {
-      return `${project.dateRangeBeginning} / ${project.dateRangeEnd}`;
+    if (!(project.dateRangeBeginning && project.dateRangeEnd)) return `No Date`;
+    if (project.dateRangeBeginning === project.dateRangeEnd) {
+      return `${project.dateRangeBeginning as string}`;
     }
-    return `${project.dateRangeBeginning}`;
+    return `${project.dateRangeBeginning as string} / ${project.dateRangeEnd as string}`;
   };
 
   const shouldDisplayContent = (): boolean => componentLoaded && imageLoaded;
@@ -84,11 +84,11 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   const previewContent: PreviewContent = {
     description: {
       title: `Description`,
-      content: project.previewDescription.previewDescription,
+      content: project.previewDescription?.previewDescription || `No Description`,
     },
     technology: {
       title: `Technology`,
-      content: project.technologyTags.join(', '),
+      content: project.technologyTags?.join(', ') || `No Tags`,
     },
   };
 
@@ -186,7 +186,11 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
                 isLeftOriented() ? tw`text-left` : tw`text-right`,
               ]}
             >
-              {shouldDisplayContent() ? `${project.type} - ${getDateString()}` : <Skeleton />}
+              {shouldDisplayContent() ? (
+                `${project.type || `Other`} - ${getDateString()}`
+              ) : (
+                <Skeleton />
+              )}
             </BoldType>
           </FlexColumnWrapper>
         </FlexRowWrapper>
@@ -197,14 +201,16 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           style={{ transform: props.xys.interpolate(translate as () => string) }}
           css={[tw`bg-offwhite p-4 w-full`, BoxShadowStyles]}
         >
-          <Img
-            fluid={project.previewPicture.fluid}
-            onLoad={() => setImageLoaded(true)}
-            alt={`Preview Image for ${project.title}`}
-            draggable={false}
-            backgroundColor="var(--color-OffWhite)"
-            css={[tw`w-full select-none`, BoxShadowStyles]}
-          />
+          {project.previewPicture && (
+            <Img
+              fluid={project.previewPicture.fluid as FluidObject | FluidObject[]}
+              onLoad={() => setImageLoaded(true)}
+              alt={`Preview Image for ${project.title || `Untitled`}`}
+              draggable={false}
+              backgroundColor="var(--color-OffWhite)"
+              css={[tw`w-full select-none`, BoxShadowStyles]}
+            />
+          )}
         </animated.div>
       </FlexColumnWrapper>
       <FlexColumnWrapper
@@ -270,10 +276,10 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         >
           {Object.keys(externalLinks).map(
             (key) =>
-              externalLinks[key as ExternalLinkKey].url !== TEMP_URL_PLACEHOLDER && (
+              externalLinks[key as ExternalLinkKey].url && (
                 <NormalParagraphTypeAsAnchor
-                  href={externalLinks[key as ExternalLinkKey].url}
-                  label={externalLinks[key as ExternalLinkKey].url}
+                  href={externalLinks[key as ExternalLinkKey].url || linkDestinationOnError}
+                  label={externalLinks[key as ExternalLinkKey].url || linkDestinationOnError}
                   color="text-offwhite"
                   css={[
                     tw`mr-8 last:mr-0 lowercase`,
