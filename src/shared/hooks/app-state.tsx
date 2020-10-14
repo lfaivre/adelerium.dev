@@ -58,19 +58,17 @@ const appStateReducer = (draft: State, action: Action): void => {
       break;
     }
     case SET_DIMENSIONS: {
-      (Object.keys(action.payload) as [keyof Partial<ElementDimensionsState>]).forEach(
-        (element) => {
-          (Object.keys(action.payload[element] as Partial<ElementDimensions>) as [
-            keyof Partial<ElementDimensions>
-          ]).forEach((attribute) => {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            if (action.payload[element]![attribute] === -1) return;
+      (Object.keys(action.payload) as [keyof Partial<ElementDimensionsState>]).forEach((element) => {
+        (Object.keys(action.payload[element] as Partial<ElementDimensions>) as [
+          keyof Partial<ElementDimensions>
+        ]).forEach((attribute) => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          if (action.payload[element]![attribute] === -1) return;
 
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            draft.dimensions[element][attribute] = action.payload[element]![attribute];
-          });
-        }
-      );
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          draft.dimensions[element][attribute] = action.payload[element]![attribute];
+        });
+      });
       break;
     }
     default: {

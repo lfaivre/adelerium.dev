@@ -37,9 +37,7 @@ const initialAllTileDimensions: AllTileDimensions = {
 
 const normalizeDimension = (dimension: number): number => (dimension >= -1 ? dimension : -1);
 
-export const useAllTileDimensions = ({
-  breakpoint,
-}: UseAllTileDimensionsProps): UseAllTileDimensionsState => {
+export const useAllTileDimensions = ({ breakpoint }: UseAllTileDimensionsProps): UseAllTileDimensionsState => {
   const {
     dimensions: {
       layout: { width: layoutWidth },
@@ -55,9 +53,7 @@ export const useAllTileDimensions = ({
 
   useEffect(() => {
     setConfiguration((draft) => {
-      draft.sizeOfGuttersInPx = metBreakpoint
-        ? BREAKPOINT_GUTTER_SIZE_IN_PX
-        : INITIAL_GUTTER_SIZE_IN_PX;
+      draft.sizeOfGuttersInPx = metBreakpoint ? BREAKPOINT_GUTTER_SIZE_IN_PX : INITIAL_GUTTER_SIZE_IN_PX;
     });
   }, [metBreakpoint, setConfiguration]);
 
@@ -65,13 +61,9 @@ export const useAllTileDimensions = ({
     setAllTileDimensions((draft) => {
       const { sizeOfGuttersInPx } = configuration;
       const defaultDimension = metBreakpoint
-        ? normalizeDimension(
-            (layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS) / (3 / DEFAULT_TILE_SIZE)
-          )
+        ? normalizeDimension((layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS) / (3 / DEFAULT_TILE_SIZE))
         : normalizeDimension(
-            layoutWidth -
-              sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS +
-              sizeOfGuttersInPx * (3 - DEFAULT_TILE_SIZE)
+            layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS + sizeOfGuttersInPx * (3 - DEFAULT_TILE_SIZE)
           );
 
       Object.keys(draft).forEach((key) => {

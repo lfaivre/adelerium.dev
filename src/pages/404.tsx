@@ -30,15 +30,9 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch({
-      type: SET_VIEW,
-      payload: { footer: { isVisible: false }, returnButton: { isVisible: false } },
-    });
+    dispatch({ type: SET_VIEW, payload: { footer: { isVisible: false }, returnButton: { isVisible: false } } });
     return () => {
-      dispatch({
-        type: SET_VIEW,
-        payload: { footer: { isVisible: true }, returnButton: { isVisible: true } },
-      });
+      dispatch({ type: SET_VIEW, payload: { footer: { isVisible: true }, returnButton: { isVisible: true } } });
     };
   }, [dispatch]);
 
@@ -56,11 +50,7 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
         backgroundColor="bg-offwhite"
         tw="flex p-2 md:p-4 w-full h-full"
       >
-        <FlexColumnWrapper
-          alignItems="items-center"
-          justifyContent="justify-center"
-          tw="flex-grow w-full"
-        >
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-grow w-full">
           <animated.div style={springProps} tw="flex flex-row justify-center p-8 w-full">
             <Img
               fluid={accentImage?.childImageSharp?.fluid as FluidObject | FluidObject[]}

@@ -11,9 +11,7 @@ type StaticLocationProps = { dimensions: TileDimensions };
 
 const StaticLocationText = `Now local to Phoenix, Arizona.`;
 
-export const StaticLocation = ({
-  dimensions: { width, height },
-}: StaticLocationProps): ReactElement => {
+export const StaticLocation = ({ dimensions: { width, height } }: StaticLocationProps): ReactElement => {
   return (
     <StaticLocationComponent width={width} height={height} tw="mb-2 md:mb-0 p-4 lg:p-8">
       <BoldParagraphType

@@ -85,13 +85,7 @@ export const SideBar = (): ReactElement => {
     background: var(--color-OffWhite) url(${profileBackgroundImage.src}) no-repeat center;
   `;
 
-  const {
-    profilePicture,
-    internalLinks,
-    externalLinks,
-    email,
-    brandingLink,
-  } = sideBarQuery.contentfulSideBar;
+  const { profilePicture, internalLinks, externalLinks, email, brandingLink } = sideBarQuery.contentfulSideBar;
 
   return (
     <FlexColumnWrapper
@@ -101,11 +95,7 @@ export const SideBar = (): ReactElement => {
       tw="p-8 w-full h-full"
     >
       {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
-        <FlexColumnWrapper
-          alignItems="items-center"
-          justifyContent="justify-start"
-          tw="pt-8 mb-8 w-full"
-        >
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="pt-8 mb-8 w-full">
           <FlexRowWrapper
             alignItems="items-center"
             justifyContent="justify-center"
@@ -127,11 +117,7 @@ export const SideBar = (): ReactElement => {
             >
               {name}
             </BoldParagraphType>
-            <BoldType
-              color="text-charcoal"
-              textAlign="text-center"
-              tw="w-full uppercase text-xs md:text-xs"
-            >
+            <BoldType color="text-charcoal" textAlign="text-center" tw="w-full uppercase text-xs md:text-xs">
               {tag}
             </BoldType>
           </FlexColumnWrapper>
@@ -142,26 +128,15 @@ export const SideBar = (): ReactElement => {
         justifyContent="justify-start"
         tw="flex-grow mb-8 w-full overflow-y-scroll"
       >
-        <FlexColumnWrapper
-          alignItems="items-center"
-          justifyContent="justify-center"
-          tw="my-auto w-full"
-        >
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="my-auto w-full">
           {sideBarView === SBV.InternalLinks ? (
             <>
               {internalLinks.map((link) => (
-                <FlexRowWrapper
-                  alignItems="items-center"
-                  justifyContent="justify-start"
-                  tw="w-full"
-                  key={link.title}
-                >
+                <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full" key={link.title}>
                   <span
                     css={[
                       tw`mr-1/2 w-1 h-full`,
-                      sideBarIsVisible &&
-                        link.displayText === pathData.pathData?.text &&
-                        tw`bg-charcoal`,
+                      sideBarIsVisible && link.displayText === pathData.pathData?.text && tw`bg-charcoal`,
                     ]}
                   />
                   <BoldTypeAsGatsbyLink
@@ -173,9 +148,7 @@ export const SideBar = (): ReactElement => {
                     }
                     css={[
                       tw`flex-grow p-2 pt-3 uppercase`,
-                      sideBarIsVisible &&
-                        link.displayText === pathData.pathData?.text &&
-                        tw`bg-charcoal`,
+                      sideBarIsVisible && link.displayText === pathData.pathData?.text && tw`bg-charcoal`,
                     ]}
                   >
                     {link.displayText}
@@ -210,20 +183,12 @@ export const SideBar = (): ReactElement => {
         </FlexColumnWrapper>
       </FlexColumnWrapper>
       {windowHeight > IPHONE_5_LANDSCAPE_HEIGHT && (
-        <FlexColumnWrapper
-          alignItems="items-center"
-          justifyContent="justify-start"
-          tw="mb-8 w-full"
-        >
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="mb-8 w-full">
           <Line borderColor="border-charcoal" />
           <Line borderColor="border-charcoal" />
         </FlexColumnWrapper>
       )}
-      <FlexRowWrapper
-        alignItems="items-center"
-        justifyContent="justify-center"
-        tw="flex-shrink-0 w-full"
-      >
+      <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-shrink-0 w-full">
         <ViewButton
           onClick={() => setSideBarView(SBV.InternalLinks)}
           selected={sideBarView === SBV.InternalLinks}
@@ -256,16 +221,8 @@ export const SideBar = (): ReactElement => {
         </ViewButton>
       </FlexRowWrapper>
       {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
-        <FlexColumnWrapper
-          alignItems="items-center"
-          justifyContent="justify-start"
-          tw="mt-8 w-full"
-        >
-          <BrandingTypeAsAnchor
-            href={brandingLink.destination}
-            label={brandingLink.destination}
-            color="text-charcoal"
-          >
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="mt-8 w-full">
+          <BrandingTypeAsAnchor href={brandingLink.destination} label={brandingLink.destination} color="text-charcoal">
             KD.
           </BrandingTypeAsAnchor>
         </FlexColumnWrapper>

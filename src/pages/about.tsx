@@ -18,13 +18,7 @@ import { StaticLocation } from '../components/AboutPage/StaticLocation';
 import { StaticResume } from '../components/AboutPage/StaticResume';
 
 import { SCREEN_SIZE } from '../shared/constants/presentation';
-import {
-  socialLinks,
-  GITHUB,
-  FIGMA,
-  LINKEDIN,
-  GOOGLE,
-} from '../shared/constants/social-link-squares';
+import { socialLinks, GITHUB, FIGMA, LINKEDIN, GOOGLE } from '../shared/constants/social-link-squares';
 import {
   mediaLinks,
   PINNED_PODCAST,

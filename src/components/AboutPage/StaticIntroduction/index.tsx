@@ -11,9 +11,7 @@ type StaticIntroductionProps = { dimensions: TileDimensions };
 
 const StaticIntroductionText = `Hey, I’m Lorenzo. Welcome to adelerium.`;
 
-export const StaticIntroduction = ({
-  dimensions: { width, height },
-}: StaticIntroductionProps): ReactElement => {
+export const StaticIntroduction = ({ dimensions: { width, height } }: StaticIntroductionProps): ReactElement => {
   return (
     <StaticIntroductionComponent width={width} height={height} tw="mb-2 md:mb-0 p-4 lg:p-8">
       <BoldParagraphType

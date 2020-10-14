@@ -6,11 +6,7 @@ const DOMAIN = `www.adelerium.dev`;
 
 describe('strings util: get a stripped internal link path', () => {
   it('returns an internal path from a full internal URL', () => {
-    const FULL_URLS = [
-      `${PROTOCOL}://${DOMAIN}/`,
-      `${PROTOCOL}://${DOMAIN}/about`,
-      `${PROTOCOL}://${DOMAIN}/projects`,
-    ];
+    const FULL_URLS = [`${PROTOCOL}://${DOMAIN}/`, `${PROTOCOL}://${DOMAIN}/about`, `${PROTOCOL}://${DOMAIN}/projects`];
 
     const getCorrectStrippedLinkPath = (fullURL: string): string => {
       switch (fullURL) {

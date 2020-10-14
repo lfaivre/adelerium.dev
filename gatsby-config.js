@@ -31,20 +31,10 @@ const { GA_TRACKING_ID } = process.env;
 
 // @note Define and Extract Contentful Configuration
 
-const {
-  CONTENTFUL_SPACE_ID,
-  CONTENTFUL_ACCESS_TOKEN,
-  CONTENTFUL_HOST,
-  CONTENTFUL_ENVIRONMENT,
-} = process.env;
+const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_HOST, CONTENTFUL_ENVIRONMENT } = process.env;
 
 (() => {
-  if (
-    !CONTENTFUL_SPACE_ID ||
-    !CONTENTFUL_ACCESS_TOKEN ||
-    !CONTENTFUL_HOST ||
-    !CONTENTFUL_ENVIRONMENT
-  ) {
+  if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN || !CONTENTFUL_HOST || !CONTENTFUL_ENVIRONMENT) {
     throw new Error(`Invalid Configuration: Contentful`);
   }
 })();

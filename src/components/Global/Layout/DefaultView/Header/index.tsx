@@ -58,8 +58,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
           color="text-charcoal"
           textAlign="text-left"
           onClick={() =>
-            !disableToggle &&
-            dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })
+            !disableToggle && dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })
           }
           css={[
             tw`block absolute left-0 z-0 transition-opacity duration-300 ease-in-out opacity-0 focus:outline-none pt-1 md:pt-2 h-full uppercase`,

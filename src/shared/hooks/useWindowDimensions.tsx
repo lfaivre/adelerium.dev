@@ -10,9 +10,7 @@ const getWindowDimensions = (): WindowDimensionsState => {
 };
 
 export const useWindowDimensions = (): WindowDimensionsState => {
-  const [windowDimensions, setWindowDimensions] = useImmer<WindowDimensionsState>(() =>
-    getWindowDimensions()
-  );
+  const [windowDimensions, setWindowDimensions] = useImmer<WindowDimensionsState>(() => getWindowDimensions());
 
   useEffect(() => {
     const updateWindowDimensions = (): void => {
@@ -24,14 +22,10 @@ export const useWindowDimensions = (): WindowDimensionsState => {
       });
     };
 
-    if (typeof window !== `undefined`) {
-      window.addEventListener(`resize`, updateWindowDimensions);
-    }
+    if (typeof window !== `undefined`) window.addEventListener(`resize`, updateWindowDimensions);
 
     return () => {
-      if (typeof window !== `undefined`) {
-        window.removeEventListener(`resize`, updateWindowDimensions);
-      }
+      if (typeof window !== `undefined`) window.removeEventListener(`resize`, updateWindowDimensions);
     };
   }, [setWindowDimensions]);
 

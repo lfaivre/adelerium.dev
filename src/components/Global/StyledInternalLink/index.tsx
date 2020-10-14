@@ -16,10 +16,7 @@ const NEXT = `Next` as const;
 
 type StyledInternalLinkProps = PathDataHook & { direction: InternalLinkDirection };
 
-export const StyledInternalLink = ({
-  pathData,
-  direction,
-}: StyledInternalLinkProps): ReactElement => {
+export const StyledInternalLink = ({ pathData, direction }: StyledInternalLinkProps): ReactElement => {
   const [destinationPathname, setDestinationPathname] = useState<TPathname>(INDEX);
 
   const isPrevious = (): boolean => {
@@ -37,26 +34,13 @@ export const StyledInternalLink = ({
 
   return (
     <Link to={destinationPathname}>
-      <FlexColumnWrapper
-        alignItems={isPrevious() ? `items-end` : `items-start`}
-        justifyContent="justify-center"
-      >
-        <FlexRowWrapper
-          alignItems="items-center"
-          justifyContent={isPrevious() ? `justify-end` : `justify-start`}
-        >
-          <BoldParagraphType
-            color="text-charcoal"
-            textAlign={isPrevious() ? `text-right` : `text-left`}
-          >
+      <FlexColumnWrapper alignItems={isPrevious() ? `items-end` : `items-start`} justifyContent="justify-center">
+        <FlexRowWrapper alignItems="items-center" justifyContent={isPrevious() ? `justify-end` : `justify-start`}>
+          <BoldParagraphType color="text-charcoal" textAlign={isPrevious() ? `text-right` : `text-left`}>
             {isPrevious() ? PREVIOUS : NEXT}
           </BoldParagraphType>
         </FlexRowWrapper>
-        <FlexRowWrapper
-          reverse={!isPrevious()}
-          alignItems="items-center"
-          justifyContent="justify-between"
-        >
+        <FlexRowWrapper reverse={!isPrevious()} alignItems="items-center" justifyContent="justify-between">
           {isPrevious() ? (
             <div tw="mr-4">
               <Arrow direction={direction} backgroundColor="bg-charcoal">
@@ -70,10 +54,7 @@ export const StyledInternalLink = ({
               </Arrow>
             </div>
           )}
-          <NormalParagraphType
-            color="text-charcoal"
-            textAlign={isPrevious() ? `text-right` : `text-left`}
-          >
+          <NormalParagraphType color="text-charcoal" textAlign={isPrevious() ? `text-right` : `text-left`}>
             {SitePaths[destinationPathname].text}
           </NormalParagraphType>
         </FlexRowWrapper>

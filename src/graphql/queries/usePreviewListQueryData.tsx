@@ -4,9 +4,7 @@ import { PreviewListQuery } from '../types/PreviewListQuery';
 export const usePreviewListQueryData = (): PreviewListQuery => {
   const previewListQueryData: PreviewListQuery = useStaticQuery(graphql`
     query PreviewListQuery {
-      projectPreviews: allContentfulProject(
-        sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }
-      ) {
+      projectPreviews: allContentfulProject(sort: { fields: [rating, dateRangeEnd], order: [DESC, DESC] }) {
         edges {
           node {
             id

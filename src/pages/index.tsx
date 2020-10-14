@@ -39,21 +39,13 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
   useLayoutEffect(() => {
     dispatch({
       type: SET_VIEW,
-      payload: {
-        header: { isVisible: false },
-        footer: { isVisible: false },
-        returnButton: { isVisible: false },
-      },
+      payload: { header: { isVisible: false }, footer: { isVisible: false }, returnButton: { isVisible: false } },
     });
 
     return () => {
       dispatch({
         type: SET_VIEW,
-        payload: {
-          header: { isVisible: true },
-          footer: { isVisible: true },
-          returnButton: { isVisible: true },
-        },
+        payload: { header: { isVisible: true }, footer: { isVisible: true }, returnButton: { isVisible: true } },
       });
     };
   }, [dispatch]);
@@ -94,9 +86,7 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
         {browserSupportsAnimation && <KoiPond />}
         <BoldTypeAsButton
           ref={buttonRef}
-          onClick={() =>
-            dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })
-          }
+          onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
           color="text-charcoal"
           textAlign="text-center"
           css={[

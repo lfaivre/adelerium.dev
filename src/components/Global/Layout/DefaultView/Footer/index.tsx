@@ -17,11 +17,7 @@ import {
   BoldType,
   BrandingType,
 } from '../../../../../shared/styles/text';
-import {
-  FullWidthWrapper,
-  FlexColumnWrapper,
-  FlexRowWrapper,
-} from '../../../../../shared/styles/wrappers';
+import { FullWidthWrapper, FlexColumnWrapper, FlexRowWrapper } from '../../../../../shared/styles/wrappers';
 
 const factOnError = `This site was built with Gatsby.js.`;
 const linkDestinationOnError = `https://github.com/lfaivre`;
@@ -37,11 +33,7 @@ export const Footer = (): ReactElement => {
 
   return (
     <FullWidthWrapper tw="px-4 pt-8 pb-4 md:p-8">
-      <FlexRowWrapper
-        alignItems="items-start"
-        justifyContent="justify-start"
-        tw="hidden md:flex mb-8 w-full"
-      >
+      <FlexRowWrapper alignItems="items-start" justifyContent="justify-start" tw="hidden md:flex mb-8 w-full">
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-2/6">
           <BoldParagraphType color="text-charcoal" textAlign="text-left">
             Need a website?
@@ -92,11 +84,7 @@ export const Footer = (): ReactElement => {
             />
           )}
         </FlexRowWrapper>
-        <FlexRowWrapper
-          alignItems="items-start"
-          justifyContent="justify-center"
-          tw="hidden md:flex w-2/6"
-        >
+        <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="hidden md:flex w-2/6">
           <BrandingType color="text-charcoal" textAlign="text-center" wordBreak="break-normal">
             KD.
           </BrandingType>
@@ -115,11 +103,7 @@ export const Footer = (): ReactElement => {
       </FlexRowWrapper>
       <hr tw="block md:hidden mb-4 md:mb-2 border-t border-charcoal w-full h-0" />
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
-        <FlexRowWrapper
-          alignItems="items-start"
-          justifyContent="justify-center"
-          tw="w-full overflow-hidden"
-        >
+        <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-hidden">
           <BoldType
             color="text-charcoal"
             textAlign="text-center"

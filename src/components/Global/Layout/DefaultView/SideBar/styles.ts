@@ -19,11 +19,7 @@ export const Line = styled.hr<LineProps>`
 
 // @todo Move color maps to shared utility
 
-type ViewButtonBackgroundColorValues =
-  | `bg-offwhite`
-  | `bg-charcoal`
-  | `bg-offpink`
-  | `bg-transparent`;
+type ViewButtonBackgroundColorValues = `bg-offwhite` | `bg-charcoal` | `bg-offpink` | `bg-transparent`;
 
 const viewButtonBackgroundColorMap: { [key in ViewButtonBackgroundColorValues]: TwStyle } = {
   'bg-offwhite': tw`bg-offwhite`,
@@ -32,11 +28,7 @@ const viewButtonBackgroundColorMap: { [key in ViewButtonBackgroundColorValues]: 
   'bg-transparent': tw`bg-transparent`,
 };
 
-type ViewButtonColorValues =
-  | `text-offwhite`
-  | `text-charcoal`
-  | `text-offpink`
-  | `text-transparent`;
+type ViewButtonColorValues = `text-offwhite` | `text-charcoal` | `text-offpink` | `text-transparent`;
 
 const viewButtonColorMap: { [key in ViewButtonColorValues]: string } = {
   'text-offwhite': `var(--color-OffWhite);`,

@@ -10,11 +10,7 @@ export const PINNED_SONG = `PINNED_SONG`;
 export const MOST_PLAYED_SONG = `MOST_PLAYED_SONG`;
 export const PINNED_PLAYLIST = `PINNED_PLAYLIST`;
 
-type MediaLinkKeys =
-  | typeof PINNED_PODCAST
-  | typeof PINNED_SONG
-  | typeof MOST_PLAYED_SONG
-  | typeof PINNED_PLAYLIST;
+type MediaLinkKeys = typeof PINNED_PODCAST | typeof PINNED_SONG | typeof MOST_PLAYED_SONG | typeof PINNED_PLAYLIST;
 type MediaLinks = { [key in MediaLinkKeys]: MediaLink };
 
 export const mediaLinks: MediaLinks = {

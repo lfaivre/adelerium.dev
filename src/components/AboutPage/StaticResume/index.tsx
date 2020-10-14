@@ -18,9 +18,7 @@ const StaticResumeLinkText = `View on Google Drive`;
 // @todo Source link from Contentful
 const resumeLink = `https://drive.google.com/file/d/19Gdz-dwWnlBov73sDIBnr68bf04NvnIL/view?usp=sharing`;
 
-export const StaticResume = ({
-  dimensions: { width, height },
-}: StaticResumeProps): ReactElement => {
+export const StaticResume = ({ dimensions: { width, height } }: StaticResumeProps): ReactElement => {
   return (
     <StaticResumeComponent width={width} height={height} tw="mb-2 md:mb-0 bg-offwhite p-4 lg:p-8">
       <BoldParagraphType
@@ -33,12 +31,7 @@ export const StaticResume = ({
       </BoldParagraphType>
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full md:mb-4">
         <FontAwesomeIcon icon={faGoogleDrive} size="2x" tw="mr-4" />
-        <BoldTypeAsAnchor
-          href={resumeLink}
-          label={resumeLink}
-          color="text-charcoal"
-          tw="flex-grow uppercase"
-        >
+        <BoldTypeAsAnchor href={resumeLink} label={resumeLink} color="text-charcoal" tw="flex-grow uppercase">
           {StaticResumeLinkText}
         </BoldTypeAsAnchor>
       </FlexRowWrapper>

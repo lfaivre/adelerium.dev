@@ -129,11 +129,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     to: {
       display: headerIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
       left:
-        windowGutterWidth !== undefined
-          ? sideBarIsVisible
-            ? windowGutterWidth + sideBarWidth
-            : windowGutterWidth
-          : 0,
+        windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth + sideBarWidth : windowGutterWidth) : 0,
     },
     config: { ...config.default, clamp: false },
   });
@@ -143,11 +139,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     to: {
       display: sideBarIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
       left:
-        windowGutterWidth !== undefined
-          ? sideBarIsVisible
-            ? windowGutterWidth
-            : windowGutterWidth - sideBarWidth
-          : 0,
+        windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth : windowGutterWidth - sideBarWidth) : 0,
     },
     config: { ...config.default, clamp: false },
   });
@@ -203,10 +195,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
           alignItems="items-center"
           justifyContent="justify-center"
           ref={returnButtonRef}
-          css={[
-            returnButtonIsVisible ? tw`flex` : tw`hidden`,
-            tw`flex-shrink-0 md:justify-end p-8 w-full`,
-          ]}
+          css={[returnButtonIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0 md:justify-end p-8 w-full`]}
         >
           <ReturnButton
             borderColor="border-offwhite"

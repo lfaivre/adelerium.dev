@@ -153,44 +153,27 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             css={[isLeftOriented() ? tw`justify-start mr-4 lg:mr-8` : tw`justify-end ml-4 lg:ml-8`]}
           >
             <OrderNumber css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}>
-              {shouldDisplayContent() ? (
-                `${order.toString().padStart(2, `0`)}.`
-              ) : (
-                <Skeleton width={120} />
-              )}
+              {shouldDisplayContent() ? `${order.toString().padStart(2, `0`)}.` : <Skeleton width={120} />}
             </OrderNumber>
           </FlexRowWrapper>
           <FlexColumnWrapper
             alignItems="items-start"
             justifyContent="justify-start"
-            css={[
-              tw`flex-grow overflow-hidden`,
-              isLeftOriented() ? tw`items-start` : tw`items-end`,
-            ]}
+            css={[tw`flex-grow overflow-hidden`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
           >
             <BoldParagraphType
               color="text-offwhite"
               wordBreak="break-normal"
-              css={[
-                tw`mb-2 w-full text-xl md:text-3xl`,
-                isLeftOriented() ? tw`text-left` : tw`text-right`,
-              ]}
+              css={[tw`mb-2 w-full text-xl md:text-3xl`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
             >
               {shouldDisplayContent() ? project.title : <Skeleton />}
             </BoldParagraphType>
             <BoldType
               color="text-offwhite"
               wordBreak="break-normal"
-              css={[
-                tw`w-full uppercase text-xs md:text-xs`,
-                isLeftOriented() ? tw`text-left` : tw`text-right`,
-              ]}
+              css={[tw`w-full uppercase text-xs md:text-xs`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
             >
-              {shouldDisplayContent() ? (
-                `${project.type || `Other`} - ${getDateString()}`
-              ) : (
-                <Skeleton />
-              )}
+              {shouldDisplayContent() ? `${project.type || `Other`} - ${getDateString()}` : <Skeleton />}
             </BoldType>
           </FlexColumnWrapper>
         </FlexRowWrapper>
@@ -214,10 +197,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
       <FlexColumnWrapper
         alignItems="items-start"
         justifyContent="justify-center"
-        css={[
-          tw`flex-1 lg:px-8 w-full lg:w-1/2`,
-          isLeftOriented() ? tw`items-start` : tw`items-end`,
-        ]}
+        css={[tw`flex-1 lg:px-8 w-full lg:w-1/2`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
       >
         <FlexColumnWrapper
           alignItems="items-start"
@@ -235,21 +215,13 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
                 color="text-offwhite"
                 css={[tw`w-full uppercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
               >
-                {shouldDisplayContent() ? (
-                  `${previewContent[key as PreviewContentKey].title}`
-                ) : (
-                  <Skeleton />
-                )}
+                {shouldDisplayContent() ? `${previewContent[key as PreviewContentKey].title}` : <Skeleton />}
               </BoldType>
               <NormalParagraphType
                 color="text-offwhite"
                 css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
               >
-                {shouldDisplayContent() ? (
-                  previewContent[key as PreviewContentKey].content
-                ) : (
-                  <Skeleton />
-                )}
+                {shouldDisplayContent() ? previewContent[key as PreviewContentKey].content : <Skeleton />}
               </NormalParagraphType>
             </FlexColumnWrapper>
           ))}
@@ -265,12 +237,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         <FlexRowWrapper
           alignItems="items-center"
           justifyContent="justify-center"
-          css={[
-            tw`w-full`,
-            isLeftOriented()
-              ? tw`justify-center lg:justify-start`
-              : tw`justify-center lg:justify-end`,
-          ]}
+          css={[tw`w-full`, isLeftOriented() ? tw`justify-center lg:justify-start` : tw`justify-center lg:justify-end`]}
         >
           {Object.keys(externalLinks).map(
             (key) =>
@@ -279,10 +246,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
                   href={externalLinks[key as ExternalLinkKey].url || linkDestinationOnError}
                   label={externalLinks[key as ExternalLinkKey].url || linkDestinationOnError}
                   color="text-offwhite"
-                  css={[
-                    tw`mr-8 last:mr-0 lowercase`,
-                    isLeftOriented() ? tw`text-left` : tw`text-right`,
-                  ]}
+                  css={[tw`mr-8 last:mr-0 lowercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
                   key={externalLinks[key as ExternalLinkKey].title}
                 >
                   <span tw="hidden lg:block">
