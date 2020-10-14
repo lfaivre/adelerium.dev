@@ -1,6 +1,6 @@
 module.exports = {
   client: {
-    includes: [`./src/graphql/queries/**/*.ts`],
+    includes: [`./src/graphql/queries/**/*.ts`, `./src/graphql/queries/**/*.tsx`],
     // includes: [`./src/**/*.ts`, `./src/**/*.tsx`],
     tagName: `graphql`,
     // addTypename: true,

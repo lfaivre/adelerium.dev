@@ -1,14 +1,13 @@
 import React, { ReactElement } from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import 'twin.macro';
 
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
+import { useFooterQueryData } from '../../../../../graphql/queries/useFooterQueryData';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
 import { getRandomInt } from '../../../../../services/math';
 
 import { InternalLinkDirection } from '../../../../../shared/types/presentation';
-import { IFooterFields } from './types';
 
 import {
   NormalParagraphType,
@@ -24,35 +23,16 @@ import {
   FlexRowWrapper,
 } from '../../../../../shared/styles/wrappers';
 
-type GraphQLStaticQuery = { contentfulFooter: IFooterFields };
+const factOnError = `This site was built with Gatsby.js.`;
+const linkDestinationOnError = `https://github.com/lfaivre`;
 
 export const Footer = (): ReactElement => {
-  const footerQuery: GraphQLStaticQuery = useStaticQuery(graphql`
-    query {
-      contentfulFooter: contentfulFooter(title: { eq: "Default" }) {
-        brandingLink {
-          destination
-        }
-        linkedInLink {
-          destination
-        }
-        gitHubLink {
-          destination
-        }
-        facts {
-          text
-          id
-        }
-      }
-    }
-  `);
-
-  const { brandingLink, linkedInLink, gitHubLink, facts } = footerQuery.contentfulFooter;
-
+  const { footerData, brandingLink, linkedInLink, gitHubLink } = useFooterQueryData();
   const { pathname, isIndex, pathData, isValidPath } = usePathData();
 
   const getRandomFact = (): string => {
-    return facts[getRandomInt(0, facts.length - 1)].text || `This site was built with Gatsby.js.`;
+    if (!footerData?.facts) return factOnError;
+    return footerData.facts[getRandomInt(0, footerData.facts.length - 1)]?.text || factOnError;
   };
 
   return (
@@ -67,8 +47,8 @@ export const Footer = (): ReactElement => {
             Need a website?
           </BoldParagraphType>
           <NormalParagraphTypeAsAnchor
-            href={brandingLink.destination}
-            label={brandingLink.destination}
+            href={brandingLink?.destination || linkDestinationOnError}
+            label={brandingLink?.destination || linkDestinationOnError}
             color="text-charcoal"
           >
             kevaladesign.com
@@ -84,16 +64,16 @@ export const Footer = (): ReactElement => {
         </FlexColumnWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-end" tw="w-2/6">
           <BoldParagraphTypeAsAnchor
-            href={linkedInLink.destination}
-            label={linkedInLink.destination}
+            href={linkedInLink?.destination || linkDestinationOnError}
+            label={linkedInLink?.destination || linkDestinationOnError}
             color="text-charcoal"
             tw="mr-4"
           >
             li.
           </BoldParagraphTypeAsAnchor>
           <BoldParagraphTypeAsAnchor
-            href={gitHubLink.destination}
-            label={gitHubLink.destination}
+            href={gitHubLink?.destination || linkDestinationOnError}
+            label={gitHubLink?.destination || linkDestinationOnError}
             color="text-charcoal"
           >
             gh.
