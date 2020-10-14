@@ -201,16 +201,14 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           style={{ transform: props.xys.interpolate(translate as () => string) }}
           css={[tw`bg-offwhite p-4 w-full`, BoxShadowStyles]}
         >
-          {project.previewPicture && (
-            <Img
-              fluid={project.previewPicture.fluid as FluidObject | FluidObject[]}
-              onLoad={() => setImageLoaded(true)}
-              alt={`Preview Image for ${project.title || `Untitled`}`}
-              draggable={false}
-              backgroundColor="var(--color-OffWhite)"
-              css={[tw`w-full select-none`, BoxShadowStyles]}
-            />
-          )}
+          <Img
+            fluid={project.previewPicture?.fluid as FluidObject | FluidObject[]}
+            onLoad={() => setImageLoaded(true)}
+            alt={`Preview Image for ${project.title || `Untitled`}`}
+            draggable={false}
+            backgroundColor="var(--color-OffWhite)"
+            css={[tw`w-full select-none`, BoxShadowStyles]}
+          />
         </animated.div>
       </FlexColumnWrapper>
       <FlexColumnWrapper

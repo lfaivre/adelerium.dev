@@ -1,17 +1,17 @@
 import React, { ReactElement } from 'react';
-import { PageProps, graphql } from 'gatsby';
+import { PageProps } from 'gatsby';
+import { FixedObject } from 'gatsby-image';
 import tw from 'twin.macro';
 
 import { SEO } from '../components/Global/SEO';
 import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
 
+import { useAboutPageQueryData } from '../graphql/queries/useAboutPageQueryData';
 import { useAppState } from '../shared/hooks/app-state';
 import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
 
 import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
-
-import { PageQueryData } from '../shared/types/pages/about';
 
 import { StaticIntroduction } from '../components/AboutPage/StaticIntroduction';
 import { StaticLocation } from '../components/AboutPage/StaticLocation';
@@ -35,7 +35,9 @@ import {
 
 const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
 
-const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement => {
+const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
+  const { metaImage } = useAboutPageQueryData();
+
   const {
     dimensions: {
       header: { height: headerHeight },
@@ -49,11 +51,9 @@ const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
 
   const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: SCREEN_SIZE.MD });
 
-  const metaImage = (data as PageQueryData).contentfulAsset.fixed;
-
   return (
     <>
-      <SEO title="About" pathname={pathname} image={metaImage} />
+      <SEO title="About" pathname={pathname} image={metaImage?.fixed as FixedObject} />
       <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
           <TileRowWrapper>
@@ -85,13 +85,3 @@ const AboutPage = ({ data, location: { pathname } }: PageProps): ReactElement =>
 
 // eslint-disable-next-line import/no-default-export
 export default AboutPage;
-
-export const pageQuery = graphql`
-  query AboutPageQuery {
-    contentfulAsset(title: { eq: "About Page Meta Image" }) {
-      fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
-        ...GatsbyContentfulFixed
-      }
-    }
-  }
-`;
