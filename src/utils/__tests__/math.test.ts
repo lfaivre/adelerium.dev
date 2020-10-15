@@ -1,7 +1,7 @@
 import { getRandomInt } from '../math';
 
-describe('math util: get random integer', () => {
-  it('returns a random integer within a specified range', () => {
+describe(`math util: get random integer`, () => {
+  it(`returns a random integer within a specified range`, () => {
     const MIN_NUM = 0;
     const MAX_NUM = 120;
 

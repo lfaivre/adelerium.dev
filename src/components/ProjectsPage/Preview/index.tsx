@@ -78,7 +78,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
     },
     technology: {
       title: `Technology`,
-      content: project.technologyTags?.join(', ') || `No Tags`,
+      content: project.technologyTags?.join(`, `) || `No Tags`,
     },
   };
 

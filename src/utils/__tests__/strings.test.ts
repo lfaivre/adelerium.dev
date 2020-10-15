@@ -4,8 +4,8 @@ import { getStrippedInternalLinkPath } from '../strings';
 const PROTOCOL = `https`;
 const DOMAIN = `www.adelerium.dev`;
 
-describe('strings util: get a stripped internal link path', () => {
-  it('returns an internal path from a full internal URL', () => {
+describe(`strings util: get a stripped internal link path`, () => {
+  it(`returns an internal path from a full internal URL`, () => {
     const FULL_URLS = [`${PROTOCOL}://${DOMAIN}/`, `${PROTOCOL}://${DOMAIN}/about`, `${PROTOCOL}://${DOMAIN}/projects`];
 
     const getCorrectStrippedLinkPath = (fullURL: string): string => {
@@ -32,7 +32,7 @@ describe('strings util: get a stripped internal link path', () => {
     expect(strippedLinkPathResult).toEqual(correctStrippedLinkPath);
   });
 
-  it('throws an error if an invalid full internal URL is provided', () => {
+  it(`throws an error if an invalid full internal URL is provided`, () => {
     const INVALID_FULL_URL_1 = `${PROTOCOL}://${DOMAIN}`;
     const INVALID_FULL_URL_2 = `http://${DOMAIN}`;
     const INVALID_FULL_URL_3 = `${PROTOCOL}://www.test.com`;

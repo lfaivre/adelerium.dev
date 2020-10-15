@@ -88,7 +88,7 @@ const AppProvider = ({ children }: AppProviderProps): ReactElement => {
 const useAppState = (): State => {
   const context = useContext(AppStateContext);
   if (context === undefined) {
-    throw new Error('useAppState must be used within an AppProvider');
+    throw new Error(`useAppState must be used within an AppProvider`);
   }
   return context;
 };
@@ -96,7 +96,7 @@ const useAppState = (): State => {
 const useAppDispatch = (): Dispatch => {
   const context = useContext(AppDispatchContext);
   if (context === undefined) {
-    throw new Error('useAppDispatch must be used within an AppProvider');
+    throw new Error(`useAppDispatch must be used within an AppProvider`);
   }
   return context;
 };
