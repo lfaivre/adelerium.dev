@@ -3,6 +3,13 @@ module.exports = {
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss)$': `identity-obj-proxy`,
     '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `<rootDir>/src/__mocks__/file-mock.js`,
+    '^@adelerium(.*)$': `<rootDir>/src$1`,
+    '^@adelerium/components(.*)$': `<rootDir>/src/components$1`,
+    '^@adelerium/graphql(.*)$': `<rootDir>/src/graphql$1`,
+    '^@adelerium/images(.*)$': `<rootDir>/src/images$1`,
+    '^@adelerium/pages(.*)$': `<rootDir>/src/pages$1`,
+    '^@adelerium/shared(.*)$': `<rootDir>/src/shared$1`,
+    '^@adelerium/utils(.*)$': `<rootDir>/src/utils$1`,
   },
   testPathIgnorePatterns: [`node_modules`, `\\.cache`, `<rootDir>.*/public`],
   transformIgnorePatterns: [`node_modules/(?!(gatsby)/)`],
