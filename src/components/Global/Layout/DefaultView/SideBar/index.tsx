@@ -5,7 +5,7 @@ import tw, { css } from 'twin.macro';
 import { useSideBarQueryData } from '../../../../../graphql/queries/useSideBarQueryData';
 import { useAppState } from '../../../../../shared/hooks/app-state';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
-import { getStrippedInternalLinkPath } from '../../../../../services/strings';
+import { getStrippedInternalLinkPath } from '../../../../../utils/strings';
 import { SiteData } from '../../../../../shared/constants/contentful-mock';
 import { SideBarView } from '../../../../../shared/types/presentation';
 

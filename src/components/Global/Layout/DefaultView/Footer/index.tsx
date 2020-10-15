@@ -5,7 +5,7 @@ import { StyledInternalLink } from '../../../StyledInternalLink';
 
 import { useFooterQueryData } from '../../../../../graphql/queries/useFooterQueryData';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
-import { getRandomInt } from '../../../../../services/math';
+import { getRandomInt } from '../../../../../utils/math';
 
 import { InternalLinkDirection } from '../../../../../shared/types/presentation';
 

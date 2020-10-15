@@ -16,7 +16,7 @@ tailwind.config.js
 # Directories
 
 .cache/
-__mocks__/
 node_modules/
 public/
 src/graphql/types/
+src/__mocks__/
