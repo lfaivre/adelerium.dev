@@ -3,9 +3,10 @@ import { FixedObject } from 'gatsby-image';
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
-import { Header } from '../components/Global/Layout/DefaultView/Header';
-import { SEO } from '../components/Global/SEO';
-import { cssToTest, KoiPond } from '../components/HomePage/KoiPond';
+
+import { Header } from '@adelerium/components/Global/Layout/DefaultView/Header';
+import { SEO } from '@adelerium/components/Global/SEO';
+import { cssToTest, KoiPond } from '@adelerium/components/HomePage/KoiPond';
 import { useHomePageQueryData } from '../graphql/queries/useHomePageQueryData';
 import { windowDimensionBreakpoints } from '../shared/constants/dimensions';
 import { websiteFullPath } from '../shared/constants/site-metadata';

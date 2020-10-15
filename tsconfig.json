@@ -2,6 +2,17 @@
   "include": ["./src/**/*"],
   "exclude": ["./src/graphql/types/globalTypes.ts"],
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@adelerium/*": ["src/*"],
+      "@adelerium/components/*": ["src/components/*"],
+      "@adelerium/graphql/*": ["src/graphql/*"],
+      "@adelerium/images/*": ["src/images/*"],
+      "@adelerium/pages/*": ["src/pages/*"],
+      "@adelerium/shared/*": ["src/shared/*"],
+      "@adelerium/utils/*": ["src/utils/*"]
+    },
+
     /* Basic Options */
     "target": "es5",
     "module": "commonjs",
