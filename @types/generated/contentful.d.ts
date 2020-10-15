@@ -3,6 +3,36 @@
 import { Asset, Entry } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 
+export interface IEmailFields {
+  /** Title */
+  title: string;
+
+  /** Destination */
+  destination: string;
+
+  /** Display Text */
+  displayText: string;
+}
+
+/** Email data sourced by multiple components. */
+
+export interface IEmail extends Entry<IEmailFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: 'email';
+        linkType: 'ContentType';
+        type: 'Link';
+      };
+    };
+  };
+}
+
 export interface IFactFields {
   /** Title */
   title: string;
@@ -162,15 +192,9 @@ export interface ISideBarFields {
 
   /** External Links */
   externalLinks: ILink[];
-
-  /** Email */
-  email: string;
-
-  /** Branding Link */
-  brandingLink: ILink;
 }
 
-/** Side bar data used in portfolio (https://www.adelerium.dev/). */
+/** Data sourced by Side Bar component(s). */
 
 export interface ISideBar extends Entry<ISideBarFields> {
   sys: {
@@ -189,7 +213,7 @@ export interface ISideBar extends Entry<ISideBarFields> {
   };
 }
 
-export type CONTENT_TYPE = 'fact' | 'footer' | 'link' | 'project' | 'sideBar';
+export type CONTENT_TYPE = 'email' | 'fact' | 'footer' | 'link' | 'project' | 'sideBar';
 
 export type LOCALE_CODE = 'en-US';
 
