@@ -2,13 +2,13 @@ import React, { ReactElement } from 'react';
 import 'twin.macro';
 import { useFooterQueryData } from '../../../../../graphql/queries/useFooterQueryData';
 import { Next, Previous } from '../../../../../shared/constants/presentation';
-import { studioCopyrightText, websiteFullPath } from '../../../../../shared/constants/site-metadata';
+import { studioCopyrightText, studioUrl, websiteFullPath } from '../../../../../shared/constants/site-metadata';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
 import {
   BoldParagraphType,
   BoldParagraphTypeAsAnchor,
   BoldType,
-  BrandingType,
+  BrandingTypeAsAnchor,
   NormalParagraphType,
   NormalParagraphTypeAsAnchor,
 } from '../../../../../shared/styles/text';
@@ -81,9 +81,16 @@ export const Footer = (): ReactElement => {
           )}
         </FlexRowWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="hidden md:flex w-2/6">
-          <BrandingType color="text-charcoal" textAlign="text-center" wordBreak="break-normal">
+          {/* <BrandingType color="text-charcoal" textAlign="text-center" wordBreak="break-normal">
             KD.
-          </BrandingType>
+          </BrandingType> */}
+          <BrandingTypeAsAnchor
+            href={brandingLink?.destination || studioUrl}
+            label={brandingLink?.destination || studioUrl}
+            color="text-charcoal"
+          >
+            KD.
+          </BrandingTypeAsAnchor>
         </FlexRowWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-end" tw="w-1/2 md:w-2/6">
           {pathData && (
