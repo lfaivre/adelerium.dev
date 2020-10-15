@@ -1,17 +1,16 @@
-import React, { createContext, useContext, ReactElement } from 'react';
+import React, { createContext, ReactElement, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
-
 import {
-  SET_VIEW,
-  SET_DIMENSIONS,
   Action,
+  AppProviderProps,
   Dispatch,
-  ElementViewStates,
-  ElementViewState,
   ElementDimensions,
   ElementDimensionsState,
+  ElementViewState,
+  ElementViewStates,
+  SET_DIMENSIONS,
+  SET_VIEW,
   State,
-  AppProviderProps,
 } from '../types/state';
 
 const initialState: State = {

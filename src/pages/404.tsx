@@ -1,17 +1,13 @@
-import React, { useLayoutEffect, ReactElement } from 'react';
 import { PageProps } from 'gatsby';
 import Img, { FixedObject, FluidObject } from 'gatsby-image';
-import { useSpring, animated, config } from 'react-spring';
+import React, { ReactElement, useLayoutEffect } from 'react';
+import { animated, config, useSpring } from 'react-spring';
 import 'twin.macro';
-
 import { SEO } from '../components/Global/SEO';
-
 import { useNotFoundPageQueryData } from '../graphql/queries/useNotFoundPageQueryData';
-import { useAppState, useAppDispatch } from '../shared/hooks/app-state';
-
+import { useAppDispatch, useAppState } from '../shared/hooks/app-state';
+import { FlexColumnWrapper, MinHeightScreenWrapper } from '../shared/styles/wrappers';
 import { SET_VIEW } from '../shared/types/state';
-
-import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
 
 const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage, accentImage } = useNotFoundPageQueryData();

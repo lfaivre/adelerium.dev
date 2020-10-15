@@ -1,14 +1,11 @@
-import React, { ReactElement, useEffect, useState } from 'react';
 import { Link } from 'gatsby';
+import React, { ReactElement, useEffect, useState } from 'react';
 import 'twin.macro';
-
 import { SitePaths } from '../../../shared/constants/paths';
-import { PathDataHook, INDEX, TPathname } from '../../../shared/types/paths';
-import { InternalLinkDirection } from '../../../shared/types/presentation';
-
+import { BoldParagraphType, NormalParagraphType } from '../../../shared/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { NormalParagraphType, BoldParagraphType } from '../../../shared/styles/text';
-
+import { INDEX, PathDataHook, TPathname } from '../../../shared/types/paths';
+import { InternalLinkDirection } from '../../../shared/types/presentation';
 import { Arrow } from './styles';
 
 const PREVIOUS = `Previous` as const;

@@ -1,5 +1,4 @@
 import tw, { styled, TwStyle } from 'twin.macro';
-
 import { InternalLinkDirection } from '../../../shared/types/presentation';
 
 // @todo Move duplicated color map to shared utility

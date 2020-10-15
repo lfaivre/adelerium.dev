@@ -1,5 +1,5 @@
-const React = require('react');
 const gatsby = jest.requireActual('gatsby');
+const React = require('react');
 
 module.exports = {
   ...gatsby,

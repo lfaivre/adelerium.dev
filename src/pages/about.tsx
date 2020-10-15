@@ -1,31 +1,26 @@
-import React, { ReactElement } from 'react';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
+import React, { ReactElement } from 'react';
 import tw from 'twin.macro';
-
-import { SEO } from '../components/Global/SEO';
-import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
-
-import { useAboutPageQueryData } from '../graphql/queries/useAboutPageQueryData';
-import { useAppState } from '../shared/hooks/app-state';
-import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
-
-import { MinHeightScreenWrapper, FlexColumnWrapper } from '../shared/styles/wrappers';
-
+import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
 import { StaticIntroduction } from '../components/AboutPage/StaticIntroduction';
 import { StaticLocation } from '../components/AboutPage/StaticLocation';
 import { StaticResume } from '../components/AboutPage/StaticResume';
-
-import { SCREEN_SIZE } from '../shared/constants/presentation';
-import { socialLinks, GITHUB, FIGMA, LINKEDIN, GOOGLE } from '../shared/constants/social-link-squares';
+import { SEO } from '../components/Global/SEO';
+import { useAboutPageQueryData } from '../graphql/queries/useAboutPageQueryData';
 import {
   mediaLinks,
-  PINNED_PODCAST,
-  PINNED_SONG,
   MOST_PLAYED_SONG,
   PINNED_PLAYLIST,
+  PINNED_PODCAST,
+  PINNED_SONG,
 } from '../shared/constants/media-link-squares';
+import { SCREEN_SIZE } from '../shared/constants/presentation';
+import { FIGMA, GITHUB, GOOGLE, LINKEDIN, socialLinks } from '../shared/constants/social-link-squares';
+import { useAppState } from '../shared/hooks/app-state';
+import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
+import { FlexColumnWrapper, MinHeightScreenWrapper } from '../shared/styles/wrappers';
 
 const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
 

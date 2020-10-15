@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, MutableRefObject } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 type useDimensionsState = { width: number; height: number };

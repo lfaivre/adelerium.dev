@@ -1,27 +1,23 @@
-import React, { useState, useEffect, ReactElement } from 'react';
-import Img, { FluidObject } from 'gatsby-image';
-import { useSpring, animated } from 'react-spring';
-import Skeleton from 'react-loading-skeleton';
-import tw from 'twin.macro';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Img, { FluidObject } from 'gatsby-image';
+import React, { ReactElement, useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { animated, useSpring } from 'react-spring';
+import tw from 'twin.macro';
 import { PreviewListQuery_projectPreviews_edges_node as Project } from '../../../graphql/types/PreviewListQuery';
-import { ProjectDirection } from '../../../shared/types/presentation';
-
-import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
 import {
+  BoldParagraphType,
+  BoldSpan,
+  BoldType,
   NormalParagraphType,
   NormalParagraphTypeAsAnchor,
-  BoldParagraphType,
-  BoldType,
-  BoldSpan,
 } from '../../../shared/styles/text';
-
-import { OrderNumber, BoxShadowStyles, Divider } from './styles';
+import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
+import { ProjectDirection } from '../../../shared/types/presentation';
+import { BoxShadowStyles, Divider, OrderNumber } from './styles';
 
 type PreviewContentTitle = `Description` | `Technology`;
 type PreviewContentItem = { title: PreviewContentTitle; content: string };

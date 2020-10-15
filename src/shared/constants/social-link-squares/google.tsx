@@ -1,8 +1,6 @@
-import React from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons/faGoogle';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
 export const data: SocialLink = {

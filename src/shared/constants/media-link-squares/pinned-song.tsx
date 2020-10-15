@@ -1,10 +1,8 @@
-import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { FluidObject } from 'gatsby-image';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSoundcloud } from '@fortawesome/free-brands-svg-icons/faSoundcloud';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { graphql, useStaticQuery } from 'gatsby';
+import { FluidObject } from 'gatsby-image';
+import React from 'react';
 import { MediaLink } from '../../../components/AboutPage/MediaLinkSquare/types';
 
 type Fluid = { fluid: FluidObject };

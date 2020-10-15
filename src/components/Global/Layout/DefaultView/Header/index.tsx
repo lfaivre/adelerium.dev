@@ -1,17 +1,13 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
-
-import { useAppState, useAppDispatch } from '../../../../../shared/hooks/app-state';
+import { useAppDispatch, useAppState } from '../../../../../shared/hooks/app-state';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
-import { SET_VIEW } from '../../../../../shared/types/state';
-
-import { StyledInternalLink } from '../../../StyledInternalLink';
-
+import { BoldParagraphType, BoldTypeAsButton } from '../../../../../shared/styles/text';
+import { FlexRowWrapper } from '../../../../../shared/styles/wrappers';
 import { INDEX_TEXT } from '../../../../../shared/types/paths';
 import { InternalLinkDirection } from '../../../../../shared/types/presentation';
-
-import { FlexRowWrapper } from '../../../../../shared/styles/wrappers';
-import { BoldParagraphType, BoldTypeAsButton } from '../../../../../shared/styles/text';
+import { SET_VIEW } from '../../../../../shared/types/state';
+import { StyledInternalLink } from '../../../StyledInternalLink';
 
 const DEFAULT_HEADER_TEXT = `Home`;
 const ERROR_HEADER_TEXT = `Error`;

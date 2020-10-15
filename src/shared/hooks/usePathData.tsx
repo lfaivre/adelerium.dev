@@ -1,8 +1,8 @@
+import { useLocation } from '@reach/router';
 import { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { useLocation } from '@reach/router';
 import { SitePaths } from '../constants/paths';
-import { TPathname, TPathData, INDEX, PathDataHook } from '../types/paths';
+import { INDEX, PathDataHook, TPathData, TPathname } from '../types/paths';
 
 type State = {
   pathname: TPathname | undefined;

@@ -1,14 +1,14 @@
 import {
-  INDEX,
-  INDEX_TEXT,
   ABOUT,
   ABOUT_ALT,
   ABOUT_TEXT,
+  INDEX,
+  INDEX_TEXT,
   PROJECTS,
   PROJECTS_ALT,
   PROJECTS_TEXT,
-  TSitePaths,
   TPathData,
+  TSitePaths,
 } from '../types/paths';
 
 const indexPathData = {

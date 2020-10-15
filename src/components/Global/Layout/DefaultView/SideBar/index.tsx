@@ -1,24 +1,21 @@
-import React, { ReactElement, useState } from 'react';
 import Img, { FluidObject } from 'gatsby-image';
+import React, { ReactElement, useState } from 'react';
 import tw, { css } from 'twin.macro';
-
 import { useSideBarQueryData } from '../../../../../graphql/queries/useSideBarQueryData';
+import { SiteData } from '../../../../../shared/constants/contentful-mock';
 import { useAppState } from '../../../../../shared/hooks/app-state';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
-import { getStrippedInternalLinkPath } from '../../../../../utils/strings';
-import { SiteData } from '../../../../../shared/constants/contentful-mock';
-import { SideBarView } from '../../../../../shared/types/presentation';
-
 import {
+  AccentType,
   BoldParagraphType,
   BoldType,
   BoldTypeAsAnchor,
   BoldTypeAsGatsbyLink,
   BrandingTypeAsAnchor,
-  AccentType,
 } from '../../../../../shared/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../../../shared/styles/wrappers';
-
+import { SideBarView } from '../../../../../shared/types/presentation';
+import { getStrippedInternalLinkPath } from '../../../../../utils/strings';
 import { Line, ViewButton } from './styles';
 
 // @todo Move to and export from shared file

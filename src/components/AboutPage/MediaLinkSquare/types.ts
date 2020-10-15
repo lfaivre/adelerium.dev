@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
 import { FluidObject } from 'gatsby-image';
+import { ReactElement } from 'react';
 
 export type MediaLinkStyling = {
   titleTextColor: string;

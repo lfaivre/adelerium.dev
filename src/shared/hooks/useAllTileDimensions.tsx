@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
-
 import { useAppState } from './app-state';
 
 type TileSize = 1 | 2 | 3;

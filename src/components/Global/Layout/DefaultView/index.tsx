@@ -1,18 +1,15 @@
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useSpring, animated, config } from 'react-spring';
+import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
-
-import { useAppState, useAppDispatch } from '../../../../shared/hooks/app-state';
-import { usePathData } from '../../../../shared/hooks/usePathData';
-import { useDimensions } from '../../../../shared/hooks/useDimensions';
 import { SCREEN_SIZE } from '../../../../shared/constants/presentation';
-import { SET_VIEW, SET_DIMENSIONS } from '../../../../shared/types/state';
-
-import { SideBar } from './SideBar';
-import { Header } from './Header';
+import { useAppDispatch, useAppState } from '../../../../shared/hooks/app-state';
+import { useDimensions } from '../../../../shared/hooks/useDimensions';
+import { usePathData } from '../../../../shared/hooks/usePathData';
+import { FlexRowWrapper, FullWidthWrapper } from '../../../../shared/styles/wrappers';
+import { SET_DIMENSIONS, SET_VIEW } from '../../../../shared/types/state';
 import { Footer } from './Footer';
-
-import { FullWidthWrapper, FlexRowWrapper } from '../../../../shared/styles/wrappers';
+import { Header } from './Header';
+import { SideBar } from './SideBar';
 import { ReturnButton, ReturnButtonIndicator } from './styles';
 
 const DEFAULT_SIDEBAR_WIDTH = 0.25 * 1680;

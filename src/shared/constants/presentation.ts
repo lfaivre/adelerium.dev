@@ -1,4 +1,4 @@
-import { INDEX, ABOUT, ABOUT_ALT, PROJECTS, PROJECTS_ALT } from '../types/paths';
+import { ABOUT, ABOUT_ALT, INDEX, PROJECTS, PROJECTS_ALT } from '../types/paths';
 
 export const XSMOBILE = 360;
 export const MOBILE = 375;

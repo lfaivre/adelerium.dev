@@ -1,7 +1,6 @@
+import { FixedObject } from 'gatsby-image';
 import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
-import { FixedObject } from 'gatsby-image';
-
 import { useSiteMetadataQueryData } from '../../../graphql/queries/useSiteMetadataQueryData';
 
 type MetaProps =

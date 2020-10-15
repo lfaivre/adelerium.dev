@@ -1,14 +1,10 @@
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';
 import { css } from 'twin.macro';
-import { OutboundLink } from 'gatsby-plugin-google-analytics';
-
 import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
-
-import { FlexColumnWrapper } from '../../../shared/styles/wrappers';
 import { BoldType } from '../../../shared/styles/text';
-
+import { FlexColumnWrapper } from '../../../shared/styles/wrappers';
 import { SocialLinkSquareComponent } from './styles';
-
 import { SocialLink } from './types';
 
 type SocialLinkSquareProps = { data: SocialLink; dimensions: TileDimensions };

@@ -1,6 +1,6 @@
-import tw, { styled, TwStyle } from 'twin.macro';
 import { Link } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import tw, { styled, TwStyle } from 'twin.macro';
 
 type TypeColorValues = `text-offwhite` | `text-charcoal` | `text-offpink` | `text-transparent`;
 

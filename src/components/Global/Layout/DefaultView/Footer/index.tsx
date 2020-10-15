@@ -1,23 +1,19 @@
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-
-import { StyledInternalLink } from '../../../StyledInternalLink';
-
 import { useFooterQueryData } from '../../../../../graphql/queries/useFooterQueryData';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
-import { getRandomInt } from '../../../../../utils/math';
-
-import { InternalLinkDirection } from '../../../../../shared/types/presentation';
-
 import {
-  NormalParagraphType,
   BoldParagraphType,
-  NormalParagraphTypeAsAnchor,
   BoldParagraphTypeAsAnchor,
   BoldType,
   BrandingType,
+  NormalParagraphType,
+  NormalParagraphTypeAsAnchor,
 } from '../../../../../shared/styles/text';
-import { FullWidthWrapper, FlexColumnWrapper, FlexRowWrapper } from '../../../../../shared/styles/wrappers';
+import { FlexColumnWrapper, FlexRowWrapper, FullWidthWrapper } from '../../../../../shared/styles/wrappers';
+import { InternalLinkDirection } from '../../../../../shared/types/presentation';
+import { getRandomInt } from '../../../../../utils/math';
+import { StyledInternalLink } from '../../../StyledInternalLink';
 
 const factOnError = `This site was built with Gatsby.js.`;
 const linkDestinationOnError = `https://github.com/lfaivre`;

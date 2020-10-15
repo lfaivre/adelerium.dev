@@ -1,14 +1,10 @@
 import React, { ReactElement, useEffect } from 'react';
 import 'twin.macro';
-
-import { LoadingAnimation } from './LoadingAnimation';
-
-import { useAppState, useAppDispatch } from '../../../../shared/hooks/app-state';
+import { useAppDispatch, useAppState } from '../../../../shared/hooks/app-state';
 import { usePathData } from '../../../../shared/hooks/usePathData';
-
-import { SET_VIEW } from '../../../../shared/types/state';
-
 import { FlexRowWrapper } from '../../../../shared/styles/wrappers';
+import { SET_VIEW } from '../../../../shared/types/state';
+import { LoadingAnimation } from './LoadingAnimation';
 
 export const LoadingView = (): ReactElement => {
   const {

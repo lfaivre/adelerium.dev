@@ -1,16 +1,12 @@
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { GlobalStyles } from 'twin.macro';
-
 import { useAppDispatch } from '../../../shared/hooks/app-state';
-
-import { useWindowDimensions } from '../../../shared/hooks/useWindowDimensions';
 import { useDimensions } from '../../../shared/hooks/useDimensions';
+import { useWindowDimensions } from '../../../shared/hooks/useWindowDimensions';
+import { FullWidthWrapper } from '../../../shared/styles/wrappers';
 import { SET_DIMENSIONS } from '../../../shared/types/state';
-
 import { DefaultView } from './DefaultView';
 import { LoadingView } from './LoadingView';
-
-import { FullWidthWrapper } from '../../../shared/styles/wrappers';
 
 type LayoutProps = { children: ReactElement };
 
