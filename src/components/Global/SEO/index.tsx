@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
+
+import { useSiteMetadataQueryData } from '../../../graphql/queries/useSiteMetadataQueryData';
 
 type MetaProps =
   | { name: string; content: string; property?: undefined }
@@ -13,47 +14,23 @@ type SEOProps = {
   meta?: MetaProps[];
   title: string;
   pathname: string;
-  keywords?: string[];
   image: FixedObject;
 };
 
-type SiteMetaData = {
-  description: string;
-  title: string;
-  author: string;
-  siteUrl: string;
+// @todo Export this constant from a shared file
+const { title: titleOnError, description: descriptionOnError, author: authorOnError } = {
+  title: `Lorenzo Faivre - Software Engineer & Artist`,
+  description: `Portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, artist, freelancer, and cofounder based in Phoenix, Arizona.`,
+  author: `@lorenzofaivre`,
 };
 
-type Site = { siteMetadata: SiteMetaData };
+const siteUrlOnError = `https://www.adelerium.dev`;
 
-type GraphQLStaticQuery = { site: Site };
+export const SEO = ({ description = ``, lang = `en`, meta = [], title, pathname, image }: SEOProps): ReactElement => {
+  const { site } = useSiteMetadataQueryData();
 
-export const SEO = ({
-  description = ``,
-  lang = `en`,
-  meta = [],
-  title,
-  pathname,
-  keywords = [],
-  image,
-}: SEOProps): ReactElement => {
-  const { site }: GraphQLStaticQuery = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            description
-            title
-            author
-            siteUrl
-          }
-        }
-      }
-    `
-  );
-
-  const metaDescription = description || site.siteMetadata.description;
-  const metaUrl = `${site.siteMetadata.siteUrl}${pathname}`;
+  const metaDescription = description || site?.siteMetadata?.description || descriptionOnError;
+  const metaUrl = `${site?.siteMetadata?.siteUrl || siteUrlOnError}${pathname}`;
 
   return (
     <Helmet
@@ -62,7 +39,7 @@ export const SEO = ({
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${site?.siteMetadata?.title || titleOnError}`}
       meta={[
         {
           name: `description`,
@@ -90,7 +67,7 @@ export const SEO = ({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site?.siteMetadata?.author || authorOnError,
         },
         {
           name: `twitter:title`,
@@ -131,14 +108,6 @@ export const SEO = ({
             content: `summary_large_image`,
           },
         ])
-        .concat(
-          keywords && keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`,`),
-              }
-            : []
-        )
         .concat(meta)}
     />
   );
