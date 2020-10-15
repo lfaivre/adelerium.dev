@@ -1,16 +1,15 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
+import { homePageTitleText, notFoundPageTitleText } from '../../../../../shared/constants/paths';
+import { Next } from '../../../../../shared/constants/presentation';
 import { useAppDispatch, useAppState } from '../../../../../shared/hooks/app-state';
+import { SET_VIEW } from '../../../../../shared/hooks/app-state/constants';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
 import { BoldParagraphType, BoldTypeAsButton } from '../../../../../shared/styles/text';
 import { FlexRowWrapper } from '../../../../../shared/styles/wrappers';
-import { INDEX_TEXT } from '../../../../../shared/types/paths';
-import { InternalLinkDirection } from '../../../../../shared/types/presentation';
-import { SET_VIEW } from '../../../../../shared/types/state';
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
-const DEFAULT_HEADER_TEXT = `Home`;
-const ERROR_HEADER_TEXT = `Error`;
+const defaultHeaderText = `Welcome`;
 
 type HeaderProps = { disableToggle?: boolean };
 
@@ -22,12 +21,12 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
   } = useAppState();
   const dispatch = useAppDispatch();
   const { pathname, isIndex, pathData, isValidPath } = usePathData();
-  const [headerTitle, setHeaderTitle] = useState<string>(DEFAULT_HEADER_TEXT);
+  const [headerTitle, setHeaderTitle] = useState<string>(defaultHeaderText);
   const [toggleIsVisible, setToggleIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const { text } = pathData || { text: ERROR_HEADER_TEXT };
-    const newHeaderTitle = text !== INDEX_TEXT ? text : `Welcome`;
+    const { text } = pathData || { text: notFoundPageTitleText };
+    const newHeaderTitle = text !== homePageTitleText ? text : defaultHeaderText;
     setHeaderTitle(newHeaderTitle);
   }, [pathData]);
 
@@ -71,7 +70,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
           isIndex={isIndex}
           pathData={pathData}
           isValidPath={isValidPath}
-          direction={InternalLinkDirection.Next}
+          direction={Next}
         />
       </FlexRowWrapper>
     </FlexRowWrapper>

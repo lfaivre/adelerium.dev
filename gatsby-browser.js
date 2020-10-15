@@ -26,8 +26,7 @@ import { PageWrapperElement } from './src/components/Global/Layout';
 export const wrapRootElement = RootWrapperElement;
 export const wrapPageElement = PageWrapperElement;
 
-export const onServiceWorkerUpdateReady = () => {
-  const answer = window.confirm(`This application has been updated.\nReload to display the latest version?`);
-
-  if (answer === true) window.location.reload();
-};
+// export const onServiceWorkerUpdateReady = () => {
+//   const answer = window.confirm(`This application has been updated.\nReload to display the latest version?`);
+//   if (answer === true) window.location.reload();
+// };

@@ -1,29 +1,25 @@
 import { Link } from 'gatsby';
 import React, { ReactElement, useEffect, useState } from 'react';
 import 'twin.macro';
-import { SitePaths } from '../../../shared/constants/paths';
+import { homePagePathname, sitePaths } from '../../../shared/constants/paths';
+import { Previous } from '../../../shared/constants/presentation';
+import { PathDataState } from '../../../shared/hooks/usePathData';
 import { BoldParagraphType, NormalParagraphType } from '../../../shared/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { INDEX, PathDataHook, TPathname } from '../../../shared/types/paths';
-import { InternalLinkDirection } from '../../../shared/types/presentation';
+import { StyledInternalLinkDirection } from '../../../shared/types/presentation';
 import { Arrow } from './styles';
 
-const PREVIOUS = `Previous` as const;
-const NEXT = `Next` as const;
-
-type StyledInternalLinkProps = PathDataHook & { direction: InternalLinkDirection };
+type StyledInternalLinkProps = PathDataState & { direction: StyledInternalLinkDirection };
 
 export const StyledInternalLink = ({ pathData, direction }: StyledInternalLinkProps): ReactElement => {
-  const [destinationPathname, setDestinationPathname] = useState<TPathname>(INDEX);
+  const [destinationPathname, setDestinationPathname] = useState(homePagePathname);
 
-  const isPrevious = (): boolean => {
-    return direction === InternalLinkDirection.Previous;
-  };
+  const isPrevious = (): boolean => direction === Previous;
 
   useEffect(() => {
     const newDestinationPathname = !pathData
-      ? INDEX
-      : direction === InternalLinkDirection.Previous
+      ? homePagePathname
+      : direction === Previous
       ? pathData.previous
       : pathData.next;
     setDestinationPathname(newDestinationPathname);
@@ -34,7 +30,7 @@ export const StyledInternalLink = ({ pathData, direction }: StyledInternalLinkPr
       <FlexColumnWrapper alignItems={isPrevious() ? `items-end` : `items-start`} justifyContent="justify-center">
         <FlexRowWrapper alignItems="items-center" justifyContent={isPrevious() ? `justify-end` : `justify-start`}>
           <BoldParagraphType color="text-charcoal" textAlign={isPrevious() ? `text-right` : `text-left`}>
-            {isPrevious() ? PREVIOUS : NEXT}
+            {isPrevious() ? `Previous` : `Next`}
           </BoldParagraphType>
         </FlexRowWrapper>
         <FlexRowWrapper reverse={!isPrevious()} alignItems="items-center" justifyContent="justify-between">
@@ -52,7 +48,7 @@ export const StyledInternalLink = ({ pathData, direction }: StyledInternalLinkPr
             </div>
           )}
           <NormalParagraphType color="text-charcoal" textAlign={isPrevious() ? `text-right` : `text-left`}>
-            {SitePaths[destinationPathname].text}
+            {sitePaths[destinationPathname].text}
           </NormalParagraphType>
         </FlexRowWrapper>
       </FlexColumnWrapper>

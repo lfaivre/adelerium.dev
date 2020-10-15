@@ -1,18 +1,18 @@
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
-import { SCREEN_SIZE } from '../../../../shared/constants/presentation';
+import { windowDimensionBreakpoints } from '../../../../shared/constants/dimensions';
 import { useAppDispatch, useAppState } from '../../../../shared/hooks/app-state';
+import { SET_DIMENSIONS, SET_VIEW } from '../../../../shared/hooks/app-state/constants';
 import { useDimensions } from '../../../../shared/hooks/useDimensions';
 import { usePathData } from '../../../../shared/hooks/usePathData';
 import { FlexRowWrapper, FullWidthWrapper } from '../../../../shared/styles/wrappers';
-import { SET_DIMENSIONS, SET_VIEW } from '../../../../shared/types/state';
 import { Footer } from './Footer';
 import { Header } from './Header';
 import { SideBar } from './SideBar';
 import { ReturnButton, ReturnButtonIndicator } from './styles';
 
-const DEFAULT_SIDEBAR_WIDTH = 0.25 * 1680;
+const DEFAULT_SIDEBAR_WIDTH = 0.25 * windowDimensionBreakpoints.width.max;
 
 const handleSmoothScrollToTop = (): void => {
   if (typeof window !== `undefined`) window.scrollTo({ top: 0, behavior: `smooth` });
@@ -44,7 +44,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   };
 
   /**
-   * Layout Effect(s): Initialize View
+   * @note Layout Effect(s): Initialize View
    *
    * - Set the width of the window gutters
    * - Set the width of the side bar navigator
@@ -64,7 +64,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   useLayoutEffect(() => {
     if (layoutWidth === 0) return;
-    const updatedSideBarWidth = layoutWidth < SCREEN_SIZE.SM ? layoutWidth : DEFAULT_SIDEBAR_WIDTH;
+    const updatedSideBarWidth = layoutWidth < windowDimensionBreakpoints.width.sm ? layoutWidth : DEFAULT_SIDEBAR_WIDTH;
     setSideBarWidth(updatedSideBarWidth);
   }, [layoutWidth]);
 
@@ -74,7 +74,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   }, [pathname, dispatch]);
 
   /**
-   * Layout Effect(s): Set Element Dimensions (Height)
+   * @note Layout Effect(s): Set Element Dimensions (Height)
    *
    * - Elements: header wrapper, footer wrapper, return button wrapper
    * - Utilize a ResizeObserver to keep track of changes to element dimensions
@@ -106,7 +106,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   }, [returnButtonDimensions, dispatch]);
 
   /**
-   * After Layout Effect(s)
+   * @note After Layout Effect(s)
    *
    * - Once the changes are painted by the browser, remove the loading screen
    */
@@ -117,7 +117,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   }, [loadingScreenIsVisible, dispatch]);
 
   /**
-   * Initialize React Spring Element Configurations
+   * @note Initialize React Spring Element Configurations
    *
    * - Elements: header wrapper, side bar wrapper, content wrapper
    */

@@ -1,23 +1,21 @@
-import { TPathname } from '../shared/types/paths';
+import { websiteDomain, websiteProtocol } from '../shared/constants/site-metadata';
 
-const PROTOCOL = `https`;
-const DOMAIN = `www.adelerium.dev`;
-
-export const getStrippedInternalLinkPath = (fullURL: string): TPathname => {
+export const getStrippedInternalLinkPath = (fullURL: string): string => {
   const linkParts = fullURL.split(`/`);
 
-  if (linkParts[0] !== `${PROTOCOL}:`) {
-    throw new Error(`Invalid protocol provided:\nExpected: ${PROTOCOL}:\nReceived: ${linkParts[0]}`);
+  if (linkParts[0] !== `${websiteProtocol}:`) {
+    throw new Error(`Invalid protocol provided:\nExpected: ${websiteProtocol}:\nReceived: ${linkParts[0]}`);
   }
-  if (linkParts[2] !== DOMAIN) {
-    throw new Error(`Invalid domain provided:\nExpected: ${DOMAIN}:\nReceived: ${linkParts[2]}`);
+  if (linkParts[2] !== websiteDomain) {
+    throw new Error(`Invalid domain provided:\nExpected: ${websiteDomain}:\nReceived: ${linkParts[2]}`);
   }
   if (linkParts[1] !== `` || linkParts[3] === undefined) {
-    throw new Error(`Invalid full internal URL provided. It should be in the form of: ${PROTOCOL}://${DOMAIN}/{PATH}`);
+    throw new Error(
+      `Invalid full internal URL provided. It should be in the form of: ${websiteProtocol}://${websiteDomain}/{PATH}`
+    );
   }
 
-  // @todo Assert result is actually a TPathname type
-  const pathname = `/${linkParts[3]}` as TPathname;
+  const pathname = `/${linkParts[3]}`;
 
   return pathname;
 };

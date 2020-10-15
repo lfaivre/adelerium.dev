@@ -6,7 +6,7 @@ import { StaticLocationComponent } from './styles';
 
 type StaticLocationProps = { dimensions: TileDimensions };
 
-const StaticLocationText = `Now local to Phoenix, Arizona.`;
+const staticLocationText = `Now local to Phoenix, Arizona.`;
 
 export const StaticLocation = ({ dimensions: { width, height } }: StaticLocationProps): ReactElement => {
   return (
@@ -17,7 +17,7 @@ export const StaticLocation = ({ dimensions: { width, height } }: StaticLocation
         wordBreak="break-normal"
         tw="w-full lg:w-3/4 lg:text-left text-2xl md:text-3xl lg:text-4xl"
       >
-        {StaticLocationText}
+        {staticLocationText}
       </BoldParagraphType>
     </StaticLocationComponent>
   );

@@ -2,34 +2,40 @@ import { FixedObject } from 'gatsby-image';
 import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
 import { useSiteMetadataQueryData } from '../../../graphql/queries/useSiteMetadataQueryData';
+import {
+  profileAuthor,
+  websiteBaseTitle,
+  websiteDefaultDescription,
+  websiteDefaultLanguage,
+  websiteDefaultLocale,
+  websiteFullPath,
+} from '../../../shared/constants/site-metadata';
 
 type MetaProps =
   | { name: string; content: string; property?: undefined }
   | { property: string; content: string; name?: undefined };
 
 type SEOProps = {
+  title: string;
   description?: string;
   lang?: string;
   meta?: MetaProps[];
-  title: string;
   pathname: string;
   image: FixedObject;
 };
 
-// @todo Export this constant from a shared file
-const { title: titleOnError, description: descriptionOnError, author: authorOnError } = {
-  title: `Lorenzo Faivre - Software Engineer & Artist`,
-  description: `Portfolio showcasing the works of Lorenzo Faivre. He is a software engineer, artist, freelancer, and cofounder based in Phoenix, Arizona.`,
-  author: `@lorenzofaivre`,
-};
-
-const siteUrlOnError = `https://www.adelerium.dev`;
-
-export const SEO = ({ description = ``, lang = `en`, meta = [], title, pathname, image }: SEOProps): ReactElement => {
+export const SEO = ({
+  title,
+  description = websiteDefaultDescription,
+  lang = websiteDefaultLanguage,
+  meta = [],
+  pathname,
+  image,
+}: SEOProps): ReactElement => {
   const { site } = useSiteMetadataQueryData();
 
-  const metaDescription = description || site?.siteMetadata?.description || descriptionOnError;
-  const metaUrl = `${site?.siteMetadata?.siteUrl || siteUrlOnError}${pathname}`;
+  const metaDescription = description || site?.siteMetadata?.description || websiteDefaultDescription;
+  const metaUrl = `${site?.siteMetadata?.siteUrl || websiteFullPath}${pathname}`;
 
   return (
     <Helmet
@@ -38,7 +44,7 @@ export const SEO = ({ description = ``, lang = `en`, meta = [], title, pathname,
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site?.siteMetadata?.title || titleOnError}`}
+      titleTemplate={`%s | ${site?.siteMetadata?.title || websiteBaseTitle}`}
       meta={[
         {
           name: `description`,
@@ -62,11 +68,11 @@ export const SEO = ({ description = ``, lang = `en`, meta = [], title, pathname,
         },
         {
           property: `og:locale`,
-          content: `en_US`,
+          content: websiteDefaultLocale,
         },
         {
           name: `twitter:creator`,
-          content: site?.siteMetadata?.author || authorOnError,
+          content: site?.siteMetadata?.author || profileAuthor,
         },
         {
           name: `twitter:title`,

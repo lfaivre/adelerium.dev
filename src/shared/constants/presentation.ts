@@ -1,29 +1,14 @@
-import { ABOUT, ABOUT_ALT, INDEX, PROJECTS, PROJECTS_ALT } from '../types/paths';
+/** @note SideBar Component (Layout) */
 
-export const XSMOBILE = 360;
-export const MOBILE = 375;
-export const SM = 640;
-export const MD = 768;
-export const LG = 1024;
-export const XL = 1280;
+export const InternalLinks = `InternalLinks`;
+export const ExternalLinks = `ExternalLinks`;
 
-// @todo Turn this into a typed enum value
-export const SCREEN_SIZE = Object.freeze({
-  XSMOBILE,
-  MOBILE,
-  SM,
-  MD,
-  LG,
-  XL,
-});
+/** @note StyledInternalLink Component (Layout) */
 
-export const pathsWithImgBgsDesktop = {
-  [INDEX]: INDEX,
-};
+export const Previous = `Previous`;
+export const Next = `Next`;
 
-export const pathsWithImgBgsMobile = {
-  [ABOUT]: ABOUT,
-  [ABOUT_ALT]: ABOUT_ALT,
-  [PROJECTS]: PROJECTS,
-  [PROJECTS_ALT]: PROJECTS_ALT,
-};
+/** @note Preview Component (Projects Page) */
+
+export const Left = `Left`;
+export const Right = `Right`;

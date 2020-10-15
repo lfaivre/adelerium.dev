@@ -1,43 +1,54 @@
-import {
-  ABOUT,
-  ABOUT_ALT,
-  ABOUT_TEXT,
-  INDEX,
-  INDEX_TEXT,
-  PROJECTS,
-  PROJECTS_ALT,
-  PROJECTS_TEXT,
-  TPathData,
-  TSitePaths,
-} from '../types/paths';
+/** @note Not Found (404) Page */
 
-const indexPathData = {
-  pathname: INDEX,
-  text: INDEX_TEXT,
-  previous: INDEX,
-  next: ABOUT,
+export const notFoundPagePathname = ``;
+export const notFoundPagePathnameAlt = ``;
+export const notFoundPageTitleText = `Error`;
+
+/** @note Home (Index) Page */
+
+export const homePagePathname = `/`;
+export const homePagePathnameAlt = ``;
+export const homePageTitleText = `Home`;
+
+/** @note About Page */
+
+export const aboutPagePathname = `/about`;
+export const aboutPagePathnameAlt = `${aboutPagePathname}/`;
+export const aboutPageTitleText = `About`;
+
+/** @note Projects Page */
+
+export const projectsPagePathname = `/projects`;
+export const projectsPagePathnameAlt = `${projectsPagePathname}/`;
+export const projectsPageTitleText = `Projects`;
+
+/** @note Path Data for All Valid Pages */
+
+export const homePagePathData = {
+  pathname: homePagePathname,
+  previous: homePagePathname,
+  next: aboutPagePathname,
+  text: homePageTitleText,
 };
 
-const aboutPathData = {
-  pathname: ABOUT,
-  text: ABOUT_TEXT,
-  previous: INDEX,
-  next: PROJECTS,
+export const aboutPagePathData = {
+  pathname: aboutPagePathname,
+  previous: homePagePathname,
+  next: projectsPagePathname,
+  text: aboutPageTitleText,
 };
 
-const projectsPathData = {
-  pathname: PROJECTS,
-  text: PROJECTS_TEXT,
-  previous: ABOUT,
-  next: INDEX,
+export const projectsPagePathData = {
+  pathname: projectsPagePathname,
+  previous: aboutPagePathname,
+  next: homePagePathname,
+  text: projectsPageTitleText,
 };
 
-export const SitePaths: TSitePaths = {
-  [INDEX]: indexPathData,
-  [ABOUT]: aboutPathData,
-  [ABOUT_ALT]: aboutPathData,
-  [PROJECTS]: projectsPathData,
-  [PROJECTS_ALT]: projectsPathData,
+export const sitePaths = {
+  [homePagePathname]: homePagePathData,
+  [aboutPagePathname]: aboutPagePathData,
+  [aboutPagePathnameAlt]: aboutPagePathData,
+  [projectsPagePathname]: projectsPagePathData,
+  [projectsPagePathnameAlt]: projectsPagePathData,
 };
-
-export const DefaultPath: TPathData = indexPathData;

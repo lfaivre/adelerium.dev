@@ -6,7 +6,7 @@ import { StaticIntroductionComponent } from './styles';
 
 type StaticIntroductionProps = { dimensions: TileDimensions };
 
-const StaticIntroductionText = `Hey, I’m Lorenzo. Welcome to adelerium.`;
+const staticIntroductionText = `Hey, I’m Lorenzo. Welcome to adelerium.`;
 
 export const StaticIntroduction = ({ dimensions: { width, height } }: StaticIntroductionProps): ReactElement => {
   return (
@@ -17,7 +17,7 @@ export const StaticIntroduction = ({ dimensions: { width, height } }: StaticIntr
         wordBreak="break-normal"
         tw="w-full text-2xl md:text-3xl lg:text-4xl"
       >
-        {StaticIntroductionText}
+        {staticIntroductionText}
       </BoldParagraphType>
     </StaticIntroductionComponent>
   );

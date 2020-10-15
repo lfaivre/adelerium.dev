@@ -8,6 +8,8 @@ import Skeleton from 'react-loading-skeleton';
 import { animated, useSpring } from 'react-spring';
 import tw from 'twin.macro';
 import { PreviewListQuery_projectPreviews_edges_node as Project } from '../../../graphql/types/PreviewListQuery';
+import { Left, Right } from '../../../shared/constants/presentation';
+import { websiteFullPath } from '../../../shared/constants/site-metadata';
 import {
   BoldParagraphType,
   BoldSpan,
@@ -16,7 +18,6 @@ import {
   NormalParagraphTypeAsAnchor,
 } from '../../../shared/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { ProjectDirection } from '../../../shared/types/presentation';
 import { BoxShadowStyles, Divider, OrderNumber } from './styles';
 
 type PreviewContentTitle = `Description` | `Technology`;
@@ -25,18 +26,11 @@ type PreviewContentKey = `description` | `technology`;
 type PreviewContent = { [key in PreviewContentKey]: PreviewContentItem };
 
 type ExternalLinkTitle = `Hosted` | `GitHub` | `Figma`;
-type ExternalLinkItem = {
-  title: ExternalLinkTitle;
-  url: string | null;
-  TextElement: ReactElement;
-  Icon: ReactElement;
-};
+type ExternalLinkItem = { title: ExternalLinkTitle; url: string | null; TextElement: ReactElement; Icon: ReactElement };
 type ExternalLinkKey = `hosted` | `github` | `figma`;
 type ExternalLinks = { [key in ExternalLinkKey]: ExternalLinkItem };
 
 type PreviewProps = { project: Project; order: number };
-
-const linkDestinationOnError = `https://github.com/lfaivre`;
 
 const calc = (x: number, y: number): [number, number, number] => [
   -(y - window.innerHeight / 2) / 40,
@@ -50,7 +44,7 @@ const translate = (x: number, y: number, s: number): string =>
 export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   const [componentLoaded, setComponentLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [direction, setDirection] = useState(ProjectDirection.Left);
+  const [direction, setDirection] = useState(Left);
   const [props, set] = useSpring(() => ({
     xys: [0, 0, 1],
     config: { mass: 5, tension: 200, friction: 60 },
@@ -61,7 +55,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   }, []);
 
   useEffect(() => {
-    const newDirection = order % 2 === 0 ? ProjectDirection.Right : ProjectDirection.Left;
+    const newDirection = order % 2 === 0 ? Right : Left;
     setDirection(newDirection);
   }, [order]);
 
@@ -75,7 +69,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
 
   const shouldDisplayContent = (): boolean => componentLoaded && imageLoaded;
 
-  const isLeftOriented = (): boolean => direction === ProjectDirection.Left;
+  const isLeftOriented = (): boolean => direction === Left;
 
   const previewContent: PreviewContent = {
     description: {
@@ -239,8 +233,8 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             (key) =>
               externalLinks[key as ExternalLinkKey].url && (
                 <NormalParagraphTypeAsAnchor
-                  href={externalLinks[key as ExternalLinkKey].url || linkDestinationOnError}
-                  label={externalLinks[key as ExternalLinkKey].url || linkDestinationOnError}
+                  href={externalLinks[key as ExternalLinkKey].url || websiteFullPath}
+                  label={externalLinks[key as ExternalLinkKey].url || websiteFullPath}
                   color="text-offwhite"
                   css={[tw`mr-8 last:mr-0 lowercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
                   key={externalLinks[key as ExternalLinkKey].title}

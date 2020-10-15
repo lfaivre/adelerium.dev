@@ -4,7 +4,9 @@ import { useAppState } from './app-state';
 
 type TileSize = 1 | 2 | 3;
 
-/*
+/**
+ * @note Tile Size Diagram
+ *
  * 1: [1][1][1]
  * 2: [2---][1]
  * 3: [3------]
@@ -18,15 +20,15 @@ type UseAllTileDimensionsConfiguration = { sizeOfGuttersInPx: number };
 type UseAllTileDimensionsProps = { breakpoint: number };
 type UseAllTileDimensionsState = AllTileDimensions;
 
-const DEFAULT_NUM_OF_GUTTERS = 4;
-const INITIAL_GUTTER_SIZE_IN_PX = 8;
-const BREAKPOINT_GUTTER_SIZE_IN_PX = 16;
+const defaultNumberOfGutters = 4;
+const initialGutterSizeInPx = 8;
+const breakpointGutterSizeInPx = 16;
 
 const initialUseAllTileDimensionsConfiguration: UseAllTileDimensionsConfiguration = {
-  sizeOfGuttersInPx: INITIAL_GUTTER_SIZE_IN_PX,
+  sizeOfGuttersInPx: initialGutterSizeInPx,
 };
 
-const DEFAULT_TILE_SIZE = 1;
+const defaultTileSize = 1;
 
 const initialAllTileDimensions: AllTileDimensions = {
   1: { width: -1, height: -1, squareHeight: -1 },
@@ -52,7 +54,7 @@ export const useAllTileDimensions = ({ breakpoint }: UseAllTileDimensionsProps):
 
   useEffect(() => {
     setConfiguration((draft) => {
-      draft.sizeOfGuttersInPx = metBreakpoint ? BREAKPOINT_GUTTER_SIZE_IN_PX : INITIAL_GUTTER_SIZE_IN_PX;
+      draft.sizeOfGuttersInPx = metBreakpoint ? breakpointGutterSizeInPx : initialGutterSizeInPx;
     });
   }, [metBreakpoint, setConfiguration]);
 
@@ -60,17 +62,17 @@ export const useAllTileDimensions = ({ breakpoint }: UseAllTileDimensionsProps):
     setAllTileDimensions((draft) => {
       const { sizeOfGuttersInPx } = configuration;
       const defaultDimension = metBreakpoint
-        ? normalizeDimension((layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS) / (3 / DEFAULT_TILE_SIZE))
+        ? normalizeDimension((layoutWidth - sizeOfGuttersInPx * defaultNumberOfGutters) / (3 / defaultTileSize))
         : normalizeDimension(
-            layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS + sizeOfGuttersInPx * (3 - DEFAULT_TILE_SIZE)
+            layoutWidth - sizeOfGuttersInPx * defaultNumberOfGutters + sizeOfGuttersInPx * (3 - defaultTileSize)
           );
 
       Object.keys(draft).forEach((key) => {
-        const tileSize = (Number.parseInt(key, 10) as TileSize) || DEFAULT_TILE_SIZE;
+        const tileSize = (Number.parseInt(key, 10) as TileSize) || defaultTileSize;
 
         const dimension = normalizeDimension(
-          (layoutWidth - sizeOfGuttersInPx * DEFAULT_NUM_OF_GUTTERS) / (3 / tileSize) +
-            sizeOfGuttersInPx * (tileSize - DEFAULT_TILE_SIZE)
+          (layoutWidth - sizeOfGuttersInPx * defaultNumberOfGutters) / (3 / tileSize) +
+            sizeOfGuttersInPx * (tileSize - defaultTileSize)
         );
 
         draft[tileSize].width = metBreakpoint ? dimension : defaultDimension;

@@ -1,28 +1,13 @@
-export enum InternalLinkDirection {
-  Previous,
-  Next,
-}
+import { ExternalLinks, InternalLinks, Left, Next, Previous, Right } from '../constants/presentation';
 
-export enum ProjectDirection {
-  Left,
-  Right,
-}
+/** @note SideBar Component (Layout) */
 
-export enum SideBarView {
-  InternalLinks,
-  ExternalLinks,
-}
+export type SideBarView = typeof InternalLinks | typeof ExternalLinks;
 
-export enum BackgroundImage {
-  Mobile,
-  Desktop,
-}
+/** @note StyledInternalLink Component (Layout) */
 
-export enum ScreenSize {
-  XSMOBILE,
-  MOBILE,
-  SM,
-  MD,
-  LG,
-  XL,
-}
+export type StyledInternalLinkDirection = typeof Previous | typeof Next;
+
+/** @note Preview Component (Projects Page) */
+
+export type PreviewDirection = typeof Left | typeof Right;

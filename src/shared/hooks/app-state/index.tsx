@@ -1,5 +1,6 @@
 import React, { createContext, ReactElement, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
+import { SET_DIMENSIONS, SET_VIEW } from './constants';
 import {
   Action,
   AppProviderProps,
@@ -8,10 +9,8 @@ import {
   ElementDimensionsState,
   ElementViewState,
   ElementViewStates,
-  SET_DIMENSIONS,
-  SET_VIEW,
   State,
-} from '../types/state';
+} from './types';
 
 const initialState: State = {
   view: {

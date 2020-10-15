@@ -1,3 +1,5 @@
+// @constants styles
+
 import { Link } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import tw, { styled, TwStyle } from 'twin.macro';

@@ -1,7 +1,7 @@
 {
-  "name": "adelerium",
+  "name": "adelerium-portfolio-website",
   "private": true,
-  "description": "Lorenzo Faivre's Portfolio Website",
+  "description": "Portfolio Website",
   "version": "1.0.0",
   "author": "Lorenzo Faivre <lorenzo.faivre@gmail.com>",
   "dependencies": {

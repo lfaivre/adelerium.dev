@@ -1,9 +1,7 @@
 import { ReactElement } from 'react';
+import { SET_DIMENSIONS, SET_VIEW } from './constants';
 
 /** @note Reducer Actions */
-
-export const SET_VIEW = `SET_VIEW`;
-export const SET_DIMENSIONS = `SET_DIMENSIONS`;
 
 export type Action =
   | { type: typeof SET_VIEW; payload: Partial<ElementViewState> }

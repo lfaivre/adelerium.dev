@@ -2,7 +2,15 @@ import Img, { FluidObject } from 'gatsby-image';
 import React, { ReactElement, useState } from 'react';
 import tw, { css } from 'twin.macro';
 import { useSideBarQueryData } from '../../../../../graphql/queries/useSideBarQueryData';
-import { SiteData } from '../../../../../shared/constants/contentful-mock';
+import { windowDimensionBreakpoints } from '../../../../../shared/constants/dimensions';
+import { ExternalLinks, InternalLinks } from '../../../../../shared/constants/presentation';
+import {
+  profileEmail,
+  profileName,
+  profileTag,
+  studioUrl,
+  websiteFullPath,
+} from '../../../../../shared/constants/site-metadata';
 import { useAppState } from '../../../../../shared/hooks/app-state';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
 import {
@@ -14,17 +22,8 @@ import {
   BrandingTypeAsAnchor,
 } from '../../../../../shared/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '../../../../../shared/styles/wrappers';
-import { SideBarView } from '../../../../../shared/types/presentation';
 import { getStrippedInternalLinkPath } from '../../../../../utils/strings';
 import { Line, ViewButton } from './styles';
-
-// @todo Move to and export from shared file
-const IPHONE_X_LANDSCAPE_HEIGHT = 667;
-const IPHONE_5_LANDSCAPE_HEIGHT = 320;
-const { name, tag } = SiteData.profile;
-const linkOnError = `https://github.com/lfaivre`;
-const brandingLinkOnError = `https://www.kevaladesign.com`;
-const emailOnError = `lorenzo.faivre@gmail.com`;
 
 // @todo Break into smaller, more reusable components
 
@@ -40,7 +39,7 @@ export const SideBar = (): ReactElement => {
     },
   } = useAppState();
   const pathData = usePathData();
-  const [sideBarView, setSideBarView] = useState(SideBarView.InternalLinks);
+  const [sideBarView, setSideBarView] = useState(InternalLinks);
 
   const backgroundImageStyles = css`
     background: var(--color-OffWhite) url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
@@ -53,7 +52,7 @@ export const SideBar = (): ReactElement => {
       backgroundColor="bg-offwhite"
       tw="p-8 w-full h-full"
     >
-      {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
+      {windowHeight >= windowDimensionBreakpoints.height.selected_2 && (
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="pt-8 mb-8 w-full">
           <FlexRowWrapper
             alignItems="items-center"
@@ -74,10 +73,10 @@ export const SideBar = (): ReactElement => {
               textAlign="text-center"
               tw="mb-2 w-full text-2xl md:text-2xl lowercase"
             >
-              {name}
+              {profileName}
             </BoldParagraphType>
             <BoldType color="text-charcoal" textAlign="text-center" tw="w-full uppercase text-xs md:text-xs">
-              {tag}
+              {profileTag}
             </BoldType>
           </FlexColumnWrapper>
         </FlexColumnWrapper>
@@ -89,7 +88,7 @@ export const SideBar = (): ReactElement => {
         tw="flex-grow mb-8 w-full overflow-y-scroll"
       >
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="my-auto w-full">
-          {sideBarView === SideBarView.InternalLinks ? (
+          {sideBarView === InternalLinks ? (
             <>
               {(sideBarData?.internalLinks || []).map((link) => (
                 <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full" key={link?.id}>
@@ -120,8 +119,8 @@ export const SideBar = (): ReactElement => {
             <>
               {(sideBarData?.externalLinks || []).map((link) => (
                 <BoldTypeAsAnchor
-                  href={link?.destination || linkOnError}
-                  label={link?.destination || linkOnError}
+                  href={link?.destination || websiteFullPath}
+                  label={link?.destination || websiteFullPath}
                   key={link?.id}
                   color="text-charcoal"
                   tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
@@ -130,8 +129,8 @@ export const SideBar = (): ReactElement => {
                 </BoldTypeAsAnchor>
               ))}
               <BoldTypeAsAnchor
-                href={`mailto:${email?.destination || emailOnError}`}
-                label={`mailto:${email?.destination || emailOnError}`}
+                href={`mailto:${email?.destination || profileEmail}`}
+                label={`mailto:${email?.destination || profileEmail}`}
                 color="text-charcoal"
                 tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
               >
@@ -142,7 +141,7 @@ export const SideBar = (): ReactElement => {
         </FlexColumnWrapper>
       </FlexColumnWrapper>
 
-      {windowHeight > IPHONE_5_LANDSCAPE_HEIGHT && (
+      {windowHeight > windowDimensionBreakpoints.height.selected_1 && (
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="mb-8 w-full">
           <Line borderColor="border-charcoal" />
           <Line borderColor="border-charcoal" />
@@ -151,14 +150,14 @@ export const SideBar = (): ReactElement => {
 
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-shrink-0 w-full">
         <ViewButton
-          onClick={() => setSideBarView(SideBarView.InternalLinks)}
-          selected={sideBarView === SideBarView.InternalLinks}
-          backgroundColor={sideBarView === SideBarView.InternalLinks ? `bg-charcoal` : `bg-transparent`}
-          strokeColor={sideBarView === SideBarView.InternalLinks ? `text-offwhite` : `text-charcoal`}
+          onClick={() => setSideBarView(InternalLinks)}
+          selected={sideBarView === InternalLinks}
+          backgroundColor={sideBarView === InternalLinks ? `bg-charcoal` : `bg-transparent`}
+          strokeColor={sideBarView === InternalLinks ? `text-offwhite` : `text-charcoal`}
           aria-label="Internal Links"
         >
           <AccentType
-            color={sideBarView === SideBarView.InternalLinks ? `text-charcoal` : `text-transparent`}
+            color={sideBarView === InternalLinks ? `text-charcoal` : `text-transparent`}
             textAlign="text-center"
             tw="text-4xl"
           >
@@ -166,14 +165,14 @@ export const SideBar = (): ReactElement => {
           </AccentType>
         </ViewButton>
         <ViewButton
-          onClick={() => setSideBarView(SideBarView.ExternalLinks)}
-          selected={sideBarView === SideBarView.ExternalLinks}
-          backgroundColor={sideBarView === SideBarView.ExternalLinks ? `bg-charcoal` : `bg-transparent`}
-          strokeColor={sideBarView === SideBarView.ExternalLinks ? `text-offwhite` : `text-charcoal`}
+          onClick={() => setSideBarView(ExternalLinks)}
+          selected={sideBarView === ExternalLinks}
+          backgroundColor={sideBarView === ExternalLinks ? `bg-charcoal` : `bg-transparent`}
+          strokeColor={sideBarView === ExternalLinks ? `text-offwhite` : `text-charcoal`}
           aria-label="External Links"
         >
           <AccentType
-            color={sideBarView === SideBarView.ExternalLinks ? `text-charcoal` : `text-transparent`}
+            color={sideBarView === ExternalLinks ? `text-charcoal` : `text-transparent`}
             textAlign="text-center"
             tw="text-4xl"
           >
@@ -182,11 +181,11 @@ export const SideBar = (): ReactElement => {
         </ViewButton>
       </FlexRowWrapper>
 
-      {windowHeight >= IPHONE_X_LANDSCAPE_HEIGHT && (
+      {windowHeight >= windowDimensionBreakpoints.height.selected_2 && (
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="mt-8 w-full">
           <BrandingTypeAsAnchor
-            href={brandingLink?.destination || brandingLinkOnError}
-            label={brandingLink?.destination || brandingLinkOnError}
+            href={brandingLink?.destination || studioUrl}
+            label={brandingLink?.destination || studioUrl}
             color="text-charcoal"
           >
             KD.

@@ -1,5 +1,5 @@
 :root {
-  /* COLORS */
+  /* Colors */
 
   --color-OffWhite: #f3f2f1;
   --color-Charcoal: #000000;
@@ -8,6 +8,11 @@
   --color-FigmaGreen: #0acf83;
   --color-LinkedInBlue: #2867b2;
   --color-GoogleRed: #d44638;
+
+  /* Dimensions */
+
+  --width-app-max: 1680px;
+  --height-app-max: 1080px;
 }
 
 html {

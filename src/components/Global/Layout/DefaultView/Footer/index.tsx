@@ -1,6 +1,8 @@
 import React, { ReactElement } from 'react';
 import 'twin.macro';
 import { useFooterQueryData } from '../../../../../graphql/queries/useFooterQueryData';
+import { Next, Previous } from '../../../../../shared/constants/presentation';
+import { studioCopyrightText, websiteFullPath } from '../../../../../shared/constants/site-metadata';
 import { usePathData } from '../../../../../shared/hooks/usePathData';
 import {
   BoldParagraphType,
@@ -11,12 +13,10 @@ import {
   NormalParagraphTypeAsAnchor,
 } from '../../../../../shared/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper, FullWidthWrapper } from '../../../../../shared/styles/wrappers';
-import { InternalLinkDirection } from '../../../../../shared/types/presentation';
 import { getRandomInt } from '../../../../../utils/math';
 import { StyledInternalLink } from '../../../StyledInternalLink';
 
 const factOnError = `This site was built with Gatsby.js.`;
-const linkDestinationOnError = `https://github.com/lfaivre`;
 
 export const Footer = (): ReactElement => {
   const { footerData, brandingLink, linkedInLink, gitHubLink } = useFooterQueryData();
@@ -35,8 +35,8 @@ export const Footer = (): ReactElement => {
             Need a website?
           </BoldParagraphType>
           <NormalParagraphTypeAsAnchor
-            href={brandingLink?.destination || linkDestinationOnError}
-            label={brandingLink?.destination || linkDestinationOnError}
+            href={brandingLink?.destination || websiteFullPath}
+            label={brandingLink?.destination || websiteFullPath}
             color="text-charcoal"
           >
             kevaladesign.com
@@ -52,16 +52,16 @@ export const Footer = (): ReactElement => {
         </FlexColumnWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-end" tw="w-2/6">
           <BoldParagraphTypeAsAnchor
-            href={linkedInLink?.destination || linkDestinationOnError}
-            label={linkedInLink?.destination || linkDestinationOnError}
+            href={linkedInLink?.destination || websiteFullPath}
+            label={linkedInLink?.destination || websiteFullPath}
             color="text-charcoal"
             tw="mr-4"
           >
             li.
           </BoldParagraphTypeAsAnchor>
           <BoldParagraphTypeAsAnchor
-            href={gitHubLink?.destination || linkDestinationOnError}
-            label={gitHubLink?.destination || linkDestinationOnError}
+            href={gitHubLink?.destination || websiteFullPath}
+            label={gitHubLink?.destination || websiteFullPath}
             color="text-charcoal"
           >
             gh.
@@ -76,7 +76,7 @@ export const Footer = (): ReactElement => {
               isIndex={isIndex}
               pathData={pathData}
               isValidPath={isValidPath}
-              direction={InternalLinkDirection.Previous}
+              direction={Previous}
             />
           )}
         </FlexRowWrapper>
@@ -92,7 +92,7 @@ export const Footer = (): ReactElement => {
               isIndex={isIndex}
               pathData={pathData}
               isValidPath={isValidPath}
-              direction={InternalLinkDirection.Next}
+              direction={Next}
             />
           )}
         </FlexRowWrapper>
@@ -106,7 +106,7 @@ export const Footer = (): ReactElement => {
             tw="w-full uppercase text-xs md:text-xs"
             wordBreak="break-normal"
           >
-            &copy; {new Date().getFullYear()} Lorenzo Faivre &amp; Kevala Design LLC
+            {studioCopyrightText}
           </BoldType>
         </FlexRowWrapper>
       </FlexRowWrapper>

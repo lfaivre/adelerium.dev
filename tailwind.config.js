@@ -7,10 +7,10 @@ module.exports = {
         '1/4': `25%`,
         '1/2': `50%`,
         '3/4': `75%`,
-        global: `1680px`,
+        global: `var(--width-app-max)`,
       },
       maxHeight: {
-        global: `1080px`,
+        global: `var(--height-app-max)`,
       },
       margin: {
         '1/4': `0.0625rem`,

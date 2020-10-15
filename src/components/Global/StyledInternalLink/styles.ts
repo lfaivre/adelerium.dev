@@ -1,5 +1,7 @@
+// @constants styles
+
 import tw, { styled, TwStyle } from 'twin.macro';
-import { InternalLinkDirection } from '../../../shared/types/presentation';
+import { StyledInternalLinkDirection } from '../../../shared/types/presentation';
 
 // @todo Move duplicated color map to shared utility
 
@@ -12,7 +14,7 @@ const arrowBackgroundColorMap: { [key in ArrowBackgroundColorValues]: TwStyle } 
 };
 
 type ArrowProps = {
-  direction: InternalLinkDirection;
+  direction: StyledInternalLinkDirection;
   backgroundColor: ArrowBackgroundColorValues;
 };
 

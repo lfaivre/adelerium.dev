@@ -16,7 +16,7 @@ import {
   PINNED_PODCAST,
   PINNED_SONG,
 } from '../shared/constants/media-link-squares';
-import { SCREEN_SIZE } from '../shared/constants/presentation';
+import { windowDimensionBreakpoints } from '../shared/constants/dimensions';
 import { FIGMA, GITHUB, GOOGLE, LINKEDIN, socialLinks } from '../shared/constants/social-link-squares';
 import { useAppState } from '../shared/hooks/app-state';
 import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
@@ -38,7 +38,7 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   // @todo Convert this to component state
   const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
-  const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: SCREEN_SIZE.MD });
+  const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: windowDimensionBreakpoints.width.md });
 
   return (
     <>
