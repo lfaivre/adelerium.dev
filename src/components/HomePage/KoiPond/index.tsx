@@ -1,43 +1,34 @@
 import React, { ReactElement } from 'react';
 import './koi-pond.css';
 
+/**
+ * @note Koi Fish Animation Credit
+ *
+ * This animated component is a slightly modified version of this CodePen:
+ *
+ * @link https://codepen.io/Adir-SL/pen/LYEPzxW
+ * @author adircode
+ */
+
+const numberOfFish = 2;
+const numberOfKoiCoilsPerFish = 15;
+const fishToMap = new Array(numberOfFish).fill(Math.random());
+const koiCoilsToMap = new Array(numberOfKoiCoilsPerFish).fill(Math.random());
+
 export const KoiPond = (): ReactElement => {
   return (
     <div className="seaLevel">
-      <div className="fish">
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-      </div>
-      <div className="fish">
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-        <div className="koiCoil" />
-      </div>
+      {fishToMap.map((_, fishIndex) => {
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <div className="fish" key={fishIndex}>
+            {koiCoilsToMap.map((__, koiCoilIndex) => {
+              // eslint-disable-next-line react/no-array-index-key
+              return <div className="koiCoil" key={koiCoilIndex} />;
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 };
