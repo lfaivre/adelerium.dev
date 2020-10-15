@@ -76,7 +76,7 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "husky": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.5.2",
+    "jest": "^26.5.3",
     "msw": "^0.21.2",
     "prettier": "^2.1.2",
     "react-test-renderer": "^16.13.1",
