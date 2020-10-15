@@ -1,5 +1,5 @@
+import '@adelerium/components/HomePage/KoiPond/koi-pond.css';
 import React, { ReactElement } from 'react';
-import './koi-pond.css';
 
 /**
  * @note Koi Fish Animation Credit

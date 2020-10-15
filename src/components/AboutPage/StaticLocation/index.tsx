@@ -1,8 +1,8 @@
+import { StaticLocationComponent } from '@adelerium/components/AboutPage/StaticLocation/styles';
+import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
+import { BoldParagraphType } from '@adelerium/shared/styles/text';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
-import { BoldParagraphType } from '../../../shared/styles/text';
-import { StaticLocationComponent } from './styles';
 
 type StaticLocationProps = { dimensions: TileDimensions };
 

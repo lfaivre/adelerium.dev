@@ -1,18 +1,16 @@
-import Img, { FluidObject } from 'gatsby-image';
-import React, { ReactElement, useState } from 'react';
-import tw, { css } from 'twin.macro';
-import { useSideBarQueryData } from '../../../../../graphql/queries/useSideBarQueryData';
-import { windowDimensionBreakpoints } from '../../../../../shared/constants/dimensions';
-import { ExternalLinks, InternalLinks } from '../../../../../shared/constants/presentation';
+import { Line, ViewButton } from '@adelerium/components/Global/Layout/DefaultView/SideBar/styles';
+import { useSideBarQueryData } from '@adelerium/graphql/queries/useSideBarQueryData';
+import { windowDimensionBreakpoints } from '@adelerium/shared/constants/dimensions';
+import { ExternalLinks, InternalLinks } from '@adelerium/shared/constants/presentation';
 import {
   profileEmail,
   profileName,
   profileTag,
   studioUrl,
   websiteFullPath,
-} from '../../../../../shared/constants/site-metadata';
-import { useAppState } from '../../../../../shared/hooks/app-state';
-import { usePathData } from '../../../../../shared/hooks/usePathData';
+} from '@adelerium/shared/constants/site-metadata';
+import { useAppState } from '@adelerium/shared/hooks/app-state';
+import { usePathData } from '@adelerium/shared/hooks/usePathData';
 import {
   AccentType,
   BoldParagraphType,
@@ -20,10 +18,12 @@ import {
   BoldTypeAsAnchor,
   BoldTypeAsGatsbyLink,
   BrandingTypeAsAnchor,
-} from '../../../../../shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper } from '../../../../../shared/styles/wrappers';
-import { getStrippedInternalLinkPath } from '../../../../../utils/strings';
-import { Line, ViewButton } from './styles';
+} from '@adelerium/shared/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
+import Img, { FluidObject } from 'gatsby-image';
+import React, { ReactElement, useState } from 'react';
+import tw, { css } from 'twin.macro';
 
 // @todo Break into smaller, more reusable components
 

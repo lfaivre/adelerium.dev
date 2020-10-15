@@ -1,7 +1,4 @@
-import { FixedObject } from 'gatsby-image';
-import React, { ReactElement } from 'react';
-import { Helmet } from 'react-helmet';
-import { useSiteMetadataQueryData } from '../../../graphql/queries/useSiteMetadataQueryData';
+import { useSiteMetadataQueryData } from '@adelerium/graphql/queries/useSiteMetadataQueryData';
 import {
   profileAuthor,
   websiteBaseTitle,
@@ -9,7 +6,10 @@ import {
   websiteDefaultLanguage,
   websiteDefaultLocale,
   websiteFullPath,
-} from '../../../shared/constants/site-metadata';
+} from '@adelerium/shared/constants/site-metadata';
+import { FixedObject } from 'gatsby-image';
+import React, { ReactElement } from 'react';
+import { Helmet } from 'react-helmet';
 
 type MetaProps =
   | { name: string; content: string; property?: undefined }

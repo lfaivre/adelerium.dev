@@ -1,3 +1,15 @@
+import { BoxShadowStyles, Divider, OrderNumber } from '@adelerium/components/ProjectsPage/Preview/styles';
+import { PreviewListQuery_projectPreviews_edges_node as Project } from '@adelerium/graphql/types/PreviewListQuery';
+import { Left, Right } from '@adelerium/shared/constants/presentation';
+import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
+import {
+  BoldParagraphType,
+  BoldSpan,
+  BoldType,
+  NormalParagraphType,
+  NormalParagraphTypeAsAnchor,
+} from '@adelerium/shared/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
@@ -7,18 +19,6 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { animated, useSpring } from 'react-spring';
 import tw from 'twin.macro';
-import { PreviewListQuery_projectPreviews_edges_node as Project } from '../../../graphql/types/PreviewListQuery';
-import { Left, Right } from '../../../shared/constants/presentation';
-import { websiteFullPath } from '../../../shared/constants/site-metadata';
-import {
-  BoldParagraphType,
-  BoldSpan,
-  BoldType,
-  NormalParagraphType,
-  NormalParagraphTypeAsAnchor,
-} from '../../../shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { BoxShadowStyles, Divider, OrderNumber } from './styles';
 
 type PreviewContentTitle = `Description` | `Technology`;
 type PreviewContentItem = { title: PreviewContentTitle; content: string };

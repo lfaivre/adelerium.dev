@@ -1,4 +1,4 @@
-import { getRandomInt } from '../math';
+import { getRandomInt } from '@adelerium/utils/math';
 
 describe(`math util: get random integer`, () => {
   it(`returns a random integer within a specified range`, () => {

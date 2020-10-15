@@ -1,12 +1,12 @@
+import { MediaLinkSquareComponent } from '@adelerium/components/AboutPage/MediaLinkSquare/styles';
+import { MediaLink } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
+import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
+import { BoldType } from '@adelerium/shared/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
 import Img from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';
 import { css } from 'twin.macro';
-import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
-import { BoldType } from '../../../shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { MediaLinkSquareComponent } from './styles';
-import { MediaLink } from './types';
 
 type MediaLinkSquareProps = { data: MediaLink; dimensions: TileDimensions };
 

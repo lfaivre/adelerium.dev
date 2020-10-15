@@ -1,5 +1,5 @@
+import { HomePageQuery } from '@adelerium/graphql/types/HomePageQuery';
 import { graphql, useStaticQuery } from 'gatsby';
-import { HomePageQuery } from '../types/HomePageQuery';
 
 export const useHomePageQueryData = (): HomePageQuery => {
   const homePageQueryData: HomePageQuery = useStaticQuery(graphql`

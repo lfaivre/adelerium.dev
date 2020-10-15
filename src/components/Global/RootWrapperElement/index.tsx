@@ -1,5 +1,5 @@
+import { AppProvider } from '@adelerium/shared/hooks/app-state';
 import React, { ReactElement } from 'react';
-import { AppProvider } from '../../../shared/hooks/app-state';
 
 type RootWrapperElementProps = { element: ReactElement };
 

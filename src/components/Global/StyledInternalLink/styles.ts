@@ -1,7 +1,7 @@
 // @constants styles
 
+import { StyledInternalLinkDirection } from '@adelerium/shared/types/presentation';
 import tw, { styled, TwStyle } from 'twin.macro';
-import { StyledInternalLinkDirection } from '../../../shared/types/presentation';
 
 // @todo Move duplicated color map to shared utility
 

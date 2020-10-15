@@ -1,12 +1,12 @@
+import { SEO } from '@adelerium/components/Global/SEO';
+import { PreviewList } from '@adelerium/components/ProjectsPage/PreviewList';
+import { useProjectsPageQueryData } from '@adelerium/graphql/queries/useProjectsPageQueryData';
+import { useAppState } from '@adelerium/shared/hooks/app-state';
+import { MinHeightScreenWrapper } from '@adelerium/shared/styles/wrappers';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-import { SEO } from '../components/Global/SEO';
-import { PreviewList } from '../components/ProjectsPage/PreviewList';
-import { useProjectsPageQueryData } from '../graphql/queries/useProjectsPageQueryData';
-import { useAppState } from '../shared/hooks/app-state';
-import { MinHeightScreenWrapper } from '../shared/styles/wrappers';
 
 const ProjectsPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage } = useProjectsPageQueryData();

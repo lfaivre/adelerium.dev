@@ -1,20 +1,19 @@
+import { Header } from '@adelerium/components/Global/Layout/DefaultView/Header';
+import { SEO } from '@adelerium/components/Global/SEO';
+import { cssToTest, KoiPond } from '@adelerium/components/HomePage/KoiPond';
+import { useHomePageQueryData } from '@adelerium/graphql/queries/useHomePageQueryData';
+import { windowDimensionBreakpoints } from '@adelerium/shared/constants/dimensions';
+import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
+import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
+import { SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
+import { useDimensions } from '@adelerium/shared/hooks/useDimensions';
+import { BoldTypeAsButton, BrandingTypeAsAnchor } from '@adelerium/shared/styles/text';
+import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
-
-import { Header } from '@adelerium/components/Global/Layout/DefaultView/Header';
-import { SEO } from '@adelerium/components/Global/SEO';
-import { cssToTest, KoiPond } from '@adelerium/components/HomePage/KoiPond';
-import { useHomePageQueryData } from '../graphql/queries/useHomePageQueryData';
-import { windowDimensionBreakpoints } from '../shared/constants/dimensions';
-import { websiteFullPath } from '../shared/constants/site-metadata';
-import { useAppDispatch, useAppState } from '../shared/hooks/app-state';
-import { SET_VIEW } from '../shared/hooks/app-state/constants';
-import { useDimensions } from '../shared/hooks/useDimensions';
-import { BoldTypeAsButton, BrandingTypeAsAnchor } from '../shared/styles/text';
-import { FlexRowWrapper } from '../shared/styles/wrappers';
 
 const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage, brandingLink } = useHomePageQueryData();

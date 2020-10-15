@@ -1,5 +1,5 @@
+import { SiteMetadataQuery } from '@adelerium/graphql/types/SiteMetadataQuery';
 import { graphql, useStaticQuery } from 'gatsby';
-import { SiteMetadataQuery } from '../types/SiteMetadataQuery';
 
 export const useSiteMetadataQueryData = (): SiteMetadataQuery => {
   const siteMetadataQueryData: SiteMetadataQuery = useStaticQuery(graphql`

@@ -1,13 +1,13 @@
+import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
+import { homePageTitleText, notFoundPageTitleText } from '@adelerium/shared/constants/paths';
+import { Next } from '@adelerium/shared/constants/presentation';
+import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
+import { SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
+import { usePathData } from '@adelerium/shared/hooks/usePathData';
+import { BoldParagraphType, BoldTypeAsButton } from '@adelerium/shared/styles/text';
+import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
 import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
-import { homePageTitleText, notFoundPageTitleText } from '../../../../../shared/constants/paths';
-import { Next } from '../../../../../shared/constants/presentation';
-import { useAppDispatch, useAppState } from '../../../../../shared/hooks/app-state';
-import { SET_VIEW } from '../../../../../shared/hooks/app-state/constants';
-import { usePathData } from '../../../../../shared/hooks/usePathData';
-import { BoldParagraphType, BoldTypeAsButton } from '../../../../../shared/styles/text';
-import { FlexRowWrapper } from '../../../../../shared/styles/wrappers';
-import { StyledInternalLink } from '../../../StyledInternalLink';
 
 const defaultHeaderText = `Welcome`;
 

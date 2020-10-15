@@ -1,5 +1,5 @@
+import { NotFoundPageQuery } from '@adelerium/graphql/types/NotFoundPageQuery';
 import { graphql, useStaticQuery } from 'gatsby';
-import { NotFoundPageQuery } from '../types/NotFoundPageQuery';
 
 export const useNotFoundPageQueryData = (): NotFoundPageQuery => {
   const notFoundPageQueryData: NotFoundPageQuery = useStaticQuery(graphql`

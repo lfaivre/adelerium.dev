@@ -1,11 +1,11 @@
+import { SocialLinkSquareComponent } from '@adelerium/components/AboutPage/SocialLinkSquare/styles';
+import { SocialLink } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
+import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
+import { BoldType } from '@adelerium/shared/styles/text';
+import { FlexColumnWrapper } from '@adelerium/shared/styles/wrappers';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';
 import { css } from 'twin.macro';
-import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
-import { BoldType } from '../../../shared/styles/text';
-import { FlexColumnWrapper } from '../../../shared/styles/wrappers';
-import { SocialLinkSquareComponent } from './styles';
-import { SocialLink } from './types';
 
 type SocialLinkSquareProps = { data: SocialLink; dimensions: TileDimensions };
 

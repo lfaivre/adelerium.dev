@@ -1,11 +1,11 @@
+import { StaticResumeComponent } from '@adelerium/components/AboutPage/StaticResume/styles';
+import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
+import { BoldParagraphType, BoldTypeAsAnchor } from '@adelerium/shared/styles/text';
+import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons/faGoogleDrive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-import { TileDimensions } from '../../../shared/hooks/useAllTileDimensions';
-import { BoldParagraphType, BoldTypeAsAnchor } from '../../../shared/styles/text';
-import { FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { StaticResumeComponent } from './styles';
 
 type StaticResumeProps = { dimensions: TileDimensions };
 

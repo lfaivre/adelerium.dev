@@ -1,16 +1,16 @@
+import { Footer } from '@adelerium/components/Global/Layout/DefaultView/Footer';
+import { Header } from '@adelerium/components/Global/Layout/DefaultView/Header';
+import { SideBar } from '@adelerium/components/Global/Layout/DefaultView/SideBar';
+import { ReturnButton, ReturnButtonIndicator } from '@adelerium/components/Global/Layout/DefaultView/styles';
+import { windowDimensionBreakpoints } from '@adelerium/shared/constants/dimensions';
+import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
+import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
+import { useDimensions } from '@adelerium/shared/hooks/useDimensions';
+import { usePathData } from '@adelerium/shared/hooks/usePathData';
+import { FlexRowWrapper, FullWidthWrapper } from '@adelerium/shared/styles/wrappers';
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
-import { windowDimensionBreakpoints } from '../../../../shared/constants/dimensions';
-import { useAppDispatch, useAppState } from '../../../../shared/hooks/app-state';
-import { SET_DIMENSIONS, SET_VIEW } from '../../../../shared/hooks/app-state/constants';
-import { useDimensions } from '../../../../shared/hooks/useDimensions';
-import { usePathData } from '../../../../shared/hooks/usePathData';
-import { FlexRowWrapper, FullWidthWrapper } from '../../../../shared/styles/wrappers';
-import { Footer } from './Footer';
-import { Header } from './Header';
-import { SideBar } from './SideBar';
-import { ReturnButton, ReturnButtonIndicator } from './styles';
 
 const DEFAULT_SIDEBAR_WIDTH = 0.25 * windowDimensionBreakpoints.width.max;
 

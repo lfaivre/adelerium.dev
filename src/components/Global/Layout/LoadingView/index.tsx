@@ -1,10 +1,10 @@
+import { LoadingAnimation } from '@adelerium/components/Global/Layout/LoadingView/LoadingAnimation';
+import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
+import { SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
+import { usePathData } from '@adelerium/shared/hooks/usePathData';
+import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
 import React, { ReactElement, useEffect } from 'react';
 import 'twin.macro';
-import { useAppDispatch, useAppState } from '../../../../shared/hooks/app-state';
-import { SET_VIEW } from '../../../../shared/hooks/app-state/constants';
-import { usePathData } from '../../../../shared/hooks/usePathData';
-import { FlexRowWrapper } from '../../../../shared/styles/wrappers';
-import { LoadingAnimation } from './LoadingAnimation';
 
 export const LoadingView = (): ReactElement => {
   const {

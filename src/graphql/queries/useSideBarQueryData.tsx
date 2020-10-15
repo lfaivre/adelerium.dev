@@ -1,5 +1,5 @@
+import { SideBarQuery } from '@adelerium/graphql/types/SideBarQuery';
 import { graphql, useStaticQuery } from 'gatsby';
-import { SideBarQuery } from '../types/SideBarQuery';
 
 export const useSideBarQueryData = (): SideBarQuery => {
   const sideBarQueryData: SideBarQuery = useStaticQuery(graphql`

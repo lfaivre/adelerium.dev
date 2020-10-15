@@ -1,5 +1,5 @@
+import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
 import { ReactElement } from 'react';
-import { SET_DIMENSIONS, SET_VIEW } from './constants';
 
 /** @note Reducer Actions */
 

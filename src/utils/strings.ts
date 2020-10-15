@@ -1,4 +1,4 @@
-import { websiteDomain, websiteProtocol } from '../shared/constants/site-metadata';
+import { websiteDomain, websiteProtocol } from '@adelerium/shared/constants/site-metadata';
 
 export const getStrippedInternalLinkPath = (fullURL: string): string => {
   const linkParts = fullURL.split(`/`);

@@ -1,26 +1,26 @@
-import { PageProps } from 'gatsby';
-import { FixedObject } from 'gatsby-image';
-import React, { ReactElement } from 'react';
-import tw from 'twin.macro';
-import { MediaLinkSquare } from '../components/AboutPage/MediaLinkSquare';
-import { SocialLinkSquare } from '../components/AboutPage/SocialLinkSquare';
-import { StaticIntroduction } from '../components/AboutPage/StaticIntroduction';
-import { StaticLocation } from '../components/AboutPage/StaticLocation';
-import { StaticResume } from '../components/AboutPage/StaticResume';
-import { SEO } from '../components/Global/SEO';
-import { useAboutPageQueryData } from '../graphql/queries/useAboutPageQueryData';
+import { MediaLinkSquare } from '@adelerium/components/AboutPage/MediaLinkSquare';
+import { SocialLinkSquare } from '@adelerium/components/AboutPage/SocialLinkSquare';
+import { StaticIntroduction } from '@adelerium/components/AboutPage/StaticIntroduction';
+import { StaticLocation } from '@adelerium/components/AboutPage/StaticLocation';
+import { StaticResume } from '@adelerium/components/AboutPage/StaticResume';
+import { SEO } from '@adelerium/components/Global/SEO';
+import { useAboutPageQueryData } from '@adelerium/graphql/queries/useAboutPageQueryData';
+import { windowDimensionBreakpoints } from '@adelerium/shared/constants/dimensions';
 import {
   mediaLinks,
   MOST_PLAYED_SONG,
   PINNED_PLAYLIST,
   PINNED_PODCAST,
   PINNED_SONG,
-} from '../shared/constants/media-link-squares';
-import { windowDimensionBreakpoints } from '../shared/constants/dimensions';
-import { FIGMA, GITHUB, GOOGLE, LINKEDIN, socialLinks } from '../shared/constants/social-link-squares';
-import { useAppState } from '../shared/hooks/app-state';
-import { useAllTileDimensions } from '../shared/hooks/useAllTileDimensions';
-import { FlexColumnWrapper, MinHeightScreenWrapper } from '../shared/styles/wrappers';
+} from '@adelerium/shared/constants/media-link-squares';
+import { FIGMA, GITHUB, GOOGLE, LINKEDIN, socialLinks } from '@adelerium/shared/constants/social-link-squares';
+import { useAppState } from '@adelerium/shared/hooks/app-state';
+import { useAllTileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
+import { FlexColumnWrapper, MinHeightScreenWrapper } from '@adelerium/shared/styles/wrappers';
+import { PageProps } from 'gatsby';
+import { FixedObject } from 'gatsby-image';
+import React, { ReactElement } from 'react';
+import tw from 'twin.macro';
 
 const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
 

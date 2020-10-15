@@ -1,5 +1,5 @@
-import { getRandomInt } from '../math';
-import { getStrippedInternalLinkPath } from '../strings';
+import { getRandomInt } from '@adelerium/utils/math';
+import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
 
 const PROTOCOL = `https`;
 const DOMAIN = `www.adelerium.dev`;

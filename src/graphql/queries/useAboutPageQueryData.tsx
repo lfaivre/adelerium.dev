@@ -1,5 +1,5 @@
+import { AboutPageQuery } from '@adelerium/graphql/types/AboutPageQuery';
 import { graphql, useStaticQuery } from 'gatsby';
-import { AboutPageQuery } from '../types/AboutPageQuery';
 
 export const useAboutPageQueryData = (): AboutPageQuery => {
   const aboutPageQueryData: AboutPageQuery = useStaticQuery(graphql`

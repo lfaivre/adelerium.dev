@@ -1,5 +1,5 @@
+import { LoadingAnimationWrapper } from '@adelerium/components/Global/Layout/LoadingView/LoadingAnimation/styles';
 import React, { ReactElement } from 'react';
-import { LoadingAnimationWrapper } from './styles';
 
 export const LoadingAnimation = (): ReactElement => {
   return (

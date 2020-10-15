@@ -1,9 +1,8 @@
-import React, { ReactElement } from 'react';
-import 'twin.macro';
-import { useFooterQueryData } from '../../../../../graphql/queries/useFooterQueryData';
-import { Next, Previous } from '../../../../../shared/constants/presentation';
-import { studioCopyrightText, studioUrl, websiteFullPath } from '../../../../../shared/constants/site-metadata';
-import { usePathData } from '../../../../../shared/hooks/usePathData';
+import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
+import { useFooterQueryData } from '@adelerium/graphql/queries/useFooterQueryData';
+import { Next, Previous } from '@adelerium/shared/constants/presentation';
+import { studioCopyrightText, studioUrl, websiteFullPath } from '@adelerium/shared/constants/site-metadata';
+import { usePathData } from '@adelerium/shared/hooks/usePathData';
 import {
   BoldParagraphType,
   BoldParagraphTypeAsAnchor,
@@ -11,10 +10,11 @@ import {
   BrandingTypeAsAnchor,
   NormalParagraphType,
   NormalParagraphTypeAsAnchor,
-} from '../../../../../shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper, FullWidthWrapper } from '../../../../../shared/styles/wrappers';
-import { getRandomInt } from '../../../../../utils/math';
-import { StyledInternalLink } from '../../../StyledInternalLink';
+} from '@adelerium/shared/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper, FullWidthWrapper } from '@adelerium/shared/styles/wrappers';
+import { getRandomInt } from '@adelerium/utils/math';
+import React, { ReactElement } from 'react';
+import 'twin.macro';
 
 const factOnError = `This site was built with Gatsby.js.`;
 

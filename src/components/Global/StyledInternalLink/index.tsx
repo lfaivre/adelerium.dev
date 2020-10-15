@@ -1,13 +1,13 @@
+import { Arrow } from '@adelerium/components/Global/StyledInternalLink/styles';
+import { homePagePathname, sitePaths } from '@adelerium/shared/constants/paths';
+import { Previous } from '@adelerium/shared/constants/presentation';
+import { PathDataState } from '@adelerium/shared/hooks/usePathData';
+import { BoldParagraphType, NormalParagraphType } from '@adelerium/shared/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+import { StyledInternalLinkDirection } from '@adelerium/shared/types/presentation';
 import { Link } from 'gatsby';
 import React, { ReactElement, useEffect, useState } from 'react';
 import 'twin.macro';
-import { homePagePathname, sitePaths } from '../../../shared/constants/paths';
-import { Previous } from '../../../shared/constants/presentation';
-import { PathDataState } from '../../../shared/hooks/usePathData';
-import { BoldParagraphType, NormalParagraphType } from '../../../shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper } from '../../../shared/styles/wrappers';
-import { StyledInternalLinkDirection } from '../../../shared/types/presentation';
-import { Arrow } from './styles';
 
 type StyledInternalLinkProps = PathDataState & { direction: StyledInternalLinkDirection };
 

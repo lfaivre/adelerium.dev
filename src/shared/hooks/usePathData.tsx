@@ -1,7 +1,7 @@
+import { homePagePathData, homePagePathname, sitePaths } from '@adelerium/shared/constants/paths';
 import { useLocation } from '@reach/router';
 import { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';
-import { sitePaths, homePagePathname, homePagePathData } from '../constants/paths';
 
 export type PathDataState = {
   pathname: string | undefined;

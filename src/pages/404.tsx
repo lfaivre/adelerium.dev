@@ -1,13 +1,13 @@
+import { SEO } from '@adelerium/components/Global/SEO';
+import { useNotFoundPageQueryData } from '@adelerium/graphql/queries/useNotFoundPageQueryData';
+import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
+import { SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
+import { FlexColumnWrapper, MinHeightScreenWrapper } from '@adelerium/shared/styles/wrappers';
 import { PageProps } from 'gatsby';
 import Img, { FixedObject, FluidObject } from 'gatsby-image';
 import React, { ReactElement, useLayoutEffect } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import 'twin.macro';
-import { SEO } from '../components/Global/SEO';
-import { useNotFoundPageQueryData } from '../graphql/queries/useNotFoundPageQueryData';
-import { useAppDispatch, useAppState } from '../shared/hooks/app-state';
-import { SET_VIEW } from '../shared/hooks/app-state/constants';
-import { FlexColumnWrapper, MinHeightScreenWrapper } from '../shared/styles/wrappers';
 
 const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage, accentImage } = useNotFoundPageQueryData();

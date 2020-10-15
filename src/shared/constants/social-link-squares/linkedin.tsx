@@ -1,7 +1,7 @@
+import { SocialLink } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { SocialLink } from '../../../components/AboutPage/SocialLinkSquare/types';
 
 export const data: SocialLink = {
   title: `LinkedIn`,
