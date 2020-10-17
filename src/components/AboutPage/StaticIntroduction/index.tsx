@@ -1,6 +1,6 @@
 import { StaticIntroductionComponent } from '@adelerium/components/AboutPage/StaticIntroduction/styles';
-import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
-import { BoldParagraphType } from '@adelerium/shared/styles/text';
+import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
+import { BoldParagraphType } from '@adelerium/styles/text';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
 

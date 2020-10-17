@@ -99,12 +99,6 @@ module.exports = {
       resolve: `gatsby-plugin-root-import`,
       options: {
         '@adelerium': `${__dirname}/src`,
-        '@adelerium/components': `${__dirname}/src/components`,
-        '@adelerium/graphql': `${__dirname}/src/graphql`,
-        '@adelerium/images': `${__dirname}/src/images`,
-        '@adelerium/pages': `${__dirname}/src/pages`,
-        '@adelerium/shared': `${__dirname}/src/shared`,
-        '@adelerium/utils': `${__dirname}/src/utils`,
       },
     },
     `gatsby-plugin-emotion`,

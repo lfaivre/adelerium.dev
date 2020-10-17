@@ -6,7 +6,7 @@ enableAllPlugins();
 
 // @note Import Stylesheet(s): Global Styles
 
-import './src/shared/styles/global.css';
+import '@adelerium/styles/global.css';
 
 // @note Import Stylesheet(s) and Configure: Font Awesome
 
@@ -20,8 +20,8 @@ import 'typeface-lobster-two';
 import 'typeface-mrs-sheppards';
 import 'typeface-playfair-display';
 
-import { RootWrapperElement } from './src/components/Global/RootWrapperElement';
-import { PageWrapperElement } from './src/components/Global/Layout';
+import { RootWrapperElement } from '@adelerium/components/Global/RootWrapperElement';
+import { PageWrapperElement } from '@adelerium/components/Global/Layout';
 
 export const wrapRootElement = RootWrapperElement;
 export const wrapPageElement = PageWrapperElement;

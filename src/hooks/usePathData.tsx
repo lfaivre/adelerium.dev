@@ -1,4 +1,4 @@
-import { homePagePathData, homePagePathname, sitePaths } from '@adelerium/shared/constants/paths';
+import { homePagePathData, homePagePathname, sitePaths } from '@adelerium/constants/paths';
 import { useLocation } from '@reach/router';
 import { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';

@@ -1,15 +1,15 @@
 import { PreviewListQuery_projectPreviews_edges_node as Project } from '@adelerium/@types/__generated__/PreviewListQuery';
 import { BoxShadowStyles, Divider, OrderNumber } from '@adelerium/components/ProjectsPage/Preview/styles';
-import { Left, Right } from '@adelerium/shared/constants/presentation';
-import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
+import { Left, Right } from '@adelerium/constants/presentation';
+import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import {
   BoldParagraphType,
   BoldSpan,
   BoldType,
   NormalParagraphType,
   NormalParagraphTypeAsAnchor,
-} from '@adelerium/shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+} from '@adelerium/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';

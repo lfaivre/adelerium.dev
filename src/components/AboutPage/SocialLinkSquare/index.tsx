@@ -1,9 +1,9 @@
 import { SocialLinkQuery_socialLinks_nodes as ContentfulSocialLink } from '@adelerium/@types/__generated__/SocialLinkQuery';
 import { SocialLinkSquareComponent } from '@adelerium/components/AboutPage/SocialLinkSquare/styles';
-import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
-import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
-import { BoldType } from '@adelerium/shared/styles/text';
-import { FlexColumnWrapper } from '@adelerium/shared/styles/wrappers';
+import { websiteFullPath } from '@adelerium/constants/site-metadata';
+import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
+import { BoldType } from '@adelerium/styles/text';
+import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import { getFontAwesomeIcon, IconType } from '@adelerium/utils/getFontAwesomeIcon';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';

@@ -1,16 +1,10 @@
-import { Line, ViewButton } from '@adelerium/components/Global/Layout/DefaultView/SideBar/styles';
-import { useSideBarQueryData } from '@adelerium/graphql/queries/useSideBarQueryData';
-import { windowDimensionBreakpoints } from '@adelerium/shared/constants/dimensions';
-import { ExternalLinks, InternalLinks } from '@adelerium/shared/constants/presentation';
-import {
-  profileEmail,
-  profileName,
-  profileTag,
-  studioUrl,
-  websiteFullPath,
-} from '@adelerium/shared/constants/site-metadata';
-import { useAppState } from '@adelerium/shared/hooks/app-state';
-import { usePathData } from '@adelerium/shared/hooks/usePathData';
+import { Line, ViewButton } from '@adelerium/components/Global/SideBar/styles';
+import { useSideBarQueryData } from '@adelerium/components/Global/SideBar/useSideBarQueryData';
+import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
+import { ExternalLinks, InternalLinks } from '@adelerium/constants/presentation';
+import { profileEmail, profileName, profileTag, studioUrl, websiteFullPath } from '@adelerium/constants/site-metadata';
+import { useAppState } from '@adelerium/hooks/app-state';
+import { usePathData } from '@adelerium/hooks/usePathData';
 import {
   AccentType,
   BoldParagraphType,
@@ -18,8 +12,8 @@ import {
   BoldTypeAsAnchor,
   BoldTypeAsGatsbyLink,
   BrandingTypeAsAnchor,
-} from '@adelerium/shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+} from '@adelerium/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
 import Img, { FluidObject } from 'gatsby-image';
 import React, { ReactElement, useState } from 'react';

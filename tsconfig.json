@@ -4,13 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@adelerium/*": ["src/*"],
-      "@adelerium/components/*": ["src/components/*"],
-      "@adelerium/graphql/*": ["src/graphql/*"],
-      "@adelerium/images/*": ["src/images/*"],
-      "@adelerium/pages/*": ["src/pages/*"],
-      "@adelerium/shared/*": ["src/shared/*"],
-      "@adelerium/utils/*": ["src/utils/*"]
+      "@adelerium/*": ["src/*"]
     },
 
     /* Basic Options */

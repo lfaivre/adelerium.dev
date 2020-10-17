@@ -1,4 +1,4 @@
-import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
+import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/constants';
 import {
   Action,
   AppProviderProps,
@@ -8,7 +8,7 @@ import {
   ElementViewState,
   ElementViewStates,
   State,
-} from '@adelerium/shared/hooks/app-state/types';
+} from '@adelerium/hooks/app-state/types';
 import React, { createContext, ReactElement, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 

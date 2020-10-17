@@ -1,8 +1,8 @@
 import { LoadingAnimation } from '@adelerium/components/Global/Layout/LoadingView/LoadingAnimation';
-import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
-import { SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
-import { usePathData } from '@adelerium/shared/hooks/usePathData';
-import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
+import { SET_VIEW } from '@adelerium/hooks/app-state/constants';
+import { usePathData } from '@adelerium/hooks/usePathData';
+import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useEffect } from 'react';
 import 'twin.macro';
 

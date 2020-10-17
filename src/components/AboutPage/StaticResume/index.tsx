@@ -1,7 +1,7 @@
 import { StaticResumeComponent } from '@adelerium/components/AboutPage/StaticResume/styles';
-import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
-import { BoldParagraphType, BoldTypeAsAnchor } from '@adelerium/shared/styles/text';
-import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
+import { BoldParagraphType, BoldTypeAsAnchor } from '@adelerium/styles/text';
+import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons/faGoogleDrive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';

@@ -18,5 +18,6 @@ tailwind.config.js
 .cache/
 node_modules/
 public/
-src/@types/
+src/@types/__generated__
+src/@types/__modules__
 src/__mocks__/

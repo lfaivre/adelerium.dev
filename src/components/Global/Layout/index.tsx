@@ -1,10 +1,10 @@
 import { DefaultView } from '@adelerium/components/Global/Layout/DefaultView';
 import { LoadingView } from '@adelerium/components/Global/Layout/LoadingView';
-import { useAppDispatch } from '@adelerium/shared/hooks/app-state';
-import { SET_DIMENSIONS } from '@adelerium/shared/hooks/app-state/constants';
-import { useDimensions } from '@adelerium/shared/hooks/useDimensions';
-import { useWindowDimensions } from '@adelerium/shared/hooks/useWindowDimensions';
-import { FullWidthWrapper } from '@adelerium/shared/styles/wrappers';
+import { useAppDispatch } from '@adelerium/hooks/app-state';
+import { SET_DIMENSIONS } from '@adelerium/hooks/app-state/constants';
+import { useDimensions } from '@adelerium/hooks/useDimensions';
+import { useWindowDimensions } from '@adelerium/hooks/useWindowDimensions';
+import { FullWidthWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { GlobalStyles } from 'twin.macro';
 

@@ -1,4 +1,4 @@
-import { ExternalLinks, InternalLinks, Left, Next, Previous, Right } from '@adelerium/shared/constants/presentation';
+import { ExternalLinks, InternalLinks, Left, Next, Previous, Right } from '@adelerium/constants/presentation';
 
 /** @note SideBar Component (Layout) */
 

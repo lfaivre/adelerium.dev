@@ -1,6 +1,6 @@
 import { Preview } from '@adelerium/components/ProjectsPage/Preview';
-import { usePreviewListQueryData } from '@adelerium/graphql/queries/usePreviewListQueryData';
-import { FlexColumnWrapper } from '@adelerium/shared/styles/wrappers';
+import { usePreviewListQueryData } from '@adelerium/components/ProjectsPage/PreviewList/usePreviewListQueryData';
+import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'twin.macro';

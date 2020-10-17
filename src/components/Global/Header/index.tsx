@@ -1,11 +1,11 @@
 import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
-import { homePageTitleText, notFoundPageTitleText } from '@adelerium/shared/constants/paths';
-import { Next } from '@adelerium/shared/constants/presentation';
-import { useAppDispatch, useAppState } from '@adelerium/shared/hooks/app-state';
-import { SET_VIEW } from '@adelerium/shared/hooks/app-state/constants';
-import { usePathData } from '@adelerium/shared/hooks/usePathData';
-import { BoldParagraphType, BoldTypeAsButton } from '@adelerium/shared/styles/text';
-import { FlexRowWrapper } from '@adelerium/shared/styles/wrappers';
+import { homePageTitleText, notFoundPageTitleText } from '@adelerium/constants/paths';
+import { Next } from '@adelerium/constants/presentation';
+import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
+import { SET_VIEW } from '@adelerium/hooks/app-state/constants';
+import { usePathData } from '@adelerium/hooks/usePathData';
+import { BoldParagraphType, BoldTypeAsButton } from '@adelerium/styles/text';
+import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
 

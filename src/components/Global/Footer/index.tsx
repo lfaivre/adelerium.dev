@@ -1,8 +1,8 @@
+import { useFooterQueryData } from '@adelerium/components/Global/Footer/useFooterQueryData';
 import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
-import { useFooterQueryData } from '@adelerium/graphql/queries/useFooterQueryData';
-import { Next, Previous } from '@adelerium/shared/constants/presentation';
-import { studioCopyrightText, studioUrl, websiteFullPath } from '@adelerium/shared/constants/site-metadata';
-import { usePathData } from '@adelerium/shared/hooks/usePathData';
+import { Next, Previous } from '@adelerium/constants/presentation';
+import { studioCopyrightText, studioUrl, websiteFullPath } from '@adelerium/constants/site-metadata';
+import { usePathData } from '@adelerium/hooks/usePathData';
 import {
   BoldParagraphType,
   BoldParagraphTypeAsAnchor,
@@ -10,8 +10,8 @@ import {
   BrandingTypeAsAnchor,
   NormalParagraphType,
   NormalParagraphTypeAsAnchor,
-} from '@adelerium/shared/styles/text';
-import { FlexColumnWrapper, FlexRowWrapper, FullWidthWrapper } from '@adelerium/shared/styles/wrappers';
+} from '@adelerium/styles/text';
+import { FlexColumnWrapper, FlexRowWrapper, FullWidthWrapper } from '@adelerium/styles/wrappers';
 import { getRandomInt } from '@adelerium/utils/math';
 import React, { ReactElement } from 'react';
 import 'twin.macro';

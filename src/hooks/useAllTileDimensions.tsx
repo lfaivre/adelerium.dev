@@ -1,4 +1,4 @@
-import { useAppState } from '@adelerium/shared/hooks/app-state';
+import { useAppState } from '@adelerium/hooks/app-state';
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 

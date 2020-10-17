@@ -1,4 +1,3 @@
-import { useSiteMetadataQueryData } from '@adelerium/graphql/queries/useSiteMetadataQueryData';
 import {
   profileAuthor,
   websiteBaseTitle,
@@ -6,7 +5,8 @@ import {
   websiteDefaultLanguage,
   websiteDefaultLocale,
   websiteFullPath,
-} from '@adelerium/shared/constants/site-metadata';
+} from '@adelerium/constants/site-metadata';
+import { useSiteMetadataQueryData } from '@adelerium/hooks/graphql/useSiteMetadataQueryData';
 import { FixedObject } from 'gatsby-image';
 import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
