@@ -29,9 +29,9 @@ module.exports = {
       },
       fontFamily: {
         helvetica: [`Helvetica`, `Arial`, `sans-serif`],
-        'lobster-two': [`\"Lobster Two\"`, `cursive`],
-        'mrs-sheppards': [`\"Mrs Sheppards\"`, `cursive`],
-        'playfair-display': [`\"Playfair Display\"`, `serif`],
+        'lobster-two': [`Lobster Two`, `cursive`],
+        'mrs-sheppards': [`Mrs Sheppards`, `cursive`],
+        'playfair-display': [`Playfair Display`, `serif`],
       },
       fontSize: {
         '7xl': `4.5rem`,

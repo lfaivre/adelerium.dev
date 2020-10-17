@@ -6,8 +6,8 @@ import { StaticResume } from '@adelerium/components/AboutPage/StaticResume';
 import { SEO } from '@adelerium/components/Global/SEO';
 import { useAboutPageQueryData } from '@adelerium/graphql/queries/useAboutPageQueryData';
 import { useMediaLinkQueryData } from '@adelerium/graphql/queries/useMediaLinkQueryData';
+import { useSocialLinkQueryData } from '@adelerium/graphql/queries/useSocialLinkQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/shared/constants/dimensions';
-import { FIGMA, GITHUB, GOOGLE, LINKEDIN, socialLinks } from '@adelerium/shared/constants/social-link-squares';
 import { useAppState } from '@adelerium/shared/hooks/app-state';
 import { useAllTileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
 import { FlexColumnWrapper, MinHeightScreenWrapper } from '@adelerium/shared/styles/wrappers';
@@ -23,6 +23,9 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const {
     mediaLinks: { nodes: mediaLinks },
   } = useMediaLinkQueryData();
+  const {
+    socialLinks: { nodes: socialLinks },
+  } = useSocialLinkQueryData();
 
   const [sizesReady, setSizesReady] = useState(false);
 
@@ -33,7 +36,12 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const pinnedPodcast = mediaLinks.find((link) => link.description === `Pinned Podcast`);
   const pinnedSong = mediaLinks.find((link) => link.description === `Pinned Song`);
 
-  /** @note @temp @todo Extract Social Link Data */
+  /** @note @temp Extract Social Link Data */
+
+  const figma = socialLinks.find((link) => link.title === `Figma`);
+  const github = socialLinks.find((link) => link.title === `GitHub`);
+  const email = socialLinks.find((link) => link.title === `Email`);
+  const linkedin = socialLinks.find((link) => link.title === `LinkedIn`);
 
   const {
     dimensions: {
@@ -62,16 +70,16 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
             <TileRowWrapper>
               <StaticIntroduction dimensions={size2} />
-              <SocialLinkSquare data={socialLinks[GITHUB]} dimensions={size1} />
+              {github && <SocialLinkSquare data={github} dimensions={size1} />}
             </TileRowWrapper>
             <TileRowWrapper>
-              <SocialLinkSquare data={socialLinks[FIGMA]} dimensions={size1} />
+              {figma && <SocialLinkSquare data={figma} dimensions={size1} />}
               {pinnedPlaylist && <MediaLinkSquare data={pinnedPlaylist} dimensions={size1} />}
-              <SocialLinkSquare data={socialLinks[GOOGLE]} dimensions={size1} />
+              {email && <SocialLinkSquare data={email} dimensions={size1} />}
             </TileRowWrapper>
             <TileRowWrapper>
               <StaticResume dimensions={size2} />
-              <SocialLinkSquare data={socialLinks[LINKEDIN]} dimensions={size1} />
+              {linkedin && <SocialLinkSquare data={linkedin} dimensions={size1} />}
             </TileRowWrapper>
             <TileRowWrapper>
               {mostPlayedSongThisWeek && <MediaLinkSquare data={mostPlayedSongThisWeek} dimensions={size1} />}
