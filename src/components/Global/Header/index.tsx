@@ -1,8 +1,9 @@
+import { HeaderProps } from '@adelerium/components/Global/Header/types';
 import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
 import { homePageTitleText, notFoundPageTitleText } from '@adelerium/constants/paths';
 import { Next } from '@adelerium/constants/presentation';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
-import { SET_VIEW } from '@adelerium/hooks/app-state/constants';
+import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import { BoldParagraphType, BoldTypeAsButton } from '@adelerium/styles/text';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
@@ -10,8 +11,6 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
 
 const defaultHeaderText = `Welcome`;
-
-type HeaderProps = { disableToggle?: boolean };
 
 export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
   const {

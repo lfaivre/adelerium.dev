@@ -1,13 +1,11 @@
 import { StaticResumeComponent } from '@adelerium/components/AboutPage/StaticResume/styles';
-import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
+import { StaticResumeProps } from '@adelerium/components/AboutPage/StaticResume/types';
 import { BoldParagraphType, BoldTypeAsAnchor } from '@adelerium/styles/text';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons/faGoogleDrive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-
-type StaticResumeProps = { dimensions: TileDimensions };
 
 const staticResumeTitleText = `Are you looking to hire? Here’s my resume.`;
 const staticResumeLinkText = `View on Google Drive`;

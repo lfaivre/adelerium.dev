@@ -1,8 +1,13 @@
 import { useAppState } from '@adelerium/hooks/app-state';
+import {
+  AllTileDimensions,
+  TileSize,
+  UseAllTileDimensionsConfiguration,
+  UseAllTileDimensionsProps,
+  UseAllTileDimensionsState,
+} from '@adelerium/hooks/useAllTileDimensions/types';
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
-
-type TileSize = 1 | 2 | 3;
 
 /**
  * @note Tile Size Diagram
@@ -11,14 +16,6 @@ type TileSize = 1 | 2 | 3;
  * 2: [2---][1]
  * 3: [3------]
  */
-
-type Dimensions = { width: number; height: number };
-export type TileDimensions = Dimensions & { squareHeight: number };
-type AllTileDimensions = { [key in TileSize]: TileDimensions };
-
-type UseAllTileDimensionsConfiguration = { sizeOfGuttersInPx: number };
-type UseAllTileDimensionsProps = { breakpoint: number };
-type UseAllTileDimensionsState = AllTileDimensions;
 
 const defaultNumberOfGutters = 4;
 const initialGutterSizeInPx = 8;

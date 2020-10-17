@@ -1,7 +1,6 @@
+import { WindowDimensionsState } from '@adelerium/hooks/useWindowDimensions/types';
 import { useEffect } from 'react';
 import { useImmer } from 'use-immer';
-
-type WindowDimensionsState = { width: number; height: number };
 
 const getWindowDimensions = (): WindowDimensionsState => {
   if (typeof window === `undefined`) return { width: 0, height: 0 };

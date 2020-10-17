@@ -1,8 +1,15 @@
 // @constants styles
 
+import {
+  DefaultWrapperProps,
+  FlexWrapperProps,
+  FullWidthWrapperProps,
+  MinHeightScreenWrapperProps,
+  WrapperAlignItemsValues,
+  WrapperBackgroundColorValues,
+  WrapperJustifyContentValues,
+} from '@adelerium/styles/wrappers/types';
 import tw, { styled, TwStyle } from 'twin.macro';
-
-type WrapperAlignItemsValues = `items-start` | `items-end` | `items-center` | `items-baseline` | `items-stretch`;
 
 const wrapperAlignItemsMap: { [key in WrapperAlignItemsValues]: TwStyle } = {
   'items-start': tw`items-start`,
@@ -11,14 +18,6 @@ const wrapperAlignItemsMap: { [key in WrapperAlignItemsValues]: TwStyle } = {
   'items-baseline': tw`items-baseline`,
   'items-stretch': tw`items-stretch`,
 };
-
-type WrapperJustifyContentValues =
-  | `justify-start`
-  | `justify-end`
-  | `justify-center`
-  | `justify-between`
-  | `justify-around`
-  | `justify-evenly`;
 
 const wrapperJustifyContentMap: { [key in WrapperJustifyContentValues]: TwStyle } = {
   'justify-start': tw`justify-start`,
@@ -29,33 +28,20 @@ const wrapperJustifyContentMap: { [key in WrapperJustifyContentValues]: TwStyle 
   'justify-evenly': tw`justify-evenly`,
 };
 
-type WrapperBackgroundColorValues = `bg-offwhite` | `bg-charcoal` | `bg-offpink`;
-
 const wrapperBackgroundColorMap: { [key in WrapperBackgroundColorValues]: TwStyle } = {
   'bg-offwhite': tw`bg-offwhite`,
   'bg-charcoal': tw`bg-charcoal`,
   'bg-offpink': tw`bg-offpink`,
 };
 
-type DefaultWrapperProps = { backgroundColor?: WrapperBackgroundColorValues };
-
 export const DefaultWrapper = styled.div<DefaultWrapperProps>`
   ${({ backgroundColor }) => backgroundColor && wrapperBackgroundColorMap[backgroundColor]}
 `;
-
-type FullWidthWrapperProps = { backgroundColor?: WrapperBackgroundColorValues };
 
 export const FullWidthWrapper = styled.div<FullWidthWrapperProps>`
   ${tw`w-full`}
   ${({ backgroundColor }) => backgroundColor && wrapperBackgroundColorMap[backgroundColor]}
 `;
-
-type FlexWrapperProps = {
-  reverse?: boolean;
-  alignItems: WrapperAlignItemsValues;
-  justifyContent: WrapperJustifyContentValues;
-  backgroundColor?: WrapperBackgroundColorValues;
-};
 
 export const FlexColumnWrapper = styled.div<FlexWrapperProps>`
   ${tw`flex`}
@@ -72,8 +58,6 @@ export const FlexRowWrapper = styled.div<FlexWrapperProps>`
   ${({ justifyContent }) => wrapperJustifyContentMap[justifyContent]}
   ${({ backgroundColor }) => backgroundColor && wrapperBackgroundColorMap[backgroundColor]}
 `;
-
-type MinHeightScreenWrapperProps = { staticsHeight: number } & DefaultWrapperProps;
 
 export const MinHeightScreenWrapper = styled.div<MinHeightScreenWrapperProps>`
   min-height: ${({ staticsHeight }) => `calc(100vh - ${staticsHeight}px);`}

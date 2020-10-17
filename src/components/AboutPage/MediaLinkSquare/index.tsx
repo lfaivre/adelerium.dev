@@ -1,16 +1,14 @@
-import { MediaLinkQuery_mediaLinks_nodes as ContentfulMediaLink } from '@adelerium/@types/__generated__/MediaLinkQuery';
 import { MediaLinkSquareComponent } from '@adelerium/components/AboutPage/MediaLinkSquare/styles';
+import { MediaLinkSquareProps } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
-import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
-import { getFontAwesomeIcon, IconType } from '@adelerium/utils/getFontAwesomeIcon';
+import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
+import { IconType } from '@adelerium/utils/font-awesome/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-
-type MediaLinkSquareProps = { data: ContentfulMediaLink; dimensions: TileDimensions };
 
 export const MediaLinkSquare = ({
   data: { title, subtitle, description, date, type, externalLink, displayImage },

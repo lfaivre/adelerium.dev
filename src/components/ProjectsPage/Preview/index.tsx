@@ -1,5 +1,11 @@
-import { PreviewListQuery_projectPreviews_edges_node as Project } from '@adelerium/@types/__generated__/PreviewListQuery';
 import { BoxShadowStyles, Divider, OrderNumber } from '@adelerium/components/ProjectsPage/Preview/styles';
+import {
+  ExternalLinkKey,
+  ExternalLinks,
+  PreviewContent,
+  PreviewContentKey,
+  PreviewProps,
+} from '@adelerium/components/ProjectsPage/Preview/types';
 import { Left, Right } from '@adelerium/constants/presentation';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import {
@@ -19,18 +25,6 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { animated, useSpring } from 'react-spring';
 import tw from 'twin.macro';
-
-type PreviewContentTitle = `Description` | `Technology`;
-type PreviewContentItem = { title: PreviewContentTitle; content: string };
-type PreviewContentKey = `description` | `technology`;
-type PreviewContent = { [key in PreviewContentKey]: PreviewContentItem };
-
-type ExternalLinkTitle = `Hosted` | `GitHub` | `Figma`;
-type ExternalLinkItem = { title: ExternalLinkTitle; url: string | null; TextElement: ReactElement; Icon: ReactElement };
-type ExternalLinkKey = `hosted` | `github` | `figma`;
-type ExternalLinks = { [key in ExternalLinkKey]: ExternalLinkItem };
-
-type PreviewProps = { project: Project; order: number };
 
 const calc = (x: number, y: number): [number, number, number] => [
   -(y - window.innerHeight / 2) / 40,
@@ -170,7 +164,6 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         <animated.div
           onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
           onMouseLeave={() => set({ xys: [0, 0, 1] })}
-          // eslint-disable-next-line react/prop-types
           style={{ transform: props.xys.interpolate(translate as () => string) }}
           css={[tw`bg-offwhite p-4 w-full`, BoxShadowStyles]}
         >

@@ -1,15 +1,12 @@
-import { StyledInternalLinkDirection } from '@adelerium/@types/presentation';
 import { Arrow } from '@adelerium/components/Global/StyledInternalLink/styles';
+import { StyledInternalLinkProps } from '@adelerium/components/Global/StyledInternalLink/types';
 import { homePagePathname, sitePaths } from '@adelerium/constants/paths';
 import { Previous } from '@adelerium/constants/presentation';
-import { PathDataState } from '@adelerium/hooks/usePathData';
 import { BoldParagraphType, NormalParagraphType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { Link } from 'gatsby';
 import React, { ReactElement, useEffect, useState } from 'react';
 import 'twin.macro';
-
-type StyledInternalLinkProps = PathDataState & { direction: StyledInternalLinkDirection };
 
 export const StyledInternalLink = ({ pathData, direction }: StyledInternalLinkProps): ReactElement => {
   const [destinationPathname, setDestinationPathname] = useState(homePagePathname);

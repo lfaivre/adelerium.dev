@@ -1,7 +1,7 @@
 import { SEO } from '@adelerium/components/Global/SEO';
+import { useNotFoundPageQueryData } from '@adelerium/graphql/useNotFoundPageQueryData';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
-import { SET_VIEW } from '@adelerium/hooks/app-state/constants';
-import { useNotFoundPageQueryData } from '@adelerium/hooks/graphql/useNotFoundPageQueryData';
+import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { FlexColumnWrapper, MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
 import Img, { FixedObject, FluidObject } from 'gatsby-image';

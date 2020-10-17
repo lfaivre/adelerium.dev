@@ -1,10 +1,8 @@
 import { StaticLocationComponent } from '@adelerium/components/AboutPage/StaticLocation/styles';
-import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
+import { StaticLocationProps } from '@adelerium/components/AboutPage/StaticLocation/types';
 import { BoldParagraphType } from '@adelerium/styles/text';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-
-type StaticLocationProps = { dimensions: TileDimensions };
 
 const staticLocationText = `Now local to Phoenix, Arizona.`;
 

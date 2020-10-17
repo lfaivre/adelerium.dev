@@ -1,9 +1,6 @@
 import produce from 'immer';
 
-type Company = {
-  readonly name: string;
-  readonly city: string;
-};
+type Company = { readonly name: string; readonly city: string };
 
 const companyV1: Company = { name: `Kevala Design LLC`, city: `Tempe` };
 

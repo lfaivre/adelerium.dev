@@ -1,10 +1,8 @@
 import { StaticIntroductionComponent } from '@adelerium/components/AboutPage/StaticIntroduction/styles';
-import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
+import { StaticIntroductionProps } from '@adelerium/components/AboutPage/StaticIntroduction/types';
 import { BoldParagraphType } from '@adelerium/styles/text';
 import React, { ReactElement } from 'react';
 import 'twin.macro';
-
-type StaticIntroductionProps = { dimensions: TileDimensions };
 
 const staticIntroductionText = `Hey, I’m Lorenzo. Welcome to adelerium.`;
 

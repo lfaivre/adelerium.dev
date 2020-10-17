@@ -1,4 +1,4 @@
-import { LoadingAnimation } from '@adelerium/components/Global/Layout/LoadingView/LoadingAnimation';
+import { LoadingAnimation } from '@adelerium/components/Global/LoadingAnimation';
 import React from 'react';
 import renderer from 'react-test-renderer';
 

@@ -1,8 +1,6 @@
 import tw, { styled } from 'twin.macro';
 
-type MediaLinkSquareComponentProps = { height: number; width: number };
-
-export const MediaLinkSquareComponent = styled.div<MediaLinkSquareComponentProps>`
+export const MediaLinkSquareComponent = styled.div<{ height: number; width: number }>`
   ${tw`flex flex-col items-center justify-start max-h-screen`}
   ${({ width }) => `width: ${width}px;`}
   ${({ height }) => `height: ${height}px;`}

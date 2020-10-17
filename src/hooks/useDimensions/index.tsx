@@ -1,11 +1,8 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { useDimensionsProps, useDimensionsState } from '@adelerium/hooks/useDimensions/types';
+import { useEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
-type useDimensionsState = { width: number; height: number };
-
 const initialState: useDimensionsState = { width: 0, height: 0 };
-
-type useDimensionsProps = { ref: MutableRefObject<HTMLElement | null> };
 
 export const useDimensions = ({ ref }: useDimensionsProps): useDimensionsState => {
   const [dimensions, setDimensions] = useState(initialState);

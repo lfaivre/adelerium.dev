@@ -1,18 +1,9 @@
-import { homePagePathData, homePagePathname, sitePaths } from '@adelerium/constants/paths';
+import { homePagePathname, sitePaths } from '@adelerium/constants/paths';
+import { SET_PATHDATA } from '@adelerium/hooks/usePathData/actions';
+import { Action, PathDataState } from '@adelerium/hooks/usePathData/types';
 import { useLocation } from '@reach/router';
 import { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';
-
-export type PathDataState = {
-  pathname: string | undefined;
-  isValidPath: boolean;
-  pathData: typeof homePagePathData | undefined;
-  isIndex: boolean;
-};
-
-export const SET_PATHDATA = `SET_PATHDATA`;
-
-type Action = { type: typeof SET_PATHDATA; payload: { pathname: string | undefined } };
 
 const initialState: PathDataState = {
   pathname: homePagePathname,

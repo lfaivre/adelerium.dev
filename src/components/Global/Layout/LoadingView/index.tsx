@@ -1,6 +1,6 @@
-import { LoadingAnimation } from '@adelerium/components/Global/Layout/LoadingView/LoadingAnimation';
+import { LoadingAnimation } from '@adelerium/components/Global/LoadingAnimation';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
-import { SET_VIEW } from '@adelerium/hooks/app-state/constants';
+import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useEffect } from 'react';

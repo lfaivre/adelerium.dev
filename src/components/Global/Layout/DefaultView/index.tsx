@@ -1,10 +1,11 @@
 import { Footer } from '@adelerium/components/Global/Footer';
 import { Header } from '@adelerium/components/Global/Header';
 import { ReturnButton, ReturnButtonIndicator } from '@adelerium/components/Global/Layout/DefaultView/styles';
+import { DefaultViewProps } from '@adelerium/components/Global/Layout/DefaultView/types';
 import { SideBar } from '@adelerium/components/Global/SideBar';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
-import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/constants';
+import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import { FlexRowWrapper, FullWidthWrapper } from '@adelerium/styles/wrappers';
@@ -17,8 +18,6 @@ const DEFAULT_SIDEBAR_WIDTH = 0.25 * windowDimensionBreakpoints.width.max;
 const handleSmoothScrollToTop = (): void => {
   if (typeof window !== `undefined`) window.scrollTo({ top: 0, behavior: `smooth` });
 };
-
-type DefaultViewProps = { children: ReactElement };
 
 export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const {

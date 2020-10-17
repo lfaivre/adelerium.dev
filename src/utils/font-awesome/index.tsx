@@ -1,3 +1,5 @@
+import { APPLE_MUSIC, FIGMA, GITHUB, GOOGLE, LINKEDIN, SOUNDCLOUD, YOUTUBE } from '@adelerium/constants/font-awesome';
+import { IconSize, IconType } from '@adelerium/utils/font-awesome/types';
 import { faApple } from '@fortawesome/free-brands-svg-icons/faApple';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
@@ -7,27 +9,6 @@ import { faSoundcloud } from '@fortawesome/free-brands-svg-icons/faSoundcloud';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
-
-const APPLE_MUSIC = `Apple Music`;
-const FIGMA = `Figma`;
-const GITHUB = `GitHub`;
-const GOOGLE = `Google`;
-const LINKEDIN = `LinkedIn`;
-const SOUNDCLOUD = `SoundCloud`;
-const YOUTUBE = `YouTube`;
-const OTHER = `Other`;
-
-export type IconType =
-  | typeof APPLE_MUSIC
-  | typeof FIGMA
-  | typeof GITHUB
-  | typeof GOOGLE
-  | typeof LINKEDIN
-  | typeof SOUNDCLOUD
-  | typeof YOUTUBE
-  | typeof OTHER;
-
-export type IconSize = '2x' | '4x';
 
 export const getFontAwesomeIcon = (iconType: IconType, iconSize?: IconSize): ReactElement => {
   switch (iconType) {

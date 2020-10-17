@@ -1,3 +1,4 @@
+import { SEOProps } from '@adelerium/components/Global/SEO/types';
 import {
   profileAuthor,
   websiteBaseTitle,
@@ -6,23 +7,9 @@ import {
   websiteDefaultLocale,
   websiteFullPath,
 } from '@adelerium/constants/site-metadata';
-import { useSiteMetadataQueryData } from '@adelerium/hooks/graphql/useSiteMetadataQueryData';
-import { FixedObject } from 'gatsby-image';
+import { useSiteMetadataQueryData } from '@adelerium/graphql/useSiteMetadataQueryData';
 import React, { ReactElement } from 'react';
 import { Helmet } from 'react-helmet';
-
-type MetaProps =
-  | { name: string; content: string; property?: undefined }
-  | { property: string; content: string; name?: undefined };
-
-type SEOProps = {
-  title: string;
-  description?: string;
-  lang?: string;
-  meta?: MetaProps[];
-  pathname: string;
-  image: FixedObject;
-};
 
 export const SEO = ({
   title,

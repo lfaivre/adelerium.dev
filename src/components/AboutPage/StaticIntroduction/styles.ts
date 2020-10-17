@@ -1,8 +1,6 @@
 import tw, { styled } from 'twin.macro';
 
-type StaticIntroductionComponentProps = { height: number; width: number };
-
-export const StaticIntroductionComponent = styled.div<StaticIntroductionComponentProps>`
+export const StaticIntroductionComponent = styled.div<{ height: number; width: number }>`
   ${tw`flex flex-row items-center justify-center max-h-screen`}
   ${({ width }) => (width !== -1 ? `width: ${width}px;` : tw`w-full`)}
   ${({ height }) => (height !== -1 ? `height: ${height}px;` : tw`h-auto`)}

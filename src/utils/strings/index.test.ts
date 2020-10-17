@@ -1,22 +1,24 @@
+import { websiteDomain, websiteProtocol } from '@adelerium/constants/site-metadata';
 import { getRandomInt } from '@adelerium/utils/math';
 import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
 
-const PROTOCOL = `https`;
-const DOMAIN = `www.adelerium.dev`;
-
 describe(`strings util: get a stripped internal link path`, () => {
   it(`returns an internal path from a full internal URL`, () => {
-    const FULL_URLS = [`${PROTOCOL}://${DOMAIN}/`, `${PROTOCOL}://${DOMAIN}/about`, `${PROTOCOL}://${DOMAIN}/projects`];
+    const FULL_URLS = [
+      `${websiteProtocol}://${websiteDomain}/`,
+      `${websiteProtocol}://${websiteDomain}/about`,
+      `${websiteProtocol}://${websiteDomain}/projects`,
+    ];
 
     const getCorrectStrippedLinkPath = (fullURL: string): string => {
       switch (fullURL) {
-        case `${PROTOCOL}://${DOMAIN}/`: {
+        case `${websiteProtocol}://${websiteDomain}/`: {
           return `/`;
         }
-        case `${PROTOCOL}://${DOMAIN}/about`: {
+        case `${websiteProtocol}://${websiteDomain}/about`: {
           return `/about`;
         }
-        case `${PROTOCOL}://${DOMAIN}/projects`: {
+        case `${websiteProtocol}://${websiteDomain}/projects`: {
           return `/projects`;
         }
         default: {
@@ -33,10 +35,10 @@ describe(`strings util: get a stripped internal link path`, () => {
   });
 
   it(`throws an error if an invalid full internal URL is provided`, () => {
-    const INVALID_FULL_URL_1 = `${PROTOCOL}://${DOMAIN}`;
-    const INVALID_FULL_URL_2 = `http://${DOMAIN}`;
-    const INVALID_FULL_URL_3 = `${PROTOCOL}://www.test.com`;
-    const INVALID_FULL_URL_4 = `${PROTOCOL}//${DOMAIN}`;
+    const INVALID_FULL_URL_1 = `${websiteProtocol}://${websiteDomain}`;
+    const INVALID_FULL_URL_2 = `http://${websiteDomain}`;
+    const INVALID_FULL_URL_3 = `${websiteProtocol}://www.test.com`;
+    const INVALID_FULL_URL_4 = `${websiteProtocol}//${websiteDomain}`;
 
     expect(() => getStrippedInternalLinkPath(INVALID_FULL_URL_1)).toThrowError();
     expect(() => getStrippedInternalLinkPath(INVALID_FULL_URL_2)).toThrowError();

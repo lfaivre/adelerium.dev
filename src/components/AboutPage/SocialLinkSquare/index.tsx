@@ -1,15 +1,13 @@
-import { SocialLinkQuery_socialLinks_nodes as ContentfulSocialLink } from '@adelerium/@types/__generated__/SocialLinkQuery';
 import { SocialLinkSquareComponent } from '@adelerium/components/AboutPage/SocialLinkSquare/styles';
+import { SocialLinkSquareProps } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
-import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
-import { getFontAwesomeIcon, IconType } from '@adelerium/utils/getFontAwesomeIcon';
+import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
+import { IconType } from '@adelerium/utils/font-awesome/types';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';
 import { css } from 'twin.macro';
-
-type SocialLinkSquareProps = { data: ContentfulSocialLink; dimensions: TileDimensions };
 
 export const SocialLinkSquare = ({
   data: { title, subtitle, type, externalLinkText, externalLink, accentColorHex },

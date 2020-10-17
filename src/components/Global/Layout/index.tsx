@@ -1,14 +1,13 @@
 import { DefaultView } from '@adelerium/components/Global/Layout/DefaultView';
 import { LoadingView } from '@adelerium/components/Global/Layout/LoadingView';
+import { LayoutProps, PageWrapperElementProps } from '@adelerium/components/Global/Layout/types';
 import { useAppDispatch } from '@adelerium/hooks/app-state';
-import { SET_DIMENSIONS } from '@adelerium/hooks/app-state/constants';
+import { SET_DIMENSIONS } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
 import { useWindowDimensions } from '@adelerium/hooks/useWindowDimensions';
 import { FullWidthWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { GlobalStyles } from 'twin.macro';
-
-type LayoutProps = { children: ReactElement };
 
 export const Layout = ({ children }: LayoutProps): ReactElement => {
   const dispatch = useAppDispatch();
@@ -37,8 +36,6 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
     </>
   );
 };
-
-type PageWrapperElementProps = { element: ReactElement; props: Record<string, unknown> };
 
 export const PageWrapperElement = ({ element, props }: PageWrapperElementProps): ReactElement => {
   // eslint-disable-next-line react/jsx-props-no-spreading

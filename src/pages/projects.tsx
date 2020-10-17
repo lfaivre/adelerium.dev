@@ -1,7 +1,7 @@
 import { SEO } from '@adelerium/components/Global/SEO';
 import { PreviewList } from '@adelerium/components/ProjectsPage/PreviewList';
+import { useProjectsPageQueryData } from '@adelerium/graphql/useProjectsPageQueryData';
 import { useAppState } from '@adelerium/hooks/app-state';
-import { useProjectsPageQueryData } from '@adelerium/hooks/graphql/useProjectsPageQueryData';
 import { MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';

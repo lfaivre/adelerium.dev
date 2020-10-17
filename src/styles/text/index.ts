@@ -1,10 +1,9 @@
 // @constants styles
 
+import { TypeColorValues, TypeProps, TypeTextAlignValues, TypeWordBreakValues } from '@adelerium/styles/text/types';
 import { Link } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import tw, { styled, TwStyle } from 'twin.macro';
-
-type TypeColorValues = `text-offwhite` | `text-charcoal` | `text-offpink` | `text-transparent`;
 
 const typeColorMap: { [key in TypeColorValues]: TwStyle } = {
   'text-offwhite': tw`text-offwhite`,
@@ -13,8 +12,6 @@ const typeColorMap: { [key in TypeColorValues]: TwStyle } = {
   'text-transparent': tw`text-transparent`,
 };
 
-type TypeTextAlignValues = `text-left` | `text-center` | `text-right` | `text-justify`;
-
 const typeTextAlignMap: { [key in TypeTextAlignValues]: TwStyle } = {
   'text-left': tw`text-left`,
   'text-center': tw`text-center`,
@@ -22,19 +19,11 @@ const typeTextAlignMap: { [key in TypeTextAlignValues]: TwStyle } = {
   'text-justify': tw`text-justify`,
 };
 
-type TypeWordBreakValues = `break-normal` | `break-words` | `break-all` | `truncate`;
-
 const typeWordBreakMap: { [key in TypeWordBreakValues]: TwStyle } = {
   'break-normal': tw`break-normal`,
   'break-words': tw`break-words`,
   'break-all': tw`break-all`,
   truncate: tw`truncate`,
-};
-
-type TypeProps = {
-  color: TypeColorValues;
-  textAlign?: TypeTextAlignValues;
-  wordBreak?: TypeWordBreakValues;
 };
 
 // @note Style: NormalParagraphType
