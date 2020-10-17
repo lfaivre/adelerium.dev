@@ -1,8 +1,8 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["src/@types/__generated__/globalTypes.d.ts"],
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@adelerium/*": ["src/*"],
       "@adelerium/components/*": ["src/components/*"],

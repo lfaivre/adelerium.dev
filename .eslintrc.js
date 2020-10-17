@@ -5,7 +5,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: `module`,
     ecmaFeatures: { jsx: true },
-    project: `./tsconfig.json`,
+    project: `tsconfig.json`,
     tsconfigRootDir: `.`,
   },
   env: { es6: true, node: true, browser: true, jest: true },

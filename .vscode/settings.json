@@ -10,7 +10,7 @@
   /** @note Prettier */
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.prettierPath": "./node_modules/prettier",
+  "prettier.prettierPath": "node_modules/prettier",
   "prettier.useEditorConfig": false,
 
   /** @note TypeScript Code Actions */
