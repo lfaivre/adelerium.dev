@@ -1,5 +1,5 @@
+import { MediaLinkQuery_mediaLinks_nodes as ContentfulMediaLink } from '@adelerium/@types/__generated__/MediaLinkQuery';
 import { MediaLinkSquareComponent } from '@adelerium/components/AboutPage/MediaLinkSquare/styles';
-import { MediaLinkQuery_mediaLinks_nodes as ContentfulMediaLink } from '@adelerium/graphql/types/MediaLinkQuery';
 import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
 import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
 import { BoldType } from '@adelerium/shared/styles/text';

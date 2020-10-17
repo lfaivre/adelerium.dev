@@ -1,4 +1,4 @@
-import { MediaLinkQuery } from '@adelerium/graphql/types/MediaLinkQuery';
+import { MediaLinkQuery } from '@adelerium/@types/__generated__/MediaLinkQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const useMediaLinkQueryData = (): MediaLinkQuery => {

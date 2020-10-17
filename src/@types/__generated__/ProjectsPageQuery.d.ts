@@ -8,7 +8,6 @@
 // ====================================================
 
 export interface ProjectsPageQuery_metaImage_fixed {
-  readonly __typename: 'ContentfulFixed';
   readonly base64: string | null;
   readonly width: number;
   readonly height: number;
@@ -17,7 +16,6 @@ export interface ProjectsPageQuery_metaImage_fixed {
 }
 
 export interface ProjectsPageQuery_metaImage {
-  readonly __typename: 'ContentfulAsset';
   readonly fixed: ProjectsPageQuery_metaImage_fixed | null;
 }
 

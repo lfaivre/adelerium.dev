@@ -8,7 +8,6 @@
 // ====================================================
 
 export interface SiteMetadataQuery_site_siteMetadata {
-  readonly __typename: 'SiteSiteMetadata';
   readonly description: string | null;
   readonly title: string | null;
   readonly author: string | null;
@@ -16,7 +15,6 @@ export interface SiteMetadataQuery_site_siteMetadata {
 }
 
 export interface SiteMetadataQuery_site {
-  readonly __typename: 'Site';
   readonly siteMetadata: SiteMetadataQuery_site_siteMetadata | null;
 }
 

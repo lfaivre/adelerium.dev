@@ -1,4 +1,4 @@
-import { ProjectsPageQuery } from '@adelerium/graphql/types/ProjectsPageQuery';
+import { ProjectsPageQuery } from '@adelerium/@types/__generated__/ProjectsPageQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const useProjectsPageQueryData = (): ProjectsPageQuery => {

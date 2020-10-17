@@ -1,4 +1,4 @@
-import { SideBarQuery } from '@adelerium/graphql/types/SideBarQuery';
+import { SideBarQuery } from '@adelerium/@types/__generated__/SideBarQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const useSideBarQueryData = (): SideBarQuery => {

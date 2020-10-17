@@ -1,12 +1,11 @@
 module.exports = {
   client: {
-    includes: [`./src/graphql/queries/**/*.ts`, `./src/graphql/queries/**/*.tsx`],
-    // includes: [`./src/**/*.ts`, `./src/**/*.tsx`],
+    includes: [
+      `./src/**/*.ts`,
+      `./src/**/*.tsx`,
+      `./node_modules/gatsby-transformer-sharp/src/fragments.js`,
+      `./node_modules/gatsby-source-contentful/src/fragments.js`,
+    ],
     tagName: `graphql`,
-    // addTypename: true,
-    service: {
-      name: `Gatsby`,
-      url: `http://localhost:8000/___graphql`,
-    },
   },
 };

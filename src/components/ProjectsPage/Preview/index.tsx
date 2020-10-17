@@ -1,5 +1,5 @@
+import { PreviewListQuery_projectPreviews_edges_node as Project } from '@adelerium/@types/__generated__/PreviewListQuery';
 import { BoxShadowStyles, Divider, OrderNumber } from '@adelerium/components/ProjectsPage/Preview/styles';
-import { PreviewListQuery_projectPreviews_edges_node as Project } from '@adelerium/graphql/types/PreviewListQuery';
 import { Left, Right } from '@adelerium/shared/constants/presentation';
 import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
 import {

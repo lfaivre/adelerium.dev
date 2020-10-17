@@ -1,4 +1,4 @@
-import { FooterQuery } from '@adelerium/graphql/types/FooterQuery';
+import { FooterQuery } from '@adelerium/@types/__generated__/FooterQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const useFooterQueryData = (): FooterQuery => {

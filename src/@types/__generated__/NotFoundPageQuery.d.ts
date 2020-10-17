@@ -8,7 +8,6 @@
 // ====================================================
 
 export interface NotFoundPageQuery_metaImage_fixed {
-  readonly __typename: 'ContentfulFixed';
   readonly base64: string | null;
   readonly width: number;
   readonly height: number;
@@ -17,12 +16,10 @@ export interface NotFoundPageQuery_metaImage_fixed {
 }
 
 export interface NotFoundPageQuery_metaImage {
-  readonly __typename: 'ContentfulAsset';
   readonly fixed: NotFoundPageQuery_metaImage_fixed | null;
 }
 
 export interface NotFoundPageQuery_accentImage_childImageSharp_fluid {
-  readonly __typename: 'ImageSharpFluid';
   readonly tracedSVG: string | null;
   readonly aspectRatio: number;
   readonly src: string;
@@ -31,12 +28,10 @@ export interface NotFoundPageQuery_accentImage_childImageSharp_fluid {
 }
 
 export interface NotFoundPageQuery_accentImage_childImageSharp {
-  readonly __typename: 'ImageSharp';
   readonly fluid: NotFoundPageQuery_accentImage_childImageSharp_fluid | null;
 }
 
 export interface NotFoundPageQuery_accentImage {
-  readonly __typename: 'File';
   readonly childImageSharp: NotFoundPageQuery_accentImage_childImageSharp | null;
 }
 

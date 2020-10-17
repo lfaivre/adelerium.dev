@@ -8,12 +8,10 @@
 // ====================================================
 
 export interface PreviewListQuery_projectPreviews_edges_node_previewDescription {
-  readonly __typename: 'contentfulProjectPreviewDescriptionTextNode';
   readonly previewDescription: string | null;
 }
 
 export interface PreviewListQuery_projectPreviews_edges_node_previewPicture_fluid {
-  readonly __typename: 'ContentfulFluid';
   readonly tracedSVG: string | null;
   readonly aspectRatio: number;
   readonly src: string;
@@ -22,12 +20,10 @@ export interface PreviewListQuery_projectPreviews_edges_node_previewPicture_flui
 }
 
 export interface PreviewListQuery_projectPreviews_edges_node_previewPicture {
-  readonly __typename: 'ContentfulAsset';
   readonly fluid: PreviewListQuery_projectPreviews_edges_node_previewPicture_fluid | null;
 }
 
 export interface PreviewListQuery_projectPreviews_edges_node {
-  readonly __typename: 'ContentfulProject';
   readonly id: string;
   readonly title: string | null;
   readonly rating: number | null;
@@ -43,12 +39,10 @@ export interface PreviewListQuery_projectPreviews_edges_node {
 }
 
 export interface PreviewListQuery_projectPreviews_edges {
-  readonly __typename: 'ContentfulProjectEdge';
   readonly node: PreviewListQuery_projectPreviews_edges_node;
 }
 
 export interface PreviewListQuery_projectPreviews {
-  readonly __typename: 'ContentfulProjectConnection';
   readonly edges: ReadonlyArray<PreviewListQuery_projectPreviews_edges>;
 }
 

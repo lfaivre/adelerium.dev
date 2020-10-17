@@ -8,7 +8,6 @@
 // ====================================================
 
 export interface MediaLinkQuery_mediaLinks_nodes_displayImage_fluid {
-  readonly __typename: 'ContentfulFluid';
   readonly tracedSVG: string | null;
   readonly aspectRatio: number;
   readonly src: string;
@@ -17,12 +16,10 @@ export interface MediaLinkQuery_mediaLinks_nodes_displayImage_fluid {
 }
 
 export interface MediaLinkQuery_mediaLinks_nodes_displayImage {
-  readonly __typename: 'ContentfulAsset';
   readonly fluid: MediaLinkQuery_mediaLinks_nodes_displayImage_fluid | null;
 }
 
 export interface MediaLinkQuery_mediaLinks_nodes {
-  readonly __typename: 'ContentfulMediaLink';
   readonly title: string | null;
   readonly subtitle: string | null;
   readonly description: string | null;
@@ -34,7 +31,6 @@ export interface MediaLinkQuery_mediaLinks_nodes {
 }
 
 export interface MediaLinkQuery_mediaLinks {
-  readonly __typename: 'ContentfulMediaLinkConnection';
   readonly nodes: ReadonlyArray<MediaLinkQuery_mediaLinks_nodes>;
 }
 

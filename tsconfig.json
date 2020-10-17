@@ -1,6 +1,6 @@
 {
   "include": ["./src/**/*"],
-  "exclude": ["./src/graphql/types/globalTypes.ts"],
+  "exclude": ["src/@types/__generated__/globalTypes.d.ts"],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {

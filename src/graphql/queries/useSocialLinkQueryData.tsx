@@ -1,4 +1,4 @@
-import { SocialLinkQuery } from '@adelerium/graphql/types/SocialLinkQuery';
+import { SocialLinkQuery } from '@adelerium/@types/__generated__/SocialLinkQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const useSocialLinkQueryData = (): SocialLinkQuery => {

@@ -1,4 +1,4 @@
-import { SiteMetadataQuery } from '@adelerium/graphql/types/SiteMetadataQuery';
+import { SiteMetadataQuery } from '@adelerium/@types/__generated__/SiteMetadataQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const useSiteMetadataQueryData = (): SiteMetadataQuery => {

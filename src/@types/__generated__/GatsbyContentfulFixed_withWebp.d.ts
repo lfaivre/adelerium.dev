@@ -4,23 +4,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: AboutPageQuery
+// GraphQL fragment: GatsbyContentfulFixed_withWebp
 // ====================================================
 
-export interface AboutPageQuery_metaImage_fixed {
-  readonly __typename: 'ContentfulFixed';
+export interface GatsbyContentfulFixed_withWebp {
   readonly base64: string | null;
   readonly width: number;
   readonly height: number;
   readonly src: string;
   readonly srcSet: string;
-}
-
-export interface AboutPageQuery_metaImage {
-  readonly __typename: 'ContentfulAsset';
-  readonly fixed: AboutPageQuery_metaImage_fixed | null;
-}
-
-export interface AboutPageQuery {
-  readonly metaImage: AboutPageQuery_metaImage | null;
+  readonly srcWebp: string | null;
+  readonly srcSetWebp: string | null;
 }

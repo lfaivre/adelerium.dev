@@ -8,27 +8,22 @@
 // ====================================================
 
 export interface FooterQuery_footerData_facts {
-  readonly __typename: 'ContentfulFact';
   readonly text: string | null;
 }
 
 export interface FooterQuery_footerData {
-  readonly __typename: 'ContentfulFooter';
   readonly facts: ReadonlyArray<FooterQuery_footerData_facts | null> | null;
 }
 
 export interface FooterQuery_brandingLink {
-  readonly __typename: 'ContentfulLink';
   readonly destination: string | null;
 }
 
 export interface FooterQuery_linkedInLink {
-  readonly __typename: 'ContentfulLink';
   readonly destination: string | null;
 }
 
 export interface FooterQuery_gitHubLink {
-  readonly __typename: 'ContentfulLink';
   readonly destination: string | null;
 }
 

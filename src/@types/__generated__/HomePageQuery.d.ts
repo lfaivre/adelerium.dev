@@ -8,7 +8,6 @@
 // ====================================================
 
 export interface HomePageQuery_metaImage_fixed {
-  readonly __typename: 'ContentfulFixed';
   readonly base64: string | null;
   readonly width: number;
   readonly height: number;
@@ -17,12 +16,10 @@ export interface HomePageQuery_metaImage_fixed {
 }
 
 export interface HomePageQuery_metaImage {
-  readonly __typename: 'ContentfulAsset';
   readonly fixed: HomePageQuery_metaImage_fixed | null;
 }
 
 export interface HomePageQuery_brandingLink {
-  readonly __typename: 'ContentfulLink';
   readonly destination: string | null;
 }
 

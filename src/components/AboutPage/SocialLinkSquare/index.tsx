@@ -1,5 +1,5 @@
+import { SocialLinkQuery_socialLinks_nodes as ContentfulSocialLink } from '@adelerium/@types/__generated__/SocialLinkQuery';
 import { SocialLinkSquareComponent } from '@adelerium/components/AboutPage/SocialLinkSquare/styles';
-import { SocialLinkQuery_socialLinks_nodes as ContentfulSocialLink } from '@adelerium/graphql/types/SocialLinkQuery';
 import { websiteFullPath } from '@adelerium/shared/constants/site-metadata';
 import { TileDimensions } from '@adelerium/shared/hooks/useAllTileDimensions';
 import { BoldType } from '@adelerium/shared/styles/text';

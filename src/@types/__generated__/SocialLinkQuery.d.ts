@@ -8,7 +8,6 @@
 // ====================================================
 
 export interface SocialLinkQuery_socialLinks_nodes {
-  readonly __typename: 'ContentfulSocialLink';
   readonly title: string | null;
   readonly subtitle: string | null;
   readonly type: string | null;
@@ -18,7 +17,6 @@ export interface SocialLinkQuery_socialLinks_nodes {
 }
 
 export interface SocialLinkQuery_socialLinks {
-  readonly __typename: 'ContentfulSocialLinkConnection';
   readonly nodes: ReadonlyArray<SocialLinkQuery_socialLinks_nodes>;
 }
 

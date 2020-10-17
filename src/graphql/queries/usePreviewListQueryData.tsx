@@ -1,4 +1,4 @@
-import { PreviewListQuery } from '@adelerium/graphql/types/PreviewListQuery';
+import { PreviewListQuery } from '@adelerium/@types/__generated__/PreviewListQuery';
 import { graphql, useStaticQuery } from 'gatsby';
 
 export const usePreviewListQueryData = (): PreviewListQuery => {
