@@ -3,7 +3,8 @@ import { useSideBarQueryData } from '@adelerium/components/Global/SideBar/useSid
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { ExternalLinks, InternalLinks } from '@adelerium/constants/presentation';
 import { profileEmail, profileName, profileTag, studioUrl, websiteFullPath } from '@adelerium/constants/site-metadata';
-import { useAppState } from '@adelerium/hooks/app-state';
+import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
+import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import {
   AccentType,
@@ -15,8 +16,9 @@ import {
 } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
+import { navigate } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
-import React, { ReactElement, useState } from 'react';
+import React, { MouseEvent, ReactElement, useState } from 'react';
 import tw, { css } from 'twin.macro';
 
 // @todo Break into smaller, more reusable components
@@ -32,8 +34,15 @@ export const SideBar = (): ReactElement => {
       appWindow: { height: windowHeight },
     },
   } = useAppState();
+  const dispatch = useAppDispatch();
   const pathData = usePathData();
   const [sideBarView, setSideBarView] = useState(InternalLinks);
+
+  const handlePageTransition = async (event: MouseEvent, to: string): Promise<void> => {
+    event.preventDefault();
+    dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: true } } });
+    await navigate(to);
+  };
 
   const backgroundImageStyles = css`
     background: var(--color-OffWhite) url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
@@ -94,6 +103,7 @@ export const SideBar = (): ReactElement => {
                   />
                   <BoldTypeAsGatsbyLink
                     to={getStrippedInternalLinkPath(link?.destination || ``)}
+                    onClick={(e) => handlePageTransition(e, getStrippedInternalLinkPath(link?.destination || ``))}
                     color={
                       sideBarIsVisible && link?.displayText === pathData.pathData?.text
                         ? `text-offwhite`

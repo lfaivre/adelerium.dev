@@ -39,7 +39,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
         tw="relative w-1/2 h-full"
       >
         <BoldParagraphType
-          color="text-charcoal"
+          color="text-offwhite"
           textAlign="text-left"
           css={[
             tw`z-0 transition-opacity duration-300 ease-in-out text-3xl md:text-4xl`,
@@ -49,7 +49,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
         >{`${headerTitle}.`}</BoldParagraphType>
         <BoldTypeAsButton
           disabled={disableToggle}
-          color="text-charcoal"
+          color="text-offwhite"
           textAlign="text-left"
           onClick={() =>
             !disableToggle && dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })

@@ -1,6 +1,5 @@
 import { Header } from '@adelerium/components/Global/Header';
 import { SEO } from '@adelerium/components/Global/SEO';
-import { cssToTest, KoiPond } from '@adelerium/components/HomePage/KoiPond';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useHomePageQueryData } from '@adelerium/graphql/useHomePageQueryData';
@@ -11,7 +10,7 @@ import { BoldTypeAsButton, BrandingTypeAsAnchor } from '@adelerium/styles/text';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -42,23 +41,11 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
     };
   }, [dispatch]);
 
-  const [browserSupportsAnimation, setBrowserSupportsAnimation] = useState<boolean>(true);
-
   const springProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
     config: config.molasses,
   });
-
-  useEffect(() => {
-    try {
-      const browserCheck = CSS.supports(cssToTest);
-      setBrowserSupportsAnimation(browserCheck);
-    } catch {
-      console.error(`Failed browser check or triggered during a static build`);
-      setBrowserSupportsAnimation(false);
-    }
-  }, []);
 
   const buttonRef = useRef(null);
   const { width: sideBarToggleWidth } = useDimensions({ ref: buttonRef });
@@ -73,14 +60,13 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
       <FlexRowWrapper
         alignItems="items-center"
         justifyContent="justify-center"
-        backgroundColor="bg-offwhite"
+        backgroundColor="bg-charcoal"
         tw="relative w-full h-screen"
       >
-        {browserSupportsAnimation && <KoiPond />}
         <BoldTypeAsButton
           ref={buttonRef}
           onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
-          color="text-charcoal"
+          color="text-offwhite"
           textAlign="text-center"
           css={[
             tw`hidden md:block absolute transform -rotate-90 z-10 focus:outline-none px-2 py-1 text-xs md:text-xs uppercase`,
@@ -92,7 +78,7 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
         <BrandingTypeAsAnchor
           href={brandingLink?.destination || websiteFullPath}
           label={brandingLink?.destination || websiteFullPath}
-          color="text-charcoal"
+          color="text-offwhite"
           tw="absolute bottom-8 right-8"
         >
           KD.

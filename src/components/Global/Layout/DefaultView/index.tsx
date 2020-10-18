@@ -1,7 +1,7 @@
 import { Footer } from '@adelerium/components/Global/Footer';
 import { Header } from '@adelerium/components/Global/Header';
-import { ReturnButton, ReturnButtonIndicator } from '@adelerium/components/Global/Layout/DefaultView/styles';
 import { DefaultViewProps } from '@adelerium/components/Global/Layout/DefaultView/types';
+import { ReturnButton } from '@adelerium/components/Global/ReturnButton';
 import { SideBar } from '@adelerium/components/Global/SideBar';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
@@ -9,15 +9,11 @@ import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import { FlexRowWrapper, FullWidthWrapper } from '@adelerium/styles/wrappers';
-import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
 const DEFAULT_SIDEBAR_WIDTH = 0.25 * windowDimensionBreakpoints.width.max;
-
-const handleSmoothScrollToTop = (): void => {
-  if (typeof window !== `undefined`) window.scrollTo({ top: 0, behavior: `smooth` });
-};
 
 export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const {
@@ -105,17 +101,6 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   }, [returnButtonDimensions, dispatch]);
 
   /**
-   * @note After Layout Effect(s)
-   *
-   * - Once the changes are painted by the browser, remove the loading screen
-   */
-
-  useEffect(() => {
-    if (!loadingScreenIsVisible) return;
-    dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: false } } });
-  }, [loadingScreenIsVisible, dispatch]);
-
-  /**
    * @note Initialize React Spring Element Configurations
    *
    * - Elements: header wrapper, side bar wrapper, content wrapper
@@ -123,7 +108,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   const headerWrapperProps = useSpring({
     to: {
-      display: headerIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
+      display: headerIsVisible ? `flex` : `none`,
       left:
         windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth + sideBarWidth : windowGutterWidth) : 0,
     },
@@ -131,9 +116,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   });
 
   const sideBarWrapperProps = useSpring({
-    from: { display: `none` },
     to: {
-      display: sideBarIsVisible && windowGutterWidth !== undefined ? `flex` : `none`,
       left:
         windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth : windowGutterWidth - sideBarWidth) : 0,
     },
@@ -154,9 +137,10 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={headerWrapperProps}
         css={[
           css`
+            opacity: ${loadingScreenIsVisible ? 0 : 1};
             width: ${layoutWidth}px;
           `,
-          tw`fixed top-0 z-30 flex-row items-start justify-center bg-offwhite p-4 md:px-8`,
+          tw`fixed top-0 z-30 flex-row items-start justify-center bg-charcoal border-b border-offwhite p-4 md:px-8`,
         ]}
       >
         <Header />
@@ -166,6 +150,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={sideBarWrapperProps}
         css={[
           css`
+            opacity: ${loadingScreenIsVisible ? 0 : 1};
             width: ${sideBarWidth}px;
           `,
           tw`fixed top-0 z-30 border-r-2 border-charcoal h-screen max-h-global`,
@@ -179,6 +164,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={contentWrapperProps}
         css={[
           css`
+            opacity: ${loadingScreenIsVisible ? 0 : 1};
             width: ${layoutWidth}px;
             padding-top: ${headerIsVisible ? headerHeight : 0}px;
           `,
@@ -193,21 +179,13 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
           ref={returnButtonRef}
           css={[returnButtonIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0 md:justify-end p-8 w-full`]}
         >
-          <ReturnButton
-            borderColor="border-offwhite"
-            backgroundColor="bg-offwhite"
-            aria-label="Return To Top"
-            onClick={handleSmoothScrollToTop}
-          >
-            <ReturnButtonIndicator />
-            <ReturnButtonIndicator />
-          </ReturnButton>
+          <ReturnButton />
         </FlexRowWrapper>
 
         <FullWidthWrapper
           ref={footerRef}
-          css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0`]}
-          backgroundColor="bg-offwhite"
+          css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`border-t border-offwhite flex-shrink-0`]}
+          backgroundColor="bg-charcoal"
         >
           <Footer />
         </FullWidthWrapper>

@@ -31,22 +31,22 @@ export const Footer = (): ReactElement => {
     <FullWidthWrapper tw="px-4 pt-8 pb-4 md:p-8">
       <FlexRowWrapper alignItems="items-start" justifyContent="justify-start" tw="hidden md:flex mb-8 w-full">
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-2/6">
-          <BoldParagraphType color="text-charcoal" textAlign="text-left">
+          <BoldParagraphType color="text-offwhite" textAlign="text-left">
             Need a website?
           </BoldParagraphType>
           <NormalParagraphTypeAsAnchor
             href={brandingLink?.destination || websiteFullPath}
             label={brandingLink?.destination || websiteFullPath}
-            color="text-charcoal"
+            color="text-offwhite"
           >
             kevaladesign.com
           </NormalParagraphTypeAsAnchor>
         </FlexColumnWrapper>
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-2/6">
-          <BoldParagraphType color="text-charcoal" textAlign="text-center">
+          <BoldParagraphType color="text-offwhite" textAlign="text-center">
             Did you know?
           </BoldParagraphType>
-          <NormalParagraphType color="text-charcoal" textAlign="text-center" tw="w-full">
+          <NormalParagraphType color="text-offwhite" textAlign="text-center" tw="w-full">
             {getRandomFact()}
           </NormalParagraphType>
         </FlexColumnWrapper>
@@ -54,7 +54,7 @@ export const Footer = (): ReactElement => {
           <BoldParagraphTypeAsAnchor
             href={linkedInLink?.destination || websiteFullPath}
             label={linkedInLink?.destination || websiteFullPath}
-            color="text-charcoal"
+            color="text-offwhite"
             tw="mr-4"
           >
             li.
@@ -62,7 +62,7 @@ export const Footer = (): ReactElement => {
           <BoldParagraphTypeAsAnchor
             href={gitHubLink?.destination || websiteFullPath}
             label={gitHubLink?.destination || websiteFullPath}
-            color="text-charcoal"
+            color="text-offwhite"
           >
             gh.
           </BoldParagraphTypeAsAnchor>
@@ -81,13 +81,13 @@ export const Footer = (): ReactElement => {
           )}
         </FlexRowWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="hidden md:flex w-2/6">
-          {/* <BrandingType color="text-charcoal" textAlign="text-center" wordBreak="break-normal">
+          {/* <BrandingType color="text-offwhite" textAlign="text-center" wordBreak="break-normal">
             KD.
           </BrandingType> */}
           <BrandingTypeAsAnchor
             href={brandingLink?.destination || studioUrl}
             label={brandingLink?.destination || studioUrl}
-            color="text-charcoal"
+            color="text-offwhite"
           >
             KD.
           </BrandingTypeAsAnchor>
@@ -104,11 +104,11 @@ export const Footer = (): ReactElement => {
           )}
         </FlexRowWrapper>
       </FlexRowWrapper>
-      <hr tw="block md:hidden mb-4 md:mb-2 border-t border-charcoal w-full h-0" />
+      <hr tw="block md:hidden mb-4 md:mb-2 border-t border-offwhite w-full h-0" />
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-hidden">
           <BoldType
-            color="text-charcoal"
+            color="text-offwhite"
             textAlign="text-center"
             tw="w-full uppercase text-xs md:text-xs"
             wordBreak="break-normal"
