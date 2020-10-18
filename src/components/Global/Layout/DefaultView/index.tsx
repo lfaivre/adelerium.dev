@@ -7,9 +7,10 @@ import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
+import { useKeyPress } from '@adelerium/hooks/useKeyPress';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import { FlexRowWrapper, FullWidthWrapper } from '@adelerium/styles/wrappers';
-import React, { ReactElement, useLayoutEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -101,6 +102,20 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   }, [returnButtonDimensions, dispatch]);
 
   /**
+   * @note Respond to Keypress Events
+   *
+   * - 't': Toggle side bar
+   */
+
+  const sideBarKeypressToggle = useKeyPress(`t`);
+
+  useEffect(() => {
+    if (sideBarKeypressToggle === false) return;
+    dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sideBarKeypressToggle, dispatch]);
+
+  /**
    * @note Initialize React Spring Element Configurations
    *
    * - Elements: header wrapper, side bar wrapper, content wrapper
@@ -184,7 +199,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
         <FullWidthWrapper
           ref={footerRef}
-          css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`border-t border-offwhite flex-shrink-0`]}
+          css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0`]}
           backgroundColor="bg-charcoal"
         >
           <Footer />

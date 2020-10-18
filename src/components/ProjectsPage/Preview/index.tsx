@@ -165,7 +165,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
           onMouseLeave={() => set({ xys: [0, 0, 1] })}
           style={{ transform: props.xys.interpolate(translate as () => string) }}
-          css={[tw`bg-offwhite p-4 w-full`, BoxShadowStyles]}
+          css={[tw`bg-offwhite p-2 md:p-4 w-full`, BoxShadowStyles]}
         >
           <Img
             fluid={project.previewPicture?.fluid as FluidObject | FluidObject[]}

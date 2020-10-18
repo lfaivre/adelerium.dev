@@ -60,7 +60,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
             disableToggle && tw`cursor-default`,
           ]}
         >
-          Toggle Navigation
+          Toggle Navigation (T)
         </BoldTypeAsButton>
       </FlexRowWrapper>
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-end" tw="w-1/2 h-full">

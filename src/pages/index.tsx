@@ -73,7 +73,7 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
             positionLeftStyles,
           ]}
         >
-          Toggle Navigation
+          Toggle Navigation (T)
         </BoldTypeAsButton>
         <BrandingTypeAsAnchor
           href={brandingLink?.destination || websiteFullPath}
