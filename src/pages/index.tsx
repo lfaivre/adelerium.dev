@@ -1,5 +1,6 @@
 import { Header } from '@adelerium/components/Global/Header';
 import { SEO } from '@adelerium/components/Global/SEO';
+import { Camera, WavyImage } from '@adelerium/components/HomePage/WavyImage';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useHomePageQueryData } from '@adelerium/graphql/useHomePageQueryData';
@@ -12,6 +13,7 @@ import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
+import { Canvas } from 'react-three-fiber';
 import tw, { css } from 'twin.macro';
 
 const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
@@ -63,6 +65,10 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
         backgroundColor="bg-charcoal"
         tw="relative w-full h-screen"
       >
+        <Canvas>
+          <Camera position={[0, 0, 1]} />
+          <WavyImage />
+        </Canvas>
         <BoldTypeAsButton
           ref={buttonRef}
           onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
