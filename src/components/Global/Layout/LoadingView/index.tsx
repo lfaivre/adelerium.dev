@@ -44,10 +44,10 @@ export const LoadingView = (): ReactElement => {
               <FlexRowWrapper
                 alignItems="items-center"
                 justifyContent="justify-center"
-                backgroundColor="bg-offwhite"
+                backgroundColor="bg-charcoal"
                 tw="w-full h-full"
               >
-                <BoldParagraphType color="text-charcoal" textAlign="text-left" tw="text-3xl md:text-4xl">
+                <BoldParagraphType color="text-offwhite" textAlign="text-left" tw="text-3xl md:text-4xl">
                   {staticLoadingText}
                 </BoldParagraphType>
               </FlexRowWrapper>
