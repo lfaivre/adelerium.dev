@@ -61,7 +61,7 @@
     "babel-jest": "^26.5.2",
     "babel-preset-gatsby": "^0.5.14",
     "eslint": "^7.11.0",
-    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.22.1",
