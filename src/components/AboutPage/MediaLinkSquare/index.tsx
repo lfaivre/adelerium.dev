@@ -20,7 +20,7 @@ export const MediaLinkSquare = ({
 
   const springStyles = useSpring({
     to: { opacity: hovered ? 1 : 0.12 },
-    config: config.slow,
+    config: config.molasses,
   });
 
   const dimensionsStyles = css`

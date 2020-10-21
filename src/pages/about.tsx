@@ -70,12 +70,12 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
             <TileRowWrapper>
               <IntroductionSection dimensions={size2} />
-              {github && <SocialLinkSquare data={github} dimensions={size1} />}
+              {email && <SocialLinkSquare data={email} dimensions={size1} />}
             </TileRowWrapper>
             <TileRowWrapper>
-              {figma && <SocialLinkSquare data={figma} dimensions={size1} />}
               {pinnedPlaylist && <MediaLinkSquare data={pinnedPlaylist} dimensions={size1} />}
-              {email && <SocialLinkSquare data={email} dimensions={size1} />}
+              {figma && <SocialLinkSquare data={figma} dimensions={size1} />}
+              {github && <SocialLinkSquare data={github} dimensions={size1} />}
             </TileRowWrapper>
             <TileRowWrapper>
               <StaticResume dimensions={size2} />

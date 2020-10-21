@@ -25,7 +25,7 @@ export const SocialLinkSquare = ({
         ? `${accentColorHex}1F`
         : `var(--color-Charcoal)`,
     },
-    config: config.slow,
+    config: config.molasses,
   });
 
   const dimensionsStyles = css`

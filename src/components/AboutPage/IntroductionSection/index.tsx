@@ -10,13 +10,13 @@ import tw, { css } from 'twin.macro';
 const windowWidthBreakpoint = windowDimensionBreakpoints.width.xl;
 
 export const IntroductionSection = ({ dimensions: { width, height } }: IntroductionSectionProps): ReactElement => {
+  const { introductionSection } = useIntroductionSectionQueryData();
+
   const {
     dimensions: {
       appWindow: { width: windowWidth },
     },
   } = useAppState();
-
-  const { introductionSection } = useIntroductionSectionQueryData();
 
   const dimensionsStyles = css`
     width: ${width !== -1 ? `${width}px` : `100%`};
