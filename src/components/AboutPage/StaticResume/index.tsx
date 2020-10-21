@@ -22,7 +22,7 @@ const windowWidthBreakpoint = windowDimensionBreakpoints.width.xl;
 const staticResumeTitleText = `Are you looking to hire? Here’s my resume.`;
 const staticResumeLinkText = `View on Google Drive`;
 
-export const StaticResume = ({ dimensions: { width, height } }: StaticResumeProps): ReactElement => {
+export const StaticResume = ({ dimensions: { width, height, maxHeight } }: StaticResumeProps): ReactElement => {
   const { resumeLink } = useStaticResumeQueryData();
 
   const {
@@ -34,7 +34,7 @@ export const StaticResume = ({ dimensions: { width, height } }: StaticResumeProp
   const [hovered, setHovered] = useState(false);
 
   const containerSpringStyles = useSpring({
-    to: { backgroundColor: hovered ? `#f3f2f1` : `#000000` },
+    to: { backgroundColor: hovered ? `#fcf0ec` : `#fcf0ec1f` },
     config: config.molasses,
   });
 
@@ -45,7 +45,8 @@ export const StaticResume = ({ dimensions: { width, height } }: StaticResumeProp
 
   const dimensionsStyles = css`
     width: ${width !== -1 ? `${width}px` : `100%`};
-    height: ${windowWidth >= windowWidthBreakpoint ? `${height}px` : `auto`};
+    height: ${height !== -1 ? `${height}px` : `auto`};
+    max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
   `;
 
   return (
@@ -64,17 +65,21 @@ export const StaticResume = ({ dimensions: { width, height } }: StaticResumeProp
         rel="noopener noreferrer"
         tw="w-full h-full"
       >
-        <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="px-4 py-8 xl:p-8 w-full h-full">
+        <FlexColumnWrapper
+          alignItems="items-start"
+          justifyContent="justify-center"
+          tw="px-4 py-8 xl:px-16 xl:py-8 w-full h-full"
+        >
           <AnimatedBoldParagraphType
             color="text-offwhite"
-            textAlign="text-left"
+            textAlign="text-center"
             wordBreak="break-normal"
             style={textSpringStyles}
-            tw="mb-4 md:mb-16 xl:mb-24 w-full text-2xl md:text-2xl lg:text-3xl"
+            tw="mb-8 md:mb-16 xl:mb-24 w-full xl:text-left text-2xl md:text-2xl lg:text-3xl"
           >
             {staticResumeTitleText}
           </AnimatedBoldParagraphType>
-          <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
+          <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="xl:justify-start w-full">
             <AnimatedFontAwesomeIcon
               icon={faGoogleDrive}
               size={windowWidth >= windowWidthBreakpoint ? `4x` : `2x`}

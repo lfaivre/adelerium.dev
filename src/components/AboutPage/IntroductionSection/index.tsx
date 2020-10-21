@@ -27,7 +27,7 @@ export const IntroductionSection = ({ dimensions: { width, height } }: Introduct
     <FlexRowWrapper
       alignItems="items-start"
       justifyContent="justify-start"
-      css={[dimensionsStyles, tw`mb-2 xl:mb-0 px-4 py-8 xl:p-8`]}
+      css={[dimensionsStyles, tw`mb-2 xl:mb-0 px-4 py-8 xl:px-16 xl:py-8`]}
     >
       <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full h-full">
         <BoldParagraphType

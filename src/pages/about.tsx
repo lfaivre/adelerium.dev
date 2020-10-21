@@ -3,6 +3,7 @@ import { MediaLinkSquare } from '@adelerium/components/AboutPage/MediaLinkSquare
 import { useMediaLinkQueryData } from '@adelerium/components/AboutPage/MediaLinkSquare/useMediaLinkQueryData';
 import { SocialLinkSquare } from '@adelerium/components/AboutPage/SocialLinkSquare';
 import { useSocialLinkQueryData } from '@adelerium/components/AboutPage/SocialLinkSquare/useSocialLinkQueryData';
+import { StaticBranding } from '@adelerium/components/AboutPage/StaticBranding';
 import { StaticLocation } from '@adelerium/components/AboutPage/StaticLocation';
 import { StaticResume } from '@adelerium/components/AboutPage/StaticResume';
 import { SEO } from '@adelerium/components/Global/SEO';
@@ -76,6 +77,9 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
               {pinnedPlaylist && <MediaLinkSquare data={pinnedPlaylist} dimensions={size1} />}
               {figma && <SocialLinkSquare data={figma} dimensions={size1} />}
               {github && <SocialLinkSquare data={github} dimensions={size1} />}
+            </TileRowWrapper>
+            <TileRowWrapper>
+              <StaticBranding dimensions={size1} />
             </TileRowWrapper>
             <TileRowWrapper>
               <StaticResume dimensions={size2} />

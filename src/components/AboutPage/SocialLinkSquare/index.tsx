@@ -19,11 +19,7 @@ export const SocialLinkSquare = ({
 
   const springStyles = useSpring({
     to: {
-      backgroundColor: hovered
-        ? `${accentColorHex || `var(--color-Charcoal)`}`
-        : accentColorHex
-        ? `${accentColorHex}1F`
-        : `var(--color-Charcoal)`,
+      backgroundColor: hovered ? `${accentColorHex || `#000000`}` : accentColorHex ? `${accentColorHex}1F` : `#000000`,
     },
     config: config.molasses,
   });
