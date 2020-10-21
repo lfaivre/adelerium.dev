@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useHomePageQueryData = (): HomePageQuery => {
   const homePageQueryData: HomePageQuery = useStaticQuery(graphql`
     query HomePageQuery {
-      metaImage: contentfulAsset(id: { eq: "0f96cdaa-3965-5619-81c9-a8f7fcec51b4" }) {
+      metaImage: contentfulAsset(id: { eq: "146083bc-6bc2-52ed-b613-d326b4daef16" }) {
         fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
           base64
           width
@@ -13,7 +13,7 @@ export const useHomePageQueryData = (): HomePageQuery => {
           srcSet
         }
       }
-      brandingLink: contentfulLink(id: { eq: "8ae4b109-939c-5e4a-b4f9-6667caf39179" }) {
+      brandingLink: contentfulLink(id: { eq: "5e2725b8-75c7-5c4b-86f1-3caa0f3df31e" }) {
         destination
       }
     }

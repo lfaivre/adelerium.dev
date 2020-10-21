@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useProjectsPageQueryData = (): ProjectsPageQuery => {
   const projectsPageQueryData: ProjectsPageQuery = useStaticQuery(graphql`
     query ProjectsPageQuery {
-      metaImage: contentfulAsset(id: { eq: "57fcf54a-7405-5bc4-80cd-acd3e906526c" }) {
+      metaImage: contentfulAsset(id: { eq: "3ec18d0b-ad1e-5d94-809c-d43c93a98f37" }) {
         fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
           base64
           width

@@ -4,18 +4,18 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useFooterQueryData = (): FooterQuery => {
   const footerQueryData: FooterQuery = useStaticQuery(graphql`
     query FooterQuery {
-      footerData: contentfulFooter(id: { eq: "1255bc22-06cf-5a6a-8380-aa9765941449" }) {
+      footerData: contentfulFooter(id: { eq: "19835726-275c-5864-861d-7ab4ad345b4a" }) {
         facts {
           text
         }
       }
-      brandingLink: contentfulLink(id: { eq: "8ae4b109-939c-5e4a-b4f9-6667caf39179" }) {
+      brandingLink: contentfulLink(id: { eq: "5e2725b8-75c7-5c4b-86f1-3caa0f3df31e" }) {
         destination
       }
-      linkedInLink: contentfulLink(id: { eq: "9c58119b-ca48-56a9-912d-9cbc90947140" }) {
+      linkedInLink: contentfulLink(id: { eq: "06722293-5310-537f-aa32-c6f839c83971" }) {
         destination
       }
-      gitHubLink: contentfulLink(id: { eq: "789bbd03-bc37-5f2e-8bbf-47fd1c861934" }) {
+      gitHubLink: contentfulLink(id: { eq: "5ef77974-b700-5f1f-8291-31f05cc3a4eb" }) {
         destination
       }
     }

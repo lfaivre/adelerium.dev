@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useStaticBrandingQueryData = (): StaticBrandingQuery => {
   const staticBrandingQueryData: StaticBrandingQuery = useStaticQuery(graphql`
     query StaticBrandingQuery {
-      brandingLink: contentfulLink(id: { eq: "8ae4b109-939c-5e4a-b4f9-6667caf39179" }) {
+      brandingLink: contentfulLink(id: { eq: "5e2725b8-75c7-5c4b-86f1-3caa0f3df31e" }) {
         destination
       }
     }

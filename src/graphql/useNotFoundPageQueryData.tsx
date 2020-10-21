@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useNotFoundPageQueryData = (): NotFoundPageQuery => {
   const notFoundPageQueryData: NotFoundPageQuery = useStaticQuery(graphql`
     query NotFoundPageQuery {
-      metaImage: contentfulAsset(id: { eq: "e276389a-846c-53c3-8948-8a56b6327143" }) {
+      metaImage: contentfulAsset(id: { eq: "286016a7-519d-5b15-842e-0804fa11d650" }) {
         fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
           base64
           width

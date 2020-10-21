@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useSideBarQueryData = (): SideBarQuery => {
   const sideBarQueryData: SideBarQuery = useStaticQuery(graphql`
     query SideBarQuery {
-      sideBarData: contentfulSideBar(id: { eq: "502a1247-aea0-5bd4-8559-e57affa70179" }) {
+      sideBarData: contentfulSideBar(id: { eq: "ebce7c4c-0af3-5aa5-9391-9037448fcc7c" }) {
         profilePicture {
           fluid(maxWidth: 320, resizingBehavior: SCALE, quality: 100) {
             tracedSVG
@@ -40,10 +40,10 @@ export const useSideBarQueryData = (): SideBarQuery => {
           }
         }
       }
-      brandingLink: contentfulLink(id: { eq: "8ae4b109-939c-5e4a-b4f9-6667caf39179" }) {
+      brandingLink: contentfulLink(id: { eq: "5e2725b8-75c7-5c4b-86f1-3caa0f3df31e" }) {
         destination
       }
-      email: contentfulEmail(id: { eq: "e091525a-7aee-5f4d-bbbd-e704936df8fe" }) {
+      email: contentfulEmail(id: { eq: "0cd56694-957b-5f3b-be2d-8e4b0e693ad2" }) {
         title
         destination
         displayText
