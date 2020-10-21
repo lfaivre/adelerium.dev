@@ -41,8 +41,7 @@ export const SocialLinkSquare = ({
       alignItems="items-center"
       justifyContent="justify-center"
       style={springStyles}
-      css={[dimensionsStyles, tw`mb-2 xl:mb-0 p-4 lg:p-8`]}
-      tw=""
+      css={[dimensionsStyles, tw`mb-2 xl:mb-0`]}
     >
       <OutboundLink
         href={externalLink || websiteFullPath}
@@ -51,7 +50,7 @@ export const SocialLinkSquare = ({
         rel="noopener noreferrer"
         tw="w-full h-full"
       >
-        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full h-full">
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="p-4 lg:p-8 w-full h-full">
           <FlexColumnWrapper
             alignItems="items-center"
             justifyContent="justify-center"
@@ -63,7 +62,7 @@ export const SocialLinkSquare = ({
             <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs lg:text-base">
               {title}
             </BoldType>
-            <BoldType color="text-offwhite" textAlign="text-left" tw="uppercase w-full text-xs md:text-xs font-normal">
+            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs font-normal">
               {subtitle}
             </BoldType>
           </FlexColumnWrapper>

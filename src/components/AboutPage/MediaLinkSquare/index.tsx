@@ -1,4 +1,3 @@
-import { MediaLinkSquareComponent } from '@adelerium/components/AboutPage/MediaLinkSquare/styles';
 import { MediaLinkSquareProps } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { BoldType } from '@adelerium/styles/text';
@@ -7,26 +6,41 @@ import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
 import { IconType } from '@adelerium/utils/font-awesome/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
+import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
+
+const AnimatedImg = animated(Img);
 
 export const MediaLinkSquare = ({
   data: { title, subtitle, description, date, type, externalLink, displayImage },
   dimensions: { width, height, maxHeight },
 }: MediaLinkSquareProps): ReactElement => {
-  const maxHeightStyles = css`
-    max-height: ${maxHeight}px;
+  const [hovered, setHovered] = useState(false);
+
+  const springStyles = useSpring({
+    to: { opacity: hovered ? 1 : 0.12 },
+    config: config.slow,
+  });
+
+  const dimensionsStyles = css`
+    width: ${width !== -1 ? `${width}px` : `100%`};
+    height: ${height !== -1 ? `${height}px` : `auto`};
+    max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
   `;
 
   return (
-    <MediaLinkSquareComponent
-      width={width}
-      height={height}
-      css={[maxHeight !== -1 && maxHeightStyles, tw`relative mb-2 xl:mb-0 bg-charcoal`]}
+    <FlexColumnWrapper
+      onMouseOver={() => setHovered(true)}
+      onMouseOut={() => setHovered(false)}
+      alignItems="items-center"
+      justifyContent="justify-center"
+      css={[dimensionsStyles, tw`relative mb-2 xl:mb-0 bg-charcoal`]}
     >
-      <Img
+      <AnimatedImg
         fluid={displayImage?.fluid as FluidObject | FluidObject[]}
         draggable={false}
+        style={springStyles}
         tw="absolute top-0 left-0 z-0 w-full h-full object-cover object-center select-none"
       />
       <OutboundLink
@@ -36,7 +50,7 @@ export const MediaLinkSquare = ({
         rel="noopener noreferrer"
         tw="absolute top-0 left-0 z-10 w-full h-full"
       >
-        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-between" tw="w-full h-full p-4 lg:p-8">
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-between" tw="p-4 lg:p-8 w-full h-full">
           <FlexRowWrapper
             alignItems="items-center"
             justifyContent="justify-between"
@@ -46,7 +60,11 @@ export const MediaLinkSquare = ({
               {getFontAwesomeIcon(type as IconType)}
             </FlexRowWrapper>
             <FlexColumnWrapper alignItems="items-end" justifyContent="justify-center" tw="flex-grow">
-              <BoldType color="text-offwhite" textAlign="text-right" tw="w-full uppercase">
+              <BoldType
+                color="text-offwhite"
+                textAlign="text-right"
+                tw="w-full uppercase text-xs md:text-xs lg:text-base"
+              >
                 {description}
               </BoldType>
               <BoldType
@@ -59,15 +77,15 @@ export const MediaLinkSquare = ({
             </FlexColumnWrapper>
           </FlexRowWrapper>
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
-            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full">
+            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs lg:text-base">
               {title}
             </BoldType>
-            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full text-xs md:text-xs font-normal">
+            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs font-normal">
               {subtitle}
             </BoldType>
           </FlexColumnWrapper>
         </FlexColumnWrapper>
       </OutboundLink>
-    </MediaLinkSquareComponent>
+    </FlexColumnWrapper>
   );
 };
