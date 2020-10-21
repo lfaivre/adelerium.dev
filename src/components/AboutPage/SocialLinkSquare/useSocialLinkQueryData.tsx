@@ -9,7 +9,6 @@ export const useSocialLinkQueryData = (): SocialLinkQuery => {
           title
           subtitle
           type
-          externalLinkText
           externalLink
           accentColorHex
         }

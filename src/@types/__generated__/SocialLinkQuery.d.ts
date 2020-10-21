@@ -11,7 +11,6 @@ export interface SocialLinkQuery_socialLinks_nodes {
   readonly title: string | null;
   readonly subtitle: string | null;
   readonly type: string | null;
-  readonly externalLinkText: string | null;
   readonly externalLink: string | null;
   readonly accentColorHex: string | null;
 }

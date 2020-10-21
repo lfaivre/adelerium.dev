@@ -1,4 +1,3 @@
-import { SocialLinkSquareComponent } from '@adelerium/components/AboutPage/SocialLinkSquare/styles';
 import { SocialLinkSquareProps } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { BoldType } from '@adelerium/styles/text';
@@ -6,60 +5,70 @@ import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
 import { IconType } from '@adelerium/utils/font-awesome/types';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement } from 'react';
-import { css } from 'twin.macro';
+import React, { ReactElement, useState } from 'react';
+import { animated, config, useSpring } from 'react-spring';
+import tw, { css } from 'twin.macro';
+
+const AnimatedFlexColumnWrapper = animated(FlexColumnWrapper);
 
 export const SocialLinkSquare = ({
-  data: { title, subtitle, type, externalLinkText, externalLink, accentColorHex },
+  data: { title, subtitle, type, externalLink, accentColorHex },
   dimensions: { width, height, maxHeight },
 }: SocialLinkSquareProps): ReactElement => {
-  const maxHeightStyles = css`
-    max-height: ${maxHeight}px;
-  `;
+  const [hovered, setHovered] = useState(false);
 
-  const backgroundColorStyles = css`
-    background-color: ${accentColorHex};
-  `;
+  const springStyles = useSpring({
+    to: {
+      backgroundColor: hovered
+        ? `${accentColorHex || `var(--color-Charcoal)`}`
+        : accentColorHex
+        ? `${accentColorHex}1F`
+        : `var(--color-Charcoal)`,
+    },
+    config: config.slow,
+  });
 
-  const externalLinkTextStyles = css`
-    color: ${accentColorHex};
+  const dimensionsStyles = css`
+    width: ${width !== -1 ? `${width}px` : `100%`};
+    height: ${height !== -1 ? `${height}px` : `auto`};
+    max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
   `;
 
   return (
-    <SocialLinkSquareComponent
-      width={width}
-      height={height}
-      tw="relative mb-2 xl:mb-0 p-4 lg:p-8"
-      css={[maxHeight !== -1 && maxHeightStyles, backgroundColorStyles]}
+    <AnimatedFlexColumnWrapper
+      onMouseOver={() => setHovered(true)}
+      onMouseOut={() => setHovered(false)}
+      alignItems="items-center"
+      justifyContent="justify-center"
+      style={springStyles}
+      css={[dimensionsStyles, tw`mb-2 xl:mb-0 p-4 lg:p-8`]}
+      tw=""
     >
       <OutboundLink
         href={externalLink || websiteFullPath}
         label={externalLink || websiteFullPath}
         target="_blank"
         rel="noopener noreferrer"
-        tw="absolute top-0 left-0 flex flex-row items-center justify-center transition-opacity duration-300 ease-in-out opacity-0 hover:opacity-100 z-10 bg-offwhite p-8 w-full h-full"
+        tw="w-full h-full"
       >
-        <BoldType color="text-charcoal" textAlign="text-center" tw="uppercase" css={externalLinkTextStyles}>
-          {externalLinkText}
-        </BoldType>
+        <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full h-full">
+          <FlexColumnWrapper
+            alignItems="items-center"
+            justifyContent="justify-center"
+            tw="flex-grow w-full text-offwhite"
+          >
+            {getFontAwesomeIcon(type as IconType, '4x')}
+          </FlexColumnWrapper>
+          <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-x-hidden">
+            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs lg:text-base">
+              {title}
+            </BoldType>
+            <BoldType color="text-offwhite" textAlign="text-left" tw="uppercase w-full text-xs md:text-xs font-normal">
+              {subtitle}
+            </BoldType>
+          </FlexColumnWrapper>
+        </FlexColumnWrapper>
       </OutboundLink>
-      <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full h-full">
-        <FlexColumnWrapper
-          alignItems="items-center"
-          justifyContent="justify-center"
-          tw="flex-grow w-full text-offwhite"
-        >
-          {getFontAwesomeIcon(type as IconType, '4x')}
-        </FlexColumnWrapper>
-        <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-x-hidden">
-          <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase">
-            {title}
-          </BoldType>
-          <BoldType color="text-offwhite" textAlign="text-left" tw="w-full text-xs md:text-xs font-normal">
-            {subtitle}
-          </BoldType>
-        </FlexColumnWrapper>
-      </FlexColumnWrapper>
-    </SocialLinkSquareComponent>
+    </AnimatedFlexColumnWrapper>
   );
 };
