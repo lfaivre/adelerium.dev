@@ -1,17 +1,16 @@
-import { fragmentShader } from '@adelerium/components/HomePage/WavyImage/glsl/fragment';
-import { vertexShader } from '@adelerium/components/HomePage/WavyImage/glsl/vertex';
-import React, { ReactElement, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useMemo, useRef } from 'react';
 import { ReactThreeFiber, useFrame, useLoader, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
+import { fragmentShader } from './glsl/fragment';
+import { vertexShader } from './glsl/vertex';
 import img from './waves.jpg';
 
 const imageWidth = 2449;
 const imageHeight = 1633;
 
 export const WavyImage = (): ReactElement => {
-  const [texture, setTexture] = useState<THREE.Texture | null>(null);
-
   const material = useRef<ReactThreeFiber.MaterialNode<THREE.ShaderMaterial, [THREE.ShaderMaterialParameters]>>();
+  const texture = useLoader(THREE.TextureLoader, img);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const uniforms: { [uniform: string]: THREE.IUniform } = useMemo(
@@ -27,29 +26,16 @@ export const WavyImage = (): ReactElement => {
     }
   });
 
-  const Material = (): ReactElement => {
-    const texture1 = useLoader(THREE.TextureLoader, img);
-    setTexture(texture1);
-
-    return (
+  return (
+    <mesh>
+      <planeGeometry args={[imageWidth / 1000, imageHeight / 1000, 32, 32]} />
       <shaderMaterial
         ref={material}
         uniforms={uniforms}
-        transparent
-        wireframe={false}
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
         side={THREE.DoubleSide}
       />
-    );
-  };
-
-  return (
-    <mesh>
-      <planeGeometry args={[imageWidth / 1000, imageHeight / 1000, 32, 32]} />
-      <Suspense fallback={<></>}>
-        <Material />
-      </Suspense>
     </mesh>
   );
 };

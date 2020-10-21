@@ -11,7 +11,7 @@ import { BoldTypeAsButton, BrandingTypeAsAnchor } from '@adelerium/styles/text';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
-import React, { ReactElement, useLayoutEffect, useRef } from 'react';
+import React, { ReactElement, Suspense, useLayoutEffect, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import { Canvas } from 'react-three-fiber';
 import tw, { css } from 'twin.macro';
@@ -67,7 +67,9 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
       >
         <Canvas>
           <Camera position={[0, 0, 1]} />
-          <WavyImage />
+          <Suspense fallback={null}>
+            <WavyImage />
+          </Suspense>
         </Canvas>
         <BoldTypeAsButton
           ref={buttonRef}
