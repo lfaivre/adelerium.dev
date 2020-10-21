@@ -1,3 +1,4 @@
+import { BrandingSection } from '@adelerium/components/AboutPage/BrandingSection';
 import { IntroductionSection } from '@adelerium/components/AboutPage/IntroductionSection';
 import { MediaLinkSquare } from '@adelerium/components/AboutPage/MediaLinkSquare';
 import { useMediaLinkQueryData } from '@adelerium/components/AboutPage/MediaLinkSquare/useMediaLinkQueryData';
@@ -80,6 +81,7 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
             </TileRowWrapper>
             <TileRowWrapper>
               <StaticBranding dimensions={size1} />
+              <BrandingSection dimensions={size2} />
             </TileRowWrapper>
             <TileRowWrapper>
               <StaticResume dimensions={size2} />
