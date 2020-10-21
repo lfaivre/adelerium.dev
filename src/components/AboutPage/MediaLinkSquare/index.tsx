@@ -1,12 +1,13 @@
 import { MediaLinkSquareProps } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
+import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
 import { IconType } from '@adelerium/utils/font-awesome/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -16,10 +17,12 @@ export const MediaLinkSquare = ({
   data: { title, subtitle, description, date, type, externalLink, displayImage },
   dimensions: { width, height, maxHeight },
 }: MediaLinkSquareProps): ReactElement => {
+  const componentRef = useRef(null);
+  const elementInView = useElementInView({ ref: componentRef });
   const [hovered, setHovered] = useState(false);
 
   const springStyles = useSpring({
-    to: { opacity: hovered ? 1 : 0.12 },
+    to: { opacity: elementInView || hovered ? 1 : 0.12 },
     config: config.molasses,
   });
 
@@ -31,6 +34,7 @@ export const MediaLinkSquare = ({
 
   return (
     <FlexColumnWrapper
+      ref={componentRef}
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
       alignItems="items-center"

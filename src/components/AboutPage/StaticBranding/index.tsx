@@ -1,10 +1,11 @@
 import { StaticBrandingProps } from '@adelerium/components/AboutPage/StaticBranding/types';
 import { useStaticBrandingQueryData } from '@adelerium/components/AboutPage/StaticBranding/useStaticBrandingQueryData';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
+import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType, BrandingType } from '@adelerium/styles/text';
 import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -19,15 +20,17 @@ const StaticBrandingText = `KD.`;
 export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: StaticBrandingProps): ReactElement => {
   const { brandingLink } = useStaticBrandingQueryData();
 
+  const componentRef = useRef(null);
+  const elementInView = useElementInView({ ref: componentRef });
   const [hovered, setHovered] = useState(false);
 
   const containerSpringStyles = useSpring({
-    to: { backgroundColor: hovered ? `#fcf0ec` : `#fcf0ec1f` },
+    to: { backgroundColor: elementInView || hovered ? `#fcf0ec` : `#fcf0ec1f` },
     config: config.molasses,
   });
 
   const textSpringStyles = useSpring({
-    to: { color: hovered ? `#000000` : `#f3f2f1` },
+    to: { color: elementInView || hovered ? `#000000` : `#f3f2f1` },
     config: config.molasses,
   });
 
@@ -39,6 +42,7 @@ export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: Sta
 
   return (
     <AnimatedFlexColumnWrapper
+      ref={componentRef}
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
       alignItems="items-center"
