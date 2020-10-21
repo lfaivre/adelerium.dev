@@ -26,7 +26,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
       returnButton: { isVisible: returnButtonIsVisible },
     },
     dimensions: {
-      appWindow: { width: windowWidth },
+      appWindow: { width: windowWidth, height: windowHeight },
       layout: { width: layoutWidth },
       header: { height: headerHeight },
     },
@@ -147,6 +147,14 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   return (
     <>
+      <hr
+        css={[
+          css`
+            top: ${windowHeight / 2}px;
+          `,
+          tw`fixed left-0 z-50 border border-red-500 w-full`,
+        ]}
+      />
       <animated.div
         ref={headerRef}
         style={headerWrapperProps}

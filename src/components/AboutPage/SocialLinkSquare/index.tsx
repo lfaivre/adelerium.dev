@@ -1,11 +1,12 @@
 import { SocialLinkSquareProps } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
+import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
 import { IconType } from '@adelerium/utils/font-awesome/types';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -15,11 +16,18 @@ export const SocialLinkSquare = ({
   data: { title, subtitle, type, externalLink, accentColorHex },
   dimensions: { width, height, maxHeight },
 }: SocialLinkSquareProps): ReactElement => {
+  const componentRef = useRef(null);
+  const elementInView = useElementInView({ ref: componentRef });
   const [hovered, setHovered] = useState(false);
 
   const springStyles = useSpring({
     to: {
-      backgroundColor: hovered ? `${accentColorHex || `#000000`}` : accentColorHex ? `${accentColorHex}1F` : `#000000`,
+      backgroundColor:
+        elementInView || hovered
+          ? `${accentColorHex || `#000000`}`
+          : accentColorHex
+          ? `${accentColorHex}1F`
+          : `#000000`,
     },
     config: config.molasses,
   });
@@ -32,6 +40,7 @@ export const SocialLinkSquare = ({
 
   return (
     <AnimatedFlexColumnWrapper
+      ref={componentRef}
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
       alignItems="items-center"
