@@ -2,13 +2,21 @@ import { StaticLocationComponent } from '@adelerium/components/AboutPage/StaticL
 import { StaticLocationProps } from '@adelerium/components/AboutPage/StaticLocation/types';
 import { BoldParagraphType } from '@adelerium/styles/text';
 import React, { ReactElement } from 'react';
-import 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 const staticLocationText = `Now local to Phoenix, Arizona.`;
 
-export const StaticLocation = ({ dimensions: { width, height } }: StaticLocationProps): ReactElement => {
+export const StaticLocation = ({ dimensions: { width, height, maxHeight } }: StaticLocationProps): ReactElement => {
+  const maxHeightStyles = css`
+    max-height: ${maxHeight}px;
+  `;
+
   return (
-    <StaticLocationComponent width={width} height={height} tw="mb-2 md:mb-0 p-4 lg:p-8">
+    <StaticLocationComponent
+      width={width}
+      height={height}
+      css={[maxHeight !== -1 && maxHeightStyles, tw`mb-2 xl:mb-0 p-4 lg:p-8`]}
+    >
       <BoldParagraphType
         color="text-offwhite"
         textAlign="text-center"

@@ -1,3 +1,4 @@
+import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { useAppState } from '@adelerium/hooks/app-state';
 import {
   AllTileDimensions,
@@ -28,9 +29,9 @@ const initialUseAllTileDimensionsConfiguration: UseAllTileDimensionsConfiguratio
 const defaultTileSize = 1;
 
 const initialAllTileDimensions: AllTileDimensions = {
-  1: { width: -1, height: -1, squareHeight: -1 },
-  2: { width: -1, height: -1, squareHeight: -1 },
-  3: { width: -1, height: -1, squareHeight: -1 },
+  1: { width: -1, height: -1, squareHeight: -1, maxHeight: -1 },
+  2: { width: -1, height: -1, squareHeight: -1, maxHeight: -1 },
+  3: { width: -1, height: -1, squareHeight: -1, maxHeight: -1 },
 };
 
 const normalizeDimension = (dimension: number): number => (dimension >= -1 ? dimension : -1);
@@ -75,6 +76,7 @@ export const useAllTileDimensions = ({ breakpoint }: UseAllTileDimensionsProps):
         draft[tileSize].width = metBreakpoint ? dimension : defaultDimension;
         draft[tileSize].height = metBreakpoint ? defaultDimension : defaultDimension;
         draft[tileSize].squareHeight = metBreakpoint ? dimension : defaultDimension;
+        draft[tileSize].maxHeight = metBreakpoint ? -1 : windowDimensionBreakpoints.height.max_tile_height;
       });
     });
   }, [metBreakpoint, layoutWidth, configuration, setAllTileDimensions]);

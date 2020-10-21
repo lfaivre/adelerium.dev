@@ -11,22 +11,26 @@ import { css } from 'twin.macro';
 
 export const SocialLinkSquare = ({
   data: { title, subtitle, type, externalLinkText, externalLink, accentColorHex },
-  dimensions: { width, height },
+  dimensions: { width, height, maxHeight },
 }: SocialLinkSquareProps): ReactElement => {
-  const externalLinkTextStyles = css`
-    color: ${accentColorHex};
+  const maxHeightStyles = css`
+    max-height: ${maxHeight}px;
   `;
 
   const backgroundColorStyles = css`
     background-color: ${accentColorHex};
   `;
 
+  const externalLinkTextStyles = css`
+    color: ${accentColorHex};
+  `;
+
   return (
     <SocialLinkSquareComponent
       width={width}
       height={height}
-      tw="relative mb-2 md:mb-0 p-4 lg:p-8"
-      css={backgroundColorStyles}
+      tw="relative mb-2 xl:mb-0 p-4 lg:p-8"
+      css={[maxHeight !== -1 && maxHeightStyles, backgroundColorStyles]}
     >
       <OutboundLink
         href={externalLink || websiteFullPath}

@@ -12,5 +12,6 @@ export const windowDimensionBreakpoints = {
     selected_1: 320,
     selected_2: 667,
     max: 1080,
+    max_tile_height: 375,
   },
 };

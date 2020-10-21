@@ -7,16 +7,24 @@ import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons/faGoogleDrive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { ReactElement } from 'react';
-import 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 const staticResumeTitleText = `Are you looking to hire? Here’s my resume.`;
 const staticResumeLinkText = `View on Google Drive`;
 
-export const StaticResume = ({ dimensions: { width, height } }: StaticResumeProps): ReactElement => {
+export const StaticResume = ({ dimensions: { width, height, maxHeight } }: StaticResumeProps): ReactElement => {
   const { resumeLink } = useStaticResumeQueryData();
 
+  const maxHeightStyles = css`
+    max-height: ${maxHeight}px;
+  `;
+
   return (
-    <StaticResumeComponent width={width} height={height} tw="mb-2 md:mb-0 bg-offwhite p-4 lg:p-8">
+    <StaticResumeComponent
+      width={width}
+      height={height}
+      css={[maxHeight !== -1 && maxHeightStyles, tw`mb-2 xl:mb-0 bg-offwhite p-4 lg:p-8`]}
+    >
       <BoldParagraphType
         color="text-charcoal"
         textAlign="text-left"

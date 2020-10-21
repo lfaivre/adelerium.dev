@@ -8,14 +8,22 @@ import { IconType } from '@adelerium/utils/font-awesome/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement } from 'react';
-import 'twin.macro';
+import tw, { css } from 'twin.macro';
 
 export const MediaLinkSquare = ({
   data: { title, subtitle, description, date, type, externalLink, displayImage },
-  dimensions: { width, height },
+  dimensions: { width, height, maxHeight },
 }: MediaLinkSquareProps): ReactElement => {
+  const maxHeightStyles = css`
+    max-height: ${maxHeight}px;
+  `;
+
   return (
-    <MediaLinkSquareComponent width={width} height={height} tw="relative mb-2 md:mb-0 bg-charcoal">
+    <MediaLinkSquareComponent
+      width={width}
+      height={height}
+      css={[maxHeight !== -1 && maxHeightStyles, tw`relative mb-2 xl:mb-0 bg-charcoal`]}
+    >
       <Img
         fluid={displayImage?.fluid as FluidObject | FluidObject[]}
         draggable={false}

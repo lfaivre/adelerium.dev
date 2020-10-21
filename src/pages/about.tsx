@@ -1,8 +1,8 @@
+import { IntroductionSection } from '@adelerium/components/AboutPage/IntroductionSection';
 import { MediaLinkSquare } from '@adelerium/components/AboutPage/MediaLinkSquare';
 import { useMediaLinkQueryData } from '@adelerium/components/AboutPage/MediaLinkSquare/useMediaLinkQueryData';
 import { SocialLinkSquare } from '@adelerium/components/AboutPage/SocialLinkSquare';
 import { useSocialLinkQueryData } from '@adelerium/components/AboutPage/SocialLinkSquare/useSocialLinkQueryData';
-import { StaticIntroduction } from '@adelerium/components/AboutPage/StaticIntroduction';
 import { StaticLocation } from '@adelerium/components/AboutPage/StaticLocation';
 import { StaticResume } from '@adelerium/components/AboutPage/StaticResume';
 import { SEO } from '@adelerium/components/Global/SEO';
@@ -16,7 +16,7 @@ import { FixedObject } from 'gatsby-image';
 import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
 
-const TileRowWrapper = tw.div`flex flex-col md:flex-row items-center md:items-start justify-start md:justify-between md:mb-4 w-full`;
+const TileRowWrapper = tw.div`flex flex-col xl:flex-row items-center xl:items-start justify-start xl:justify-between xl:mb-4 w-full`;
 
 const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage } = useAboutPageQueryData();
@@ -54,7 +54,7 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   // @todo Convert this to component state
   const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
-  const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: windowDimensionBreakpoints.width.md });
+  const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: windowDimensionBreakpoints.width.xl });
 
   useEffect(() => {
     if (sizesReady) return;
@@ -65,11 +65,11 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   return (
     <>
       <SEO title="About" pathname={pathname} image={metaImage?.fixed as FixedObject} />
-      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 md:p-4 w-full">
+      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 xl:p-4 w-full">
         {sizesReady && (
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
             <TileRowWrapper>
-              <StaticIntroduction dimensions={size2} />
+              <IntroductionSection dimensions={size2} />
               {github && <SocialLinkSquare data={github} dimensions={size1} />}
             </TileRowWrapper>
             <TileRowWrapper>
