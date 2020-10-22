@@ -7,10 +7,10 @@ module.exports = {
         '1/4': `25%`,
         '1/2': `50%`,
         '3/4': `75%`,
-        global: `var(--width-app-max)`,
+        global: `1680px`,
       },
       maxHeight: {
-        global: `var(--height-app-max)`,
+        global: `1080px`,
       },
       margin: {
         '1/4': `0.0625rem`,
@@ -19,13 +19,6 @@ module.exports = {
       inset: {
         8: `2rem`,
         '-8': `-2rem`,
-      },
-      colors: {
-        offwhite: `var(--color-OffWhite)`,
-        charcoal: `var(--color-Charcoal)`,
-        offpink: {
-          default: `var(--color-OffPink)`,
-        },
       },
       fontFamily: {
         helvetica: [`Helvetica`, `Arial`, `sans-serif`],

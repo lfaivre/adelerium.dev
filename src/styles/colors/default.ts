@@ -17,6 +17,7 @@ export const defaultColors: ColorTheme = {
     },
     tertiary: {
       default: `#fcf0ec`,
+      transparent_12: `#fcf0ec1f`,
     },
   },
 };

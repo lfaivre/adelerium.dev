@@ -2,29 +2,27 @@ import { Line, ViewButton } from '@adelerium/components/Global/SideBar/styles';
 import { useSideBarQueryData } from '@adelerium/components/Global/SideBar/useSideBarQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { ExternalLinks, InternalLinks } from '@adelerium/constants/presentation';
-import { profileEmail, profileName, profileTag, studioUrl, websiteFullPath } from '@adelerium/constants/site-metadata';
+import { profileName, profileTag, studioUrl, websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { usePathData } from '@adelerium/hooks/usePathData';
-import {
-  AccentType,
-  BoldParagraphType,
-  BoldType,
-  BoldTypeAsAnchor,
-  BoldTypeAsGatsbyLink,
-  BrandingTypeAsAnchor,
-} from '@adelerium/styles/text';
+import { AccentType, BoldParagraphType, BoldType, BrandingType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
-import { navigate } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { MouseEvent, ReactElement, useState } from 'react';
 import tw, { css } from 'twin.macro';
 
-// @todo Break into smaller, more reusable components
+const staticStudioLogoText = `KD.`;
+const contextSwitchButton1Text = `01.`;
+const contextSwitchButton2Text = `02.`;
+
+/** @todo Break into smaller, more reusable components */
 
 export const SideBar = (): ReactElement => {
-  const { sideBarData, profileBackgroundImage, brandingLink, email } = useSideBarQueryData();
+  const { sideBarData, profileBackgroundImage, brandingLink } = useSideBarQueryData();
 
   const {
     view: {
@@ -33,9 +31,11 @@ export const SideBar = (): ReactElement => {
     dimensions: {
       appWindow: { height: windowHeight },
     },
+    theme: { colors },
   } = useAppState();
   const dispatch = useAppDispatch();
   const pathData = usePathData();
+
   const [sideBarView, setSideBarView] = useState(InternalLinks);
 
   const handlePageTransition = async (event: MouseEvent, to: string): Promise<void> => {
@@ -45,14 +45,14 @@ export const SideBar = (): ReactElement => {
   };
 
   const backgroundImageStyles = css`
-    background: var(--color-OffWhite) url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
+    background: url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
   `;
 
   return (
     <FlexColumnWrapper
       alignItems="items-center"
       justifyContent="justify-start"
-      backgroundColor="bg-offwhite"
+      backgroundColor={colors.secondary.default}
       tw="p-8 w-full h-full"
     >
       {windowHeight >= windowDimensionBreakpoints.height.selected_2 && (
@@ -72,13 +72,13 @@ export const SideBar = (): ReactElement => {
           </FlexRowWrapper>
           <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full">
             <BoldParagraphType
-              color="text-charcoal"
+              color={colors.primary.default}
               textAlign="text-center"
-              tw="mb-2 w-full text-2xl md:text-2xl lowercase"
+              tw="mb-2 w-full lowercase text-2xl"
             >
               {profileName}
             </BoldParagraphType>
-            <BoldType color="text-charcoal" textAlign="text-center" tw="w-full uppercase text-xs md:text-xs">
+            <BoldType color={colors.primary.default} textAlign="text-center" tw="w-full uppercase text-xs">
               {profileTag}
             </BoldType>
           </FlexColumnWrapper>
@@ -97,49 +97,57 @@ export const SideBar = (): ReactElement => {
                 <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="w-full" key={link?.id}>
                   <span
                     css={[
-                      tw`mr-1/2 w-1 h-full`,
-                      sideBarIsVisible && link?.displayText === pathData.pathData?.text && tw`bg-charcoal`,
+                      tw`flex-none mr-1/2 w-1 h-full`,
+                      sideBarIsVisible &&
+                        link?.displayText === pathData.pathData?.text &&
+                        css`
+                          background-color: ${colors.primary.default};
+                        `,
                     ]}
                   />
-                  <BoldTypeAsGatsbyLink
+                  <Link
                     to={getStrippedInternalLinkPath(link?.destination || ``)}
                     onClick={(e) => handlePageTransition(e, getStrippedInternalLinkPath(link?.destination || ``))}
-                    color={
-                      sideBarIsVisible && link?.displayText === pathData.pathData?.text
-                        ? `text-offwhite`
-                        : `text-charcoal`
-                    }
-                    css={[
-                      tw`flex-grow p-2 pt-3 uppercase`,
-                      sideBarIsVisible && link?.displayText === pathData.pathData?.text && tw`bg-charcoal`,
-                    ]}
+                    tw="flex-grow"
                   >
-                    {link?.displayText}
-                  </BoldTypeAsGatsbyLink>
+                    <BoldType
+                      color={
+                        sideBarIsVisible && link?.displayText === pathData.pathData?.text
+                          ? colors.secondary.default
+                          : colors.primary.default
+                      }
+                      defaultFontSize
+                      css={[
+                        sideBarIsVisible &&
+                          link?.displayText === pathData.pathData?.text &&
+                          css`
+                            background-color: ${colors.primary.default};
+                          `,
+                        tw`p-2 pt-3 w-full uppercase`,
+                      ]}
+                    >
+                      {link?.displayText}
+                    </BoldType>
+                  </Link>
                 </FlexRowWrapper>
               ))}
             </>
           ) : (
             <>
               {(sideBarData?.externalLinks || []).map((link) => (
-                <BoldTypeAsAnchor
+                <OutboundLink
                   href={link?.destination || websiteFullPath}
                   label={link?.destination || websiteFullPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={link?.id}
-                  color="text-charcoal"
-                  tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
+                  tw="w-full"
                 >
-                  {link?.displayText}
-                </BoldTypeAsAnchor>
+                  <BoldType color={colors.primary.default} tw="p-2 pt-3 w-full uppercase" defaultFontSize>
+                    {link?.displayText}
+                  </BoldType>
+                </OutboundLink>
               ))}
-              <BoldTypeAsAnchor
-                href={`mailto:${email?.destination || profileEmail}`}
-                label={`mailto:${email?.destination || profileEmail}`}
-                color="text-charcoal"
-                tw="transition-colors duration-200 ease-in-out hover:bg-charcoal p-2 pt-3 w-full hover:text-offwhite uppercase"
-              >
-                {email?.displayText}
-              </BoldTypeAsAnchor>
             </>
           )}
         </FlexColumnWrapper>
@@ -147,8 +155,8 @@ export const SideBar = (): ReactElement => {
 
       {windowHeight > windowDimensionBreakpoints.height.selected_1 && (
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="mb-8 w-full">
-          <Line borderColor="border-charcoal" />
-          <Line borderColor="border-charcoal" />
+          <Line borderColor={colors.primary.default} />
+          <Line borderColor={colors.primary.default} />
         </FlexColumnWrapper>
       )}
 
@@ -156,44 +164,45 @@ export const SideBar = (): ReactElement => {
         <ViewButton
           onClick={() => setSideBarView(InternalLinks)}
           selected={sideBarView === InternalLinks}
-          backgroundColor={sideBarView === InternalLinks ? `bg-charcoal` : `bg-transparent`}
-          strokeColor={sideBarView === InternalLinks ? `text-offwhite` : `text-charcoal`}
+          backgroundColor={sideBarView === InternalLinks ? colors.primary.default : `transparent`}
           aria-label="Internal Links"
         >
           <AccentType
-            color={sideBarView === InternalLinks ? `text-charcoal` : `text-transparent`}
-            textAlign="text-center"
+            color={sideBarView === InternalLinks ? colors.primary.default : `transparent`}
+            strokeColor={sideBarView === InternalLinks ? colors.secondary.default : colors.primary.default}
             tw="text-4xl"
           >
-            01.
+            {contextSwitchButton1Text}
           </AccentType>
         </ViewButton>
         <ViewButton
           onClick={() => setSideBarView(ExternalLinks)}
           selected={sideBarView === ExternalLinks}
-          backgroundColor={sideBarView === ExternalLinks ? `bg-charcoal` : `bg-transparent`}
-          strokeColor={sideBarView === ExternalLinks ? `text-offwhite` : `text-charcoal`}
+          backgroundColor={sideBarView === ExternalLinks ? colors.primary.default : `transparent`}
           aria-label="External Links"
         >
           <AccentType
-            color={sideBarView === ExternalLinks ? `text-charcoal` : `text-transparent`}
-            textAlign="text-center"
+            color={sideBarView === ExternalLinks ? colors.primary.default : `transparent`}
+            strokeColor={sideBarView === ExternalLinks ? colors.secondary.default : colors.primary.default}
             tw="text-4xl"
           >
-            02.
+            {contextSwitchButton2Text}
           </AccentType>
         </ViewButton>
       </FlexRowWrapper>
 
       {windowHeight >= windowDimensionBreakpoints.height.selected_2 && (
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="mt-8 w-full">
-          <BrandingTypeAsAnchor
+          <OutboundLink
             href={brandingLink?.destination || studioUrl}
             label={brandingLink?.destination || studioUrl}
-            color="text-charcoal"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            KD.
-          </BrandingTypeAsAnchor>
+            <BrandingType color={colors.primary.default} defaultFontSize>
+              {staticStudioLogoText}
+            </BrandingType>
+          </OutboundLink>
         </FlexColumnWrapper>
       )}
     </FlexColumnWrapper>

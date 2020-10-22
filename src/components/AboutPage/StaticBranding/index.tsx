@@ -1,11 +1,12 @@
 import { StaticBrandingProps } from '@adelerium/components/AboutPage/StaticBranding/types';
 import { useStaticBrandingQueryData } from '@adelerium/components/AboutPage/StaticBranding/useStaticBrandingQueryData';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
+import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType, BrandingType } from '@adelerium/styles/text';
 import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -13,42 +14,48 @@ const AnimatedFlexColumnWrapper = animated(FlexColumnWrapper);
 const AnimatedBoldType = animated(BoldType);
 const AnimatedBrandingType = animated(BrandingType);
 
-const StaticBrandingTitle = `Kevala Design`;
-const StaticBrandingSubtitle = `Website Development & Design Studio`;
-const StaticBrandingText = `KD.`;
+const staticStudioTitle = `Kevala Design`;
+const staticStudioSubtitle = `Website Development & Design Studio`;
+const staticStudioLogoText = `KD.`;
 
 export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: StaticBrandingProps): ReactElement => {
   const { brandingLink } = useStaticBrandingQueryData();
 
+  const {
+    theme: { colors },
+  } = useAppState();
+
   const componentRef = useRef(null);
   const elementInView = useElementInView({ ref: componentRef });
-  const [hovered, setHovered] = useState(false);
 
   const containerSpringStyles = useSpring({
-    to: { backgroundColor: elementInView || hovered ? `#fcf0ec` : `#fcf0ec1f` },
+    to: {
+      backgroundColor: elementInView
+        ? colors.tertiary.default
+        : colors.tertiary.transparent_12 || colors.tertiary.default,
+    },
     config: config.molasses,
   });
 
   const textSpringStyles = useSpring({
-    to: { color: elementInView || hovered ? `#000000` : `#f3f2f1` },
+    to: { color: elementInView ? colors.primary.default : colors.secondary.default },
     config: config.molasses,
   });
-
-  const dimensionsStyles = css`
-    width: ${width !== -1 ? `${width}px` : `100%`};
-    height: ${height !== -1 ? `${height}px` : `auto`};
-    max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
-  `;
 
   return (
     <AnimatedFlexColumnWrapper
       ref={componentRef}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
       alignItems="items-center"
       justifyContent="justify-center"
       style={containerSpringStyles}
-      css={[dimensionsStyles, tw`mb-2 xl:mb-0 bg-offpink`]}
+      css={[
+        css`
+          width: ${width !== -1 ? `${width}px` : `100%`};
+          height: ${height !== -1 ? `${height}px` : `auto`};
+          max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
+        `,
+        tw`mb-2 xl:mb-0`,
+      ]}
     >
       <OutboundLink
         href={brandingLink?.destination || websiteFullPath}
@@ -60,30 +67,23 @@ export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: Sta
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="p-4 lg:p-8 w-full h-full">
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-x-hidden">
             <AnimatedBoldType
-              color="text-offwhite"
-              textAlign="text-left"
+              color={colors.secondary.default}
               style={textSpringStyles}
-              tw="w-full uppercase text-xs md:text-xs lg:text-base"
+              tw="w-full uppercase text-xs lg:text-base"
             >
-              {StaticBrandingTitle}
+              {staticStudioTitle}
             </AnimatedBoldType>
             <AnimatedBoldType
-              color="text-offwhite"
-              textAlign="text-left"
+              color={colors.secondary.default}
               style={textSpringStyles}
-              tw="w-full uppercase text-xs md:text-xs font-normal"
+              tw="w-full uppercase text-xs font-normal"
             >
-              {StaticBrandingSubtitle}
+              {staticStudioSubtitle}
             </AnimatedBoldType>
           </FlexColumnWrapper>
           <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-grow w-full">
-            <AnimatedBrandingType
-              color="text-offwhite"
-              textAlign="text-center"
-              style={textSpringStyles}
-              tw="text-5xl md:text-5xl"
-            >
-              {StaticBrandingText}
+            <AnimatedBrandingType color={colors.secondary.default} style={textSpringStyles} tw="text-5xl">
+              {staticStudioLogoText}
             </AnimatedBrandingType>
           </FlexColumnWrapper>
         </FlexColumnWrapper>

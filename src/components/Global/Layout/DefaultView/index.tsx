@@ -9,12 +9,14 @@ import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
 import { useKeyPress } from '@adelerium/hooks/useKeyPress';
 import { usePathData } from '@adelerium/hooks/usePathData';
-import { FlexRowWrapper, FullWidthWrapper } from '@adelerium/styles/wrappers';
+import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
-const DEFAULT_SIDEBAR_WIDTH = 0.25 * windowDimensionBreakpoints.width.max;
+const defaultSidebarWidth = 0.25 * windowDimensionBreakpoints.width.max;
+
+const AnimatedFlexColumnWrapper = animated(FlexColumnWrapper);
 
 export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   const {
@@ -30,6 +32,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
       layout: { width: layoutWidth },
       header: { height: headerHeight },
     },
+    theme: { colors },
   } = useAppState();
   const dispatch = useAppDispatch();
   const { pathname } = usePathData();
@@ -56,11 +59,11 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
     setWindowGutterWidth(updatedWindowGutterWidth);
   }, [windowWidth, layoutWidth]);
 
-  const [sideBarWidth, setSideBarWidth] = useState(DEFAULT_SIDEBAR_WIDTH);
+  const [sideBarWidth, setSideBarWidth] = useState(defaultSidebarWidth);
 
   useLayoutEffect(() => {
     if (layoutWidth === 0) return;
-    const updatedSideBarWidth = layoutWidth < windowDimensionBreakpoints.width.sm ? layoutWidth : DEFAULT_SIDEBAR_WIDTH;
+    const updatedSideBarWidth = layoutWidth < windowDimensionBreakpoints.width.sm ? layoutWidth : defaultSidebarWidth;
     setSideBarWidth(updatedSideBarWidth);
   }, [layoutWidth]);
 
@@ -123,7 +126,6 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
 
   const headerWrapperProps = useSpring({
     to: {
-      display: headerIsVisible ? `flex` : `none`,
       left:
         windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth + sideBarWidth : windowGutterWidth) : 0,
     },
@@ -152,10 +154,13 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={headerWrapperProps}
         css={[
           css`
-            opacity: ${loadingScreenIsVisible ? 0 : 1};
+            border-color: ${colors.secondary.default};
+            background-color: ${colors.primary.default};
             width: ${layoutWidth}px;
           `,
-          tw`fixed top-0 z-30 flex-row items-start justify-center bg-charcoal border-b border-offwhite p-4 md:px-8`,
+          headerIsVisible ? tw`flex` : tw`hidden`,
+          loadingScreenIsVisible ? tw`opacity-0` : tw`opacity-100`,
+          tw`fixed top-0 z-30 border-b p-4 md:px-8`,
         ]}
       >
         <Header />
@@ -165,61 +170,62 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={sideBarWrapperProps}
         css={[
           css`
-            opacity: ${loadingScreenIsVisible ? 0 : 1};
+            border-color: ${colors.primary.default};
             width: ${sideBarWidth}px;
           `,
-          tw`fixed top-0 z-30 border-r-2 border-charcoal h-screen max-h-global`,
+          loadingScreenIsVisible ? tw`opacity-0` : tw`opacity-100`,
+          tw`fixed top-0 z-30 border-r h-screen max-h-global`,
         ]}
       >
         <SideBar />
       </animated.div>
 
-      <animated.div
+      <AnimatedFlexColumnWrapper
         onClick={handleOutOfBoundsToggle}
         style={contentWrapperProps}
+        alignItems="items-start"
+        justifyContent="justify-start"
         css={[
           css`
-            opacity: ${loadingScreenIsVisible ? 0 : 1};
             width: ${layoutWidth}px;
             padding-top: ${headerIsVisible ? headerHeight : 0}px;
           `,
-          tw`z-0 flex flex-col items-start justify-start w-full`,
+          loadingScreenIsVisible ? tw`opacity-0` : tw`opacity-100`,
+          tw`z-0 w-full`,
         ]}
       >
-        <FullWidthWrapper>{children}</FullWidthWrapper>
+        <div tw="w-full">{children}</div>
 
         <FlexRowWrapper
+          ref={returnButtonRef}
           alignItems="items-center"
           justifyContent="justify-center"
-          ref={returnButtonRef}
           css={[returnButtonIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0 md:justify-end p-8 w-full`]}
         >
           <ReturnButton />
         </FlexRowWrapper>
 
-        <FullWidthWrapper
-          ref={footerRef}
-          css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0`]}
-          backgroundColor="bg-charcoal"
-        >
+        <div ref={footerRef} css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0 w-full`]}>
           <Footer />
-        </FullWidthWrapper>
-      </animated.div>
+        </div>
+      </AnimatedFlexColumnWrapper>
 
       <div
         css={[
           css`
+            background-color: ${colors.primary.default};
             width: ${windowGutterWidth || 0}px;
           `,
-          tw`fixed top-0 left-0 z-40 h-screen bg-charcoal`,
+          tw`fixed top-0 left-0 z-40 h-screen`,
         ]}
       />
       <div
         css={[
           css`
+            background-color: ${colors.primary.default};
             width: ${windowGutterWidth || 0}px;
           `,
-          tw`fixed top-0 right-0 z-40 h-screen bg-charcoal`,
+          tw`fixed top-0 right-0 z-40 h-screen`,
         ]}
       />
     </>

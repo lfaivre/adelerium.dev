@@ -11,12 +11,14 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import tw from 'twin.macro';
 
 const defaultHeaderText = `Welcome`;
+const staticToggleText = `Toggle Navigation (T)`;
 
 export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
   const {
     view: {
       sideBar: { isVisible: sideBarIsVisible },
     },
+    theme: { colors },
   } = useAppState();
   const dispatch = useAppDispatch();
   const { pathname, isIndex, pathData, isValidPath } = usePathData();
@@ -32,14 +34,14 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
   return (
     <FlexRowWrapper alignItems="items-center" justifyContent="justify-between" tw="w-full h-full">
       <FlexRowWrapper
-        alignItems="items-center"
-        justifyContent="justify-start"
         onMouseOver={() => !disableToggle && setToggleIsVisible(true)}
         onMouseOut={() => setToggleIsVisible(false)}
+        alignItems="items-center"
+        justifyContent="justify-start"
         tw="relative w-1/2 h-full"
       >
         <BoldParagraphType
-          color="text-offwhite"
+          color={colors.secondary.default}
           textAlign="text-left"
           css={[
             tw`z-0 transition-opacity duration-300 ease-in-out text-3xl md:text-4xl`,
@@ -49,7 +51,8 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
         >{`${headerTitle}.`}</BoldParagraphType>
         <BoldTypeAsButton
           disabled={disableToggle}
-          color="text-offwhite"
+          color={colors.secondary.default}
+          defaultFontSize
           textAlign="text-left"
           onClick={() =>
             !disableToggle && dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })
@@ -60,7 +63,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
             disableToggle && tw`cursor-default`,
           ]}
         >
-          Toggle Navigation (T)
+          {staticToggleText}
         </BoldTypeAsButton>
       </FlexRowWrapper>
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-end" tw="w-1/2 h-full">

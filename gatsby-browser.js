@@ -4,10 +4,6 @@ import { enableAllPlugins } from 'immer';
 
 enableAllPlugins();
 
-// @note Import Stylesheet(s): Global Styles
-
-import '@adelerium/styles/global.css';
-
 // @note Import Stylesheet(s) and Configure: Font Awesome
 
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -25,8 +21,3 @@ import { PageWrapperElement } from '@adelerium/components/Global/Layout';
 
 export const wrapRootElement = RootWrapperElement;
 export const wrapPageElement = PageWrapperElement;
-
-// export const onServiceWorkerUpdateReady = () => {
-//   const answer = window.confirm(`This application has been updated.\nReload to display the latest version?`);
-//   if (answer === true) window.location.reload();
-// };

@@ -1,5 +1,6 @@
 import { MediaLinkSquareProps } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
+import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
@@ -7,7 +8,7 @@ import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
 import { IconType } from '@adelerium/utils/font-awesome/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -17,29 +18,31 @@ export const MediaLinkSquare = ({
   data: { title, subtitle, description, date, type, externalLink, displayImage },
   dimensions: { width, height, maxHeight },
 }: MediaLinkSquareProps): ReactElement => {
+  const {
+    theme: { colors },
+  } = useAppState();
+
   const componentRef = useRef(null);
   const elementInView = useElementInView({ ref: componentRef });
-  const [hovered, setHovered] = useState(false);
 
   const springStyles = useSpring({
-    to: { opacity: elementInView || hovered ? 1 : 0.12 },
+    to: { opacity: elementInView ? 1 : 0.12 },
     config: config.molasses,
   });
-
-  const dimensionsStyles = css`
-    width: ${width !== -1 ? `${width}px` : `100%`};
-    height: ${height !== -1 ? `${height}px` : `auto`};
-    max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
-  `;
 
   return (
     <FlexColumnWrapper
       ref={componentRef}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
       alignItems="items-center"
       justifyContent="justify-center"
-      css={[dimensionsStyles, tw`relative mb-2 xl:mb-0 bg-charcoal`]}
+      css={[
+        css`
+          width: ${width !== -1 ? `${width}px` : `100%`};
+          height: ${height !== -1 ? `${height}px` : `auto`};
+          max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
+        `,
+        tw`relative mb-2 xl:mb-0`,
+      ]}
     >
       <AnimatedImg
         fluid={displayImage?.fluid as FluidObject | FluidObject[]}
@@ -55,36 +58,41 @@ export const MediaLinkSquare = ({
         tw="absolute top-0 left-0 z-10 w-full h-full"
       >
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-between" tw="p-4 lg:p-8 w-full h-full">
-          <FlexRowWrapper
-            alignItems="items-center"
-            justifyContent="justify-between"
-            tw="w-full overflow-x-hidden text-offwhite"
-          >
-            <FlexRowWrapper alignItems="items-center" justifyContent="justify-start" tw="mr-2">
+          <FlexRowWrapper alignItems="items-center" justifyContent="justify-between" tw="w-full overflow-x-hidden">
+            <FlexRowWrapper
+              alignItems="items-center"
+              justifyContent="justify-start"
+              css={[
+                css`
+                  color: ${colors.secondary.default};
+                `,
+                tw`mr-2`,
+              ]}
+            >
               {getFontAwesomeIcon(type as IconType)}
             </FlexRowWrapper>
             <FlexColumnWrapper alignItems="items-end" justifyContent="justify-center" tw="flex-grow">
               <BoldType
-                color="text-offwhite"
+                color={colors.secondary.default}
                 textAlign="text-right"
-                tw="w-full uppercase text-xs md:text-xs lg:text-base"
+                tw="w-full uppercase text-xs lg:text-base"
               >
                 {description}
               </BoldType>
               <BoldType
-                color="text-offwhite"
+                color={colors.secondary.default}
                 textAlign="text-right"
-                tw="w-full uppercase text-xs md:text-xs font-normal"
+                tw="w-full uppercase text-xs font-normal"
               >
                 {date}
               </BoldType>
             </FlexColumnWrapper>
           </FlexRowWrapper>
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
-            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs lg:text-base">
+            <BoldType color={colors.secondary.default} tw="w-full uppercase text-xs lg:text-base">
               {title}
             </BoldType>
-            <BoldType color="text-offwhite" textAlign="text-left" tw="w-full uppercase text-xs md:text-xs font-normal">
+            <BoldType color={colors.secondary.default} tw="w-full uppercase text-xs font-normal">
               {subtitle}
             </BoldType>
           </FlexColumnWrapper>

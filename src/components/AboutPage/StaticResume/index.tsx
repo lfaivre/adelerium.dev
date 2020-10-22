@@ -9,7 +9,7 @@ import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons/faGoogleDrive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
@@ -30,37 +30,40 @@ export const StaticResume = ({ dimensions: { width, height, maxHeight } }: Stati
     dimensions: {
       appWindow: { width: windowWidth },
     },
+    theme: { colors },
   } = useAppState();
 
   const componentRef = useRef(null);
   const elementInView = useElementInView({ ref: componentRef });
-  const [hovered, setHovered] = useState(false);
 
   const containerSpringStyles = useSpring({
-    to: { backgroundColor: elementInView || hovered ? `#fcf0ec` : `#fcf0ec1f` },
+    to: {
+      backgroundColor: elementInView
+        ? colors.tertiary.default
+        : colors.tertiary.transparent_12 || colors.tertiary.default,
+    },
     config: config.molasses,
   });
 
   const textSpringStyles = useSpring({
-    to: { color: elementInView || hovered ? `#000000` : `#f3f2f1` },
+    to: { color: elementInView ? colors.primary.default : colors.secondary.default },
     config: config.molasses,
   });
-
-  const dimensionsStyles = css`
-    width: ${width !== -1 ? `${width}px` : `100%`};
-    height: ${height !== -1 ? `${height}px` : `auto`};
-    max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
-  `;
 
   return (
     <AnimatedFlexRowWrapper
       ref={componentRef}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
-      alignItems="items-start"
-      justifyContent="justify-start"
+      alignItems="items-center"
+      justifyContent="justify-center"
       style={containerSpringStyles}
-      css={[dimensionsStyles, tw`mb-2 xl:mb-0`]}
+      css={[
+        css`
+          width: ${width !== -1 ? `${width}px` : `100%`};
+          height: ${height !== -1 ? `${height}px` : `auto`};
+          max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
+        `,
+        tw`mb-2 xl:mb-0`,
+      ]}
     >
       <OutboundLink
         href={resumeLink?.destination || websiteFullPath}
@@ -75,11 +78,11 @@ export const StaticResume = ({ dimensions: { width, height, maxHeight } }: Stati
           tw="px-4 py-8 xl:px-16 xl:py-8 w-full h-full"
         >
           <AnimatedBoldParagraphType
-            color="text-offwhite"
+            color={colors.secondary.default}
             textAlign="text-center"
             wordBreak="break-normal"
             style={textSpringStyles}
-            tw="mb-8 md:mb-16 xl:mb-24 w-full xl:text-left text-2xl md:text-2xl lg:text-3xl"
+            tw="mb-8 md:mb-16 xl:mb-24 w-full xl:text-left text-2xl lg:text-3xl"
           >
             {staticResumeTitleText}
           </AnimatedBoldParagraphType>
@@ -88,13 +91,17 @@ export const StaticResume = ({ dimensions: { width, height, maxHeight } }: Stati
               icon={faGoogleDrive}
               size={windowWidth >= windowWidthBreakpoint ? `4x` : `2x`}
               style={textSpringStyles}
-              tw="mr-4 lg:mr-8 text-offwhite"
+              css={[
+                css`
+                  color: ${colors.secondary.default};
+                `,
+                tw`mr-4 lg:mr-8`,
+              ]}
             />
             <AnimatedBoldType
-              color="text-offwhite"
-              textAlign="text-left"
+              color={colors.secondary.default}
               style={textSpringStyles}
-              tw="uppercase text-xs md:text-xs lg:text-base"
+              tw="uppercase text-xs lg:text-base"
             >
               {staticResumeLinkText}
             </AnimatedBoldType>

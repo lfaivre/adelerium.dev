@@ -1,4 +1,4 @@
-import { BoxShadowStyles, Divider, OrderNumber } from '@adelerium/components/ProjectsPage/Preview/styles';
+import { Line } from '@adelerium/components/ProjectsPage/Preview/styles';
 import {
   ExternalLinkKey,
   ExternalLinks,
@@ -8,41 +8,27 @@ import {
 } from '@adelerium/components/ProjectsPage/Preview/types';
 import { Left, Right } from '@adelerium/constants/presentation';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
-import {
-  BoldParagraphType,
-  BoldSpan,
-  BoldType,
-  NormalParagraphType,
-  NormalParagraphTypeAsAnchor,
-} from '@adelerium/styles/text';
+import { useAppState } from '@adelerium/hooks/app-state';
+import { AccentType, BoldParagraphType, BoldType, NormalParagraphType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
 import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Img, { FluidObject } from 'gatsby-image';
+import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { animated, useSpring } from 'react-spring';
-import tw from 'twin.macro';
-
-const calc = (x: number, y: number): [number, number, number] => [
-  -(y - window.innerHeight / 2) / 40,
-  -(x - window.innerWidth / 2) / 40,
-  1.1,
-];
-
-const translate = (x: number, y: number, s: number): string =>
-  `perspective(1000px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`;
+import tw, { css } from 'twin.macro';
 
 export const Preview = ({ project, order }: PreviewProps): ReactElement => {
+  const {
+    theme: { colors },
+  } = useAppState();
+
   const [componentLoaded, setComponentLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [direction, setDirection] = useState(Left);
-  const [props, set] = useSpring(() => ({
-    xys: [0, 0, 1],
-    config: { mass: 5, tension: 200, friction: 60 },
-  }));
 
   useEffect(() => {
     setComponentLoaded(true);
@@ -82,7 +68,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
       url: project.hostedUrl,
       TextElement: (
         <>
-          see&nbsp;it&nbsp;<BoldSpan>hosted.</BoldSpan>
+          see&nbsp;it&nbsp;<span tw="font-bold">hosted.</span>
         </>
       ),
       Icon: <FontAwesomeIcon icon={faFirefox} size="2x" />,
@@ -92,7 +78,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
       url: project.gitHubUrl,
       TextElement: (
         <>
-          view&nbsp;on&nbsp;<BoldSpan>github.</BoldSpan>
+          view&nbsp;on&nbsp;<span tw="font-bold">github.</span>
         </>
       ),
       Icon: <FontAwesomeIcon icon={faGithub} size="2x" />,
@@ -102,7 +88,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
       url: project.figmaUrl,
       TextElement: (
         <>
-          view&nbsp;on&nbsp;<BoldSpan>figma.</BoldSpan>
+          view&nbsp;on&nbsp;<span tw="font-bold">figma.</span>
         </>
       ),
       Icon: <FontAwesomeIcon icon={faFigma} size="2x" />,
@@ -112,23 +98,23 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   return (
     <div
       css={[
-        tw`flex mb-2 lg:mb-4 last:mb-0 p-4 lg:p-8 w-full`,
-        isLeftOriented() ? tw`flex-col lg:flex-row` : tw`flex-col lg:flex-row-reverse`,
+        isLeftOriented() ? tw`lg:flex-row` : tw`lg:flex-row-reverse`,
+        tw`flex flex-col mb-2 lg:mb-4 last:mb-0 p-4 lg:p-8 w-full`,
       ]}
     >
       <FlexColumnWrapper
         alignItems="items-center"
         justifyContent="justify-start"
         css={[
-          tw`mb-8 lg:mb-0 w-full lg:w-1/2`,
           isLeftOriented() ? tw`lg:items-start lg:mr-8` : tw`lg:items-end lg:ml-8`,
+          tw`mb-8 lg:mb-0 w-full lg:w-1/2`,
         ]}
       >
         <FlexRowWrapper
           alignItems="items-center"
           justifyContent="justify-start"
           reverse={!isLeftOriented()}
-          css={[tw`w-full mb-2`, isLeftOriented() ? tw`justify-start` : tw`justify-end`]}
+          css={[isLeftOriented() ? tw`justify-start` : tw`justify-end`, tw`w-full mb-2`]}
         >
           <FlexRowWrapper
             alignItems="items-center"
@@ -136,73 +122,87 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             reverse={!isLeftOriented()}
             css={[isLeftOriented() ? tw`justify-start mr-4 lg:mr-8` : tw`justify-end ml-4 lg:ml-8`]}
           >
-            <OrderNumber css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}>
+            <AccentType
+              color="transparent"
+              strokeColor={colors.secondary.default}
+              css={[isLeftOriented() ? tw`text-left` : tw`text-right`, tw`w-full text-5xl md:text-7xl font-bold`]}
+            >
               {shouldDisplayContent() ? `${order.toString().padStart(2, `0`)}.` : <Skeleton width={120} />}
-            </OrderNumber>
+            </AccentType>
           </FlexRowWrapper>
           <FlexColumnWrapper
             alignItems="items-start"
             justifyContent="justify-start"
-            css={[tw`flex-grow overflow-hidden`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+            css={[isLeftOriented() ? tw`items-start` : tw`items-end`, tw`flex-grow overflow-hidden`]}
           >
             <BoldParagraphType
-              color="text-offwhite"
+              color={colors.secondary.default}
               wordBreak="break-normal"
-              css={[tw`mb-2 w-full text-xl md:text-3xl`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
+              css={[isLeftOriented() ? tw`text-left` : tw`text-right`, tw`mb-2 w-full text-xl md:text-3xl`]}
             >
               {shouldDisplayContent() ? project.title : <Skeleton />}
             </BoldParagraphType>
             <BoldType
-              color="text-offwhite"
+              color={colors.secondary.default}
               wordBreak="break-normal"
-              css={[tw`w-full uppercase text-xs md:text-xs`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
+              css={[isLeftOriented() ? tw`text-left` : tw`text-right`, tw`w-full uppercase text-xs`]}
             >
               {shouldDisplayContent() ? `${project.type || `Other`} - ${getDateString()}` : <Skeleton />}
             </BoldType>
           </FlexColumnWrapper>
         </FlexRowWrapper>
-        <animated.div
-          onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-          onMouseLeave={() => set({ xys: [0, 0, 1] })}
-          style={{ transform: props.xys.interpolate(translate as () => string) }}
-          css={[tw`bg-offwhite p-2 md:p-4 w-full`, BoxShadowStyles]}
+        <div
+          css={[
+            css`
+              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              background-color: ${colors.secondary.default};
+            `,
+            tw`p-2 md:p-4 w-full`,
+          ]}
         >
           <Img
             fluid={project.previewPicture?.fluid as FluidObject | FluidObject[]}
             onLoad={() => setImageLoaded(true)}
             alt={`Preview Image for ${project.title || `Untitled`}`}
             draggable={false}
-            backgroundColor="var(--color-OffWhite)"
-            css={[tw`w-full select-none`, BoxShadowStyles]}
+            backgroundColor={colors.secondary.default}
+            css={[
+              css`
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+              `,
+              tw`w-full select-none`,
+            ]}
           />
-        </animated.div>
+        </div>
       </FlexColumnWrapper>
       <FlexColumnWrapper
         alignItems="items-start"
         justifyContent="justify-center"
-        css={[tw`flex-1 lg:px-8 w-full lg:w-1/2`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+        css={[isLeftOriented() ? tw`items-start` : tw`items-end`, tw`flex-1 lg:px-8 w-full lg:w-1/2`]}
       >
         <FlexColumnWrapper
           alignItems="items-start"
           justifyContent="justify-center"
-          css={[tw`mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+          css={[isLeftOriented() ? tw`items-start` : tw`items-end`, tw`mb-8 w-full`]}
         >
           {Object.keys(previewContent).map((key) => (
             <FlexColumnWrapper
               alignItems="items-start"
               justifyContent="justify-center"
-              css={[tw`mb-8 last:mb-0 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+              css={[isLeftOriented() ? tw`items-start` : tw`items-end`, tw`mb-8 last:mb-0 w-full`]}
               key={previewContent[key as PreviewContentKey].title}
             >
               <BoldType
-                color="text-offwhite"
-                css={[tw`w-full uppercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
+                color={colors.secondary.default}
+                defaultFontSize
+                css={[isLeftOriented() ? tw`text-left` : tw`text-right`, tw`w-full uppercase`]}
               >
                 {shouldDisplayContent() ? `${previewContent[key as PreviewContentKey].title}` : <Skeleton />}
               </BoldType>
               <NormalParagraphType
-                color="text-offwhite"
-                css={[tw`w-full`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
+                color={colors.secondary.default}
+                defaultFontSize
+                css={[isLeftOriented() ? tw`text-left` : tw`text-right`, tw`w-full`]}
               >
                 {shouldDisplayContent() ? previewContent[key as PreviewContentKey].content : <Skeleton />}
               </NormalParagraphType>
@@ -212,41 +212,48 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
         <FlexColumnWrapper
           alignItems="items-start"
           justifyContent="justify-center"
-          css={[tw`mb-8 w-full`, isLeftOriented() ? tw`items-start` : tw`items-end`]}
+          css={[isLeftOriented() ? tw`items-start` : tw`items-end`, tw`mb-8 w-full`]}
         >
-          <Divider />
-          <Divider />
+          <Line borderColor={colors.secondary.default} />
+          <Line borderColor={colors.secondary.default} />
         </FlexColumnWrapper>
         <FlexRowWrapper
           alignItems="items-center"
           justifyContent="justify-center"
-          css={[tw`w-full`, isLeftOriented() ? tw`justify-center lg:justify-start` : tw`justify-center lg:justify-end`]}
+          css={[isLeftOriented() ? tw`justify-center lg:justify-start` : tw`justify-center lg:justify-end`, tw`w-full`]}
         >
           {Object.keys(externalLinks).map(
             (key) =>
               externalLinks[key as ExternalLinkKey].url && (
-                <NormalParagraphTypeAsAnchor
+                <OutboundLink
                   href={externalLinks[key as ExternalLinkKey].url || websiteFullPath}
                   label={externalLinks[key as ExternalLinkKey].url || websiteFullPath}
-                  color="text-offwhite"
-                  css={[tw`mr-8 last:mr-0 lowercase`, isLeftOriented() ? tw`text-left` : tw`text-right`]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={externalLinks[key as ExternalLinkKey].title}
+                  tw="mr-8 last:mr-0"
                 >
-                  <span tw="hidden lg:block">
-                    {shouldDisplayContent() ? (
-                      externalLinks[key as ExternalLinkKey].TextElement
-                    ) : (
-                      <Skeleton width={120} />
-                    )}
-                  </span>
-                  <span tw="block lg:hidden">
-                    {shouldDisplayContent() ? (
-                      externalLinks[key as ExternalLinkKey].Icon
-                    ) : (
-                      <Skeleton width={48} height={48} />
-                    )}
-                  </span>
-                </NormalParagraphTypeAsAnchor>
+                  <NormalParagraphType
+                    color={colors.secondary.default}
+                    defaultFontSize
+                    css={[isLeftOriented() ? tw`text-left` : tw`text-right`, tw`lowercase`]}
+                  >
+                    <span tw="hidden lg:block">
+                      {shouldDisplayContent() ? (
+                        externalLinks[key as ExternalLinkKey].TextElement
+                      ) : (
+                        <Skeleton width={120} />
+                      )}
+                    </span>
+                    <span tw="block lg:hidden">
+                      {shouldDisplayContent() ? (
+                        externalLinks[key as ExternalLinkKey].Icon
+                      ) : (
+                        <Skeleton width={48} height={48} />
+                      )}
+                    </span>
+                  </NormalParagraphType>
+                </OutboundLink>
               )
           )}
         </FlexRowWrapper>

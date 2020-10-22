@@ -1,15 +1,18 @@
 import { DefaultView } from '@adelerium/components/Global/Layout/DefaultView';
 import { LoadingView } from '@adelerium/components/Global/Layout/LoadingView';
 import { LayoutProps, PageWrapperElementProps } from '@adelerium/components/Global/Layout/types';
-import { useAppDispatch } from '@adelerium/hooks/app-state';
+import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_DIMENSIONS } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
 import { useWindowDimensions } from '@adelerium/hooks/useWindowDimensions';
-import { FullWidthWrapper } from '@adelerium/styles/wrappers';
+import { GlobalStyles } from '@adelerium/styles/global';
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
-import { GlobalStyles } from 'twin.macro';
+import { GlobalStyles as TailwindGlobalStyles } from 'twin.macro';
 
 export const Layout = ({ children }: LayoutProps): ReactElement => {
+  const {
+    theme: { colors },
+  } = useAppState();
   const dispatch = useAppDispatch();
   const windowDimensions = useWindowDimensions();
 
@@ -28,11 +31,12 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
 
   return (
     <>
-      <GlobalStyles />
-      <FullWidthWrapper ref={layoutRef} tw="relative w-full max-w-global h-full">
+      <TailwindGlobalStyles />
+      <GlobalStyles backgroundColor={colors.primary.default} />
+      <div ref={layoutRef} tw="relative w-full max-w-global h-full">
         <LoadingView />
         <DefaultView>{children}</DefaultView>
-      </FullWidthWrapper>
+      </div>
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
-import { NewBoldParagraphType } from '@adelerium/styles/text';
-import { NewFlexRowWrapper } from '@adelerium/styles/wrappers';
+import { BoldParagraphType } from '@adelerium/styles/text';
+import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import React, { ReactElement, useEffect } from 'react';
 import { animated, useTransition } from 'react-spring';
 import 'twin.macro';
@@ -45,16 +45,16 @@ export const LoadingView = (): ReactElement => {
         ({ item, key, props }) =>
           item && (
             <animated.div style={props} tw="absolute top-0 left-0 z-40 w-full h-full" key={key}>
-              <NewFlexRowWrapper
+              <FlexRowWrapper
                 alignItems="items-center"
                 justifyContent="justify-center"
                 backgroundColor={colors.primary.default}
                 tw="w-full h-full"
               >
-                <NewBoldParagraphType color={colors.secondary.default} textAlign="text-left" tw="text-3xl md:text-4xl">
+                <BoldParagraphType color={colors.secondary.default} textAlign="text-left" tw="text-3xl md:text-4xl">
                   {staticLoadingText}
-                </NewBoldParagraphType>
-              </NewFlexRowWrapper>
+                </BoldParagraphType>
+              </FlexRowWrapper>
             </animated.div>
           )
       )}

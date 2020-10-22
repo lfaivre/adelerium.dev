@@ -53,7 +53,7 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
     },
   } = useAppState();
 
-  // @todo Convert this to component state
+  /** @todo Source this value from global state */
   const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: windowDimensionBreakpoints.width.xl });
@@ -67,7 +67,7 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   return (
     <>
       <SEO title="About" pathname={pathname} image={metaImage?.fixed as FixedObject} />
-      <MinHeightScreenWrapper staticsHeight={staticsHeight} tw="p-2 xl:p-4 w-full">
+      <MinHeightScreenWrapper minHeight={staticsHeight} tw="p-2 xl:p-4 w-full">
         {sizesReady && (
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
             <TileRowWrapper>

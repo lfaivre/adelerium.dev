@@ -2,12 +2,14 @@ import { SEO } from '@adelerium/components/Global/SEO';
 import { useNotFoundPageQueryData } from '@adelerium/graphql/useNotFoundPageQueryData';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
-import { FlexColumnWrapper, MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
+import { FlexColumnWrapper, FlexRowWrapper, MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
 import Img, { FixedObject, FluidObject } from 'gatsby-image';
 import React, { ReactElement, useLayoutEffect } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import 'twin.macro';
+
+const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
 
 const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage, accentImage } = useNotFoundPageQueryData();
@@ -18,9 +20,10 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
       footer: { height: footerHeight },
       returnButton: { height: returnButtonHeight },
     },
+    theme: { colors },
   } = useAppState();
 
-  // @todo Convert this to component state
+  /** @todo Source this value from global state */
   const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const dispatch = useAppDispatch();
@@ -42,20 +45,25 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
     <>
       <SEO title="404: Not Found" pathname={pathname} image={metaImage?.fixed as FixedObject} />
       <MinHeightScreenWrapper
-        staticsHeight={staticsHeight}
-        backgroundColor="bg-offwhite"
-        tw="flex p-2 md:p-4 w-full h-full"
+        minHeight={staticsHeight}
+        backgroundColor={colors.primary.default}
+        tw="flex p-2 md:p-4 w-full"
       >
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-grow w-full">
-          <animated.div style={springProps} tw="flex flex-row justify-center p-8 w-full">
+          <AnimatedFlexRowWrapper
+            alignItems="items-center"
+            justifyContent="justify-center"
+            style={springProps}
+            tw="p-8 w-full"
+          >
             <Img
               fluid={accentImage?.childImageSharp?.fluid as FluidObject | FluidObject[]}
               alt=""
               loading="eager"
               draggable={false}
-              tw="mb-4 w-full md:w-1/2 max-w-md select-none"
+              tw="w-full md:w-1/2 max-w-md select-none"
             />
-          </animated.div>
+          </AnimatedFlexRowWrapper>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>
     </>

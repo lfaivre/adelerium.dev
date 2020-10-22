@@ -8,24 +8,13 @@ export type WrapperJustifyContentValues =
   | `justify-around`
   | `justify-evenly`;
 
-export type WrapperBackgroundColorValues = `bg-offwhite` | `bg-charcoal` | `bg-offpink`;
-
-export type DefaultWrapperProps = { backgroundColor?: WrapperBackgroundColorValues };
-
-export type FullWidthWrapperProps = { backgroundColor?: WrapperBackgroundColorValues };
+export type DefaultWrapperProps = { backgroundColor?: string };
 
 export type FlexWrapperProps = {
-  reverse?: boolean;
-  alignItems: WrapperAlignItemsValues;
-  justifyContent: WrapperJustifyContentValues;
-  backgroundColor?: WrapperBackgroundColorValues;
-};
-
-export type NewFlexWrapperProps = {
   reverse?: boolean;
   alignItems: WrapperAlignItemsValues;
   justifyContent: WrapperJustifyContentValues;
   backgroundColor?: string;
 };
 
-export type MinHeightScreenWrapperProps = { staticsHeight: number } & DefaultWrapperProps;
+export type MinHeightScreenWrapperProps = DefaultWrapperProps & { minHeight: number };

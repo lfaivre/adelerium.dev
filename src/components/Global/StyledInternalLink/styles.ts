@@ -1,22 +1,7 @@
-// @constants styles
-
 import { StyledInternalLinkDirection } from '@adelerium/components/Global/StyledInternalLink/types';
-import tw, { styled, TwStyle } from 'twin.macro';
+import { styled } from 'twin.macro';
 
-// @todo Move duplicated color map to shared utility
-
-type ArrowBackgroundColorValues = `bg-offwhite` | `bg-charcoal` | `bg-offpink`;
-
-const arrowBackgroundColorMap: { [key in ArrowBackgroundColorValues]: TwStyle } = {
-  'bg-offwhite': tw`bg-offwhite`,
-  'bg-charcoal': tw`bg-charcoal`,
-  'bg-offpink': tw`bg-offpink`,
-};
-
-type ArrowProps = {
-  direction: StyledInternalLinkDirection;
-  backgroundColor: ArrowBackgroundColorValues;
-};
+type ArrowProps = { direction: StyledInternalLinkDirection; backgroundColor: string };
 
 export const Arrow = styled.span<ArrowProps>`
   top: 0.1875rem;
@@ -25,7 +10,7 @@ export const Arrow = styled.span<ArrowProps>`
   & > span {
     display: block;
     position: relative;
-    ${({ backgroundColor }) => backgroundColor && arrowBackgroundColorMap[backgroundColor]}
+    ${({ backgroundColor }) => `background-color: ${backgroundColor};`}
     width: 3rem;
     height: 0.0625rem;
     will-change: transform;
@@ -38,7 +23,7 @@ export const Arrow = styled.span<ArrowProps>`
     top: 0;
     right: 0;
     margin-right: 2.5rem;
-    ${({ backgroundColor }) => backgroundColor && arrowBackgroundColorMap[backgroundColor]}
+    ${({ backgroundColor }) => `background-color: ${backgroundColor};`}
     width: 0.5rem;
     height: 0.0625rem;
     content: '';
