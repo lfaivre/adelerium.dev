@@ -5,10 +5,10 @@ branches:
 
 language: node_js
 install:
-  - npm ci
+  - yarn install --frozen-lockfile
 before_script:
-  - npm run prettier:check
-  - npm run eslint:check
-  - npm run tsc:check
+  - yarn run prettier:check
+  - yarn run eslint:check
+  - yarn run tsc:check
 script:
-  - npm test
+  - yarn test
