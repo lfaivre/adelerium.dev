@@ -1,4 +1,4 @@
-import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/actions';
+import { SET_DIMENSIONS, SET_THEME, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import {
   Action,
   AppProviderProps,
@@ -9,6 +9,8 @@ import {
   ElementViewStates,
   State,
 } from '@adelerium/hooks/app-state/types';
+import { colors } from '@adelerium/styles/colors';
+import { name as DEFAULT_PALETTE } from '@adelerium/styles/colors/default';
 import React, { createContext, ReactElement, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 
@@ -26,6 +28,9 @@ const initialState: State = {
     header: { width: 0, height: 0 },
     footer: { width: 0, height: 0 },
     returnButton: { width: 0, height: 0 },
+  },
+  theme: {
+    colors: colors[DEFAULT_PALETTE],
   },
 };
 
@@ -67,6 +72,10 @@ const appStateReducer = (draft: State, action: Action): void => {
           draft.dimensions[element][attribute] = action.payload[element]![attribute];
         });
       });
+      break;
+    }
+    case SET_THEME: {
+      draft.theme.colors = action.payload.colors;
       break;
     }
     default: {

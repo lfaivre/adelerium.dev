@@ -1,11 +1,13 @@
-import { SET_DIMENSIONS, SET_VIEW } from '@adelerium/hooks/app-state/actions';
+import { SET_DIMENSIONS, SET_THEME, SET_VIEW } from '@adelerium/hooks/app-state/actions';
+import { ColorPalette } from '@adelerium/styles/colors/types';
 import { ReactElement } from 'react';
 
 /** @note Reducer Actions */
 
 export type Action =
   | { type: typeof SET_VIEW; payload: Partial<ElementViewState> }
-  | { type: typeof SET_DIMENSIONS; payload: Partial<ElementDimensionsState> };
+  | { type: typeof SET_DIMENSIONS; payload: Partial<ElementDimensionsState> }
+  | { type: typeof SET_THEME; payload: ThemeState };
 
 /** @note Dispatch */
 
@@ -35,7 +37,9 @@ export type ElementDimensionsState = {
   returnButton: ElementDimensions;
 };
 
-export type State = { view: ElementViewState; dimensions: ElementDimensionsState };
+export type ThemeState = { colors: ColorPalette };
+
+export type State = { view: ElementViewState; dimensions: ElementDimensionsState; theme: ThemeState };
 
 /** @note App Provider Props */
 

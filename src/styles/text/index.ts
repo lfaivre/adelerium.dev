@@ -1,6 +1,12 @@
 // @constants styles
 
-import { TypeColorValues, TypeProps, TypeTextAlignValues, TypeWordBreakValues } from '@adelerium/styles/text/types';
+import {
+  NewTypeProps,
+  TypeColorValues,
+  TypeProps,
+  TypeTextAlignValues,
+  TypeWordBreakValues,
+} from '@adelerium/styles/text/types';
 import { Link } from 'gatsby';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import tw, { styled, TwStyle } from 'twin.macro';
@@ -30,7 +36,7 @@ const typeWordBreakMap: { [key in TypeWordBreakValues]: TwStyle } = {
 
 export const NormalParagraphType = styled.p<TypeProps>`
   ${tw`leading-149 font-playfair-display text-sm md:text-base font-normal select-none`}
-  ${({ color }) => typeColorMap[color]}
+  ${({ color }) => color && typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`break-normal`)}
 `;
@@ -42,9 +48,18 @@ NormalParagraphTypeAsAnchor.defaultProps = { target: `_blank`, rel: `noopener no
 
 export const BoldParagraphType = styled.p<TypeProps>`
   ${tw`leading-149 font-playfair-display text-sm md:text-base font-bold select-none`}
-  ${({ color }) => typeColorMap[color]}
+  ${({ color }) => color && typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
+`;
+
+export const NewBoldParagraphType = styled.p<NewTypeProps>`
+  ${tw`leading-149 font-playfair-display font-bold`}
+  ${({ color }) => color && `color: ${color};`}
+  ${({ defaultFontSize }) => defaultFontSize && tw`text-sm md:text-base`}
+  ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
+  ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
+  ${({ enableSelect }) => !enableSelect && tw`select-none`}
 `;
 
 export const BoldParagraphTypeAsAnchor = BoldParagraphType.withComponent(OutboundLink);
@@ -56,7 +71,7 @@ export const BoldParagraphTypeAsButton = BoldParagraphType.withComponent(`button
 
 export const BoldType = styled.p<TypeProps>`
   ${tw`leading-149 font-helvetica text-sm md:text-base font-bold select-none`}
-  ${({ color }) => typeColorMap[color]}
+  ${({ color }) => color && typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;
@@ -74,7 +89,7 @@ export const BoldTypeAsButton = BoldType.withComponent(`button`);
 
 export const BrandingType = styled.p<TypeProps>`
   ${tw`lowercase font-mrs-sheppards text-xl md:text-2xl font-normal select-none`}
-  ${({ color }) => typeColorMap[color]}
+  ${({ color }) => color && typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-center`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`break-normal`)}
 `;
@@ -86,7 +101,7 @@ BrandingTypeAsAnchor.defaultProps = { target: `_blank`, rel: `noopener noreferre
 
 export const AccentType = styled.p<TypeProps>`
   ${tw`leading-149 font-lobster-two font-normal select-none`}
-  ${({ color }) => typeColorMap[color]}
+  ${({ color }) => color && typeColorMap[color]}
   ${({ textAlign }) => (textAlign ? typeTextAlignMap[textAlign] : tw`text-left`)}
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
 `;

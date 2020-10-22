@@ -21,4 +21,11 @@ export type FlexWrapperProps = {
   backgroundColor?: WrapperBackgroundColorValues;
 };
 
+export type NewFlexWrapperProps = {
+  reverse?: boolean;
+  alignItems: WrapperAlignItemsValues;
+  justifyContent: WrapperJustifyContentValues;
+  backgroundColor?: string;
+};
+
 export type MinHeightScreenWrapperProps = { staticsHeight: number } & DefaultWrapperProps;

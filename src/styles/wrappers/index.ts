@@ -5,6 +5,7 @@ import {
   FlexWrapperProps,
   FullWidthWrapperProps,
   MinHeightScreenWrapperProps,
+  NewFlexWrapperProps,
   WrapperAlignItemsValues,
   WrapperBackgroundColorValues,
   WrapperJustifyContentValues,
@@ -57,6 +58,14 @@ export const FlexRowWrapper = styled.div<FlexWrapperProps>`
   ${({ alignItems }) => wrapperAlignItemsMap[alignItems]}
   ${({ justifyContent }) => wrapperJustifyContentMap[justifyContent]}
   ${({ backgroundColor }) => backgroundColor && wrapperBackgroundColorMap[backgroundColor]}
+`;
+
+export const NewFlexRowWrapper = styled.div<NewFlexWrapperProps>`
+  ${tw`flex`}
+  ${({ reverse }) => (!reverse ? tw`flex-row` : tw`flex-row-reverse`)}
+  ${({ alignItems }) => wrapperAlignItemsMap[alignItems]}
+  ${({ justifyContent }) => wrapperJustifyContentMap[justifyContent]}
+  ${({ backgroundColor }) => backgroundColor && `background-color: ${backgroundColor};`}
 `;
 
 export const MinHeightScreenWrapper = styled.div<MinHeightScreenWrapperProps>`
