@@ -38,7 +38,6 @@
     "react-three-fiber": "^5.1.4",
     "resize-observer-polyfill": "^1.5.1",
     "stylelint": "^13.7.2",
-    "tailwindcss": "^1.9.6",
     "three": "^0.121.1",
     "twin.macro": "^1.11.0",
     "typeface-lobster-two": "^1.1.13",
