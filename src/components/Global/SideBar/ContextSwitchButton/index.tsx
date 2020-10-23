@@ -16,11 +16,13 @@ export const ContextSwitchButton = ({ type, currentView, setView, text }: Contex
   /** @note React Spring Styles */
 
   const buttonSpringStyles = useSpring({
+    from: { backgroundColor: `#ffffff00` },
     to: { backgroundColor: type === currentView ? colors.primary.default : `#ffffff00` },
     config: { ...config.default },
   });
 
   const textSpringStyles = useSpring({
+    from: { WebkitTextStrokeColor: colors.primary.default },
     to: { WebkitTextStrokeColor: type === currentView ? colors.secondary.default : colors.primary.default },
     config: { ...config.default },
   });
