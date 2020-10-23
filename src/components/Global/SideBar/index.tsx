@@ -1,4 +1,6 @@
-import { Line, ViewButton } from '@adelerium/components/Global/SideBar/styles';
+import { ContextSwitchButton } from '@adelerium/components/Global/SideBar/ContextSwitchButton';
+import { Line } from '@adelerium/components/Global/SideBar/styles';
+import { SideBarView } from '@adelerium/components/Global/SideBar/types';
 import { useSideBarQueryData } from '@adelerium/components/Global/SideBar/useSideBarQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { ExternalLinks, InternalLinks } from '@adelerium/constants/presentation';
@@ -6,7 +8,7 @@ import { profileName, profileTag, studioUrl, websiteFullPath } from '@adelerium/
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { usePathData } from '@adelerium/hooks/usePathData';
-import { AccentType, BoldParagraphType, BoldType, BrandingType } from '@adelerium/styles/text';
+import { BoldParagraphType, BoldType, BrandingType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getStrippedInternalLinkPath } from '@adelerium/utils/strings';
 import { Link, navigate } from 'gatsby';
@@ -36,17 +38,13 @@ export const SideBar = (): ReactElement => {
   const dispatch = useAppDispatch();
   const pathData = usePathData();
 
-  const [sideBarView, setSideBarView] = useState(InternalLinks);
+  const [sideBarView, setSideBarView] = useState<SideBarView>(InternalLinks);
 
   const handlePageTransition = async (event: MouseEvent, to: string): Promise<void> => {
     event.preventDefault();
     dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: true } } });
     await navigate(to);
   };
-
-  const backgroundImageStyles = css`
-    background: url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
-  `;
 
   return (
     <FlexColumnWrapper
@@ -60,7 +58,12 @@ export const SideBar = (): ReactElement => {
           <FlexRowWrapper
             alignItems="items-center"
             justifyContent="justify-center"
-            css={[tw`mb-4 rounded-full w-40 h-40 md:w-48 md:h-48`, backgroundImageStyles]}
+            css={[
+              css`
+                background: url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
+              `,
+              tw`mb-4 rounded-full w-40 h-40 md:w-48 md:h-48`,
+            ]}
           >
             <Img
               fluid={sideBarData?.profilePicture?.fluid as FluidObject | FluidObject[]}
@@ -161,34 +164,18 @@ export const SideBar = (): ReactElement => {
       )}
 
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-shrink-0 w-full">
-        <ViewButton
-          onClick={() => setSideBarView(InternalLinks)}
-          selected={sideBarView === InternalLinks}
-          backgroundColor={sideBarView === InternalLinks ? colors.primary.default : `transparent`}
-          aria-label="Internal Links"
-        >
-          <AccentType
-            color={sideBarView === InternalLinks ? colors.primary.default : `transparent`}
-            strokeColor={sideBarView === InternalLinks ? colors.secondary.default : colors.primary.default}
-            tw="text-4xl"
-          >
-            {contextSwitchButton1Text}
-          </AccentType>
-        </ViewButton>
-        <ViewButton
-          onClick={() => setSideBarView(ExternalLinks)}
-          selected={sideBarView === ExternalLinks}
-          backgroundColor={sideBarView === ExternalLinks ? colors.primary.default : `transparent`}
-          aria-label="External Links"
-        >
-          <AccentType
-            color={sideBarView === ExternalLinks ? colors.primary.default : `transparent`}
-            strokeColor={sideBarView === ExternalLinks ? colors.secondary.default : colors.primary.default}
-            tw="text-4xl"
-          >
-            {contextSwitchButton2Text}
-          </AccentType>
-        </ViewButton>
+        <ContextSwitchButton
+          type={InternalLinks}
+          currentView={sideBarView}
+          setView={setSideBarView}
+          text={contextSwitchButton1Text}
+        />
+        <ContextSwitchButton
+          type={ExternalLinks}
+          currentView={sideBarView}
+          setView={setSideBarView}
+          text={contextSwitchButton2Text}
+        />
       </FlexRowWrapper>
 
       {windowHeight >= windowDimensionBreakpoints.height.selected_2 && (

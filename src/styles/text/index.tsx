@@ -57,7 +57,7 @@ export const BrandingType = styled.p<TypeProps>`
 
 /** @note Style: AccentType */
 
-export const AccentType = styled.p<TypeProps & { strokeColor: string }>`
+export const AccentType = styled.p<TypeProps & { strokeColor?: string }>`
   ${tw`leading-149 font-lobster-two font-normal`}
   ${({ color }) => `color: ${color};`}
   ${({ defaultFontSize }) => defaultFontSize && tw`text-base`}
@@ -65,5 +65,5 @@ export const AccentType = styled.p<TypeProps & { strokeColor: string }>`
   ${({ wordBreak }) => (wordBreak ? typeWordBreakMap[wordBreak] : tw`truncate`)}
   ${({ enableSelect }) => !enableSelect && tw`select-none`}
   -webkit-text-stroke-width: 1px;
-  ${({ strokeColor }) => `-webkit-text-stroke-color: ${strokeColor};`}
+  ${({ strokeColor }) => strokeColor && `-webkit-text-stroke-color: ${strokeColor};`}
 `;
