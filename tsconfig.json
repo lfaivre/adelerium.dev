@@ -3,32 +3,19 @@
   "exclude": ["src/@types/__generated__/globalTypes.d.ts"],
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@adelerium/*": ["src/*"]
-    },
-
-    /* Basic Options */
-    "target": "es6",
-    "module": "es6",
-    "moduleResolution": "node",
-    "lib": ["dom", "esnext"],
-    "allowJs": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "isolatedModules": true,
-
-    /* Strict Type-Checking Options */
+    "paths": { "@adelerium/*": ["src/*"] },
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["dom", "es2017"],
+    "jsx": "react",
     "strict": true,
-
-    /* Additional Checks */
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-
-    /* Module Resolution Options */
     "esModuleInterop": true,
-
-    /* Advanced Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmit": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "isolatedModules": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true
   }
 }
