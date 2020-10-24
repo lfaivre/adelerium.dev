@@ -4,8 +4,8 @@ import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
-import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
-import { IconType } from '@adelerium/utils/font-awesome/types';
+import { getIcon } from '@adelerium/utils/icons';
+import { IconType } from '@adelerium/utils/icons/types';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
@@ -68,7 +68,7 @@ export const SocialLinkSquare = ({
               tw`flex-grow w-full`,
             ]}
           >
-            {getFontAwesomeIcon(type as IconType, '4x')}
+            {getIcon(type as IconType, 4)}
           </FlexColumnWrapper>
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-x-hidden">
             <BoldType color={colors.secondary.default} tw="w-full uppercase text-xs lg:text-base">

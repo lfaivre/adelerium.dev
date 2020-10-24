@@ -4,8 +4,8 @@ import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
-import { getFontAwesomeIcon } from '@adelerium/utils/font-awesome';
-import { IconType } from '@adelerium/utils/font-awesome/types';
+import { getIcon } from '@adelerium/utils/icons';
+import { IconType } from '@adelerium/utils/icons/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement, useRef } from 'react';
@@ -69,7 +69,7 @@ export const MediaLinkSquare = ({
                 tw`mr-2`,
               ]}
             >
-              {getFontAwesomeIcon(type as IconType)}
+              {getIcon(type as IconType)}
             </FlexRowWrapper>
             <FlexColumnWrapper alignItems="items-end" justifyContent="justify-center" tw="flex-grow">
               <BoldType

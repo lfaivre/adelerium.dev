@@ -6,15 +6,13 @@ import {
   PreviewContentKey,
   PreviewProps,
 } from '@adelerium/components/ProjectsPage/Preview/types';
+import { FIGMA, FIREFOX, GITHUB } from '@adelerium/constants/icons';
 import { Left, Right } from '@adelerium/constants/presentation';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppState } from '@adelerium/hooks/app-state';
 import { AccentType, BoldParagraphType, BoldType, NormalParagraphType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
-import { faFigma } from '@fortawesome/free-brands-svg-icons/faFigma';
-import { faFirefox } from '@fortawesome/free-brands-svg-icons/faFirefox';
-import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getIcon } from '@adelerium/utils/icons';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement, useEffect, useState } from 'react';
@@ -71,7 +69,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           see&nbsp;it&nbsp;<span tw="font-bold">hosted.</span>
         </>
       ),
-      Icon: <FontAwesomeIcon icon={faFirefox} size="2x" />,
+      Icon: getIcon(FIREFOX, 2),
     },
     github: {
       title: `GitHub`,
@@ -81,7 +79,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           view&nbsp;on&nbsp;<span tw="font-bold">github.</span>
         </>
       ),
-      Icon: <FontAwesomeIcon icon={faGithub} size="2x" />,
+      Icon: getIcon(GITHUB, 2),
     },
     figma: {
       title: `Figma`,
@@ -91,7 +89,7 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           view&nbsp;on&nbsp;<span tw="font-bold">figma.</span>
         </>
       ),
-      Icon: <FontAwesomeIcon icon={faFigma} size="2x" />,
+      Icon: getIcon(FIGMA, 2),
     },
   };
 

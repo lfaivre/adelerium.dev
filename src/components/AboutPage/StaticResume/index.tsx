@@ -1,13 +1,13 @@
 import { StaticResumeProps } from '@adelerium/components/AboutPage/StaticResume/types';
 import { useStaticResumeQueryData } from '@adelerium/components/AboutPage/StaticResume/useStaticResumeQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
+import { GOOGLE_DRIVE } from '@adelerium/constants/icons';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
 import { BoldParagraphType, BoldType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
-import { faGoogleDrive } from '@fortawesome/free-brands-svg-icons/faGoogleDrive';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getIcon } from '@adelerium/utils/icons';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
@@ -15,7 +15,6 @@ import tw, { css } from 'twin.macro';
 
 const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
 const AnimatedBoldParagraphType = animated(BoldParagraphType);
-const AnimatedFontAwesomeIcon = animated(FontAwesomeIcon);
 const AnimatedBoldType = animated(BoldType);
 
 const windowWidthBreakpoint = windowDimensionBreakpoints.width.xl;
@@ -87,17 +86,9 @@ export const StaticResume = ({ dimensions: { width, height, maxHeight } }: Stati
             {staticResumeTitleText}
           </AnimatedBoldParagraphType>
           <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="xl:justify-start w-full">
-            <AnimatedFontAwesomeIcon
-              icon={faGoogleDrive}
-              size={windowWidth >= windowWidthBreakpoint ? `4x` : `2x`}
-              style={textSpringStyles}
-              css={[
-                css`
-                  color: ${colors.secondary.default};
-                `,
-                tw`mr-4 lg:mr-8`,
-              ]}
-            />
+            <animated.div style={textSpringStyles} tw="mr-4 lg:mr-8">
+              {getIcon(GOOGLE_DRIVE, windowWidth >= windowWidthBreakpoint ? 4 : 2)}
+            </animated.div>
             <AnimatedBoldType
               color={colors.secondary.default}
               style={textSpringStyles}
