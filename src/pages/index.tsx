@@ -1,6 +1,5 @@
 import { Header } from '@adelerium/components/Global/Header';
 import { SEO } from '@adelerium/components/Global/SEO';
-import { Camera, WavyImage } from '@adelerium/components/HomePage/WavyImage';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { studioUrl } from '@adelerium/constants/site-metadata';
 import { useHomePageQueryData } from '@adelerium/graphql/useHomePageQueryData';
@@ -12,9 +11,8 @@ import { FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, Suspense, useLayoutEffect, useRef } from 'react';
+import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
-import { Canvas } from 'react-three-fiber';
 import tw, { css } from 'twin.macro';
 
 const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
@@ -63,12 +61,6 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
     <>
       <SEO title="Home" pathname={pathname} image={metaImage?.fixed as FixedObject} />
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="relative w-full h-screen">
-        <Canvas>
-          <Camera position={[0, 0, 1]} />
-          <Suspense fallback={null}>
-            <WavyImage />
-          </Suspense>
-        </Canvas>
         <BoldTypeAsButton
           ref={buttonRef}
           onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
