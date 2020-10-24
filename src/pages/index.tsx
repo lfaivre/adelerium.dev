@@ -16,6 +16,7 @@ import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
 const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
+const AnimatedBoldTypeAsButton = animated(BoldTypeAsButton);
 
 const staticToggleText = `Toggle Navigation (T)`;
 const staticStudioLogoText = `KD.`;
@@ -34,6 +35,9 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
   } = useAppState();
   const dispatch = useAppDispatch();
 
+  const buttonRef = useRef(null);
+  const { width: sideBarToggleWidth } = useDimensions({ ref: buttonRef });
+
   useLayoutEffect(() => {
     dispatch({
       type: SET_VIEW,
@@ -48,24 +52,28 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
     };
   }, [dispatch]);
 
-  const springProps = useSpring({
-    to: { opacity: 1 },
+  const headerSpringProps = useSpring({
     from: { opacity: 0 },
+    to: { opacity: 1 },
     config: config.molasses,
   });
 
-  const buttonRef = useRef(null);
-  const { width: sideBarToggleWidth } = useDimensions({ ref: buttonRef });
+  const navigationToggleSpringStyles = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: sideBarToggleWidth !== 0 ? 1 : 0 },
+    config: config.molasses,
+  });
 
   return (
     <>
       <SEO title="Home" pathname={pathname} image={metaImage?.fixed as FixedObject} />
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="relative w-full h-screen">
-        <BoldTypeAsButton
+        <AnimatedBoldTypeAsButton
           ref={buttonRef}
           onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
           color={colors.secondary.default}
           textAlign="text-center"
+          style={navigationToggleSpringStyles}
           css={[
             css`
               left: ${-(sideBarToggleWidth / 2) + 32}px;
@@ -74,7 +82,7 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
           ]}
         >
           {staticToggleText}
-        </BoldTypeAsButton>
+        </AnimatedBoldTypeAsButton>
         <OutboundLink
           href={brandingLink?.destination || studioUrl}
           label={brandingLink?.destination || studioUrl}
@@ -86,9 +94,9 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
             {staticStudioLogoText}
           </BrandingType>
         </OutboundLink>
-        <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="absolute w-full">
+        <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
           <AnimatedFlexRowWrapper
-            style={springProps}
+            style={headerSpringProps}
             alignItems="items-start"
             justifyContent="justify-center"
             tw="py-4 px-8 md:px-32 w-full max-w-sm md:max-w-screen-md"

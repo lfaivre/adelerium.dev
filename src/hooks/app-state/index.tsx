@@ -16,7 +16,7 @@ import { useImmerReducer } from 'use-immer';
 
 const initialState: State = {
   view: {
-    loadingScreen: { isVisible: true },
+    loadingScreen: { isVisible: false },
     sideBar: { isVisible: false },
     header: { isVisible: true },
     footer: { isVisible: true },

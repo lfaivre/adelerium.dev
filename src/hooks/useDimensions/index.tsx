@@ -8,6 +8,8 @@ export const useDimensions = ({ ref }: useDimensionsProps): useDimensionsState =
   const [dimensions, setDimensions] = useState(initialState);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
 
+  /** @todo Consider using useLayoutEffect (?) */
+
   useEffect(() => {
     resizeObserverRef.current = new ResizeObserver((entries = []) => {
       entries.forEach((entry) => {

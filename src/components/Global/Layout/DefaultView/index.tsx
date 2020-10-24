@@ -125,22 +125,40 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
    */
 
   const headerWrapperProps = useSpring({
+    from: {
+      left: `auto`,
+    },
     to: {
       left:
-        windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth + sideBarWidth : windowGutterWidth) : 0,
+        windowGutterWidth !== undefined
+          ? sideBarIsVisible
+            ? windowGutterWidth + sideBarWidth
+            : windowGutterWidth
+          : `auto`,
     },
     config: { ...config.default, clamp: false },
   });
 
   const sideBarWrapperProps = useSpring({
+    from: {
+      visibility: `hidden`,
+    },
     to: {
+      visibility: sideBarIsVisible ? `visible` : `hidden`,
       left:
-        windowGutterWidth !== undefined ? (sideBarIsVisible ? windowGutterWidth : windowGutterWidth - sideBarWidth) : 0,
+        windowGutterWidth !== undefined
+          ? sideBarIsVisible
+            ? windowGutterWidth
+            : windowGutterWidth - sideBarWidth
+          : -sideBarWidth,
     },
     config: { ...config.default, clamp: false },
   });
 
   const contentWrapperProps = useSpring({
+    from: {
+      marginLeft: 0,
+    },
     to: {
       marginLeft: windowGutterWidth !== undefined ? (sideBarIsVisible ? sideBarWidth : 0) : 0,
     },
@@ -158,7 +176,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
             background-color: ${colors.primary.default};
             width: ${layoutWidth}px;
           `,
-          headerIsVisible ? tw`flex` : tw`hidden`,
+          (!headerIsVisible || !windowGutterWidth) && tw`hidden`,
           loadingScreenIsVisible ? tw`opacity-0` : tw`opacity-100`,
           tw`fixed top-0 z-30 border-b p-4 md:px-8`,
         ]}
@@ -200,12 +218,12 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
           ref={returnButtonRef}
           alignItems="items-center"
           justifyContent="justify-center"
-          css={[returnButtonIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0 md:justify-end p-8 w-full`]}
+          css={[!returnButtonIsVisible && tw`hidden`, tw`flex-shrink-0 md:justify-end p-8 w-full`]}
         >
           <ReturnButton />
         </FlexRowWrapper>
 
-        <div ref={footerRef} css={[footerIsVisible ? tw`flex` : tw`hidden`, tw`flex-shrink-0 w-full`]}>
+        <div ref={footerRef} css={[!footerIsVisible && tw`hidden`, tw`flex-shrink-0 w-full`]}>
           <Footer />
         </div>
       </AnimatedFlexColumnWrapper>
