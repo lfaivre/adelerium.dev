@@ -157,5 +157,6 @@ module.exports = {
       options: CONTENTFUL_CONFIGURATION,
     },
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 };
