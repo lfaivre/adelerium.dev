@@ -37,7 +37,7 @@ This project was built using the [Gatsby.js](https://www.gatsbyjs.com/) default 
     ```sh
     git clone https://github.com/lfaivre/adelerium.dev.git
     cd adelerium.dev/
-    yarn install
+    npm install
     ```
 
 2.  **Initialize Development Environment Variables**
@@ -51,5 +51,5 @@ This project was built using the [Gatsby.js](https://www.gatsbyjs.com/) default 
 3.  **Start Gatsby Development Process**
 
     ```sh
-    yarn run develop
+    npm run develop
     ```

@@ -84,7 +84,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "start": "yarn run develop",
+    "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest --passWithNoTests",
@@ -94,11 +94,11 @@
     "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prettier:check": "prettier --list-different \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "prettier:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "graphql:ts-codegen": "bin/ts-codegen.sh && yarn run prettier:write"
+    "graphql:ts-codegen": "bin/ts-codegen.sh && npm run prettier:write"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run prettier:write"
+      "pre-commit": "npm run prettier:write"
     }
   },
   "babelMacros": {
