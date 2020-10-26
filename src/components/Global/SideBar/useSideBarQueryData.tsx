@@ -6,12 +6,8 @@ export const useSideBarQueryData = (): SideBarQuery => {
     query SideBarQuery {
       sideBarData: contentfulSideBar(id: { eq: "ebce7c4c-0af3-5aa5-9391-9037448fcc7c" }) {
         profilePicture {
-          fluid(maxWidth: 320, resizingBehavior: SCALE, quality: 100) {
-            tracedSVG
-            aspectRatio
-            src
-            srcSet
-            sizes
+          fluid(maxWidth: 160) {
+            ...GatsbyContentfulFluid_withWebp
           }
         }
         internalLinks {
@@ -32,21 +28,12 @@ export const useSideBarQueryData = (): SideBarQuery => {
       profileBackgroundImage: file(relativePath: { eq: "profile-background.png" }) {
         childImageSharp {
           fluid(maxWidth: 192, quality: 100) {
-            tracedSVG
-            aspectRatio
-            src
-            srcSet
-            sizes
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }
       brandingLink: contentfulLink(id: { eq: "5e2725b8-75c7-5c4b-86f1-3caa0f3df31e" }) {
         destination
-      }
-      email: contentfulEmail(id: { eq: "0cd56694-957b-5f3b-be2d-8e4b0e693ad2" }) {
-        title
-        destination
-        displayText
       }
     }
   `);

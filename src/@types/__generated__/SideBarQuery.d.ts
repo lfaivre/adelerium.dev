@@ -8,10 +8,12 @@
 // ====================================================
 
 export interface SideBarQuery_sideBarData_profilePicture_fluid {
-  readonly tracedSVG: string | null;
+  readonly base64: string | null;
   readonly aspectRatio: number;
   readonly src: string;
   readonly srcSet: string;
+  readonly srcWebp: string | null;
+  readonly srcSetWebp: string | null;
   readonly sizes: string;
 }
 
@@ -46,6 +48,8 @@ export interface SideBarQuery_profileBackgroundImage_childImageSharp_fluid {
   readonly aspectRatio: number;
   readonly src: string;
   readonly srcSet: string;
+  readonly srcWebp: string | null;
+  readonly srcSetWebp: string | null;
   readonly sizes: string;
 }
 
@@ -61,15 +65,8 @@ export interface SideBarQuery_brandingLink {
   readonly destination: string | null;
 }
 
-export interface SideBarQuery_email {
-  readonly title: string | null;
-  readonly destination: string | null;
-  readonly displayText: string | null;
-}
-
 export interface SideBarQuery {
   readonly sideBarData: SideBarQuery_sideBarData | null;
   readonly profileBackgroundImage: SideBarQuery_profileBackgroundImage | null;
   readonly brandingLink: SideBarQuery_brandingLink | null;
-  readonly email: SideBarQuery_email | null;
 }

@@ -24,6 +24,8 @@ export interface NotFoundPageQuery_accentImage_childImageSharp_fluid {
   readonly aspectRatio: number;
   readonly src: string;
   readonly srcSet: string;
+  readonly srcWebp: string | null;
+  readonly srcSetWebp: string | null;
   readonly sizes: string;
 }
 

@@ -13,12 +13,8 @@ export const useMediaLinkQueryData = (): MediaLinkQuery => {
           type
           externalLink
           displayImage {
-            fluid(maxWidth: 720, resizingBehavior: SCALE) {
-              tracedSVG
-              aspectRatio
-              src
-              srcSet
-              sizes
+            fluid(maxWidth: 760, resizingBehavior: SCALE) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
           accentColorHex

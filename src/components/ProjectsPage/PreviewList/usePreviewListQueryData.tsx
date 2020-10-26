@@ -17,12 +17,8 @@ export const usePreviewListQueryData = (): PreviewListQuery => {
               previewDescription
             }
             previewPicture {
-              fluid(maxWidth: 1024, resizingBehavior: SCALE) {
-                tracedSVG
-                aspectRatio
-                src
-                srcSet
-                sizes
+              fluid(maxWidth: 760) {
+                ...GatsbyContentfulFluid_withWebp
               }
             }
             technologyTags

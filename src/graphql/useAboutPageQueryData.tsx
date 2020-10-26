@@ -6,11 +6,7 @@ export const useAboutPageQueryData = (): AboutPageQuery => {
     query AboutPageQuery {
       metaImage: contentfulAsset(id: { eq: "cfad6a7d-aade-5927-a605-69da6dfe6529" }) {
         fixed(width: 1200, resizingBehavior: SCALE, quality: 100) {
-          base64
-          width
-          height
-          src
-          srcSet
+          ...GatsbyContentfulFixed
         }
       }
     }

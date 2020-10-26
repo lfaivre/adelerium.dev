@@ -12,10 +12,12 @@ export interface PreviewListQuery_projectPreviews_edges_node_previewDescription 
 }
 
 export interface PreviewListQuery_projectPreviews_edges_node_previewPicture_fluid {
-  readonly tracedSVG: string | null;
+  readonly base64: string | null;
   readonly aspectRatio: number;
   readonly src: string;
   readonly srcSet: string;
+  readonly srcWebp: string | null;
+  readonly srcSetWebp: string | null;
   readonly sizes: string;
 }
 

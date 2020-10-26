@@ -8,10 +8,12 @@
 // ====================================================
 
 export interface MediaLinkQuery_mediaLinks_nodes_displayImage_fluid {
-  readonly tracedSVG: string | null;
+  readonly base64: string | null;
   readonly aspectRatio: number;
   readonly src: string;
   readonly srcSet: string;
+  readonly srcWebp: string | null;
+  readonly srcSetWebp: string | null;
   readonly sizes: string;
 }
 
