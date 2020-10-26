@@ -1,8 +1,11 @@
-import { enableAllPlugins } from 'immer';
+import { enableAllPlugins, setAutoFreeze } from 'immer';
 
 // @note Enable Immer
 
 enableAllPlugins();
+
+/** @todo Re-enable this in development if possible, causing issues with react-tracked */
+setAutoFreeze(false);
 
 // @note Import Stylesheet(s): Fonts
 

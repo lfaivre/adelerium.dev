@@ -14,6 +14,7 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
     theme: { colors },
   } = useAppState();
   const dispatch = useAppDispatch();
+
   const windowDimensions = useWindowDimensions();
 
   useLayoutEffect(() => {

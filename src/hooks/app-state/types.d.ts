@@ -1,6 +1,6 @@
 import { SET_DIMENSIONS, SET_THEME, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { ColorPalette } from '@adelerium/styles/colors/types';
-import { ReactElement } from 'react';
+import { Dispatch as ReactDispatch } from 'react';
 
 /** @note Reducer Actions */
 
@@ -11,7 +11,7 @@ export type Action =
 
 /** @note Dispatch */
 
-export type Dispatch = (action: Action) => void;
+export type Dispatch = ReactDispatch<Action>;
 
 /** @note State */
 
@@ -40,7 +40,3 @@ export type ElementDimensionsState = {
 export type ThemeState = { colors: ColorPalette };
 
 export type State = { view: ElementViewState; dimensions: ElementDimensionsState; theme: ThemeState };
-
-/** @note App Provider Props */
-
-export type AppProviderProps = { children: ReactElement };

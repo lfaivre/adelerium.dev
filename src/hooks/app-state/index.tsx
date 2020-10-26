@@ -1,7 +1,6 @@
 import { SET_DIMENSIONS, SET_THEME, SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import {
   Action,
-  AppProviderProps,
   Dispatch,
   ElementDimensions,
   ElementDimensionsState,
@@ -11,7 +10,7 @@ import {
 } from '@adelerium/hooks/app-state/types';
 import { colors } from '@adelerium/styles/colors';
 import { name as DEFAULT_PALETTE } from '@adelerium/styles/colors/default';
-import React, { createContext, ReactElement, useContext } from 'react';
+import { createContainer } from 'react-tracked';
 import { useImmerReducer } from 'use-immer';
 
 const initialState: State = {
@@ -33,12 +32,6 @@ const initialState: State = {
     colors: colors[DEFAULT_PALETTE],
   },
 };
-
-// eslint-disable-next-line unicorn/no-useless-undefined
-const AppStateContext = createContext<State | undefined>(undefined);
-
-// eslint-disable-next-line unicorn/no-useless-undefined
-const AppDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 /**
  * @todo Fix Type Issues in Reducer
@@ -84,30 +77,8 @@ const appStateReducer = (draft: State, action: Action): void => {
   }
 };
 
-const AppProvider = ({ children }: AppProviderProps): ReactElement => {
-  const [state, dispatch] = useImmerReducer(appStateReducer, initialState);
+const useValue = (): [State, Dispatch] => useImmerReducer(appStateReducer, initialState);
 
-  return (
-    <AppStateContext.Provider value={state}>
-      <AppDispatchContext.Provider value={dispatch}>{children}</AppDispatchContext.Provider>
-    </AppStateContext.Provider>
-  );
-};
+const { Provider: AppProvider, useTrackedState: useAppState, useUpdate: useAppDispatch } = createContainer(useValue);
 
-const useAppState = (): State => {
-  const context = useContext(AppStateContext);
-  if (context === undefined) {
-    throw new Error(`useAppState must be used within an AppProvider`);
-  }
-  return context;
-};
-
-const useAppDispatch = (): Dispatch => {
-  const context = useContext(AppDispatchContext);
-  if (context === undefined) {
-    throw new Error(`useAppDispatch must be used within an AppProvider`);
-  }
-  return context;
-};
-
-export { AppProvider, useAppState, useAppDispatch };
+export { AppProvider, useAppDispatch, useAppState };
