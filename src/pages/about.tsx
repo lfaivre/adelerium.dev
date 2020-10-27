@@ -22,28 +22,8 @@ const TileRowWrapper = tw.div`flex flex-col xl:flex-row items-center xl:items-st
 
 const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const { metaImage } = useAboutPageQueryData();
-  const {
-    mediaLinks: { nodes: mediaLinks },
-  } = useMediaLinkQueryData();
-  const {
-    socialLinks: { nodes: socialLinks },
-  } = useSocialLinkQueryData();
-
-  const [sizesReady, setSizesReady] = useState(false);
-
-  /** @note @temp Extract Media Link Data */
-
-  const mostPlayedSongThisWeek = mediaLinks.find((link) => link.description === `Most Played Song`);
-  const pinnedPlaylist = mediaLinks.find((link) => link.description === `Pinned Playlist`);
-  const pinnedPodcast = mediaLinks.find((link) => link.description === `Pinned Podcast`);
-  const pinnedSong = mediaLinks.find((link) => link.description === `Pinned Song`);
-
-  /** @note @temp Extract Social Link Data */
-
-  const figma = socialLinks.find((link) => link.title === `Figma`);
-  const github = socialLinks.find((link) => link.title === `GitHub`);
-  const email = socialLinks.find((link) => link.title === `Email`);
-  const linkedin = socialLinks.find((link) => link.title === `LinkedIn`);
+  const { pinnedSong, pinnedPodcast, pinnedPlaylist, mostPlayedSongThisWeek } = useMediaLinkQueryData();
+  const { email, linkedin, github, figma } = useSocialLinkQueryData();
 
   const {
     dimensions: {
@@ -57,6 +37,8 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
   const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: windowDimensionBreakpoints.width.xl });
+
+  const [sizesReady, setSizesReady] = useState(false);
 
   useEffect(() => {
     if (sizesReady) return;
