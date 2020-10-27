@@ -46,6 +46,8 @@ export const MediaLinkSquare = ({
     >
       <AnimatedImg
         fluid={displayImage?.fluid as FluidObject | FluidObject[]}
+        loading="eager"
+        fadeIn={false}
         draggable={false}
         style={springStyles}
         tw="absolute top-0 left-0 z-0 w-full h-full object-cover object-center select-none"

@@ -161,8 +161,10 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           <Img
             fluid={project.previewPicture?.fluid as FluidObject | FluidObject[]}
             onLoad={() => setImageLoaded(true)}
-            alt={`Preview Image for ${project.title || `Untitled`}`}
+            loading="eager"
+            fadeIn={false}
             draggable={false}
+            alt={`Preview Image for ${project.title || `Untitled`}`}
             backgroundColor={colors.secondary.default}
             css={[
               css`

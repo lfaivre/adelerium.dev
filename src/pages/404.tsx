@@ -60,6 +60,7 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
               fluid={accentImage?.childImageSharp?.fluid as FluidObject | FluidObject[]}
               alt=""
               loading="eager"
+              fadeIn={false}
               draggable={false}
               tw="w-full md:w-1/2 max-w-md select-none"
             />

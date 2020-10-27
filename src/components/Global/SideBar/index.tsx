@@ -50,8 +50,9 @@ export const SideBar = (): ReactElement => {
             <Img
               fluid={sideBarData?.profilePicture?.fluid as FluidObject | FluidObject[]}
               loading="eager"
-              alt="Profile Picture"
+              fadeIn={false}
               draggable={false}
+              alt="Profile Picture"
               tw="rounded-full w-32 h-32 md:w-40 md:h-40 select-none"
             />
           </FlexRowWrapper>
