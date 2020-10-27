@@ -84,7 +84,6 @@ const appStateReducer = (draft: State, action: Action): void => {
       if (setNavigationCollectionDimensions) {
         draft.dimensions.navigationCollection.height =
           draft.dimensions.header.height + draft.dimensions.footer.height + draft.dimensions.returnButton.height;
-        console.log(`navigationCollection dimensions:\n${JSON.stringify(draft.dimensions.navigationCollection)}`);
       }
 
       break;

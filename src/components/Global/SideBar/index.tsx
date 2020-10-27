@@ -11,7 +11,7 @@ import { BoldParagraphType, BoldType, BrandingType } from '@adelerium/styles/tex
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useMemo, useState } from 'react';
 import tw, { css } from 'twin.macro';
 
 const staticStudioLogoText = `KD.`;
@@ -27,6 +27,28 @@ export const SideBar = (): ReactElement => {
   } = useAppState();
 
   const [sideBarView, setSideBarView] = useState<SideBarView>(InternalLinks);
+
+  const navigationLinks = useMemo(
+    () =>
+      ((sideBarView === InternalLinks ? sideBarData?.internalLinks : sideBarData?.externalLinks) || []).map(
+        (link) => link && <NavigationLink type={sideBarView} data={link} key={link.id} />
+      ),
+    [sideBarData?.externalLinks, sideBarData?.internalLinks, sideBarView]
+  );
+
+  const contextSwitchButtons = useMemo(
+    () =>
+      ([InternalLinks, ExternalLinks] as SideBarView[]).map((type, index) => (
+        <ContextSwitchButton
+          type={type}
+          currentView={sideBarView}
+          setView={setSideBarView}
+          text={`0${index + 1}.`}
+          key={type}
+        />
+      )),
+    [sideBarView]
+  );
 
   return (
     <FlexColumnWrapper
@@ -77,9 +99,7 @@ export const SideBar = (): ReactElement => {
         tw="flex-grow mb-8 w-full overflow-y-scroll"
       >
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="my-auto w-full">
-          {((sideBarView === InternalLinks ? sideBarData?.internalLinks : sideBarData?.externalLinks) || []).map(
-            (link) => link && <NavigationLink type={sideBarView} data={link} key={link.id} />
-          )}
+          {navigationLinks}
         </FlexColumnWrapper>
       </FlexColumnWrapper>
 
@@ -91,15 +111,7 @@ export const SideBar = (): ReactElement => {
       )}
 
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-shrink-0 w-full">
-        {([InternalLinks, ExternalLinks] as SideBarView[]).map((type, index) => (
-          <ContextSwitchButton
-            type={type}
-            currentView={sideBarView}
-            setView={setSideBarView}
-            text={`0${index + 1}.`}
-            key={type}
-          />
-        ))}
+        {contextSwitchButtons}
       </FlexRowWrapper>
 
       {windowHeight >= windowDimensionBreakpoints.height.selected_2 && (

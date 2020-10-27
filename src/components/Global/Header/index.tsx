@@ -1,5 +1,5 @@
 import { HeaderProps } from '@adelerium/components/Global/Header/types';
-import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
+import { MemoizedStyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
 import { homePageTitleText, notFoundPageTitleText } from '@adelerium/constants/paths';
 import { Next } from '@adelerium/constants/presentation';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
@@ -7,7 +7,7 @@ import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { usePathData } from '@adelerium/hooks/usePathData';
 import { BoldParagraphType, BoldTypeAsButton } from '@adelerium/styles/text';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 import tw from 'twin.macro';
 
 const defaultHeaderText = `Welcome`;
@@ -21,15 +21,18 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
     theme: { colors },
   } = useAppState();
   const dispatch = useAppDispatch();
-  const { pathname, isIndex, pathData, isValidPath } = usePathData();
-  const [headerTitle, setHeaderTitle] = useState<string>(defaultHeaderText);
-  const [toggleIsVisible, setToggleIsVisible] = useState<boolean>(false);
 
-  useEffect(() => {
-    const { text } = pathData || { text: notFoundPageTitleText };
-    const newHeaderTitle = text !== homePageTitleText ? text : defaultHeaderText;
-    setHeaderTitle(newHeaderTitle);
-  }, [pathData]);
+  const { pathData } = usePathData();
+
+  const [toggleIsVisible, setToggleIsVisible] = useState(false);
+
+  const headerTitle = useCallback(
+    () =>
+      pathData && pathData.text
+        ? `${pathData.text !== homePageTitleText ? pathData.text : defaultHeaderText}.`
+        : `${notFoundPageTitleText}.`,
+    [pathData]
+  );
 
   return (
     <FlexRowWrapper alignItems="items-center" justifyContent="justify-between" tw="w-full h-full">
@@ -48,7 +51,9 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
             toggleIsVisible && tw`opacity-0`,
           ]}
           aria-label="Toggle Side Bar Navigation"
-        >{`${headerTitle}.`}</BoldParagraphType>
+        >
+          {headerTitle()}
+        </BoldParagraphType>
         <BoldTypeAsButton
           disabled={disableToggle}
           color={colors.secondary.default}
@@ -67,13 +72,7 @@ export const Header = ({ disableToggle }: HeaderProps): ReactElement => {
         </BoldTypeAsButton>
       </FlexRowWrapper>
       <FlexRowWrapper alignItems="items-center" justifyContent="justify-end" tw="w-1/2 h-full">
-        <StyledInternalLink
-          pathname={pathname}
-          isIndex={isIndex}
-          pathData={pathData}
-          isValidPath={isValidPath}
-          direction={Next}
-        />
+        <MemoizedStyledInternalLink direction={Next} />
       </FlexRowWrapper>
     </FlexRowWrapper>
   );

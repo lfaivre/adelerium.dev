@@ -1,9 +1,8 @@
 import { useFooterQueryData } from '@adelerium/components/Global/Footer/useFooterQueryData';
-import { StyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
+import { MemoizedStyledInternalLink } from '@adelerium/components/Global/StyledInternalLink';
 import { Next, Previous } from '@adelerium/constants/presentation';
 import { studioCopyrightText, studioUrl, websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppState } from '@adelerium/hooks/app-state';
-import { usePathData } from '@adelerium/hooks/usePathData';
 import { BoldParagraphType, BoldType, BrandingType, NormalParagraphType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getRandomInt } from '@adelerium/utils/math';
@@ -25,7 +24,6 @@ export const Footer = (): ReactElement => {
   const {
     theme: { colors },
   } = useAppState();
-  const { pathname, isIndex, pathData, isValidPath } = usePathData();
 
   const getRandomFact = (): string => {
     if (!footerData?.facts) return factOnError;
@@ -84,15 +82,7 @@ export const Footer = (): ReactElement => {
       </FlexRowWrapper>
       <FlexRowWrapper alignItems="items-start" justifyContent="justify-start" tw="mb-8 w-full">
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-start" tw="w-1/2 md:w-2/6">
-          {pathData && (
-            <StyledInternalLink
-              pathname={pathname}
-              isIndex={isIndex}
-              pathData={pathData}
-              isValidPath={isValidPath}
-              direction={Previous}
-            />
-          )}
+          <MemoizedStyledInternalLink direction={Previous} />
         </FlexRowWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="hidden md:flex w-2/6">
           <OutboundLink
@@ -107,15 +97,7 @@ export const Footer = (): ReactElement => {
           </OutboundLink>
         </FlexRowWrapper>
         <FlexRowWrapper alignItems="items-start" justifyContent="justify-end" tw="w-1/2 md:w-2/6">
-          {pathData && (
-            <StyledInternalLink
-              pathname={pathname}
-              isIndex={isIndex}
-              pathData={pathData}
-              isValidPath={isValidPath}
-              direction={Next}
-            />
-          )}
+          <MemoizedStyledInternalLink direction={Next} />
         </FlexRowWrapper>
       </FlexRowWrapper>
       <hr
