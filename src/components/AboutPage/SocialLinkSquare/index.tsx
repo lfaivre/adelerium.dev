@@ -1,4 +1,4 @@
-import { SocialLinkSquareProps } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
+import { PropsAreEqualFunction, SocialLinkSquareProps } from '@adelerium/components/AboutPage/SocialLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
@@ -7,11 +7,21 @@ import { FlexColumnWrapper } from '@adelerium/styles/wrappers';
 import { getIcon } from '@adelerium/utils/icons';
 import { IconType } from '@adelerium/utils/icons/types';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import isEqual from 'lodash.isequal';
 import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
 const AnimatedFlexColumnWrapper = animated(FlexColumnWrapper);
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height &&
+    prevProps.dimensions.maxHeight === nextProps.dimensions.maxHeight &&
+    isEqual(prevProps.data, nextProps.data)
+  );
+};
 
 export const SocialLinkSquare = ({
   data: { title, subtitle, type, externalLink, accentColorHex },
@@ -83,3 +93,5 @@ export const SocialLinkSquare = ({
     </AnimatedFlexColumnWrapper>
   );
 };
+
+export const MemoizedSocialLinkSquare = React.memo(SocialLinkSquare, propsAreEqual);

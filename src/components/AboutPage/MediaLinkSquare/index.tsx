@@ -1,4 +1,4 @@
-import { MediaLinkSquareProps } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
+import { MediaLinkSquareProps, PropsAreEqualFunction } from '@adelerium/components/AboutPage/MediaLinkSquare/types';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppState } from '@adelerium/hooks/app-state';
 import { useElementInView } from '@adelerium/hooks/useElementInView';
@@ -8,11 +8,21 @@ import { getIcon } from '@adelerium/utils/icons';
 import { IconType } from '@adelerium/utils/icons/types';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
+import isEqual from 'lodash.isequal';
 import React, { ReactElement, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
 const AnimatedImg = animated(Img);
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height &&
+    prevProps.dimensions.maxHeight === nextProps.dimensions.maxHeight &&
+    isEqual(prevProps.data, nextProps.data)
+  );
+};
 
 export const MediaLinkSquare = ({
   data: { title, subtitle, description, date, type, externalLink, displayImage },
@@ -103,3 +113,5 @@ export const MediaLinkSquare = ({
     </FlexColumnWrapper>
   );
 };
+
+export const MemoizedMediaLinkSquare = React.memo(MediaLinkSquare, propsAreEqual);

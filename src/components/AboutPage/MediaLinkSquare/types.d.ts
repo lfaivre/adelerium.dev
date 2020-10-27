@@ -2,3 +2,5 @@ import { MediaLinkData as ContentfulMediaLink } from '@adelerium/@types/__genera
 import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions/types';
 
 export type MediaLinkSquareProps = { data: ContentfulMediaLink; dimensions: TileDimensions };
+
+export type PropsAreEqualFunction = (prevProps: MediaLinkSquareProps, nextProps: MediaLinkSquareProps) => boolean;

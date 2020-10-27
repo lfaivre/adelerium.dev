@@ -1,8 +1,8 @@
 import { MemoizedBrandingSection } from '@adelerium/components/AboutPage/BrandingSection';
 import { MemoizedIntroductionSection } from '@adelerium/components/AboutPage/IntroductionSection';
-import { MediaLinkSquare } from '@adelerium/components/AboutPage/MediaLinkSquare';
+import { MemoizedMediaLinkSquare } from '@adelerium/components/AboutPage/MediaLinkSquare';
 import { useMediaLinkQueryData } from '@adelerium/components/AboutPage/MediaLinkSquare/useMediaLinkQueryData';
-import { SocialLinkSquare } from '@adelerium/components/AboutPage/SocialLinkSquare';
+import { MemoizedSocialLinkSquare } from '@adelerium/components/AboutPage/SocialLinkSquare';
 import { useSocialLinkQueryData } from '@adelerium/components/AboutPage/SocialLinkSquare/useSocialLinkQueryData';
 import { MemoizedStaticBranding } from '@adelerium/components/AboutPage/StaticBranding';
 import { MemoizedStaticLocation } from '@adelerium/components/AboutPage/StaticLocation';
@@ -45,12 +45,12 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
           <TileRowWrapper>
             <MemoizedIntroductionSection dimensions={size2} />
-            {email && <SocialLinkSquare data={email} dimensions={size1} />}
+            {email && <MemoizedSocialLinkSquare data={email} dimensions={size1} />}
           </TileRowWrapper>
           <TileRowWrapper>
-            {pinnedPlaylist && <MediaLinkSquare data={pinnedPlaylist} dimensions={size1} />}
-            {figma && <SocialLinkSquare data={figma} dimensions={size1} />}
-            {github && <SocialLinkSquare data={github} dimensions={size1} />}
+            {pinnedPlaylist && <MemoizedMediaLinkSquare data={pinnedPlaylist} dimensions={size1} />}
+            {figma && <MemoizedSocialLinkSquare data={figma} dimensions={size1} />}
+            {github && <MemoizedSocialLinkSquare data={github} dimensions={size1} />}
           </TileRowWrapper>
           <TileRowWrapper>
             <MemoizedStaticBranding dimensions={size1} />
@@ -58,15 +58,15 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
           </TileRowWrapper>
           <TileRowWrapper>
             <MemoizedStaticResume dimensions={size2} />
-            {linkedin && <SocialLinkSquare data={linkedin} dimensions={size1} />}
+            {linkedin && <MemoizedSocialLinkSquare data={linkedin} dimensions={size1} />}
           </TileRowWrapper>
           <TileRowWrapper>
-            {mostPlayedSongThisWeek && <MediaLinkSquare data={mostPlayedSongThisWeek} dimensions={size1} />}
+            {mostPlayedSongThisWeek && <MemoizedMediaLinkSquare data={mostPlayedSongThisWeek} dimensions={size1} />}
             <MemoizedStaticLocation dimensions={size1} />
-            {pinnedSong && <MediaLinkSquare data={pinnedSong} dimensions={size1} />}
+            {pinnedSong && <MemoizedMediaLinkSquare data={pinnedSong} dimensions={size1} />}
           </TileRowWrapper>
           <TileRowWrapper>
-            {pinnedPodcast && <MediaLinkSquare data={pinnedPodcast} dimensions={size1} />}
+            {pinnedPodcast && <MemoizedMediaLinkSquare data={pinnedPodcast} dimensions={size1} />}
           </TileRowWrapper>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>

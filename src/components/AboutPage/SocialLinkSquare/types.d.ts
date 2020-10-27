@@ -2,3 +2,5 @@ import { SocialLinkData as ContentfulSocialLink } from '@adelerium/@types/__gene
 import { TileDimensions } from '@adelerium/hooks/useAllTileDimensions/types';
 
 export type SocialLinkSquareProps = { data: ContentfulSocialLink; dimensions: TileDimensions };
+
+export type PropsAreEqualFunction = (prevProps: SocialLinkSquareProps, nextProps: SocialLinkSquareProps) => boolean;
