@@ -27,11 +27,18 @@ const initialState: State = {
     header: { width: 0, height: 0 },
     footer: { width: 0, height: 0 },
     returnButton: { width: 0, height: 0 },
+    navigationCollection: { width: 0, height: 0 },
   },
   theme: {
     colors: colors[DEFAULT_PALETTE],
   },
 };
+
+const navigationCollectionElements: Set<keyof Partial<ElementDimensionsState>> = new Set([
+  `header`,
+  `footer`,
+  `returnButton`,
+]);
 
 /**
  * @todo Fix Type Issues in Reducer
@@ -43,10 +50,10 @@ const initialState: State = {
 const appStateReducer = (draft: State, action: Action): void => {
   switch (action.type) {
     case SET_VIEW: {
-      (Object.keys(action.payload) as [keyof Partial<ElementViewState>]).forEach((element) => {
-        (Object.keys(action.payload[element] as Partial<ElementViewStates>) as [
-          keyof Partial<ElementViewStates>
-        ]).forEach((attribute) => {
+      (Object.keys(action.payload) as (keyof Partial<ElementViewState>)[]).forEach((element) => {
+        (Object.keys(action.payload[element] as Partial<ElementViewStates>) as (keyof Partial<
+          ElementViewStates
+        >)[]).forEach((attribute) => {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           draft.view[element][attribute] = action.payload[element]![attribute];
         });
@@ -54,17 +61,32 @@ const appStateReducer = (draft: State, action: Action): void => {
       break;
     }
     case SET_DIMENSIONS: {
-      (Object.keys(action.payload) as [keyof Partial<ElementDimensionsState>]).forEach((element) => {
-        (Object.keys(action.payload[element] as Partial<ElementDimensions>) as [
-          keyof Partial<ElementDimensions>
-        ]).forEach((attribute) => {
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          if (action.payload[element]![attribute] === -1) return;
+      const modifiedElements: (keyof Partial<ElementDimensionsState>)[] = [];
+      let setNavigationCollectionDimensions = false;
 
+      (Object.keys(action.payload) as (keyof Partial<ElementDimensionsState>)[]).forEach((element) => {
+        modifiedElements.push(element);
+        (Object.keys(action.payload[element] as Partial<ElementDimensions>) as (keyof Partial<
+          ElementDimensions
+        >)[]).forEach((attribute) => {
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           draft.dimensions[element][attribute] = action.payload[element]![attribute];
         });
       });
+
+      for (let i = 0, n = modifiedElements.length; i < n; i += 1) {
+        if (navigationCollectionElements.has(modifiedElements[i])) {
+          setNavigationCollectionDimensions = true;
+          break;
+        }
+      }
+
+      if (setNavigationCollectionDimensions) {
+        draft.dimensions.navigationCollection.height =
+          draft.dimensions.header.height + draft.dimensions.footer.height + draft.dimensions.returnButton.height;
+        console.log(`navigationCollection dimensions:\n${JSON.stringify(draft.dimensions.navigationCollection)}`);
+      }
+
       break;
     }
     case SET_THEME: {

@@ -27,21 +27,16 @@ const AboutPage = ({ location: { pathname } }: PageProps): ReactElement => {
 
   const {
     dimensions: {
-      header: { height: headerHeight },
-      footer: { height: footerHeight },
-      returnButton: { height: returnButtonHeight },
+      navigationCollection: { height: navigationCollectionHeight },
     },
   } = useAppState();
-
-  /** @todo Source this value from global state */
-  const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   const { 1: size1, 2: size2 } = useAllTileDimensions({ breakpoint: windowDimensionBreakpoints.width.xl });
 
   return (
     <>
       <SEO title="About" pathname={pathname} image={metaImage?.fixed as FixedObject} />
-      <MinHeightScreenWrapper minHeight={staticsHeight} tw="p-2 xl:p-4 w-full">
+      <MinHeightScreenWrapper minHeight={navigationCollectionHeight} tw="p-2 xl:p-4 w-full">
         <FlexColumnWrapper alignItems="items-start" justifyContent="justify-start" tw="w-full">
           <TileRowWrapper>
             <MemoizedIntroductionSection dimensions={size2} />

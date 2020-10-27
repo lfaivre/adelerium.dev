@@ -35,6 +35,7 @@ export type ElementDimensionsState = {
   header: ElementDimensions;
   footer: ElementDimensions;
   returnButton: ElementDimensions;
+  navigationCollection: ElementDimensions;
 };
 
 export type ThemeState = { colors: ColorPalette };

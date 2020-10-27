@@ -16,16 +16,10 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
 
   const {
     dimensions: {
-      header: { height: headerHeight },
-      footer: { height: footerHeight },
-      returnButton: { height: returnButtonHeight },
+      navigationCollection: { height: navigationCollectionHeight },
     },
     theme: { colors },
   } = useAppState();
-
-  /** @todo Source this value from global state */
-  const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
-
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
@@ -45,7 +39,7 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
     <>
       <SEO title="404: Not Found" pathname={pathname} image={metaImage?.fixed as FixedObject} />
       <MinHeightScreenWrapper
-        minHeight={staticsHeight}
+        minHeight={navigationCollectionHeight}
         backgroundColor={colors.primary.default}
         tw="flex p-2 md:p-4 w-full"
       >

@@ -13,19 +13,14 @@ const ProjectsPage = ({ location: { pathname } }: PageProps): ReactElement => {
 
   const {
     dimensions: {
-      header: { height: headerHeight },
-      footer: { height: footerHeight },
-      returnButton: { height: returnButtonHeight },
+      navigationCollection: { height: navigationCollectionHeight },
     },
   } = useAppState();
-
-  /** @todo Source this value from global state */
-  const staticsHeight = headerHeight + footerHeight + returnButtonHeight;
 
   return (
     <>
       <SEO title="Projects" pathname={pathname} image={metaImage?.fixed as FixedObject} />
-      <MinHeightScreenWrapper minHeight={staticsHeight} tw="p-2 md:p-4 w-full">
+      <MinHeightScreenWrapper minHeight={navigationCollectionHeight} tw="p-2 md:p-4 w-full">
         <PreviewList />
       </MinHeightScreenWrapper>
     </>
