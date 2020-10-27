@@ -1,4 +1,4 @@
-import { StaticBrandingProps } from '@adelerium/components/AboutPage/StaticBranding/types';
+import { PropsAreEqualFunction, StaticBrandingProps } from '@adelerium/components/AboutPage/StaticBranding/types';
 import { useStaticBrandingQueryData } from '@adelerium/components/AboutPage/StaticBranding/useStaticBrandingQueryData';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppState } from '@adelerium/hooks/app-state';
@@ -17,6 +17,14 @@ const AnimatedBrandingType = animated(BrandingType);
 const staticStudioTitle = `Kevala Design`;
 const staticStudioSubtitle = `Website Development & Design Studio`;
 const staticStudioLogoText = `KD.`;
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height &&
+    prevProps.dimensions.maxHeight === nextProps.dimensions.maxHeight
+  );
+};
 
 export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: StaticBrandingProps): ReactElement => {
   const { brandingLink } = useStaticBrandingQueryData();
@@ -91,3 +99,5 @@ export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: Sta
     </AnimatedFlexColumnWrapper>
   );
 };
+
+export const MemoizedStaticBranding = React.memo(StaticBranding, propsAreEqual);

@@ -21,7 +21,7 @@ export const LoadingView = (): ReactElement => {
   /** @todo Fix scroll locking during loading sequence */
 
   useEffect(() => {
-    document.body.style.overflowY = `hidden`;
+    // document.body.style.overflowY = `hidden`;
 
     const timer = setTimeout(() => {
       dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: false } } });
@@ -35,7 +35,7 @@ export const LoadingView = (): ReactElement => {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
     onDestroyed: () => {
-      document.body.style.overflowY = `scroll`;
+      // document.body.style.overflowY = `scroll`;
     },
   });
 

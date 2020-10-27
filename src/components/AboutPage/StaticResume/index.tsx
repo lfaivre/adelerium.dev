@@ -1,4 +1,4 @@
-import { StaticResumeProps } from '@adelerium/components/AboutPage/StaticResume/types';
+import { PropsAreEqualFunction, StaticResumeProps } from '@adelerium/components/AboutPage/StaticResume/types';
 import { useStaticResumeQueryData } from '@adelerium/components/AboutPage/StaticResume/useStaticResumeQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { GOOGLE_DRIVE } from '@adelerium/constants/icons';
@@ -21,6 +21,14 @@ const windowWidthBreakpoint = windowDimensionBreakpoints.width.xl;
 
 const staticResumeTitleText = `Are you looking to hire? Here’s my resume.`;
 const staticResumeLinkText = `View on Google Drive`;
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height &&
+    prevProps.dimensions.maxHeight === nextProps.dimensions.maxHeight
+  );
+};
 
 export const StaticResume = ({ dimensions: { width, height, maxHeight } }: StaticResumeProps): ReactElement => {
   const { resumeLink } = useStaticResumeQueryData();
@@ -102,3 +110,5 @@ export const StaticResume = ({ dimensions: { width, height, maxHeight } }: Stati
     </AnimatedFlexRowWrapper>
   );
 };
+
+export const MemoizedStaticResume = React.memo(StaticResume, propsAreEqual);

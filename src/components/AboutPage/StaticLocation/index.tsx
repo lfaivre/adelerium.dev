@@ -1,4 +1,4 @@
-import { StaticLocationProps } from '@adelerium/components/AboutPage/StaticLocation/types';
+import { PropsAreEqualFunction, StaticLocationProps } from '@adelerium/components/AboutPage/StaticLocation/types';
 import { useAppState } from '@adelerium/hooks/app-state';
 import { BoldParagraphType } from '@adelerium/styles/text';
 import { FlexRowWrapper } from '@adelerium/styles/wrappers';
@@ -6,6 +6,14 @@ import React, { ReactElement } from 'react';
 import tw, { css } from 'twin.macro';
 
 const staticLocationText = `Now local to Phoenix, Arizona.`;
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height &&
+    prevProps.dimensions.maxHeight === nextProps.dimensions.maxHeight
+  );
+};
 
 export const StaticLocation = ({ dimensions: { width, height, maxHeight } }: StaticLocationProps): ReactElement => {
   const {
@@ -36,3 +44,5 @@ export const StaticLocation = ({ dimensions: { width, height, maxHeight } }: Sta
     </FlexRowWrapper>
   );
 };
+
+export const MemoizedStaticLocation = React.memo(StaticLocation, propsAreEqual);

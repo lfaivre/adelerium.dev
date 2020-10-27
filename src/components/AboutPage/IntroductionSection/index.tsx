@@ -1,4 +1,7 @@
-import { IntroductionSectionProps } from '@adelerium/components/AboutPage/IntroductionSection/types';
+import {
+  IntroductionSectionProps,
+  PropsAreEqualFunction,
+} from '@adelerium/components/AboutPage/IntroductionSection/types';
 import { useIntroductionSectionQueryData } from '@adelerium/components/AboutPage/IntroductionSection/useIntroductionSectionQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { useAppState } from '@adelerium/hooks/app-state';
@@ -8,6 +11,13 @@ import React, { ReactElement } from 'react';
 import tw, { css } from 'twin.macro';
 
 const windowWidthBreakpoint = windowDimensionBreakpoints.width.xl;
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height
+  );
+};
 
 export const IntroductionSection = ({ dimensions: { width, height } }: IntroductionSectionProps): ReactElement => {
   const { introductionSection } = useIntroductionSectionQueryData();
@@ -62,3 +72,5 @@ export const IntroductionSection = ({ dimensions: { width, height } }: Introduct
     </FlexRowWrapper>
   );
 };
+
+export const MemoizedIntroductionSection = React.memo(IntroductionSection, propsAreEqual);

@@ -1,4 +1,4 @@
-import { BrandingSectionProps } from '@adelerium/components/AboutPage/BrandingSection/types';
+import { BrandingSectionProps, PropsAreEqualFunction } from '@adelerium/components/AboutPage/BrandingSection/types';
 import { useBrandingSectionQueryData } from '@adelerium/components/AboutPage/BrandingSection/useBrandingSectionQueryData';
 import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { useAppState } from '@adelerium/hooks/app-state';
@@ -8,6 +8,13 @@ import React, { ReactElement } from 'react';
 import tw, { css } from 'twin.macro';
 
 const windowWidthBreakpoint = windowDimensionBreakpoints.width.xl;
+
+const propsAreEqual: PropsAreEqualFunction = (prevProps, nextProps) => {
+  return (
+    prevProps.dimensions.width === nextProps.dimensions.width &&
+    prevProps.dimensions.height === nextProps.dimensions.height
+  );
+};
 
 export const BrandingSection = ({ dimensions: { width, height } }: BrandingSectionProps): ReactElement => {
   const { brandingSection } = useBrandingSectionQueryData();
@@ -62,3 +69,5 @@ export const BrandingSection = ({ dimensions: { width, height } }: BrandingSecti
     </FlexRowWrapper>
   );
 };
+
+export const MemoizedBrandingSection = React.memo(BrandingSection, propsAreEqual);
