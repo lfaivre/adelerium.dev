@@ -101,6 +101,14 @@ module.exports = {
         '@adelerium': `${__dirname}/src`,
       },
     },
+    {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-manifest`,

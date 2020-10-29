@@ -9,13 +9,6 @@ export const useNotFoundPageQueryData = (): NotFoundPageQuery => {
           ...GatsbyContentfulFixed
         }
       }
-      accentImage: file(relativePath: { eq: "not-found-page-accent.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 448, quality: 100) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
-          }
-        }
-      }
     }
   `);
 

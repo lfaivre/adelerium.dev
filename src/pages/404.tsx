@@ -2,9 +2,10 @@ import { SEO } from '@adelerium/components/Global/SEO';
 import { useNotFoundPageQueryData } from '@adelerium/graphql/useNotFoundPageQueryData';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
+import Accent from '@adelerium/images/not-found-page-accent.inline.svg';
 import { FlexColumnWrapper, FlexRowWrapper, MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
-import Img, { FixedObject, FluidObject } from 'gatsby-image';
+import { FixedObject } from 'gatsby-image';
 import React, { ReactElement, useLayoutEffect } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import 'twin.macro';
@@ -12,7 +13,7 @@ import 'twin.macro';
 const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
 
 const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
-  const { metaImage, accentImage } = useNotFoundPageQueryData();
+  const { metaImage } = useNotFoundPageQueryData();
 
   const {
     dimensions: {
@@ -50,14 +51,7 @@ const NotFoundPage = ({ location: { pathname } }: PageProps): ReactElement => {
             style={springProps}
             tw="p-8 w-full"
           >
-            <Img
-              fluid={accentImage?.childImageSharp?.fluid as FluidObject | FluidObject[]}
-              alt=""
-              loading="eager"
-              fadeIn={false}
-              draggable={false}
-              tw="w-full md:w-1/2 max-w-md select-none"
-            />
+            <Accent tw="w-full md:w-1/2 max-w-md select-none" />
           </AnimatedFlexRowWrapper>
         </FlexColumnWrapper>
       </MinHeightScreenWrapper>
