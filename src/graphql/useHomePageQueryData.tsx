@@ -9,6 +9,13 @@ export const useHomePageQueryData = (): HomePageQuery => {
           ...GatsbyContentfulFixed
         }
       }
+      wavesBackgroundImage: file(relativePath: { eq: "waves.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1648, quality: 100) {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+          }
+        }
+      }
       brandingLink: contentfulLink(id: { eq: "5e2725b8-75c7-5c4b-86f1-3caa0f3df31e" }) {
         destination
       }

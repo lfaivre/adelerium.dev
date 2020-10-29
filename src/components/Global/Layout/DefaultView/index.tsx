@@ -172,13 +172,12 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={headerWrapperProps}
         css={[
           css`
-            border-color: ${colors.secondary.default};
             background-color: ${colors.primary.default};
             width: ${layoutWidth}px;
           `,
-          (!headerIsVisible || !windowGutterWidth) && tw`hidden`,
+          (!headerIsVisible || windowGutterWidth === undefined) && tw`hidden`,
           loadingScreenIsVisible ? tw`opacity-0` : tw`opacity-100`,
-          tw`fixed top-0 z-30 border-b p-4 md:px-8`,
+          tw`fixed top-0 z-30 p-4 md:px-8`,
         ]}
       >
         <Header />
@@ -188,11 +187,10 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
         style={sideBarWrapperProps}
         css={[
           css`
-            border-color: ${colors.primary.default};
             width: ${sideBarWidth}px;
           `,
           loadingScreenIsVisible ? tw`opacity-0` : tw`opacity-100`,
-          tw`fixed top-0 z-30 border-r h-screen max-h-global`,
+          tw`fixed top-0 z-30 h-screen max-h-global`,
         ]}
       >
         <SideBar />

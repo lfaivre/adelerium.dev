@@ -1,35 +1,35 @@
-import { Header } from '@adelerium/components/Global/Header';
 import { SEO } from '@adelerium/components/Global/SEO';
-import { windowDimensionBreakpoints } from '@adelerium/constants/dimensions';
 import { studioUrl } from '@adelerium/constants/site-metadata';
 import { useHomePageQueryData } from '@adelerium/graphql/useHomePageQueryData';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
 import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { useDimensions } from '@adelerium/hooks/useDimensions';
+import Accent from '@adelerium/images/home-page-accent.inline.svg';
+import '@adelerium/styles/other/spin.css';
 import { BoldTypeAsButton, BrandingType } from '@adelerium/styles/text';
-import { FlexRowWrapper } from '@adelerium/styles/wrappers';
+import { MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
 import { PageProps } from 'gatsby';
-import { FixedObject } from 'gatsby-image';
+import Img, { FixedObject, FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
 import React, { ReactElement, useLayoutEffect, useRef } from 'react';
 import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
 
-const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
 const AnimatedBoldTypeAsButton = animated(BoldTypeAsButton);
+const AnimatedAccent = animated(Accent);
 
 const staticToggleText = `Toggle Navigation (T)`;
 const staticStudioLogoText = `KD.`;
 
 const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
-  const { metaImage, brandingLink } = useHomePageQueryData();
+  const { metaImage, brandingLink, wavesBackgroundImage } = useHomePageQueryData();
 
   const {
     view: {
       sideBar: { isVisible: sideBarIsVisible },
     },
     dimensions: {
-      layout: { width: layoutWidth },
+      navigationCollection: { height: navigationCollectionHeight },
     },
     theme: { colors },
   } = useAppState();
@@ -41,7 +41,7 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
   useLayoutEffect(() => {
     dispatch({
       type: SET_VIEW,
-      payload: { header: { isVisible: false }, footer: { isVisible: false }, returnButton: { isVisible: false } },
+      payload: { header: { isVisible: true }, footer: { isVisible: false }, returnButton: { isVisible: false } },
     });
 
     return () => {
@@ -52,12 +52,6 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
     };
   }, [dispatch]);
 
-  const headerSpringProps = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    config: config.molasses,
-  });
-
   const navigationToggleSpringStyles = useSpring({
     from: { opacity: 0 },
     to: { opacity: sideBarToggleWidth !== 0 ? 1 : 0 },
@@ -67,22 +61,78 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
   return (
     <>
       <SEO title="Home" pathname={pathname} image={metaImage?.fixed as FixedObject} />
-      <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="relative w-full h-screen">
-        <AnimatedBoldTypeAsButton
-          ref={buttonRef}
-          onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
-          color={colors.secondary.default}
-          textAlign="text-center"
-          style={navigationToggleSpringStyles}
+      <MinHeightScreenWrapper
+        minHeight={navigationCollectionHeight}
+        backgroundColor={colors.primary.default}
+        css={[
+          css`
+            height: calc(100vh - ${navigationCollectionHeight}px);
+          `,
+          tw`relative flex flex-col justify-start items-center w-full`,
+        ]}
+      >
+        <div
           css={[
             css`
-              left: ${-(sideBarToggleWidth / 2) + 32}px;
+              top: calc(50% - ${(202 + 32) / 2}px);
+              border-color: ${colors.secondary.default};
+              background-color: ${colors.primary.default};
             `,
-            tw`hidden md:block absolute transform -rotate-90 z-10 focus:outline-none px-2 py-1 uppercase text-xs`,
+            tw`absolute z-10 border rounded-full p-2 md:p-4`,
           ]}
         >
-          {staticToggleText}
-        </AnimatedBoldTypeAsButton>
+          <AnimatedAccent className="spin" />
+        </div>
+        <hr
+          css={[
+            css`
+              top: 50%;
+              border-color: ${colors.secondary.default};
+            `,
+            tw`absolute w-full`,
+          ]}
+        />
+        <div
+          css={[
+            css`
+              height: 50%;
+            `,
+            tw`relative pb-2 md:pb-4 w-full`,
+          ]}
+        >
+          <AnimatedBoldTypeAsButton
+            ref={buttonRef}
+            onClick={() => dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: !sideBarIsVisible } } })}
+            color={colors.secondary.default}
+            textAlign="text-center"
+            style={navigationToggleSpringStyles}
+            css={[
+              css`
+                top: 50%;
+                left: ${-(sideBarToggleWidth / 2) + 32}px;
+              `,
+              tw`hidden md:block absolute transform -rotate-90 z-10 focus:outline-none px-2 py-1 uppercase text-xs`,
+            ]}
+          >
+            {staticToggleText}
+          </AnimatedBoldTypeAsButton>
+        </div>
+        <div
+          css={[
+            css`
+              height: 50%;
+            `,
+            tw`pt-2 md:pt-4 w-full overflow-hidden`,
+          ]}
+        >
+          <Img
+            fluid={wavesBackgroundImage?.childImageSharp?.fluid as FluidObject | FluidObject[]}
+            loading="eager"
+            draggable={false}
+            alt=""
+            tw="flex-grow h-full select-none"
+          />
+        </div>
         <OutboundLink
           href={brandingLink?.destination || studioUrl}
           label={brandingLink?.destination || studioUrl}
@@ -94,17 +144,7 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
             {staticStudioLogoText}
           </BrandingType>
         </OutboundLink>
-        <FlexRowWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full">
-          <AnimatedFlexRowWrapper
-            style={headerSpringProps}
-            alignItems="items-start"
-            justifyContent="justify-center"
-            tw="py-4 px-8 md:px-32 w-full max-w-sm md:max-w-screen-md"
-          >
-            <Header disableToggle={layoutWidth >= windowDimensionBreakpoints.width.md} />
-          </AnimatedFlexRowWrapper>
-        </FlexRowWrapper>
-      </FlexRowWrapper>
+      </MinHeightScreenWrapper>
     </>
   );
 };
