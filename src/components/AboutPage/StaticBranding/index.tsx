@@ -62,15 +62,29 @@ export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: Sta
           height: ${height !== -1 ? `${height}px` : `auto`};
           max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
         `,
-        tw`mb-2 xl:mb-0`,
+        tw`relative mb-2 xl:mb-0`,
       ]}
     >
+      <FlexColumnWrapper
+        alignItems="items-center"
+        justifyContent="justify-center"
+        css={[
+          css`
+            color: ${colors.secondary.default};
+          `,
+          tw`absolute top-0 left-0 z-0 w-full h-full`,
+        ]}
+      >
+        <AnimatedBrandingType color={colors.secondary.default} style={textSpringStyles} tw="text-5xl">
+          {staticStudioLogoText}
+        </AnimatedBrandingType>
+      </FlexColumnWrapper>
       <OutboundLink
         href={brandingLink?.destination || websiteFullPath}
         label={brandingLink?.destination || websiteFullPath}
         target="_blank"
         rel="noopener noreferrer"
-        tw="w-full h-full"
+        tw="z-10 w-full h-full"
       >
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="p-4 lg:p-8 w-full h-full">
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-x-hidden">
@@ -89,11 +103,7 @@ export const StaticBranding = ({ dimensions: { width, height, maxHeight } }: Sta
               {staticStudioSubtitle}
             </AnimatedBoldType>
           </FlexColumnWrapper>
-          <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-grow w-full">
-            <AnimatedBrandingType color={colors.secondary.default} style={textSpringStyles} tw="text-5xl">
-              {staticStudioLogoText}
-            </AnimatedBrandingType>
-          </FlexColumnWrapper>
+          <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-grow w-full" />
         </FlexColumnWrapper>
       </OutboundLink>
     </AnimatedFlexColumnWrapper>

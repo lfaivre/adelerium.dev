@@ -57,29 +57,30 @@ export const SocialLinkSquare = ({
           height: ${height !== -1 ? `${height}px` : `auto`};
           max-height: ${maxHeight !== -1 ? `${maxHeight}px` : `none`};
         `,
-        tw`mb-2 xl:mb-0`,
+        tw`relative mb-2 xl:mb-0`,
       ]}
     >
+      <FlexColumnWrapper
+        alignItems="items-center"
+        justifyContent="justify-center"
+        css={[
+          css`
+            color: ${colors.secondary.default};
+          `,
+          tw`absolute top-0 left-0 z-0 w-full h-full`,
+        ]}
+      >
+        {getIcon(type as IconType, 4)}
+      </FlexColumnWrapper>
       <OutboundLink
         href={externalLink || websiteFullPath}
         label={externalLink || websiteFullPath}
         target="_blank"
         rel="noopener noreferrer"
-        tw="w-full h-full"
+        tw="z-10 w-full h-full"
       >
         <FlexColumnWrapper alignItems="items-center" justifyContent="justify-start" tw="p-4 lg:p-8 w-full h-full">
-          <FlexColumnWrapper
-            alignItems="items-center"
-            justifyContent="justify-center"
-            css={[
-              css`
-                color: ${colors.secondary.default};
-              `,
-              tw`flex-grow w-full`,
-            ]}
-          >
-            {getIcon(type as IconType, 4)}
-          </FlexColumnWrapper>
+          <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="flex-grow w-full" />
           <FlexColumnWrapper alignItems="items-start" justifyContent="justify-center" tw="w-full overflow-x-hidden">
             <BoldType color={colors.secondary.default} tw="w-full uppercase text-xs lg:text-base">
               {title}
