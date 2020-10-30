@@ -11,6 +11,7 @@ export const GlobalStyles = ({ backgroundColor }: GlobalStylesProps): ReactEleme
         }
 
         body {
+          position: relative;
           width: 100vw;
           height: 100vh;
           overflow-x: hidden;

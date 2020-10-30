@@ -11,7 +11,7 @@ export const useHomePageQueryData = (): HomePageQuery => {
       }
       wavesBackgroundImage: file(relativePath: { eq: "waves.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 1648, quality: 100) {
+          fluid(maxWidth: 1680, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }

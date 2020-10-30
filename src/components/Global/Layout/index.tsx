@@ -12,6 +12,7 @@ import { GlobalStyles as TailwindGlobalStyles } from 'twin.macro';
 export const Layout = ({ children }: LayoutProps): ReactElement => {
   const {
     theme: { colors },
+    interactivity: { globalScroll },
   } = useAppState();
   const dispatch = useAppDispatch();
 
@@ -29,6 +30,14 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
     const { width, height } = layoutDimensions;
     dispatch({ type: SET_DIMENSIONS, payload: { layout: { width, height } } });
   }, [layoutDimensions, dispatch]);
+
+  useLayoutEffect(() => {
+    if (globalScroll.enabled) document.body.style.overflowY = `scroll`;
+    else document.body.style.overflow = `hidden`;
+    return () => {
+      document.body.style.overflowY = `scroll`;
+    };
+  }, [globalScroll.enabled]);
 
   return (
     <>

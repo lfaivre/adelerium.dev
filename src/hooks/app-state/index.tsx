@@ -32,6 +32,9 @@ const initialState: State = {
   theme: {
     colors: colors[DEFAULT_PALETTE],
   },
+  interactivity: {
+    globalScroll: { enabled: true },
+  },
 };
 
 const navigationCollectionElements: Set<keyof Partial<ElementDimensionsState>> = new Set([
@@ -39,6 +42,8 @@ const navigationCollectionElements: Set<keyof Partial<ElementDimensionsState>> =
   `footer`,
   `returnButton`,
 ]);
+
+const scrollDisablingElements: Set<keyof Partial<ElementViewState>> = new Set([`loadingScreen`, `sideBar`]);
 
 /**
  * @todo Fix Type Issues in Reducer
@@ -50,7 +55,10 @@ const navigationCollectionElements: Set<keyof Partial<ElementDimensionsState>> =
 const appStateReducer = (draft: State, action: Action): void => {
   switch (action.type) {
     case SET_VIEW: {
+      const modifiedElements: (keyof Partial<ElementViewState>)[] = [];
+
       (Object.keys(action.payload) as (keyof Partial<ElementViewState>)[]).forEach((element) => {
+        modifiedElements.push(element);
         (Object.keys(action.payload[element] as Partial<ElementViewStates>) as (keyof Partial<
           ElementViewStates
         >)[]).forEach((attribute) => {
@@ -58,6 +66,29 @@ const appStateReducer = (draft: State, action: Action): void => {
           draft.view[element][attribute] = action.payload[element]![attribute];
         });
       });
+
+      /** @note Handle Global Scroll Locking */
+
+      let modifyGlobalScroll = false;
+
+      for (let i = 0, n = modifiedElements.length; i < n; i += 1) {
+        if (scrollDisablingElements.has(modifiedElements[i])) {
+          modifyGlobalScroll = true;
+          break;
+        }
+      }
+
+      if (modifyGlobalScroll) {
+        let disableScroll = false;
+
+        /** @todo Break out of loop early (convert from Set to Array) */
+        scrollDisablingElements.forEach((element) => {
+          if (draft.view[element].isVisible) disableScroll = true;
+        });
+
+        draft.interactivity.globalScroll.enabled = !disableScroll;
+      }
+
       break;
     }
     case SET_DIMENSIONS: {

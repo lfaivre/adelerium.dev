@@ -40,4 +40,15 @@ export type ElementDimensionsState = {
 
 export type ThemeState = { colors: ColorPalette };
 
-export type State = { view: ElementViewState; dimensions: ElementDimensionsState; theme: ThemeState };
+export type Interactivity = { enabled: boolean };
+
+export type InteractivityState = {
+  globalScroll: Interactivity;
+};
+
+export type State = {
+  view: ElementViewState;
+  dimensions: ElementDimensionsState;
+  theme: ThemeState;
+  interactivity: InteractivityState;
+};

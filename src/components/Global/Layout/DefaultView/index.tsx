@@ -68,7 +68,7 @@ export const DefaultView = ({ children }: DefaultViewProps): ReactElement => {
   }, [layoutWidth]);
 
   useLayoutEffect(() => {
-    if (typeof window !== `undefined`) window.scrollTo({ top: 0 });
+    if (typeof window !== `undefined`) window.scrollTo({ top: 0, left: 0 });
     dispatch({ type: SET_VIEW, payload: { sideBar: { isVisible: false } } });
   }, [pathname, dispatch]);
 

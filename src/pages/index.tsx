@@ -74,11 +74,11 @@ const IndexPage = ({ location: { pathname } }: PageProps): ReactElement => {
         <div
           css={[
             css`
-              top: calc(50% - ${(202 + 32) / 2}px);
+              top: calc(50% - ${(202 + 16) / 2}px);
               border-color: ${colors.secondary.default};
               background-color: ${colors.primary.default};
             `,
-            tw`absolute z-10 border rounded-full p-2 md:p-4`,
+            tw`absolute z-10 border rounded-full p-2`,
           ]}
         >
           <AnimatedAccent className="spin" />

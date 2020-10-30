@@ -7,7 +7,6 @@ import { animated, useTransition } from 'react-spring';
 import 'twin.macro';
 
 const staticLoadingText = `adelerium`;
-const staticLoadingTime = 2000;
 
 export const LoadingView = (): ReactElement => {
   const {
@@ -18,25 +17,24 @@ export const LoadingView = (): ReactElement => {
   } = useAppState();
   const dispatch = useAppDispatch();
 
-  /** @todo Fix scroll locking during loading sequence */
-
   useEffect(() => {
-    // document.body.style.overflowY = `hidden`;
+    const timer = loadingScreenIsVisible
+      ? setTimeout(() => {
+          dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: false } } });
+        }, 2000)
+      : undefined;
 
-    const timer = setTimeout(() => {
-      dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: false } } });
-    }, staticLoadingTime);
-
-    return () => clearTimeout(timer);
+    return () => {
+      if (timer !== undefined) {
+        clearTimeout(timer);
+      }
+    };
   }, [loadingScreenIsVisible, dispatch]);
 
   const loadingViewTransitions = useTransition(loadingScreenIsVisible, null, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    onDestroyed: () => {
-      // document.body.style.overflowY = `scroll`;
-    },
   });
 
   return (
