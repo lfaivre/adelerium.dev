@@ -70,36 +70,40 @@ export const SEO = ({
           content: metaDescription,
         },
       ]
-        .concat([
-          {
-            property: `og:image`,
-            content: `http:${image.src}`,
-          },
-          {
-            property: `og:image:secure_url`,
-            content: `https:${image.src}`,
-          },
-          {
-            property: `og:image:type`,
-            content: `image/png`,
-          },
-          {
-            property: `og:image:alt`,
-            content: title,
-          },
-          {
-            property: `og:image:width`,
-            content: `${image.width}`,
-          },
-          {
-            property: `og:image:height`,
-            content: `${image.height}`,
-          },
-          {
-            name: `twitter:card`,
-            content: `summary_large_image`,
-          },
-        ])
+        .concat(
+          image
+            ? [
+                {
+                  property: `og:image`,
+                  content: `http:${image.src}`,
+                },
+                {
+                  property: `og:image:secure_url`,
+                  content: `https:${image.src}`,
+                },
+                {
+                  property: `og:image:type`,
+                  content: `image/png`,
+                },
+                {
+                  property: `og:image:alt`,
+                  content: title,
+                },
+                {
+                  property: `og:image:width`,
+                  content: `${image.width}`,
+                },
+                {
+                  property: `og:image:height`,
+                  content: `${image.height}`,
+                },
+                {
+                  name: `twitter:card`,
+                  content: `summary_large_image`,
+                },
+              ]
+            : []
+        )
         .concat(meta)}
     />
   );

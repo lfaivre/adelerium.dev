@@ -48,6 +48,7 @@ module.exports = {
     'no-use-before-define': `off`,
     'react/destructuring-assignment': `off`,
     'react/jsx-filename-extension': `off`,
+    'react/prop-types': `off`,
     'react/require-default-props': [2, { forbidDefaultForRequired: true, ignoreFunctionalComponents: true }],
     'unicorn/filename-case': `off`,
     'unicorn/no-null': `off`,

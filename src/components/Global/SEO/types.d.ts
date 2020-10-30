@@ -10,5 +10,5 @@ type SEOProps = {
   lang?: string;
   meta?: MetaProps[];
   pathname: string;
-  image: FixedObject;
+  image?: FixedObject;
 };

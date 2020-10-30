@@ -2,7 +2,7 @@
 
 export const notFoundPagePathname = ``;
 export const notFoundPagePathnameAlt = ``;
-export const notFoundPageTitleText = `Error`;
+export const notFoundPageTitleText = `adelerium`;
 
 /** @note Home (Index) Page */
 

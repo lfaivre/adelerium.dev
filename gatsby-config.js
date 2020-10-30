@@ -111,6 +111,21 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              linkImagesToOriginal: false,
+              withWebp: true,
+              loading: `eager`,
+            },
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: title,
