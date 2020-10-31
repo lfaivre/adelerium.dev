@@ -1,4 +1,5 @@
 import { NavigationLinkProps } from '@adelerium/components/Global/SideBar/NavigationLink/types';
+import { homePageTitleText } from '@adelerium/constants/paths';
 import { ExternalLinks, InternalLinks } from '@adelerium/constants/presentation';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
 import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
@@ -43,11 +44,13 @@ export const NavigationLink = ({ type, data }: NavigationLinkProps): ReactElemen
     to: {
       backgroundColor:
         (type === InternalLinks && sideBarIsVisible && data?.displayText === pathData.pathData?.text) ||
+        (type === InternalLinks && pathData.pathData === undefined && data?.displayText === homePageTitleText) ||
         (type === ExternalLinks && hovered)
           ? colors.primary.default
           : `#ffffff00`,
       color:
         (type === InternalLinks && sideBarIsVisible && data?.displayText === pathData.pathData?.text) ||
+        (type === InternalLinks && pathData.pathData === undefined && data?.displayText === homePageTitleText) ||
         (type === ExternalLinks && hovered)
           ? colors.secondary.default
           : colors.primary.default,
