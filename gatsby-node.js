@@ -1,7 +1,7 @@
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
     {
-      projectDetails: allContentfulProjectDetails {
+      projects: allContentfulProject {
         nodes {
           id
           slug
@@ -10,11 +10,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  result.data.projectDetails.nodes.forEach((post) => {
+  result.data.projects.nodes.forEach((project) => {
     createPage({
-      path: `projects/${post.slug}`,
+      path: `projects/${project.slug}`,
       component: require.resolve(`./src/templates/ProjectDetails/index.tsx`),
-      context: { id: post.id },
+      context: { id: project.id },
     });
   });
 };

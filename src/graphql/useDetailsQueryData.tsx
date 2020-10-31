@@ -13,14 +13,19 @@ import { graphql, useStaticQuery } from 'gatsby';
 export const useDetailsQueryData = (): DetailsQuery => {
   const detailsQueryData: DetailsQuery = useStaticQuery(graphql`
     query DetailsQuery {
-      projectDetails: allContentfulProjectDetails {
+      projects: allContentfulProject {
         nodes {
           id
           slug
           title
-          content {
-            childMdx {
-              body
+          type
+          dateRangeBeginning(formatString: "MMM YYYY")
+          dateRangeEnd(formatString: "MMM YYYY")
+          details {
+            childContentfulProjectDetailsContentTextNode {
+              childMdx {
+                body
+              }
             }
           }
         }

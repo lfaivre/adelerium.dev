@@ -14,7 +14,7 @@ import { Pre } from '@adelerium/styles/markdown/pre';
 import { Strong } from '@adelerium/styles/markdown/strong';
 import { Ul } from '@adelerium/styles/markdown/ul';
 import { BoldParagraphType, BoldType } from '@adelerium/styles/text';
-import { FlexColumnWrapper, MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
+import { FlexColumnWrapper, FlexRowWrapper, MinHeightScreenWrapper } from '@adelerium/styles/wrappers';
 import { MDXProvider, MDXProviderComponentsProp } from '@mdx-js/react';
 import { Link, navigate } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
@@ -87,7 +87,7 @@ export const Details: React.FC<DetailsProps> = ({ data }) => {
 
   return (
     <>
-      <SEO title={data.title || `Project Description`} pathname={`/projects/${data.slug || `error`}`} />;
+      <SEO title={data.title || `Project Description`} pathname={`/projects/${data.slug || `error`}`} />
       <MinHeightScreenWrapper
         minHeight={navigationCollectionHeight}
         tw="relative flex flex-col items-center justify-start p-2 xl:p-4 w-full overflow-x-hidden"
@@ -107,36 +107,67 @@ export const Details: React.FC<DetailsProps> = ({ data }) => {
             textAlign="text-center"
             wordBreak="break-normal"
             enableSelect
-            tw="block mb-2 w-full text-2xl md:text-3xl"
+            tw="block mb-2 md:mb-4 w-full text-2xl md:text-3xl"
           >
-            Port of Mars
+            {data.title}
           </BoldParagraphTypeAsH1>
-          <BoldType
-            color={colors.secondary.default}
-            textAlign="text-center"
-            wordBreak="break-normal"
-            css={[tw`block mb-4 w-full uppercase text-xs`]}
-          >
-            Website - October 2020
-          </BoldType>
-          <hr
-            css={[
-              css`
-                border-color: ${colors.tertiary.default};
-              `,
-              tw`mb-2 w-full`,
-            ]}
-          />
-          <hr
-            css={[
-              css`
-                border-color: ${colors.tertiary.default};
-              `,
-              tw`mb-4 w-full`,
-            ]}
-          />
+          <FlexRowWrapper alignItems="items-center" justifyContent="justify-center" tw="mb-4 w-full">
+            <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="w-full h-full">
+              <hr
+                css={[
+                  css`
+                    border-color: ${colors.tertiary.default};
+                  `,
+                  tw`mb-2 w-full`,
+                ]}
+              />
+              <hr
+                css={[
+                  css`
+                    border-color: ${colors.tertiary.default};
+                  `,
+                  tw`w-full`,
+                ]}
+              />
+            </FlexColumnWrapper>
+            <FlexColumnWrapper
+              alignItems="items-center"
+              justifyContent="justify-center"
+              tw="px-2 md:px-4 w-full h-full"
+            >
+              <BoldType
+                color={colors.secondary.default}
+                textAlign="text-center"
+                wordBreak="break-normal"
+                enableSelect
+                css={[tw`w-full uppercase text-xs`]}
+              >
+                {data.type || `Other`}
+              </BoldType>
+            </FlexColumnWrapper>
+            <FlexColumnWrapper alignItems="items-center" justifyContent="justify-center" tw="w-full h-full">
+              <hr
+                css={[
+                  css`
+                    border-color: ${colors.tertiary.default};
+                  `,
+                  tw`mb-2 w-full`,
+                ]}
+              />
+              <hr
+                css={[
+                  css`
+                    border-color: ${colors.tertiary.default};
+                  `,
+                  tw`w-full`,
+                ]}
+              />
+            </FlexColumnWrapper>
+          </FlexRowWrapper>
           <MDXProvider components={MDXProviderComponents}>
-            <MDXRenderer>{data.content?.childMdx?.body || `No Content`}</MDXRenderer>
+            <MDXRenderer>
+              {data.details?.childContentfulProjectDetailsContentTextNode?.childMdx?.body || `No Content`}
+            </MDXRenderer>
           </MDXProvider>
           <Link to="/projects" onClick={handlePageTransition} tw="w-full">
             <AnimatedBoldType

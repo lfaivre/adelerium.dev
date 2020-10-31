@@ -9,6 +9,7 @@ export const usePreviewListQueryData = (): PreviewListQuery => {
           node {
             id
             title
+            slug
             rating
             type
             dateRangeBeginning(formatString: "MMM YYYY")

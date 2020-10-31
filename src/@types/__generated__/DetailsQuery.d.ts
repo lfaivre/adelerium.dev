@@ -7,25 +7,32 @@
 // GraphQL query operation: DetailsQuery
 // ====================================================
 
-export interface DetailsQuery_projectDetails_nodes_content_childMdx {
+export interface DetailsQuery_projects_nodes_details_childContentfulProjectDetailsContentTextNode_childMdx {
   readonly body: string;
 }
 
-export interface DetailsQuery_projectDetails_nodes_content {
-  readonly childMdx: DetailsQuery_projectDetails_nodes_content_childMdx | null;
+export interface DetailsQuery_projects_nodes_details_childContentfulProjectDetailsContentTextNode {
+  readonly childMdx: DetailsQuery_projects_nodes_details_childContentfulProjectDetailsContentTextNode_childMdx | null;
 }
 
-export interface DetailsQuery_projectDetails_nodes {
+export interface DetailsQuery_projects_nodes_details {
+  readonly childContentfulProjectDetailsContentTextNode: DetailsQuery_projects_nodes_details_childContentfulProjectDetailsContentTextNode | null;
+}
+
+export interface DetailsQuery_projects_nodes {
   readonly id: string;
   readonly slug: string | null;
   readonly title: string | null;
-  readonly content: DetailsQuery_projectDetails_nodes_content | null;
+  readonly type: string | null;
+  readonly dateRangeBeginning: any | null;
+  readonly dateRangeEnd: any | null;
+  readonly details: DetailsQuery_projects_nodes_details | null;
 }
 
-export interface DetailsQuery_projectDetails {
-  readonly nodes: ReadonlyArray<DetailsQuery_projectDetails_nodes>;
+export interface DetailsQuery_projects {
+  readonly nodes: ReadonlyArray<DetailsQuery_projects_nodes>;
 }
 
 export interface DetailsQuery {
-  readonly projectDetails: DetailsQuery_projectDetails;
+  readonly projects: DetailsQuery_projects;
 }

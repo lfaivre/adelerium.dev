@@ -3,8 +3,8 @@ import { ProjectDetailsProps } from '@adelerium/templates/ProjectDetails/types';
 import { graphql } from 'gatsby';
 import React from 'react';
 
-export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ data: { contentfulProjectDetails } }) => (
-  <MemoizedDetails data={contentfulProjectDetails} />
+export const ProjectDetails: React.FC<ProjectDetailsProps> = ({ data: { contentfulProject } }) => (
+  <MemoizedDetails data={contentfulProject} />
 );
 
 // eslint-disable-next-line import/no-default-export
@@ -12,13 +12,18 @@ export default ProjectDetails;
 
 export const pageQuery = graphql`
   query($id: String!) {
-    contentfulProjectDetails(id: { eq: $id }) {
+    contentfulProject(id: { eq: $id }) {
       id
       slug
       title
-      content {
-        childMdx {
-          body
+      type
+      dateRangeBeginning(formatString: "MMM YYYY")
+      dateRangeEnd(formatString: "MMM YYYY")
+      details {
+        childContentfulProjectDetailsContentTextNode {
+          childMdx {
+            body
+          }
         }
       }
     }

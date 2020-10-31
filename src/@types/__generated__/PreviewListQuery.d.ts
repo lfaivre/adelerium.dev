@@ -28,6 +28,7 @@ export interface PreviewListQuery_projectPreviews_edges_node_previewPicture {
 export interface PreviewListQuery_projectPreviews_edges_node {
   readonly id: string;
   readonly title: string | null;
+  readonly slug: string | null;
   readonly rating: number | null;
   readonly type: string | null;
   readonly dateRangeBeginning: any | null;

@@ -1,4 +1,3 @@
-import { Line } from '@adelerium/components/ProjectsPage/Preview/styles';
 import {
   ExternalLinkKey,
   ExternalLinks,
@@ -9,33 +8,38 @@ import {
 import { FIGMA, FIREFOX, GITHUB } from '@adelerium/constants/icons';
 import { Left, Right } from '@adelerium/constants/presentation';
 import { websiteFullPath } from '@adelerium/constants/site-metadata';
-import { useAppState } from '@adelerium/hooks/app-state';
+import { useAppDispatch, useAppState } from '@adelerium/hooks/app-state';
+import { SET_VIEW } from '@adelerium/hooks/app-state/actions';
 import { AccentType, BoldParagraphType, BoldType, NormalParagraphType } from '@adelerium/styles/text';
 import { FlexColumnWrapper, FlexRowWrapper } from '@adelerium/styles/wrappers';
 import { getIcon } from '@adelerium/utils/icons';
+import { Link, navigate } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 import { OutboundLink } from 'gatsby-plugin-google-analytics';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { MouseEvent, ReactElement, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { animated, config, useSpring } from 'react-spring';
 import tw, { css } from 'twin.macro';
+
+const AnimatedFlexRowWrapper = animated(FlexRowWrapper);
+
+const staticViewProjectText = `View More.`;
 
 export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   const {
     theme: { colors },
   } = useAppState();
+  const dispatch = useAppDispatch();
 
   const [componentLoaded, setComponentLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [direction, setDirection] = useState(Left);
+  const [linkHovered, setLinkHovered] = useState(false);
+
+  const direction = order % 2 === 0 ? Right : Left;
 
   useEffect(() => {
     setComponentLoaded(true);
   }, []);
-
-  useEffect(() => {
-    const newDirection = order % 2 === 0 ? Right : Left;
-    setDirection(newDirection);
-  }, [order]);
 
   const getDateString = (): string => {
     if (!(project.dateRangeBeginning && project.dateRangeEnd)) return `No Date`;
@@ -48,6 +52,14 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
   const shouldDisplayContent = (): boolean => componentLoaded && imageLoaded;
 
   const isLeftOriented = (): boolean => direction === Left;
+
+  const destinationPathname = project.slug ? `/projects/${project.slug}` : `/`;
+
+  const handlePageTransition = async (event: MouseEvent): Promise<void> => {
+    event.preventDefault();
+    dispatch({ type: SET_VIEW, payload: { loadingScreen: { isVisible: true } } });
+    await navigate(destinationPathname);
+  };
 
   const previewContent: PreviewContent = {
     description: {
@@ -92,6 +104,12 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
       Icon: getIcon(FIGMA, 2),
     },
   };
+
+  const projectDetailsLinkSpringStyles = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: linkHovered ? 1 : 0 },
+    config: { ...config.slow },
+  });
 
   return (
     <div
@@ -149,31 +167,50 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
             </BoldType>
           </FlexColumnWrapper>
         </FlexRowWrapper>
-        <div
-          css={[
-            css`
-              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-              background-color: ${colors.secondary.default};
-            `,
-            tw`p-2 md:p-4 w-full`,
-          ]}
-        >
-          <Img
-            fluid={project.previewPicture?.fluid as FluidObject | FluidObject[]}
-            onLoad={() => setImageLoaded(true)}
-            loading="eager"
-            fadeIn={false}
-            draggable={false}
-            alt={`Preview Image for ${project.title || `Untitled`}`}
-            backgroundColor={colors.secondary.default}
+        <Link to={destinationPathname} onClick={(e) => handlePageTransition(e)} tw="w-full">
+          <div
             css={[
               css`
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-color: ${colors.secondary.default};
               `,
-              tw`w-full select-none`,
+              tw`relative border p-2 w-full`,
             ]}
-          />
-        </div>
+          >
+            <AnimatedFlexRowWrapper
+              onMouseOver={() => setLinkHovered(true)}
+              onMouseOut={() => setLinkHovered(false)}
+              alignItems="items-center"
+              justifyContent="justify-center"
+              style={projectDetailsLinkSpringStyles}
+              css={[tw`absolute top-0 left-0 z-10 p-2 w-full h-full`]}
+            >
+              <FlexRowWrapper
+                alignItems="items-center"
+                justifyContent="justify-center"
+                css={[
+                  css`
+                    background-color: ${colors.secondary.default};
+                  `,
+                  tw`w-full h-full`,
+                ]}
+              >
+                <AccentType color={colors.primary.default} css={[tw`text-4xl md:text-6xl font-bold lowercase`]}>
+                  {staticViewProjectText}
+                </AccentType>
+              </FlexRowWrapper>
+            </AnimatedFlexRowWrapper>
+            <Img
+              fluid={project.previewPicture?.fluid as FluidObject | FluidObject[]}
+              onLoad={() => setImageLoaded(true)}
+              loading="eager"
+              fadeIn={false}
+              draggable={false}
+              alt={`Preview Image for ${project.title || `Untitled`}`}
+              backgroundColor={colors.secondary.default}
+              css={[tw`z-0 w-full select-none`]}
+            />
+          </div>
+        </Link>
       </FlexColumnWrapper>
       <FlexColumnWrapper
         alignItems="items-start"
@@ -214,8 +251,22 @@ export const Preview = ({ project, order }: PreviewProps): ReactElement => {
           justifyContent="justify-center"
           css={[isLeftOriented() ? tw`items-start` : tw`items-end`, tw`mb-8 w-full`]}
         >
-          <Line borderColor={colors.secondary.default} />
-          <Line borderColor={colors.secondary.default} />
+          <hr
+            css={[
+              css`
+                border-color: ${colors.secondary.default};
+              `,
+              tw`mb-2 w-full`,
+            ]}
+          />
+          <hr
+            css={[
+              css`
+                border-color: ${colors.secondary.default};
+              `,
+              tw`w-full`,
+            ]}
+          />
         </FlexColumnWrapper>
         <FlexRowWrapper
           alignItems="items-center"
