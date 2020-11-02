@@ -81,9 +81,8 @@ module.exports = {
         head: true,
         anonymize: true,
         respectDNT: true,
+        pageTransitionDelay: 2500,
         defer: false,
-        allowAdFeatures: false,
-        forceSSL: true,
       },
     },
     {
