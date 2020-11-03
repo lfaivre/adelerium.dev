@@ -17,7 +17,7 @@ import tw, { css } from 'twin.macro';
 const staticStudioLogoText = `KD.`;
 
 export const SideBar = (): ReactElement => {
-  const { sideBarData, profileBackgroundImage, brandingLink } = useSideBarQueryData();
+  const { sideBarData, brandingLink } = useSideBarQueryData();
 
   const {
     dimensions: {
@@ -64,7 +64,7 @@ export const SideBar = (): ReactElement => {
             justifyContent="justify-center"
             css={[
               css`
-                background: url(${profileBackgroundImage?.childImageSharp?.fluid?.src}) no-repeat center;
+                background-color: ${colors.primary.default};
               `,
               tw`mb-4 rounded-full w-40 h-40 md:w-48 md:h-48`,
             ]}
